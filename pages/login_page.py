@@ -8,12 +8,12 @@ import datetime
 # from controllers.user_controller import UserController
 from pages.base_page import BasePage
 # from pages.login_page import LoginPage
-from pages.registration_page import RegisterPage
-from pages.home_page import HomePage
-from pages.booking_page import BookingPage
-from pages.extend_packing_page import ExtendParkingPage
-from pages.payment_page import PaymentPage
-from pages.profit_loss_page import ProfitLossPage
+# from pages.registration_page import RegisterPage
+# from pages.home_page import HomePage
+# from pages.booking_page import BookingPage
+# from pages.extend_packing_page import ExtendParkingPage
+# from pages.payment_page import PaymentPage
+# from pages.profit_loss_page import ProfitLossPage
 
 class LoginPage(BasePage):
     def create_widgets(self):
