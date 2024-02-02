@@ -230,3 +230,42 @@ class PageController:
 
     def show_profit_loss_page(self):
         return self.redirect_to('profit_loss')
+
+
+# app/controllers/page_controller.py
+from flask import redirect, url_for
+from flask import render_template
+from flask import request
+from pages.login_page import LoginPage
+from pages.registration_page import RegisterPage
+from pages.home_page import HomePage
+from models.user_model import User, db
+
+class PageController:
+    def __init__(self, app):
+        # ... (other initialization code)
+
+        @app.route('/')
+        def home():
+            return self.login_page.show()
+
+        @app.route('/login', methods=['GET', 'POST'])
+        def login():
+            if request.method == 'POST':
+                # Handle login logic here
+                pass
+            return self.login_page.show()
+
+        @app.route('/registration', methods=['GET', 'POST'])
+        def registration():
+            if request.method == 'POST':
+                # Handle registration logic here
+                pass
+            return self.registration_page.show()
+
+        @app.route('/home')
+        def home():
+            return self.home_page.show()
+
+    def redirect_to(self, page_name):
+        return redirect(url_for(page_name))
