@@ -1,3 +1,6 @@
+pip install Flask-SQLAlchemy
+pip install Flask
+
 app/
 |-- __init__.py
 |-- controllers/
@@ -27,4 +30,27 @@ app/
 |-- static/
 |-- templates/
 |-- __main__.py
+|-- app.py
+
+app/
+|-- controllers/
+|   |-- __init__.py
+|   |-- page_controller.py
+|   |-- user_controller.py
+|-- models/
+|   |-- __init__.py
+|   |-- user_model.py
+|-- pages/
+|   |-- __init__.py
+|   |-- base_page.py
+|   |-- login_page.py
+|   |-- registration_page.py
+|   |-- home_page.py
+|   |-- booking_page.py
+|   |-- extend_parking_page.py
+|   |-- payment_page.py
+|   |-- profit_loss_page.py 
+|-- static/
+|-- templates/
+|-- __init__.py
 |-- app.py
