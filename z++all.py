@@ -269,3 +269,23 @@ class PageController:
 
     def redirect_to(self, page_name):
         return redirect(url_for(page_name))
+
+
+
+# app/pages/login_page.py
+from flask import render_template
+from pages.base_page import BasePage
+from customtkinter import CTkLabel, CTkEntry, CTkButton
+
+class LoginPage(BasePage):
+    def create_widgets(self):
+        # Page-specific widgets for the login page
+        label_title = CTkLabel(self, text="Login Page", font=("ar", 15, "bold"))
+        label_title.pack(pady=20)
+
+        # Add your login form elements here using CTkEntry, CTkButton, etc.
+        # Example:
+        # username_entry = CTkEntry(self, textvariable=self.username_var)
+        # password_entry = CTkEntry(self, textvariable=self.password_var, show="*")
+        # login_button = CTkButton(self, text="Login", command=self.getvals_login)
+        # ... (add more widgets as needed)
