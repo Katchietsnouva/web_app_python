@@ -1,7 +1,6 @@
 
 # app/controllers/page_controller.py version 2
-from flask import redirect, url_for, request
-from flask import Flask, render_template
+from flask import redirect, url_for, request, render_template
 from pages.login_page import LoginPage
 # from pages.registration_page import RegisterPage
 # from pages.home_page import HomePage
@@ -10,11 +9,12 @@ from pages.login_page import LoginPage
 # from pages.payment_page import PaymentPage
 # from pages.profit_loss_page import ProfitLossPage
 from controllers.data_service_controller import UserController
+from models.user_model import UserModel
 
 class PageController:
     def __init__(self, app):
         self.app = app
-        # self.user_controller = UserController()
+        self.user_controller = UserController()
         # self.user_controller = UserController(username, password, name, phone, car_plate, email)
         self.login_page = LoginPage(self)
         # self.registration_page = RegisterPage(self)
@@ -50,10 +50,11 @@ class PageController:
                 email = request.form.get('email')
 
                 # Create a UserModel instance
-                user_model = UserController(username, password, name, phone, car_plate, email)
+                user_model = UserModel(username, password, name, phone, car_plate, email)
 
                 # Register the user
-                registration_successful = UserController.register_user(user_model)
+                registration_successful = UserController.register_user(self, user_model)
+                # registration_successful = self.page_controller.user_controller.register_user(user_model)
 
                 if registration_successful:
                     return redirect(url_for('registration_success'))

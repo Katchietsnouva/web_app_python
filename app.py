@@ -10,19 +10,12 @@ from controllers.page_controller import PageController
 
 app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://username:password@localhost/dbname'
-
 # db = SQLAlchemy(app)  
-
-# @app.route('/')
-# def home():
-#     return render_template('home_page.html')
 
 # @app.route('/registration')
 # def registration():
 #     page_controller = PageController(app)
 #     return page_controller.show_registration_page()
-
-
 
 if __name__ == '__main__':
     with app.app_context():
