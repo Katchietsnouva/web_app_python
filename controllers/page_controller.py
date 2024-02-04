@@ -56,13 +56,28 @@ class PageController:
                 # registration_successful = self.page_controller.user_controller.register_user(user_model)
 
                 if registration_successful:
-                    return redirect(url_for('registration_success'))
+                    # popup 'Registration Successful!'
+                    return redirect(url_for('success_msg', message='Registration Successful!', redirect_url=url_for('home')))
+
+                    return redirect(url_for('home'))
+                    # return redirect(url_for('registration_success'))
 
             return render_template('registration_page.html')
         
+        @app.route('/success_msg')
+        def success():
+            message = request.args.get('message', 'Operation Successful!')
+            redirect_url = request.args.get('redirect_url', url_for('home'))
+            return render_template('success_page.html', message=message, redirect_url=redirect_url)
+
         @app.route('/registration-success')
         def registration_success():
-            return 'Registration Successful!'
+            message = request.args.get('message', 'Registration Successful!')
+            return render_template('registration_success.html', message=message)
+
+        # @app.route('/registration-success')
+        # def registration_success():
+        #     return 'Registration Successful!'
 
         # @app.route('/register')
         # def registration():
@@ -71,9 +86,12 @@ class PageController:
         @app.route('/home')
         def home():
             return render_template('home_page.html')
+        
 
-        @app.route('/book')
+        @app.route('/book', methods=['GET', 'POST'])
         def booking():
+            if request.method == 'POST':
+                return redirect(url_for('success_msg', message='Booking Successful!', redirect_url=url_for('home')))
             return render_template('booking_page.html')
 
         # @app.route('/extend_parking')

@@ -14,5 +14,21 @@
         "phone": "k",
         "car_plate": "k",
         "email": "philipaswa01@gmail.com"
+    },
+    {
+        "username": "s",
+        "password": "s",
+        "name": "s",
+        "phone": "s",
+        "car_plate": "s",
+        "email": "philipaswa01@gmail.com"
+    },
+    {
+        "username": "gh",
+        "password": "d",
+        "name": "d",
+        "phone": "f",
+        "car_plate": "d",
+        "email": "emeldamakos@gmail.com"
     }
 ]
