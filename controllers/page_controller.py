@@ -1,6 +1,7 @@
 
 # app/controllers/page_controller.py version 2
 from flask import redirect, url_for
+from flask import Flask, render_template
 from pages.login_page import LoginPage
 # from pages.registration_page import RegisterPage
 # from pages.home_page import HomePage
@@ -22,10 +23,13 @@ class PageController:
         # self.payment_page = PaymentPage(self)
         # self.profit_loss_page = ProfitLossPage(self)
 
-        # # Initial route
-        # @app.route('/')
-        # def home():
-        #     return self.login_page.show()
+        # Initial route
+        @app.route('/')
+        def home():
+            return render_template('home_page.html')
+            page_controller.show_login_page()
+            page_controller = PageController(app)
+
 
         # Routes for other pages
         # @app.route('/login')
