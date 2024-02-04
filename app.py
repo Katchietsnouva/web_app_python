@@ -1,17 +1,3 @@
-
-
-# app = Flask(__name__)
-
-# # Your existing code can be imported here
-
-# @app.route('/')
-# def home():
-#     return render_template('home_page.html')  # Create templates folder and HTML files accordingly
-
-
-# if __name__ == '__main__':
-#     app.run(debug=True)
-
 # app/app.py v2
 # from app import app
 from flask import Flask
@@ -24,17 +10,9 @@ app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://username:password@localhost/dbname'
 # db = SQLAlchemy(app)
 
-
 # @app.route('/')
 # def home():
 #     return render_template('home_page.html')
-
-
-# @app.route('/login')
-# def login():
-#     # page_controller = PageController(app)
-#     return render_template('login_page.html')
-    # return page_controller.show_login_page()
 
 # @app.route('/registration')
 # def registration():
