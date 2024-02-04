@@ -1,13 +1,18 @@
 # app/app.py v2
 # from app import app
+# pip install flask_mysqldb
+# pip install pymysql
+
 from flask import Flask
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from controllers.page_controller import PageController
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://username:password@localhost/dbname'
-db = SQLAlchemy(app)
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://username:password@localhost/dbname'
+app.config['JSON_DATA_FOLDER'] = 'user_data\\global_users_data\\customers_db.json'
+
+# db = SQLAlchemy(app)
 
 # @app.route('/')
 # def home():
@@ -18,7 +23,10 @@ db = SQLAlchemy(app)
 #     page_controller = PageController(app)
 #     return page_controller.show_registration_page()
 
+
+
 if __name__ == '__main__':
-    page_controller = PageController(app)
-    db.create_all() # Create tables when the app is run
-    app.run(debug=True)
+    with app.app_context():
+        # db.create_all()  # Create tables when the app is run
+        page_controller = PageController(app)
+        app.run(debug=True)

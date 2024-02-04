@@ -1,4 +1,5 @@
 # pip install flask_mysqldb
+# pip install pymysql
 # app/app.py
 from flask import Flask, render_template
 

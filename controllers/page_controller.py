@@ -27,17 +27,18 @@ class PageController:
         @app.route('/')
         def home():
             return render_template('home_page.html')
+            self.home_page.show()
             page_controller = PageController(app)
             page_controller.show_home_page()
             
-        # Routes for other pages
-        # @app.route('/login')
-        # def login():
-        #     return self.login_page.show()
+        @app.route('/login')
+        def login():
+            return render_template('login_page.html')
+            self.login_page.show()
 
-        # @app.route('/registration')
-        # def registration():
-        #     return self.registration_page.show()
+        @app.route('/registration')
+        def registration():
+            return render_template('registration_page.html')
 
         # @app.route('/home')
         # def home():
