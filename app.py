@@ -27,14 +27,15 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    page_controller = PageController(app)
-    return page_controller.show_login_page()
+    # page_controller = PageController(app)
+    # return page_controller.show_login_page()
     return render_template('home_page.html')  # Create templates folder and HTML files accordingly
 
 @app.route('/login')
 def login():
-    page_controller = PageController(app)
-    return page_controller.show_login_page()
+    # page_controller = PageController(app)
+    return render_template('login_page.html')
+    # return page_controller.show_login_page()
 
 # @app.route('/registration')
 # def registration():

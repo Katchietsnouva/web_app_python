@@ -22,15 +22,15 @@ class PageController:
         # self.payment_page = PaymentPage(self)
         # self.profit_loss_page = ProfitLossPage(self)
 
-        # Initial route
-        @app.route('/')
-        def home():
-            return self.login_page.show()
+        # # Initial route
+        # @app.route('/')
+        # def home():
+        #     return self.login_page.show()
 
         # Routes for other pages
-        @app.route('/login')
-        def login():
-            return self.login_page.show()
+        # @app.route('/login')
+        # def login():
+        #     return self.login_page.show()
 
         # @app.route('/registration')
         # def registration():
