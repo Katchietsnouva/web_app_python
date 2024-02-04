@@ -35,6 +35,28 @@ class PageController:
         def login():
             return render_template('login_page.html')
             self.login_page.show()
+            
+        @app.route('/register', methods=['GET', 'POST'])
+        def registration():
+            if self.app.request.method == 'POST':
+                # Get form data
+                username = self.app.request.form.get('username')
+                password = self.app.request.form.get('password')
+                name = self.app.request.form.get('name')
+                phone = self.app.request.form.get('phone')
+                car_plate = self.app.request.form.get('car_plate')
+                email = self.app.request.form.get('email')
+
+                # Create a UserModel instance
+                user_model = UserModel(username, password, name, phone, car_plate, email)
+
+                # Register the user
+                registration_successful = self.user_controller.register_user(user_model)
+
+                if registration_successful:
+                    return redirect(url_for('registration_success'))
+
+            return render_template('registration_page.html')
 
         @app.route('/register')
         def registration():
