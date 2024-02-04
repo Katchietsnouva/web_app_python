@@ -23,11 +23,10 @@ class UserController:
         # current_app.users_data = current_app.load_or_create_users_data()  
         # current_app.users_data = current_app.load_or_create_users_data()
         # JSON_DATA_FOLDER = 'user_data/global_users_data'
-    def __init__(self):
+    def __init__(self, username, password, name, phone, car_plate, email):
         self.users_data_path = 'user_data\\global_users_data\\customers_db.json'
-        # self.users_data_path = current_app.config['users_data_path']
         self.users_data = self.load_or_create_users_data()
-
+        # self.users_data_path = current_app.config['users_data_path']
 
     def save_users_data(self):
         with open(self.users_data_path, "w") as file:

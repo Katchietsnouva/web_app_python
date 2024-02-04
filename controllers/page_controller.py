@@ -1,6 +1,6 @@
 
 # app/controllers/page_controller.py version 2
-from flask import redirect, url_for
+from flask import redirect, url_for, request
 from flask import Flask, render_template
 from pages.login_page import LoginPage
 # from pages.registration_page import RegisterPage
@@ -15,6 +15,7 @@ class PageController:
     def __init__(self, app):
         self.app = app
         # self.user_controller = UserController()
+        # self.user_controller = UserController(username, password, name, phone, car_plate, email)
         self.login_page = LoginPage(self)
         # self.registration_page = RegisterPage(self)
         # self.home_page = HomePage(self)
@@ -38,20 +39,21 @@ class PageController:
 
         @app.route('/register', methods=['GET', 'POST'])
         def registration():
-            if self.app.request.method == 'POST':
+            if request.method == 'POST':
+            # if self.app.request.method == 'POST':
                 # Get form data
-                username = self.app.request.form.get('username')
-                password = self.app.request.form.get('password')
-                name = self.app.request.form.get('name')
-                phone = self.app.request.form.get('phone')
-                car_plate = self.app.request.form.get('car_plate')
-                email = self.app.request.form.get('email')
+                username = request.form.get('username')
+                password = request.form.get('password')
+                name = request.form.get('name')
+                phone = request.form.get('phone')
+                car_plate = request.form.get('car_plate')
+                email = request.form.get('email')
 
                 # Create a UserModel instance
                 user_model = UserController(username, password, name, phone, car_plate, email)
 
                 # Register the user
-                registration_successful = self.user_controller.register_user(user_model)
+                registration_successful = UserController.register_user(user_model)
 
                 if registration_successful:
                     return redirect(url_for('registration_success'))
@@ -78,13 +80,6 @@ class PageController:
         # def extend_parking():
         #     return self.extend_parking_page.show()
 
-        # @app.route('/payment')
-        # def payment():
-        #     return self.payment_page.show()
-
-        # @app.route('/profit_loss')
-        # def profit_loss():
-        #     return self.profit_loss_page.show()
 
     def redirect_to(self, page_name):
         return redirect(url_for(page_name))
@@ -97,15 +92,3 @@ class PageController:
 
     # def show_home_page(self):
     #     return self.redirect_to('home')
-
-    # def show_booking_page(self):
-    #     return self.redirect_to('booking')
-
-    # def show_extend_parking_page(self):
-    #     return self.redirect_to('extend_parking')
-
-    # def show_payment_page(self):
-    #     return self.redirect_to('payment')
-
-    # def show_profit_loss_page(self):
-    #     return self.redirect_to('profit_loss')
