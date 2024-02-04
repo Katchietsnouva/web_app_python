@@ -9,7 +9,7 @@ from pages.login_page import LoginPage
 # from pages.extend_parking_page import ExtendParkingPage
 # from pages.payment_page import PaymentPage
 # from pages.profit_loss_page import ProfitLossPage
-# from user_controller import UserController
+from controllers.data_service_controller import UserController
 
 class PageController:
     def __init__(self, app):
@@ -35,7 +35,7 @@ class PageController:
         def login():
             return render_template('login_page.html')
             self.login_page.show()
-            
+
         @app.route('/register', methods=['GET', 'POST'])
         def registration():
             if self.app.request.method == 'POST':
@@ -48,7 +48,7 @@ class PageController:
                 email = self.app.request.form.get('email')
 
                 # Create a UserModel instance
-                user_model = UserModel(username, password, name, phone, car_plate, email)
+                user_model = UserController(username, password, name, phone, car_plate, email)
 
                 # Register the user
                 registration_successful = self.user_controller.register_user(user_model)
@@ -57,10 +57,14 @@ class PageController:
                     return redirect(url_for('registration_success'))
 
             return render_template('registration_page.html')
+        
+        @app.route('/registration-success')
+        def registration_success():
+            return 'Registration Successful!'
 
-        @app.route('/register')
-        def registration():
-            return render_template('registration_page.html')
+        # @app.route('/register')
+        # def registration():
+        #     return render_template('registration_page.html')
 
         @app.route('/home')
         def home():
