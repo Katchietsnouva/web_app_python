@@ -27,10 +27,9 @@ class PageController:
         @app.route('/')
         def home():
             return render_template('home_page.html')
-            page_controller.show_login_page()
             page_controller = PageController(app)
-
-
+            page_controller.show_home_page()
+            
         # Routes for other pages
         # @app.route('/login')
         # def login():
