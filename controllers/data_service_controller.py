@@ -21,16 +21,16 @@ class UserController:
         # current_app.users_data_path = "user_data/global_users_data/customers_db.json"
         # current_app.config['users_data_path'] = 'user_data\\global_users_data\\customers_db.json'
         # current_app.users_data = current_app.load_or_create_users_data()  
-        # current_app.users_data = current_app.load_or_create_users_data()
         # JSON_DATA_FOLDER = 'user_data/global_users_data'
+    # def __init__(self, username, password, name, phone, car_plate, email):
     def __init__(self):
         self.users_data_path = 'user_data\\global_users_data\\customers_db.json'
-        # self.users_data_path = current_app.config['users_data_path']
         self.users_data = self.load_or_create_users_data()
-
+        # self.users_data_path = current_app.config['users_data_path']
 
     def save_users_data(self):
         with open(self.users_data_path, "w") as file:
+            # json.dump(self.user_model, file, indent=4)
             json.dump(self.users_data, file, indent=4)
 
     def load_users_data(self):
@@ -50,13 +50,16 @@ class UserController:
         return self.users_data
 
     def register_user(self, user_model):
+        self.users_data.append(vars(user_model))
+        self.save_users_data()
+        return True  # Registration successful
         # Check if the username is already taken
-        if any(user["username"] == user_model.username for user in self.users_data):
-            return False  # Username is taken
-        else:
-            self.users_data.append(vars(user_model))
-            self.save_users_data()
-            return True  # Registration successful
+        # if any(user["username"] == user_model.username for user in self.users_data):
+        #     return False  # Username is taken
+        # else:
+        #     self.users_data.append(vars(user_model))
+        #     self.save_users_data()
+            # return True  # Registration successful
 
     def authenticate_user(self, username, password):
         return any(user["username"] == username and user["password"] == password for user in self.users_data)
