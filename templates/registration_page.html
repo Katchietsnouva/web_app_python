@@ -3,10 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Web App</title>
+    <title>Account Creation</title>
 </head>
 <body>
-    <h1>Registration Page</h1>
-    <p>This is a simple example using Flask.</p>
+    <h1>Account Creation</h1>
+
+    <!-- Registration form -->
+    <form action="/register" method="post">
+        <!-- Username -->
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br>
+
+        <!-- Password -->
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br>
+
+        <!-- Name -->
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <!-- Phone Number -->
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="phone" required><br>
+
+        <!-- Car Number Plate -->
+        <label for="car_plate">Car Number Plate:</label>
+        <input type="text" id="car_plate" name="car_plate" required><br>
+
+        <!-- Email -->
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+
+        <!-- Register button -->
+        <button type="submit">Register</button>
+    </form>
+
+    <!-- Back to Home link -->
+    <p>Already have an account? <a href="/login">Login here</a></p>
 </body>
 </html>

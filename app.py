@@ -10,9 +10,8 @@ from controllers.page_controller import PageController
 
 app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://username:password@localhost/dbname'
-app.config['JSON_DATA_FOLDER'] = 'user_data\\global_users_data\\customers_db.json'
 
-# db = SQLAlchemy(app)
+# db = SQLAlchemy(app)  
 
 # @app.route('/')
 # def home():

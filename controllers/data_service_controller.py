@@ -4,31 +4,30 @@ import json
 import os
 # from pathlib import Path
 
-class DataService:
-    @staticmethod
-    def save_data(folder, filename, data):
-        folder_path = os.path.join(app.config['JSON_DATA_FOLDER'], folder)
-        file_path = os.path.join(folder_path, filename)
-        
-        if not os.path.exists(folder_path):
-            os.makedirs(folder_path)
 
-        with open(file_path, 'w') as file:
-            json.dump(data, file)
+# app/controllers/data_service_controller.py
+import json
+import os
+# from flask import current_app
 
-    @staticmethod
-    def load_data(folder, filename):
-        file_path = os.path.join(app.config['JSON_DATA_FOLDER'], folder, filename)
-        if os.path.exists(file_path):
-            with open(file_path, 'r') as file:
-                return json.load(file)
-        return None
-    
+# class DataService:
+class UserController:
+    # @staticmethod
+    # app.config['JSON_DATA_FOLDER'] = 'user_data\\global_users_data\\customers_db.json'
+    # current_app.config['users_data_path'] = 'user_data\\global_users_data\\customers_db.json'
+    # folder_path = os.path.join(current_app.config['JSON_DATA_FOLDER'], folder)
+    # file_path = os.path.join(folder_path, filename)
+    # def __init__(current_app):
+        # current_app.users_data_path = "user_data/global_users_data/customers_db.json"
+        # current_app.config['users_data_path'] = 'user_data\\global_users_data\\customers_db.json'
+        # current_app.users_data = current_app.load_or_create_users_data()  
+        # current_app.users_data = current_app.load_or_create_users_data()
+        # JSON_DATA_FOLDER = 'user_data/global_users_data'
     def __init__(self):
-        # user_data_path = "user_data\\"
-        self.users_data_path = "user_data\\global_users_data\\customers_db.json"
-        # self.users_data_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "user_data/global_users_data/customers_db.json"))
+        self.users_data_path = 'user_data\\global_users_data\\customers_db.json'
+        # self.users_data_path = current_app.config['users_data_path']
         self.users_data = self.load_or_create_users_data()
+
 
     def save_users_data(self):
         with open(self.users_data_path, "w") as file:
@@ -37,7 +36,6 @@ class DataService:
     def load_users_data(self):
         with open(self.users_data_path, "r") as file:
             return json.load(file)
-
 
     def load_or_create_users_data(self):
         directory = os.path.dirname(self.users_data_path)
@@ -62,3 +60,7 @@ class DataService:
 
     def authenticate_user(self, username, password):
         return any(user["username"] == username and user["password"] == password for user in self.users_data)
+    
+
+    
+

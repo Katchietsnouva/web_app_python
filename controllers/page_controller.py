@@ -25,7 +25,7 @@ class PageController:
 
         # Initial route
         @app.route('/')
-        def home():
+        def default():
             return render_template('home_page.html')
             self.home_page.show()
             page_controller = PageController(app)
@@ -36,17 +36,17 @@ class PageController:
             return render_template('login_page.html')
             self.login_page.show()
 
-        @app.route('/registration')
+        @app.route('/register')
         def registration():
             return render_template('registration_page.html')
 
-        # @app.route('/home')
-        # def home():
-        #     return self.home_page.show()
+        @app.route('/home')
+        def home():
+            return render_template('home_page.html')
 
-        # @app.route('/booking')
-        # def booking():
-        #     return self.booking_page.show()
+        @app.route('/book')
+        def booking():
+            return render_template('booking_page.html')
 
         # @app.route('/extend_parking')
         # def extend_parking():

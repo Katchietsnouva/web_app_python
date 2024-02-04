@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Page</title>
+</head>
+<body>
+    <h1>Booking Page</h1>
+
+    <!-- Booking form -->
+    <form action="/book" method="post">
+        <!-- Date picker for selecting arrival date -->
+        <label for="arrival_date">Select Arrival Date:</label>
+        <input type="date" id="arrival_date" name="arrival_date" required><br>
+
+        <!-- Time picker for selecting arrival time -->
+        <label for="arrival_time">Select Arrival Time:</label>
+        <input type="time" id="arrival_time" name="arrival_time" required><br>
+
+        <!-- Date picker for selecting departure date -->
+        <label for="departure_date">Select Departure Date:</label>
+        <input type="date" id="departure_date" name="departure_date" required><br>
+
+        <!-- Time picker for selecting departure time -->
+        <label for="departure_time">Select Departure Time:</label>
+        <input type="time" id="departure_time" name="departure_time" required><br>
+
+        <!-- Button to submit the booking -->
+        <button type="submit">Book Parking</button>
+    </form>
+
+    <!-- Home button to go back to the home page -->
+    <a href="/home">Home Page</a>
+</body>
+</html>
