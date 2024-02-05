@@ -4,6 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            text-align: center;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-size: 0.9em;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            color: #3498db;
+            text-decoration: none;
+            font-size: 1em;
+        }
+    </style>
 </head>
 <body>
     <h1>Booking Page</h1>
@@ -12,19 +74,19 @@
     <form action="/book" method="post">
         <!-- Date picker for selecting arrival date -->
         <label for="arrival_date">Select Arrival Date:</label>
-        <input type="date" id="arrival_date" name="arrival_date" required><br>
+        <input type="date" id="arrival_date" name="arrival_date" required>
 
         <!-- Time picker for selecting arrival time -->
         <label for="arrival_time">Select Arrival Time:</label>
-        <input type="time" id="arrival_time" name="arrival_time" required><br>
+        <input type="time" id="arrival_time" name="arrival_time" required>
 
         <!-- Date picker for selecting departure date -->
         <label for="departure_date">Select Departure Date:</label>
-        <input type="date" id="departure_date" name="departure_date" required><br>
+        <input type="date" id="departure_date" name="departure_date" required>
 
         <!-- Time picker for selecting departure time -->
         <label for="departure_time">Select Departure Time:</label>
-        <input type="time" id="departure_time" name="departure_time" required><br>
+        <input type="time" id="departure_time" name="departure_time" required>
 
         <!-- Button to submit the booking -->
         <button type="submit">Book Parking</button>
