@@ -66,16 +66,17 @@ class PageController:
                 # Get form data
                 username = request.form.get('username')
                 password = request.form.get('password')
-                name = request.form.get('name')
                 phone = request.form.get('phone')
-                car_plate = request.form.get('car_plate')
                 email = request.form.get('email')
+                carmanufacturer = request.form.get('carmanufacturer')
+                carmodel = request.form.get('carmodel')
+                car_plate = request.form.get('car_plate')
 
                 # Generate a unique user_id using uuid
                 user_id = str(uuid.uuid4())
 
                 # Create a UserModel instance
-                user_model = UserModel(user_id, None, username, password, name, phone, car_plate, email)
+                user_model = UserModel(user_id, None, username, password, phone, email, carmanufacturer, carmodel, car_plate)
 
                 # Register the user
                 registration_successful = UserController.register_user(self.user_controller, user_model)
@@ -84,6 +85,7 @@ class PageController:
                 if registration_successful:
                     # Set the user_id in the session for future reference
                     session['user_id'] = user_id
+                    session['username'] = username
 
                     # popup 'Registration Successful!'
                     return redirect(url_for('success', message='Registration Successful!', redirect_url=url_for('home')))
