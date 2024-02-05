@@ -10,7 +10,7 @@ from pages.login_page import LoginPage
 # from pages.profit_loss_page import ProfitLossPage
 from controllers.data_service_controller import UserController
 from models.user_model import UserModel
-
+from models.time_model import TimeModel
 class PageController:
     def __init__(self, app):
         self.app = app
