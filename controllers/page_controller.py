@@ -1,6 +1,7 @@
 # app/controllers/page_controller.py version 2
 from flask import redirect, url_for, request, render_template
 from flask import session, flash
+import uuid
 from pages.login_page import LoginPage
 # from pages.registration_page import RegisterPage
 # from pages.home_page import HomePage
@@ -11,6 +12,7 @@ from pages.login_page import LoginPage
 from controllers.data_service_controller import UserController
 from models.user_model import UserModel
 from models.time_model import TimeModel
+# import user_data
 class PageController:
     def __init__(self, app):
         self.app = app
@@ -45,9 +47,10 @@ class PageController:
                 password = request.form.get('password')
 
                 # Authenticate the user
-                user_authenticated = self.user_controller.authenticate_user(username, password)
+                user_authenticated, user_id  = self.user_controller.authenticate_user(username, password)
 
                 if user_authenticated:
+                    session['user_id'] = user_id
                     session['username'] = username  # Store the username in the session
                     flash('Login Successful', 'success')
                     return redirect(url_for('home'))
@@ -68,14 +71,20 @@ class PageController:
                 car_plate = request.form.get('car_plate')
                 email = request.form.get('email')
 
+                # Generate a unique user_id using uuid
+                user_id = str(uuid.uuid4())
+
                 # Create a UserModel instance
-                user_model = UserModel(username, password, name, phone, car_plate, email)
+                user_model = UserModel(user_id, username, password, name, phone, car_plate, email)
 
                 # Register the user
                 registration_successful = UserController.register_user(self.user_controller, user_model)
                 # registration_successful = self.page_controller.user_controller.register_user(user_model)
 
                 if registration_successful:
+                    # Set the user_id in the session for future reference
+                    session['user_id'] = user_id
+
                     # popup 'Registration Successful!'
                     return redirect(url_for('success', message='Registration Successful!', redirect_url=url_for('home')))
 
@@ -108,9 +117,30 @@ class PageController:
             return render_template('home_page.html')
         
 
+        # @app.route('/book', methods=['GET', 'POST'])
+        # def booking():
+        #     if request.method == 'POST':
+        #         return redirect(url_for('success', message='Booking Successful!', redirect_url=url_for('home')))
+        #     return render_template('booking_page.html')
+        
         @app.route('/book', methods=['GET', 'POST'])
         def booking():
             if request.method == 'POST':
+                # Get user ID (you may use the username for simplicity)
+                user_id = session.get('user_id')  # Assuming you store the username in the session
+
+                # Get booking details from the form
+                arrival_date = request.form.get('arrival_date')
+                arrival_time = request.form.get('arrival_time')
+                departure_date = request.form.get('departure_date')
+                departure_time = request.form.get('departure_time')
+
+                # Create a TimeModel instance with the user ID and booking details
+                time_model = TimeModel(user_id, arrival_date, arrival_time, departure_date, departure_time)
+
+                # Save the time entry to the data service controller
+                UserController.save_user_time_data(self.user_controller, time_model)
+
                 return redirect(url_for('success', message='Booking Successful!', redirect_url=url_for('home')))
             return render_template('booking_page.html')
 

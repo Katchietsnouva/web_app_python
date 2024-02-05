@@ -22,6 +22,7 @@ class UserController:
         self.users_data_path = 'user_data\\global_users_data\\customers_db.json'
         self.time_data_path = 'user_data\\global_users_data\\time_data.json'
         self.users_data = self.load_or_create_users_data()
+        self.time_data = self.load_or_create_time_data()
         # self.users_data_path = current_app.config['users_data_path']
 
     def save_users_data(self):
@@ -57,17 +58,43 @@ class UserController:
         #     self.save_users_data()
             # return True  # Registration successful
 
+    # def authenticate_user(self, username, password):
+    #     return any(user["username"] == username and user["password"] == password for user in self.users_data)
+    
     def authenticate_user(self, username, password):
-        return any(user["username"] == username and user["password"] == password for user in self.users_data)
-    
-    
-    def save_time_data(self, time_model):
+        for user in self.users_data:
+            if user["username"] == username and user["password"] == password:
+                return True, user["user_id"]
+        return False, None
+
+    def save_time_data(self):
+        with open(self.time_data_path, "w") as file:
+            json.dump(self.time_data, file, indent=4)
+
+    def load_time_data(self):
+        with open(self.time_data_path, "r") as file:
+            return json.load(file)
+
+    def load_or_create_time_data(self):
+        directory = os.path.dirname(self.time_data_path)
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+
+        if not os.path.exists(self.time_data_path):
+            self.time_data = []
+            self.save_time_data()
+        else:
+            self.time_data = self.load_time_data()
+        return self.time_data
+
+    def save_user_time_data(self, time_model):
         self.time_data.append(vars(time_model))
         self.save_time_data()
 
-    def load_time_data(self):
-        return self.load_data("time_data.json")
-    
+    def get_user_time_data(self, user_id):
+        return [time_entry for time_entry in self.time_data if time_entry['user_id'] == user_id]
+
+
 # app/controllers/data_service_controller.py
 # class TimeController:
 #     # ... existing code ...
