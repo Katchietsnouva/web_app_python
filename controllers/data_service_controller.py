@@ -101,11 +101,23 @@ class UserController:
         return self.time_data
 
     def save_user_time_data(self, time_model):
+        # generating unique booking id
+        booking_id = self.generate_booking_id(time_model.user_id)
+        time_model.booking_id = booking_id
         self.time_data.append(vars(time_model))
         self.save_time_data()
 
     def get_user_time_data(self, user_id):
         return [time_entry for time_entry in self.time_data if time_entry['user_id'] == user_id]
+    
+    def generate_booking_id(self, user_id):
+        user_bookings = [entry for entry in self.time_data if entry['user_id'] == user_id]
+        if not user_bookings:
+            return f'Book_id-001'
+        else:
+            latest_booking_id = user_bookings[-1]['booking_id']
+            index = int(latest_booking_id.split('-')[1]) + 1
+            return f'Book_id-{index:03d}'
 
 
 # app/controllers/data_service_controller.py

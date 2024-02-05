@@ -140,7 +140,7 @@ class PageController:
                 departure_time = request.form.get('departure_time')
 
                 # Create a TimeModel instance with the user ID and booking details
-                time_model = TimeModel(user_id, customer_number, arrival_date, arrival_time, departure_date, departure_time)
+                time_model = TimeModel(user_id, customer_number, None, arrival_date, arrival_time, departure_date, departure_time)
 
                 # Save the time entry to the data service controller
                 UserController.save_user_time_data(self.user_controller, time_model)
