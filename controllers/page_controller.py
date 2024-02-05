@@ -115,11 +115,11 @@ class PageController:
         @app.route('/home')
         def home():
             user_registration_data =  self.user_controller.get_user_registration_data(session['user_id'])
+            user_booking_data =  self.user_controller.get_user_booking_data(session['user_id'])
     
             return render_template('home_page.html', user_registration_data=user_registration_data)
             return render_template('home_page.html')
         
-
         # @app.route('/book', methods=['GET', 'POST'])
         # def booking():
         #     if request.method == 'POST':
