@@ -1,1 +1,13 @@
-[]
+[
+    {
+        "user_id": "1927dd80-42bc-4b7d-98cc-bf1113b6ed99",
+        "customer_number": "CUST-1",
+        "username": "a",
+        "password": "a",
+        "phone": "a",
+        "email": "as@gmail.com",
+        "carmanufacturer": "a",
+        "carmodel": "a",
+        "car_plate": "w"
+    }
+]

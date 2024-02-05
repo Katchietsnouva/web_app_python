@@ -88,7 +88,8 @@ class PageController:
                     session['username'] = username
 
                     # popup 'Registration Successful!'
-                    return redirect(url_for('success', message='Registration Successful!', redirect_url=url_for('home')))
+                    flash('Registration Successful! You can now log in.', 'success')
+                    return redirect(url_for('success', message='Registration Successful!', redirect_url=url_for('login')))
 
                     return redirect(url_for('home'))
                     # return redirect(url_for('registration_success'))
