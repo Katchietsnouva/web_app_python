@@ -129,8 +129,9 @@ class PageController:
         @app.route('/book', methods=['GET', 'POST'])
         def booking():
             if request.method == 'POST':
-                # Get user ID (you may use the username for simplicity)
-                user_id = session.get('user_id')  # Assuming you store the username in the session
+                user_id = session.get('user_id')  # storeD the userID in the session
+                customer_number = UserController.get_customer_number(self.user_controller, user_id)
+
 
                 # Get booking details from the form
                 arrival_date = request.form.get('arrival_date')
@@ -139,7 +140,7 @@ class PageController:
                 departure_time = request.form.get('departure_time')
 
                 # Create a TimeModel instance with the user ID and booking details
-                time_model = TimeModel(user_id, arrival_date, arrival_time, departure_date, departure_time)
+                time_model = TimeModel(user_id, customer_number, arrival_date, arrival_time, departure_date, departure_time)
 
                 # Save the time entry to the data service controller
                 UserController.save_user_time_data(self.user_controller, time_model)
