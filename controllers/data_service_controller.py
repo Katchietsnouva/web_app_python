@@ -23,6 +23,7 @@ class UserController:
         self.time_data_path = 'user_data\\global_users_data\\time_data.json'
         self.users_data = self.load_or_create_users_data()
         self.time_data = self.load_or_create_time_data()
+        self.last_booking_index = {}
         # self.users_data_path = current_app.config['users_data_path']
 
     def save_users_data(self):
@@ -111,13 +112,21 @@ class UserController:
         return [time_entry for time_entry in self.time_data if time_entry['user_id'] == user_id]
     
     def generate_booking_id(self, user_id):
-        user_bookings = [entry for entry in self.time_data if entry['user_id'] == user_id]
+        # user_bookings = [entry for entry in self.time_data if entry['user_id'] == user_id]
+        user_bookings = [entry for entry in self.time_data]
         if not user_bookings:
             return f'Book_id-001'
         else:
             latest_booking_id = user_bookings[-1]['booking_id']
             index = int(latest_booking_id.split('-')[1]) + 1
             return f'Book_id-{index:03d}'
+            # if "-ext-" in latest_booking_id:
+            #     base_id, ext = latest_booking_id.split("-ext-")
+            #     next_ext = int(ext) + 1
+            #     return f'{base_id}-ext-{next_ext}'
+            # else:
+            #     return f'{latest_booking_id}-ext-1'
+        
         
     def get_user_registration_data(self, user_id):
         # Retrieve user registration data based on user_id

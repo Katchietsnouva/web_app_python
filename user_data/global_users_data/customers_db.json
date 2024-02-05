@@ -1,35 +1,35 @@
 [
     {
-        "user_id": "259c631e-c750-4ba2-9764-e3dc392d7997",
+        "user_id": "55dec781-6ddc-4a95-a200-eed937eaeed5",
         "customer_number": "CUST-1",
-        "username": "Mr. Enzo Ferrari",
-        "password": "enzo123",
-        "phone": "0759924037",
+        "username": "fghfgh",
+        "password": "fhfgh",
+        "phone": "fhgfghfg",
         "email": "philipaswa01@gmail.com",
-        "carmanufacturer": "Ferrari",
-        "carmodel": "Ferrari laferrari",
-        "car_plate": "KDH 001X"
+        "carmanufacturer": "ghjgjhgj",
+        "carmodel": "hgjghj",
+        "car_plate": "ghjg"
     },
     {
-        "user_id": "884935f9-98e9-477d-8811-beb0366f7038",
+        "user_id": "ea92d61f-1e78-44ba-aa73-8f666c749f95",
         "customer_number": "CUST-2",
-        "username": "Mr. Ford",
-        "password": "ford123",
-        "phone": "0700000000",
+        "username": "hjghjghjhg",
+        "password": "jhj",
+        "phone": "ghjghj",
         "email": "philipaswa01@gmail.com",
-        "carmanufacturer": "Ford",
-        "carmodel": "Ford GT Mk IV",
-        "car_plate": "KDH 002X"
+        "carmanufacturer": "ghj",
+        "carmodel": "hjhj",
+        "car_plate": "hjh"
     },
     {
-        "user_id": "49961f41-1f31-4910-806e-3d8bcfe7c249",
+        "user_id": "959a0b4b-5458-4f14-8026-51c8461697be",
         "customer_number": "CUST-3",
-        "username": "A",
-        "password": "A",
-        "phone": "a",
-        "email": "as@gmail.com",
-        "carmanufacturer": "a",
-        "carmodel": "a",
-        "car_plate": "a"
+        "username": "sdsdsdsd",
+        "password": "sdsds",
+        "phone": "sdsd",
+        "email": "philipaswa01@gmail.com",
+        "carmanufacturer": "sdsd",
+        "carmodel": "sd",
+        "car_plate": "sd"
     }
 ]
