@@ -31,5 +31,16 @@
         "carmanufacturer": "sdsd",
         "carmodel": "sd",
         "car_plate": "sd"
+    },
+    {
+        "user_id": "464d0daa-8d85-4912-a50a-ba5258d526fe",
+        "customer_number": "CUST-4",
+        "username": "Mr. Enzo Ferrari",
+        "password": "enzo123",
+        "phone": "0759924037",
+        "email": "philipaswa01@gmail.com",
+        "carmanufacturer": "w",
+        "carmodel": "jhkhjk",
+        "car_plate": "s"
     }
 ]
