@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Web App</title>
+    <title>Park Booking App</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -35,11 +35,42 @@
             text-decoration: none;
             border-radius: 5px;
         }
+
+        /* Style for Custom Section 3 */
+        .custom-section-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start; /* Align items to the top of the container */
+        }
+
+        /* Style for Left Half */
+        .left-half {
+            width: 45%; /* Adjust the width as needed */
+            padding: 20px;
+            background-color: #f5f5f5; /* Light gray background color */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 5%; /* Adjust the margin between left and right halves */
+        }
+
+        /* Style for Right Half */
+        .right-half {
+            width: 45%; /* Adjust the width as needed */
+            padding: 20px;
+            background-color: #f5f5f5; /* Light gray background color */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
-    <h1>Welcome to My Web App!</h1>
-    <p>This is a simple example using Flask.</p>
+    <h1>Welcome to The Park Booking Web App!</h1>
+    <p>This website helps you easily manage and book your parking slots.</p>
+        <!-- Navigation Button to Booking Page -->
+    <a class="navigation-button" href="/login">Logout</a>
+    <a class="navigation-button" href="/register">Edit Registration</a>
+    <a class="navigation-button" href="/book">Book Parking Now</a>
+    <a class="navigation-button" href="/book">Extend Book Parking Time</a>
 
     <!-- Custom Section 1 -->
     <div class="custom-section">
@@ -53,10 +84,20 @@
         <p>Stay tuned for the latest news and updates. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
     </div>
 
-    <!-- Navigation Button to Booking Page -->
-    <a class="navigation-button" href="/login">Logout</a>
-    <a class="navigation-button" href="/register">Edit Registration</a>
-    <a class="navigation-button" href="/book">Book Parking Now</a>
-    <a class="navigation-button" href="/book">Book Parking Now</a>
+    <!-- Custom Section 3 - Split into Left and Right halves -->
+    <div class="custom-section-content">
+        <!-- Left Half for Registration Content -->
+        <div class="left-half">
+            <h2>Registration Information</h2>
+            <!-- Display registration content here -->
+        </div>
+
+        <!-- Right Half for Booking Content -->
+        <div class="right-half">
+            <h2>Booking Information</h2>
+            <!-- Display booking content here -->
+        </div>
+    </div>
+
 </body>
 </html>
