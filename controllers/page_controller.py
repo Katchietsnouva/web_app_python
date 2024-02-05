@@ -1,5 +1,6 @@
 # app/controllers/page_controller.py version 2
 from flask import redirect, url_for, request, render_template
+from flask import session, flash
 from pages.login_page import LoginPage
 # from pages.registration_page import RegisterPage
 # from pages.home_page import HomePage
@@ -31,10 +32,29 @@ class PageController:
             page_controller = PageController(app)
             page_controller.show_home_page()
             
-        @app.route('/login')
+        # @app.route('/login')
+        # def login():
+        #     return render_template('login_page.html')
+        #     self.login_page.show()
+
+        @app.route('/login', methods=['GET', 'POST'])
         def login():
+            if request.method == 'POST':
+                # Get form data
+                username = request.form.get('username')
+                password = request.form.get('password')
+
+                # Authenticate the user
+                user_authenticated = self.user_controller.authenticate_user(username, password)
+
+                if user_authenticated:
+                    session['username'] = username  # Store the username in the session
+                    flash('Login Successful', 'success')
+                    return redirect(url_for('home'))
+                else:
+                    flash('Invalid username or password. Please try again.', 'error')
+
             return render_template('login_page.html')
-            self.login_page.show()
 
         @app.route('/register', methods=['GET', 'POST'])
         def registration():

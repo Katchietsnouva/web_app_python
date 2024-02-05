@@ -54,5 +54,13 @@
         "phone": "j",
         "car_plate": "j",
         "email": "philipaswa01@gmail.com"
+    },
+    {
+        "username": "a",
+        "password": "a",
+        "name": "a",
+        "phone": "a",
+        "car_plate": "a",
+        "email": "as@gmail.com"
     }
 ]

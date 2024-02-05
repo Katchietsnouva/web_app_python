@@ -3,7 +3,6 @@
 # pip install flask_mysqldb
 # pip install pymysql
 
-from flask import Flask
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from controllers.page_controller import PageController
