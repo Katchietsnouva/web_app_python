@@ -152,14 +152,14 @@ class PageController:
 
                 if duration.days < 0:
                     flash('Invalid booking: Departure should be after arrival', 'error')
-                    return redirect(url_for('booking_page'))
+                    return redirect(url_for('booking'))
                 
                 # Save the time entry to the data service controller
                 UserController.save_user_time_data(self.user_controller, time_model)
                 flash('Booking Successful!', 'success')
 
-                return redirect(url_for('success', message='Booking Successful!', duration=duration, redirect_url=url_for('home')))
-                return render_template('booking_page.html', duration=duration, booking=time_model.to_dict())
+                # return redirect(url_for('success', message='Booking Successful!', duration=duration, redirect_url=url_for('home')))
+                # return render_template('booking_page.html', duration=duration, booking=time_model.to_dict())
             return render_template('booking_page.html')
 
         # @app.route('/extend_parking')

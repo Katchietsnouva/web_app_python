@@ -85,9 +85,18 @@
       <input type="time" id="departure_time" name="departure_time" required />
 
       <p>
-        Duration: {% if duration is defined %}{{ duration }}{% else %}N/A{%
-        endif %}
+        Duration: {% if duration is defined %}{{ duration }}{% else %}N/A{% endif %}
       </p>
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %}
+      <ul class="flashes">
+        {% for category, message in messages %}
+        <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %} {% endwith %}
+
+
       <button type="submit">Book Parking</button>
 
       <!--{% if duration is defined and (duration.days > 0 or (duration.days == 0
