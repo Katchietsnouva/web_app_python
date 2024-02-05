@@ -42,5 +42,16 @@
         "carmanufacturer": "w",
         "carmodel": "jhkhjk",
         "car_plate": "s"
+    },
+    {
+        "user_id": "fe1bf5f4-9419-4a77-ae65-2c9ca25b1b31",
+        "customer_number": "CUST-5",
+        "username": "sdfs",
+        "password": "sfsd",
+        "phone": "dsdd",
+        "email": "philipaswa01@gmail.com",
+        "carmanufacturer": "sdfs",
+        "carmodel": "dfs",
+        "car_plate": "df"
     }
 ]

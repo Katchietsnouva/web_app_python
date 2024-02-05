@@ -151,12 +151,9 @@
             <p><strong>Booking ID:</strong> {{ booking['booking_id'] }}</p>
             <p><strong>Arrival Date:</strong> {{ booking['arrival_date'] }}</p>
             <p><strong>Arrival Time:</strong> {{ booking['arrival_time'] }}</p>
-            <p>
-              <strong>Departure Date:</strong> {{ booking['departure_date'] }}
-            </p>
-            <p>
-              <strong>Departure Time:</strong> {{ booking['departure_time'] }}
-            </p>
+            <p><strong>Departure Date:</strong> {{ booking['departure_date'] }}</p>
+            <p><strong>Departure Time:</strong> {{ booking['departure_time'] }}</p>
+            <p>Duration: {{ user_bookings.calculate_duration() }}</p>
           </div>
           {% endfor %} {% else %}
           <p>No booking information found. Book now to populate this menu!</p>
