@@ -154,7 +154,8 @@
                 <p>
                   <strong>Departure Time:</strong> {{ booking['departure_time'] }}
                 </p>
-                <p>Duration: {{ duration }}</p>
+                <p>
+                  <strong>Duration (in minutes):</strong> {{ booking['duration_minutes'] }}
               </div>
             {% endfor %} 
           {% else %}
