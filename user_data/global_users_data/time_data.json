@@ -214,5 +214,14 @@
         "arrival_time": "00:00",
         "departure_date": "2024-02-13",
         "departure_time": "00:00"
+    },
+    {
+        "user_id": "4b624890-d9ad-4a4d-bbbb-12e57efcc541",
+        "customer_number": "CUST-6",
+        "booking_id": "Book_id-024",
+        "arrival_date": "2024-02-02",
+        "arrival_time": "00:00",
+        "departure_date": "2024-02-13",
+        "departure_time": "00:00"
     }
 ]
