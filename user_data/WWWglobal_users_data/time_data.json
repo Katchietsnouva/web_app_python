@@ -1,0 +1,16 @@
+[
+    {
+        "user_id": "bcdc563c-fcde-43a7-ada0-ca5b08bc84ba",
+        "arrival_date": "2024-02-06",
+        "arrival_time": "13:53",
+        "departure_date": "2024-02-14",
+        "departure_time": "13:56"
+    },
+    {
+        "user_id": "bcdc563c-fcde-43a7-ada0-ca5b08bc84ba",
+        "arrival_date": "2024-02-27",
+        "arrival_time": "13:59",
+        "departure_date": "2024-02-17",
+        "departure_time": "13:57"
+    }
+]
