@@ -72,6 +72,13 @@ class UserController:
             if user["username"] == username and user["password"] == password:
                 return True, user["user_id"]
         return False, None
+    
+    def get_customer_number(self, user_id):
+        user = next((user for user in self.users_data if user["user_id"] == user_id), None)
+        if user:
+            return user["customer_number"]
+        else:
+            return None
 
     def save_time_data(self):
         with open(self.time_data_path, "w") as file:
