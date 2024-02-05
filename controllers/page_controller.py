@@ -1,5 +1,5 @@
 # app/controllers/page_controller.py version 2
-from flask import redirect, url_for, request, render_template
+from flask import redirect, url_for, request, render_template, flash
 from flask import session, flash
 import uuid
 from pages.login_page import LoginPage
@@ -96,6 +96,7 @@ class PageController:
         @app.route('/success')
         def success():
             message = request.args.get('message', 'Operation Successful!')
+            # duration = request.args.get('d\uration') 
             redirect_url = request.args.get('redirect_url', url_for('home'))
             return render_template('success_page.html', message=message, redirect_url=redirect_url)
 
@@ -118,10 +119,8 @@ class PageController:
             user, user_bookings  =  self.user_controller.get_user_booking_data(session['user_id'])
 
             # Rearranginh tume model to fing the duration difference
-            user_bookings = [TimeModel(**booking) for booking in user_bookings]
+            # user_bookings = [TimeModel(**booking) for booking in user_bookings]
             return render_template('home_page.html', user_registration_data=user_registration_data, user=user, user_bookings=user_bookings)
-
-    
             return render_template('home_page.html', user_registration_data=user_registration_data, user=user, user_bookings=user_bookings)
             return render_template('home_page.html')
         
@@ -148,12 +147,18 @@ class PageController:
 
                  # Calculate duration before saving
                 duration = time_model.calculate_duration()
+                # duration = 0
                 print(duration)
 
+                if duration.days < 0:
+                    flash('Invalid booking: Departure should be after arrival', 'error')
+                    return redirect(url_for('booking_page'))
+                
                 # Save the time entry to the data service controller
                 UserController.save_user_time_data(self.user_controller, time_model)
+                flash('Booking Successful!', 'success')
 
-                return redirect(url_for('success', message='Booking Successful!', redirect_url=url_for('home')))
+                return redirect(url_for('success', message='Booking Successful!', duration=duration, redirect_url=url_for('home')))
                 return render_template('booking_page.html', duration=duration, booking=time_model.to_dict())
             return render_template('booking_page.html')
 
