@@ -123,7 +123,27 @@ class UserController:
         # Retrieve user registration data based on user_id
         user_data = next((user for user in self.users_data if user['user_id'] == user_id), None)
         return user_data
+    
+    # def get_user_booking_data(self, user_id):
+    #     # Retrieve user registration data based on user_id
+    #     user_data = next((user for user in self.users_data if user['user_id'] == user_id), None)
+    #     return user_data
+    
+    def get_user_booking_data(self, user_id):
+        # Assuming user_data and time_data are lists of dictionaries
+        user_data = self.users_data
+        time_data = self.time_data
 
+        # Find the user in user_data based on user_id
+        user = next((user_entry for user_entry in user_data if user_entry['user_id'] == user_id), None)
+
+        if user:
+            # Find bookings associated with the user in time_data
+            user_bookings = [booking_entry for booking_entry in time_data if booking_entry['user_id'] == user_id]
+
+            return user, user_bookings
+        else:
+            return None, []
 
 # app/controllers/data_service_controller.py
 # class TimeController:

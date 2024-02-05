@@ -61,6 +61,11 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
+        .booking-entry {
+            border: 1px solid #ddd; /* Border color */
+            padding: 10px; /* Padding around each booking entry */
+            margin-bottom: 10px; /* Margin between booking entries */
+        }
     </style>
 </head>
 <body>
@@ -91,7 +96,7 @@
         <!-- Left Half for Registration Content -->
         <div class="left-half">
             <h2>Registration Information</h2>
-            <!-- Check if user_registration_data exists before accessing its properties -->
+            <!-- Check if user_registration_data exists-->
             {% if user_registration_data %}
                 <!-- <p>User ID: {{ user_registration_data['user_id'] }}</p>-->
                 <!-- <p>Customer Number: {{ user_registration_data['customer_number'] }}</p>-->
@@ -106,11 +111,23 @@
             {% endif %}
         </div>
 
-        <!-- Right Half for Booking Content -->
-        <div class="right-half">
-            <h2>Booking Information</h2>
-            <!-- Display booking content here -->
-        </div>
+    <!-- In the right-half (booking details) -->
+    <div class="right-half">
+        <h2>Booking Information</h2>
+        {% if user_bookings %}
+            {% for booking in user_bookings %}
+            <div class="booking-entry">
+                <p><strong>Booking ID:</strong> {{ booking['booking_id'] }}</p>
+                <p><strong>Arrival Date:</strong> {{ booking['arrival_date'] }}</p>
+                <p><strong>Arrival Time:</strong> {{ booking['arrival_time'] }}</p>
+                <p><strong>Departure Date:</strong> {{ booking['departure_date'] }}</p>
+                <p><strong>Departure Time:</strong> {{ booking['departure_time'] }}</p>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No booking information found. Bok now to populate this menu</p>
+        {% endif %}
+    </div>
     </div>
 
 </body>

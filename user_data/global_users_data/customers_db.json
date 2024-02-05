@@ -9,5 +9,16 @@
         "carmanufacturer": "Ferrari",
         "carmodel": "Ferrari laferrari",
         "car_plate": "KDH 001X"
+    },
+    {
+        "user_id": "884935f9-98e9-477d-8811-beb0366f7038",
+        "customer_number": "CUST-2",
+        "username": "Mr. Ford",
+        "password": "ford123",
+        "phone": "0700000000",
+        "email": "philipaswa01@gmail.com",
+        "carmanufacturer": "Ford",
+        "carmodel": "Ford GT Mk IV",
+        "car_plate": "KDH 002X"
     }
 ]
