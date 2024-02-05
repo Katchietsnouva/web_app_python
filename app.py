@@ -8,6 +8,7 @@ from flask_sqlalchemy import SQLAlchemy
 from controllers.page_controller import PageController
 
 app = Flask(__name__)
+app.secret_key = 'code_ab1'
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://username:password@localhost/dbname'
 # db = SQLAlchemy(app)  
 

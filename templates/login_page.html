@@ -70,6 +70,10 @@
             margin-top: 20px;
             font-size: 0.9em;
         }
+        
+        .error {
+            color: red;
+        }
     </style>
 </head>
 <body>
@@ -86,6 +90,18 @@
 
         <button type="submit">Login</button>
     </form>
+
+    <!-- Flash messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
 
     <p>Don't have an account? <a href="/register">Register here</a></p>
 </body>
