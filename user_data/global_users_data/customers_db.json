@@ -1,0 +1,24 @@
+[
+    {
+        "user_id": "d4365c4c-ff32-448a-b14c-a318e3b41675",
+        "customer_number": "CUST-1",
+        "username": "Mr. Enzo Ferrari",
+        "password": "enzo123",
+        "phone": "0759924037",
+        "email": "philipaswa01@gmail.com",
+        "carmanufacturer": "Ferrari",
+        "carmodel": "Ferrari laferrari",
+        "car_plate": "KDH 001X"
+    },
+    {
+        "user_id": "cf80c157-67ba-4673-a75b-2f9fec622f0b",
+        "customer_number": "CUST-2",
+        "username": "Mr. Ford",
+        "password": "ford123",
+        "phone": "0700000000",
+        "email": "philipaswa01@gmail.com",
+        "carmanufacturer": "Ford",
+        "carmodel": "Ford GT Mk IV",
+        "car_plate": "KDH 002X"
+    }
+]

@@ -20,7 +20,7 @@ class PageController:
         # self.user_controller = UserController(username, password, name, phone, car_plate, email)
         self.login_page = LoginPage(self)
         # self.registration_page = RegisterPage(self)
-        # self.home_page = HomePage(self)
+        # self.home_page = HomePage(    self)
         # self.booking_page = BookingPage(self)
         # self.extend_parking_page = ExtendParkingPage(self)
         # self.payment_page = PaymentPage(self)
