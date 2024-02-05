@@ -12,7 +12,6 @@ if __name__ == '__main__':
 
 
 
-# Add More Routes: Define additional routes in your app.py file to handle different pages. For example:
 
 @app.route('/login')
 def login():
@@ -22,7 +21,7 @@ def login():
 def registration():
     return render_template('registration_page.html')
 
-# And in your app.py:
+# in  app.py:
 
 @app.route('/home/<username>')
 def home(username):
@@ -30,24 +29,20 @@ def home(username):
 
 # page_controller.py:
 def login_controller():
-    # Your login logic here
-    return "Login logic goes here"
+    return "Login logic  "
 
 def registration_controller():
-    # Your registration logic here
-    return "Registration logic goes here"
+    return "Registration logic  "
 
 
-# user_model.py, you might use it in your controllers:
+# user_model.py, might use in  controllers:
 
 from models.user_model import User
 
 def login_controller(username, password):
     user = User.query.filter_by(username=username, password=password).first()
     if user:
-        # Successful login logic
         return "Login successful"
     else:
-        # Failed login logic
         return "Invalid credentials"
     
