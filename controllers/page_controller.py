@@ -80,7 +80,7 @@ class PageController:
                 # registration_successful = self.page_controller.user_controller.register_user(user_model)
 
                 if registration_successful:
-                    # Set the user_id in the session for future reference
+                    # Setingt the user_id in the session for future reference
                     session['user_id'] = user_id
                     session['username'] = username
 
@@ -133,13 +133,13 @@ class PageController:
                 customer_number = UserController.get_customer_number(self.user_controller, user_id)
 
 
-                # Get booking details from the form
+                # Get booking details from form
                 arrival_date = request.form.get('arrival_date')
                 arrival_time = request.form.get('arrival_time')
                 departure_date = request.form.get('departure_date')
                 departure_time = request.form.get('departure_time')
 
-                # Create a TimeModel instance with the user ID and booking details
+                # Create a TimeModel instance and filling details
                 time_model = TimeModel(user_id, customer_number, None, arrival_date, arrival_time, departure_date, departure_time)
 
                 # Save the time entry to the data service controller
