@@ -9,5 +9,16 @@
         "carmanufacturer": "a",
         "carmodel": "a",
         "car_plate": "w"
+    },
+    {
+        "user_id": "c11a449f-4ec5-42f1-82bc-b8d2dcd3c3fe",
+        "customer_number": "CUST-2",
+        "username": "qwq",
+        "password": "w",
+        "phone": "w",
+        "email": "philipaswa01@gmail.com",
+        "carmanufacturer": "w",
+        "carmodel": "w",
+        "car_plate": "w"
     }
 ]
