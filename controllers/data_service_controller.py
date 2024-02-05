@@ -47,16 +47,22 @@ class UserController:
         return self.users_data
 
     def register_user(self, user_model):
-        self.users_data.append(vars(user_model))
-        self.save_users_data()
-        return True  # Registration successful
+        
         # Check if the username is already taken
-        # if any(user["username"] == user_model.username for user in self.users_data):
-        #     return False  # Username is taken
-        # else:
-        #     self.users_data.append(vars(user_model))
-        #     self.save_users_data()
-            # return True  # Registration successful
+        if any(user["username"] == user_model.username for user in self.users_data):
+            return False  # Username is taken
+        else:
+            user_model.customer_number = self.generate_customer_number()
+            self.users_data.append(vars(user_model))
+            self.save_users_data()# Registration successful
+            return True  # Registration successful
+    
+    def generate_customer_number(self):
+        # Get the current number of users to generate a unique customer number
+        current_user_count = len(self.users_data)
+        # Assuming a simple method for generating customer numbers, you can customize this based on your requirements
+        return f'CUST-{current_user_count + 1}'
+
 
     # def authenticate_user(self, username, password):
     #     return any(user["username"] == username and user["password"] == password for user in self.users_data)

@@ -1,7 +1,8 @@
 # app/models/user_model.py
 class UserModel:
-    def __init__(self, user_id, username, password, name, phone, car_plate, email):
+    def __init__(self, user_id, customer_no, username, password, name, phone, car_plate, email):
         self.user_id = user_id
+        self.customer_number = customer_no
         self.username = username
         self.password = password
         self.name = name

@@ -75,7 +75,7 @@ class PageController:
                 user_id = str(uuid.uuid4())
 
                 # Create a UserModel instance
-                user_model = UserModel(user_id, username, password, name, phone, car_plate, email)
+                user_model = UserModel(user_id, None, username, password, name, phone, car_plate, email)
 
                 # Register the user
                 registration_successful = UserController.register_user(self.user_controller, user_model)
