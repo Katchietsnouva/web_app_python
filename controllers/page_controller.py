@@ -140,10 +140,10 @@ class PageController:
                 arrival_date = request.form.get('arrival_date')
                 arrival_time = request.form.get('arrival_time')
                 departure_date = request.form.get('departure_date')
-                departure_time = request.form.get('departure_time')
+                departure_time= request.form.get('departure_time')
 
                 # Create a TimeModel instance and filling details
-                time_model = TimeModel(user_id, customer_number, None, arrival_date, arrival_time, departure_date, departure_time)
+                time_model = TimeModel(user_id, customer_number, None, arrival_date, arrival_time, departure_date, departure_time, None)
 
                  # Calculate duration before saving
                 duration = time_model.calculate_duration()
@@ -153,6 +153,9 @@ class PageController:
                 if duration.days < 0:
                     flash('Invalid booking: Departure should be after arrival', 'error')
                     return redirect(url_for('booking'))
+                
+                # Create a TimeModel instance and filling details
+                time_model = TimeModel(user_id, customer_number, None, arrival_date, arrival_time, departure_date, departure_time, duration)
                 
                 # Save the time entry to the data service controller
                 UserController.save_user_time_data(self.user_controller, time_model)

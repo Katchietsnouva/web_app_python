@@ -105,8 +105,12 @@ class UserController:
         # generating unique booking id
         booking_id = self.generate_booking_id(time_model.user_id)
         time_model.booking_id = booking_id
+        # Calculate duration
+        # duration = time_model.calculate_duration()
+        # time_model.duration = duration
         self.time_data.append(vars(time_model))
         self.save_time_data()
+
 
     def get_user_time_data(self, user_id):
         return [time_entry for time_entry in self.time_data if time_entry['user_id'] == user_id]
@@ -153,6 +157,8 @@ class UserController:
             return user, user_bookings
         else:
             return None, []
+        
+
 
 # app/controllers/data_service_controller.py
 # class TimeController:
