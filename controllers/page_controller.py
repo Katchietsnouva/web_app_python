@@ -116,6 +116,11 @@ class PageController:
         def home():
             user_registration_data =  self.user_controller.get_user_registration_data(session['user_id'])
             user, user_bookings  =  self.user_controller.get_user_booking_data(session['user_id'])
+
+            # Rearranginh tume model to fing the duration difference
+            user_bookings = [TimeModel(**booking) for booking in user_bookings]
+            return render_template('home_page.html', user_registration_data=user_registration_data, user=user, user_bookings=user_bookings)
+
     
             return render_template('home_page.html', user_registration_data=user_registration_data, user=user, user_bookings=user_bookings)
             return render_template('home_page.html')
@@ -132,7 +137,6 @@ class PageController:
                 user_id = session.get('user_id')  # storeD the userID in the session
                 customer_number = UserController.get_customer_number(self.user_controller, user_id)
 
-
                 # Get booking details from form
                 arrival_date = request.form.get('arrival_date')
                 arrival_time = request.form.get('arrival_time')
@@ -142,10 +146,15 @@ class PageController:
                 # Create a TimeModel instance and filling details
                 time_model = TimeModel(user_id, customer_number, None, arrival_date, arrival_time, departure_date, departure_time)
 
+                 # Calculate duration before saving
+                duration = time_model.calculate_duration()
+                print(duration)
+
                 # Save the time entry to the data service controller
                 UserController.save_user_time_data(self.user_controller, time_model)
 
                 return redirect(url_for('success', message='Booking Successful!', redirect_url=url_for('home')))
+                return render_template('booking_page.html', duration=duration, booking=time_model.to_dict())
             return render_template('booking_page.html')
 
         # @app.route('/extend_parking')

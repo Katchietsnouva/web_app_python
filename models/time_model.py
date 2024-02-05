@@ -11,8 +11,19 @@ class TimeModel:
         self.departure_time = departure_time
 
     def calculate_duration(self):
-            arrival_datetime = datetime.strptime(f"{self.arrival_date} {self.arrival_time}", "%Y-%m-%d %H:%M")
-            departure_datetime = datetime.strptime(f"{self.departure_date} {self.departure_time}", "%Y-%m-%d %H:%M")
+        arrival_datetime = datetime.strptime(f"{self.arrival_date} {self.arrival_time}", "%Y-%m-%d %H:%M")
+        departure_datetime = datetime.strptime(f"{self.departure_date} {self.departure_time}", "%Y-%m-%d %H:%M")
 
-            duration = departure_datetime - arrival_datetime
-            return duration
+        duration = departure_datetime - arrival_datetime
+        return duration
+
+    def to_dict(self):
+        return {
+            "user_id": self.user_id,
+            "customer_number": self.customer_number,
+            "booking_id": self.booking_id,
+            "arrival_date": self.arrival_date,
+            "arrival_time": self.arrival_time,
+            "departure_date": self.departure_date,
+            "departure_time": self.departure_time,
+        }

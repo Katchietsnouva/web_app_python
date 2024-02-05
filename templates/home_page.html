@@ -104,12 +104,8 @@
     <!-- Custom Section 1 -->
     <div class="custom-section">
       <h2>Featured Content</h2>
-      <p>
-        On April holiday get 45% off of booking rates for every weekend!
-      </p>
-      <p>
-        Explore our amazing features and services.
-      </p>
+      <p>On April holiday get 45% off of booking rates for every weekend!</p>
+      <p>Explore our amazing features and services.</p>
     </div>
 
     <!-- Custom Section 3 - Split into Left and Right halves -->
@@ -146,16 +142,22 @@
         <!-- In the right-half (booking details) -->
         <div class="right-half">
           <h2>Booking Information</h2>
-          {% if user_bookings %} {% for booking in user_bookings %}
-          <div class="booking-entry">
-            <p><strong>Booking ID:</strong> {{ booking['booking_id'] }}</p>
-            <p><strong>Arrival Date:</strong> {{ booking['arrival_date'] }}</p>
-            <p><strong>Arrival Time:</strong> {{ booking['arrival_time'] }}</p>
-            <p><strong>Departure Date:</strong> {{ booking['departure_date'] }}</p>
-            <p><strong>Departure Time:</strong> {{ booking['departure_time'] }}</p>
-            <p>Duration: {{ user_bookings.calculate_duration() }}</p>
-          </div>
-          {% endfor %} {% else %}
+          {% if user_bookings %}
+            {% for booking in user_bookings %}
+              <div class="booking-entry">
+                <p><strong>Booking ID:</strong> {{ booking['booking_id'] }}</p>
+                <p><strong>Arrival Date:</strong> {{ booking['arrival_date'] }}</p>
+                <p><strong>Arrival Time:</strong> {{ booking['arrival_time'] }}</p>
+                <p>
+                  <strong>Departure Date:</strong> {{ booking['departure_date'] }}
+                </p>
+                <p>
+                  <strong>Departure Time:</strong> {{ booking['departure_time'] }}
+                </p>
+                
+              </div>
+            {% endfor %} 
+          {% else %}
           <p>No booking information found. Book now to populate this menu!</p>
           {% endif %}
         </div>
@@ -175,7 +177,10 @@
             </p>
           </div>
           {% endfor %} {% else %}
-          <p>No Parking Extension Time Information found. Book now to populate this menu!</p>
+          <p>
+            No Parking Extension Time Information found. Book now to populate
+            this menu!
+          </p>
           {% endif %}
         </div>
 

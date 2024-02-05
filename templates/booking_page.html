@@ -84,6 +84,8 @@
         <label for="departure_time">Select Departure Time:</label>
         <input type="time" id="departure_time" name="departure_time" required>
 
+        <p>Duration: {{ booking.calculate_duration() }}</p>
+
         <button type="submit">Book Parking</button>
     </form>
 
