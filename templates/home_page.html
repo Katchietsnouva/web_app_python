@@ -1,79 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Park Booking App</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 20px;
-            text-align: center;
-        }
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 20px;
+        text-align: center;
+      }
 
-        h1 {
-            color: #0066cc;
-        }
+      h1 {
+        color: #0066cc;
+      }
 
-        p {
-            color: #333;
-        }
+      p {
+        color: #333;
+      }
 
-        .custom-section {
-            
-            background-color: rgba(150, 245, 245, 0.9);
-            padding: 20px;
-            margin: 20px;
-            border-radius: 10px;
-        }
+      .custom-section {
+        background-color: rgba(150, 245, 245, 0.9);
+        padding: 20px;
+        margin: 20px;
+        border-radius: 10px;
+      }
 
-        .navigation-button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #4caf50;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
+      .navigation-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4caf50;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+      }
 
-        /* Style for Custom Section 3 */
-        .custom-section-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start; /* Align items to the top of the container */
-        }
+      .data-section {
+        display: flex;
+        background-color: rgba(180, 245, 245, 0.9);
+        padding: 20px;
+        margin: 20px;
+        border-radius: 10px;
+      }
 
-        /* Style for Left Half */
-        .left-half {
-            width: 45%; /* Adjust the width as needed */
-            padding: 20px;
-            background-color: #f5f5f5; /* Light gray background color */
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-right: 5%; /* Adjust the margin between left and right halves */
-        }
+      .custom-section-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start; /* Align items to the top of the container */
+      }
 
-        /* Style for Right Half */
-        .right-half {
-            width: 45%; /* Adjust the width as needed */
-            padding: 20px;
-            background-color: #f5f5f5; /* Light gray background color */
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .booking-entry {
-            border: 1px solid #ddd; /* Border color */
-            padding: 10px; /* Padding around each booking entry */
-            margin-bottom: 10px; /* Margin between booking entries */
-        }
+      /* Style for Left Half */
+      .left-half {
+        width: 45%; /* Adjust the width as needed */
+        padding: 20px;
+        background-color: #f5f5f5; /* Light gray background color */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-right: 5%; /* Adjust the margin between left and right halves */
+      }
+
+      /* Style for Right Half */
+      .right-half {
+        width: 45%; /* Adjust the width as needed */
+        padding: 20px;
+        background-color: #f5f5f5; /* Light gray background color */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      .booking-entry {
+        border: 1px solid #ddd; /* Border color */
+        padding: 10px; /* Padding around each booking entry */
+        margin-bottom: 10px; /* Margin between booking entries */
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Hi, {{ session['username'] }}!</h1>
     <h2>Welcome to The Park Booking Web App!</h2>
     <h3>Your user id is {{ session['user_id'] }}</h3>
     <p>This website helps you easily manage and book your parking slots.</p>
-        <!-- Navigation Button to Booking Page -->
+    <!-- Navigation Button to Booking Page -->
     <a class="navigation-button" href="/login">Logout</a>
     <a class="navigation-button" href="/register">Edit Registration</a>
     <a class="navigation-button" href="/book">Book Parking Now</a>
@@ -81,54 +87,92 @@
 
     <!-- Custom Section 1 -->
     <div class="custom-section">
-        <h2>Featured Content</h2>
-        <p>Explore our amazing features and services. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <h2>Featured Content</h2>
+      <p>
+        Explore our amazing features and services. Lorem ipsum dolor sit amet,
+        consectetur adipiscing elit.
+      </p>
+    </div>
+
+    <!-- Custom Section 3 - Split into Left and Right halves -->
+    <div class="data-section">
+      <div class="custom-section-content">
+        <!-- Left Half for Registration Content -->
+        <div class="left-half">
+          <h2>Registration Information</h2>
+          <!-- Check if user_registration_data exists-->
+          {% if user_registration_data %}
+          <!-- <p>User ID: {{ user_registration_data['user_id'] }}</p>-->
+          <!-- <p>Customer Number: {{ user_registration_data['customer_number'] }}</p>-->
+          <p>
+            <strong>User Name:</strong> {{ user_registration_data['username'] }}
+          </p>
+          <p><strong>Phone:</strong> {{ user_registration_data['phone'] }}</p>
+          <p><strong>Email:</strong> {{ user_registration_data['email'] }}</p>
+          <p>
+            <strong>Car Manufacturer:</strong> {{
+            user_registration_data['carmanufacturer'] }}
+          </p>
+          <p>
+            <strong>Car Model:</strong> {{ user_registration_data['carmodel'] }}
+          </p>
+          <p>
+            <strong>Car Plate Number:</strong> {{
+            user_registration_data['car_plate'] }}
+          </p>
+          {% else %}
+          <p>No registration information found.</p>
+          {% endif %}
+        </div>
+
+        <!-- In the right-half (booking details) -->
+        <div class="right-half">
+          <h2>Booking Information</h2>
+          {% if user_bookings %} {% for booking in user_bookings %}
+          <div class="booking-entry">
+            <p><strong>Booking ID:</strong> {{ booking['booking_id'] }}</p>
+            <p><strong>Arrival Date:</strong> {{ booking['arrival_date'] }}</p>
+            <p><strong>Arrival Time:</strong> {{ booking['arrival_time'] }}</p>
+            <p>
+              <strong>Departure Date:</strong> {{ booking['departure_date'] }}
+            </p>
+            <p>
+              <strong>Departure Time:</strong> {{ booking['departure_time'] }}
+            </p>
+          </div>
+          {% endfor %} {% else %}
+          <p>No booking information found. Book now to populate this menu!</p>
+          {% endif %}
+        </div>
+
+        <div class="right-half-2">
+            <h2>Payment Information</h2>
+            {% if user_bookings %} {% for booking in user_bookings %}
+            <div class="booking-entry">
+              <p><strong>Booking ID:</strong> {{ booking['booking_id'] }}</p>
+              <p><strong>Arrival Date:</strong> {{ booking['arrival_date'] }}</p>
+              <p><strong>Arrival Time:</strong> {{ booking['arrival_time'] }}</p>
+              <p>
+                <strong>Departure Date:</strong> {{ booking['departure_date'] }}
+              </p>
+              <p>
+                <strong>Departure Time:</strong> {{ booking['departure_time'] }}
+              </p>
+            </div>
+            {% endfor %} {% else %}
+            <p>No booking information found. Book now to populate this menu!</p>
+            {% endif %}
+          </div>
+      </div>
     </div>
 
     <!-- Custom Section 2 -->
     <div class="custom-section">
-        <h2>Latest Updates</h2>
-        <p>Stay tuned for the latest news and updates. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <h2>Latest Updates</h2>
+      <p>
+        Stay tuned for the latest news and updates. Sed do eiusmod tempor
+        incididunt ut labore et dolore magna aliqua.
+      </p>
     </div>
-
-    <!-- Custom Section 3 - Split into Left and Right halves -->
-    <div class="custom-section-content">
-        <!-- Left Half for Registration Content -->
-        <div class="left-half">
-            <h2>Registration Information</h2>
-            <!-- Check if user_registration_data exists-->
-            {% if user_registration_data %}
-                <!-- <p>User ID: {{ user_registration_data['user_id'] }}</p>-->
-                <!-- <p>Customer Number: {{ user_registration_data['customer_number'] }}</p>-->
-                <p><strong>User Name:</strong> {{ user_registration_data['username'] }}</p>
-                <p><strong>Phone:</strong> {{ user_registration_data['phone'] }}</p>
-                <p><strong>Email:</strong> {{ user_registration_data['email'] }}</p>
-                <p><strong>Car Manufacturer:</strong> {{ user_registration_data['carmanufacturer'] }}</p>
-                <p><strong>Car Model:</strong> {{ user_registration_data['carmodel'] }}</p>
-                <p><strong>Car Plate Number:</strong> {{ user_registration_data['car_plate'] }}</p>
-            {% else %}
-                <p>No registration information found.</p>
-            {% endif %}
-        </div>
-
-    <!-- In the right-half (booking details) -->
-    <div class="right-half">
-        <h2>Booking Information</h2>
-        {% if user_bookings %}
-            {% for booking in user_bookings %}
-            <div class="booking-entry">
-                <p><strong>Booking ID:</strong> {{ booking['booking_id'] }}</p>
-                <p><strong>Arrival Date:</strong> {{ booking['arrival_date'] }}</p>
-                <p><strong>Arrival Time:</strong> {{ booking['arrival_time'] }}</p>
-                <p><strong>Departure Date:</strong> {{ booking['departure_date'] }}</p>
-                <p><strong>Departure Time:</strong> {{ booking['departure_time'] }}</p>
-            </div>
-            {% endfor %}
-        {% else %}
-            <p>No booking information found. Bok now to populate this menu</p>
-        {% endif %}
-    </div>
-    </div>
-
-</body>
+  </body>
 </html>
