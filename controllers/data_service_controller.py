@@ -84,6 +84,7 @@ class UserController:
     def save_time_data(self):
         with open(self.time_data_path, "w") as file:
             json.dump(self.time_data, file, indent=4)
+            
 
     def load_time_data(self):
         with open(self.time_data_path, "r") as file:

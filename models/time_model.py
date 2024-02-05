@@ -1,7 +1,7 @@
 # models/time_model.py
 from datetime import datetime;
 class TimeModel:
-    def __init__(self, user_id, customer_no, booking_id, arrival_date, arrival_time, departure_date, departure_time, duration):
+    def __init__(self, user_id, customer_no, booking_id, arrival_date, arrival_time, departure_date, departure_time, duration_minutes):
         self.user_id = user_id
         self.customer_number = customer_no
         self.booking_id = booking_id
@@ -9,7 +9,7 @@ class TimeModel:
         self.arrival_time = arrival_time
         self.departure_date = departure_date
         self.departure_time = departure_time
-        self.duration = duration
+        self.duration_minutes = duration_minutes
 
 
     def calculate_duration(self):
@@ -28,5 +28,5 @@ class TimeModel:
             "arrival_time": self.arrival_time,
             "departure_date": self.departure_date,
             "departure_time": self.departure_time,
-            "duration": self.duration,
+            "duration_minutes": self.duration_minutes,
         }
