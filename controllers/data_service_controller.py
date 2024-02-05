@@ -118,6 +118,11 @@ class UserController:
             latest_booking_id = user_bookings[-1]['booking_id']
             index = int(latest_booking_id.split('-')[1]) + 1
             return f'Book_id-{index:03d}'
+        
+    def get_user_registration_data(self, user_id):
+        # Retrieve user registration data based on user_id
+        user_data = next((user for user in self.users_data if user['user_id'] == user_id), None)
+        return user_data
 
 
 # app/controllers/data_service_controller.py

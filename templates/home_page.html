@@ -91,7 +91,19 @@
         <!-- Left Half for Registration Content -->
         <div class="left-half">
             <h2>Registration Information</h2>
-            <!-- Display registration content here -->
+            <!-- Check if user_registration_data exists before accessing its properties -->
+            {% if user_registration_data %}
+                <p>User ID: {{ user_registration_data['user_id'] }}</p>
+                <p>Customer Number: {{ user_registration_data['customer_number'] }}</p>
+                <p>User Name: {{ user_registration_data['username'] }}</p>
+                <p>Phone: {{ user_registration_data['phone'] }}</p>
+                <p>Email: {{ user_registration_data['email'] }}</p>
+                <p>Car Manufacturer: {{ user_registration_data['carmanufacturer'] }}</p>
+                <p>Car Model: {{ user_registration_data['carmodel'] }}</p>
+                <p>Car Plate Number: {{ user_registration_data['car_plate'] }}</p>\
+            {% else %}
+                <p>No registration information found.</p>
+            {% endif %}
         </div>
 
         <!-- Right Half for Booking Content -->

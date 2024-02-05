@@ -114,7 +114,7 @@ class PageController:
 
         @app.route('/home')
         def home():
-            user_registration_data = get_user_registration_data(session['user_id'])
+            user_registration_data =  self.user_controller.get_user_registration_data(session['user_id'])
     
             return render_template('home_page.html', user_registration_data=user_registration_data)
             return render_template('home_page.html')
