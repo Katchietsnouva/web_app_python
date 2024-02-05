@@ -1,1 +1,13 @@
-[]
+[
+    {
+        "user_id": "259c631e-c750-4ba2-9764-e3dc392d7997",
+        "customer_number": "CUST-1",
+        "username": "Mr. Enzo Ferrari",
+        "password": "enzo123",
+        "phone": "0759924037",
+        "email": "philipaswa01@gmail.com",
+        "carmanufacturer": "Ferrari",
+        "carmodel": "Ferrari laferrari",
+        "car_plate": "KDH 001X"
+    }
+]

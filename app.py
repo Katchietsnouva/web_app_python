@@ -1,5 +1,6 @@
 # app/app.py v2
 # from app import app
+# pip install flask
 # pip install flask_mysqldb
 # pip install pymysql
 
@@ -19,6 +20,6 @@ app.secret_key = 'code_ab1'
 
 if __name__ == '__main__':
     with app.app_context():
-        # db.create_all()  # Create tables when the app is run
+        # db.create_all()  
         page_controller = PageController(app)
         app.run(debug=True)

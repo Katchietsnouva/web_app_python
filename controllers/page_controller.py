@@ -42,16 +42,15 @@ class PageController:
         @app.route('/login', methods=['GET', 'POST'])
         def login():
             if request.method == 'POST':
-                # Get form data
                 username = request.form.get('username')
                 password = request.form.get('password')
 
-                # Authenticate the user
+                # Authenticate  user
                 user_authenticated, user_id  = self.user_controller.authenticate_user(username, password)
 
                 if user_authenticated:
                     session['user_id'] = user_id
-                    session['username'] = username  # Store the username in the session
+                    session['username'] = username 
                     flash('Login Successful', 'success')
                     return redirect(url_for('home'))
                 else:
@@ -72,12 +71,10 @@ class PageController:
                 carmodel = request.form.get('carmodel')
                 car_plate = request.form.get('car_plate')
 
-                # Generate a unique user_id using uuid
                 user_id = str(uuid.uuid4())
 
-                # Create a UserModel instance
+                # Create UserModel instance
                 user_model = UserModel(user_id, None, username, password, phone, email, carmanufacturer, carmodel, car_plate)
-
                 # Register the user
                 registration_successful = UserController.register_user(self.user_controller, user_model)
                 # registration_successful = self.page_controller.user_controller.register_user(user_model)
@@ -87,7 +84,7 @@ class PageController:
                     session['user_id'] = user_id
                     session['username'] = username
 
-                    # popup 'Registration Successful!'
+                    # popup
                     flash('Registration Successful! You can now log in.', 'success')
                     return redirect(url_for('success', message='Registration Successful!', redirect_url=url_for('login')))
 
@@ -117,6 +114,9 @@ class PageController:
 
         @app.route('/home')
         def home():
+            user_registration_data = get_user_registration_data(session['user_id'])
+    
+            return render_template('home_page.html', user_registration_data=user_registration_data)
             return render_template('home_page.html')
         
 
@@ -151,7 +151,6 @@ class PageController:
         # @app.route('/extend_parking')
         # def extend_parking():
         #     return self.extend_parking_page.show()
-
 
     def redirect_to(self, page_name):
         return redirect(url_for(page_name))
