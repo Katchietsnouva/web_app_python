@@ -49,9 +49,8 @@
         align-items: flex-start; /* Align items to the top of the container */
       }
 
-      /* Style for Left Half */
       .left-half {
-        width: 45%; /* Adjust the width as needed */
+        width: 45%;
         padding: 20px;
         background-color: #f5f5f5; /* Light gray background color */
         border: 1px solid #ccc;
@@ -59,18 +58,35 @@
         margin-right: 5%; /* Adjust the margin between left and right halves */
       }
 
-      /* Style for Right Half */
       .right-half {
-        width: 45%; /* Adjust the width as needed */
+        width: 50%;
         padding: 20px;
         background-color: #f5f5f5; /* Light gray background color */
         border: 1px solid #ccc;
         border-radius: 5px;
+        margin-right: 5%;
       }
+
       .booking-entry {
         border: 1px solid #ddd; /* Border color */
         padding: 10px; /* Padding around each booking entry */
         margin-bottom: 10px; /* Margin between booking entries */
+      }
+
+      .right-half-2 {
+        width: 50%;
+        padding: 20px;
+        background-color: #f5f5f5; /* Light gray background color */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-right: 5%;
+      }
+      .right-half-3 {
+        width: 50%;
+        padding: 20px;
+        background-color: #f5f5f5; /* Light gray background color */
+        border: 1px solid #ccc;
+        border-radius: 5px;
       }
     </style>
   </head>
@@ -146,32 +162,56 @@
         </div>
 
         <div class="right-half-2">
-            <h2>Payment Information</h2>
-            {% if user_bookings %} {% for booking in user_bookings %}
-            <div class="booking-entry">
-              <p><strong>Booking ID:</strong> {{ booking['booking_id'] }}</p>
-              <p><strong>Arrival Date:</strong> {{ booking['arrival_date'] }}</p>
-              <p><strong>Arrival Time:</strong> {{ booking['arrival_time'] }}</p>
-              <p>
-                <strong>Departure Date:</strong> {{ booking['departure_date'] }}
-              </p>
-              <p>
-                <strong>Departure Time:</strong> {{ booking['departure_time'] }}
-              </p>
-            </div>
-            {% endfor %} {% else %}
-            <p>No booking information found. Book now to populate this menu!</p>
-            {% endif %}
+          <h2>Parking Extension Time Information</h2>
+          {% if user_bookings %} {% for booking in user_bookings %}
+          <div class="booking-entry">
+            <p><strong>Booking ID:</strong> {{ booking['booking_id'] }}</p>
+            <p><strong>Arrival Date:</strong> {{ booking['arrival_date'] }}</p>
+            <p><strong>Arrival Time:</strong> {{ booking['arrival_time'] }}</p>
+            <p>
+              <strong>Departure Date:</strong> {{ booking['departure_date'] }}
+            </p>
+            <p>
+              <strong>Departure Time:</strong> {{ booking['departure_time'] }}
+            </p>
           </div>
+          {% endfor %} {% else %}
+          <p>No booking information found. Book now to populate this menu!</p>
+          {% endif %}
+        </div>
+
+        <div class="right-half-3">
+          <h2>Payment Information</h2>
+          {% if user_bookings %} {% for booking in user_bookings %}
+          <div class="booking-entry">
+            <p><strong>Booking ID:</strong> {{ booking['booking_id'] }}</p>
+            <p><strong>Arrival Date:</strong> {{ booking['arrival_date'] }}</p>
+            <p><strong>Arrival Time:</strong> {{ booking['arrival_time'] }}</p>
+            <p>
+              <strong>Departure Date:</strong> {{ booking['departure_date'] }}
+            </p>
+            <p>
+              <strong>Departure Time:</strong> {{ booking['departure_time'] }}
+            </p>
+          </div>
+          {% endfor %} {% else %}
+          <p>No booking information found. Book now to populate this menu!</p>
+          {% endif %}
+        </div>
       </div>
     </div>
 
     <!-- Custom Section 2 -->
     <div class="custom-section">
       <h2>Latest Updates</h2>
+      <p>Stay tuned for the latest news and updates.</p>
       <p>
-        Stay tuned for the latest news and updates. Sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua.
+        We are expanding the number of booking slots by 200 by the end of
+        October this year.
+      </p>
+      <p>
+        "Thus, do we endure times of hardship, labor, and pain, so as to obtain
+        greatness."
       </p>
     </div>
   </body>
