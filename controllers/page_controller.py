@@ -181,16 +181,15 @@ class PageController:
             usercontroller = UserController()
             user_booked_ticket_ids = usercontroller.html_retrieve_user_ticket_ids(user_id)
             if request.method == 'POST':
-                        # Retrieve form data
-                selected_ticket_id = request.form.get('ticket_id')
+                # Retrieve form data
                 extension_time = int(request.form.get('extension_time'))
-
+                print('s')
+                print(selectedTicketId)
                 # Retrieve ticket details
                 ticket_details = usercontroller.html_get_selected_ticket_details(selected_ticket_id)
 
                 departure_time= request.form.get('departure_time')
-                print('s')
-                print(departure_time)
+                
 
                 new_departure_time = usercontroller.calculate_new_departure_time(ticket_details.get('departure_time'), extension_time)
 

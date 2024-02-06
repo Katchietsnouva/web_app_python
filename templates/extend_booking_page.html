@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Booking Page</title>
+    <title>Extend Booking Page</title>
     <style>
       body {
         font-family: "Arial", sans-serif;
@@ -100,7 +100,7 @@
         $("#ticket_id").change(function () {
           var selectedTicketId = $(this).val();
 
-          // Perform an AJAX request to your server to fetch details based on the selected ticket ID
+          // Perform an AJAX request to  server to fetch details based on the selected ticket ID
           $.get(
             "/get_selected_ticket_details",
             { ticket_id: selectedTicketId },
@@ -110,8 +110,37 @@
               $("#arrival_time").val(data.arrival_time);
               $("#departure_date").val(data.departure_date);
               $("#departure_time").val(data.departure_time);
+              // Store the selected ticket ID in a variable
+              var selectedTicketId = data.ticket_id;
+              // Update the hidden input field for departure time
+              $("#departure_time_input").val(data.departure_time);  
             }
           );
+        });
+
+        // Event handler for the "Extend Booking" button
+        $("#extend_button").click(function () {
+          // Get the selected ticket ID and departure time
+          var selectedTicketId = $("#ticket_id").val();
+          var departureTime = $("#departure_time_input").val();
+          // Perform an AJAX request to extend the booking
+      
+          $.ajax({
+            url: "/extendbook",
+            method: "POST",
+            data: {
+              ticket_id: selectedTicketId,
+              departure_time: departureTime
+            },
+            success: function (response) {
+              // Handle the response if needed
+              console.log(response);
+            },
+            error: function (error) {
+              // Handle the error if needed
+              console.error(error);
+            }
+          });
         });
       });
     </script>
@@ -121,8 +150,7 @@
   <body>
     <h1>Extend Booking Duration Page</h1>
 
-
-    <!-- Extend Booking form -->
+    <!--  form for selecting the ticket id and it will automaticaly populate the datetime fields from json file-->
     <form action="/extendbook" method="get">
       <label for="booking_id">Select Your Available TIcket IDs That You Wish TO Extend:</label>
       <select id="ticket_id" name="ticket_id" required>
@@ -148,6 +176,9 @@
 
     <!-- Form to extend booking -->
     <form action="/extendbook" method="post">
+      <!-- Hidden input field for departure time -->
+      <input type="hidden" id="departure_time_input" name="departure_time" value="" />
+
       <div class="form-section">
         <label for="extension_time">Extend Booking Time (in minutes) (if greater than 300 min, book a new ticket):</label>
         <input
@@ -172,7 +203,7 @@
       {% endif %} {% endwith %}
 
       <!-- Extend Booking button -->
-      <button type="submit">Extend Booking</button>
+      <button type="submit" id = "extend_button">Extend Booking</button>
     </form>
 
     <a href="/home">Home Page</a>
