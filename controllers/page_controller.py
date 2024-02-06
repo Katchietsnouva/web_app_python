@@ -138,6 +138,8 @@ class PageController:
         
         @app.route('/book', methods=['GET', 'POST'])
         def booking():
+            user_booking_ids = get_user_booking_ids()
+            
             if request.method == 'POST':
                 user_id = session.get('user_id')  # storeD the userID in the session
                 customer_number = UserController.get_customer_number(self.user_controller, user_id)

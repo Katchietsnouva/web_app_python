@@ -159,6 +159,26 @@ class UserController:
         else:
             return None, []
         
+    def retrieve_user_booking_ids(self, user_id):
+        # Retrieve user ID from the session
+        # retrieved_user_bookings = [entry for entry in self.time_data if entry['user_id'] == user_id]
+        # user_id = session.get('user_id')
+        user_data = self.users_data
+        time_data = self.time_data
+        user = next((user_entry for user_entry in user_data if user_entry['user_id'] == user_id), None)
+        if user:
+                    # Find bookings associated with the user in time_data
+                    user_bookings = [booking_entry for booking_entry in time_data if booking_entry['user_id'] == user_id]
+
+                    return user, user_bookings
+                else:
+                    return None, []
+        
+        # Assuming you have a method to get booking IDs based on the user ID
+        user_booking_ids = UserController.get_user_booking_ids(user_id)
+
+        return user_booking_ids
+        
 
 
 # app/controllers/data_service_controller.py
