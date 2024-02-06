@@ -173,6 +173,11 @@ class PageController:
                 return render_template('booking_page.html', duration=duration)
                 return render_template('booking_page.html', duration=duration, booking=time_model.to_dict())
             return render_template('booking_page.html')
+        
+        @app.route('/extendbook', methods=['GET', 'POST'])
+        def extendbook():
+            if request.method == 'POST':
+                return render_template('booking_page.html')
 
         # @app.route('/extend_parking')
         # def extend_parking():
