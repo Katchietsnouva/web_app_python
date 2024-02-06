@@ -20,5 +20,16 @@
         "carmanufacturer": "Ford",
         "carmodel": "Ford GT Mk IV",
         "car_plate": "KDH 002X"
+    },
+    {
+        "user_id": "dd8c0e44-de40-49e8-8e07-de86398241f6",
+        "customer_number": "CUST-3",
+        "username": "gfh",
+        "password": "k",
+        "phone": "k",
+        "email": "k@g",
+        "carmanufacturer": "k",
+        "carmodel": "l",
+        "car_plate": "k"
     }
 ]

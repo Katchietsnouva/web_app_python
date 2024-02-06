@@ -181,7 +181,24 @@ class PageController:
             usercontroller = UserController()
             user_booked_ticket_ids = usercontroller.html_retrieve_user_ticket_ids(user_id)
             if request.method == 'POST':
-                pass
+                        # Retrieve form data
+                selected_ticket_id = request.form.get('ticket_id')
+                extension_time = int(request.form.get('extension_time'))
+
+                # Retrieve ticket details
+                ticket_details = usercontroller.html_get_selected_ticket_details(selected_ticket_id)
+
+                departure_time= request.form.get('departure_time')
+                print('s')
+                print(departure_time)
+
+                new_departure_time = usercontroller.calculate_new_departure_time(ticket_details.get('departure_time'), extension_time)
+
+                # Update the booking with the new departure time
+                # usercontroller.update_booking(selected_ticket_id, new_departure_time)
+
+                flash('Booking Extended Successfully!', 'success')
+                return redirect(url_for('extendbook'))
             return render_template('extend_booking_page.html', user_booked_ticket_ids=user_booked_ticket_ids)
         
         @app.route('/get_selected_ticket_details', methods=['GET'])

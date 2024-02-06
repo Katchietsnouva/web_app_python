@@ -2,6 +2,7 @@
 # app/controllers/data_service_controller.py
 import json
 import os
+from datetime import datetime, timedelta
 # from flask import current_app
 # from pathlib import Path
 
@@ -183,7 +184,34 @@ class UserController:
             }
         else:
             # Ticket ID not found, return an appropriate response or handle accordingly
-            return None
+            # return None
+            return {"error": "Ticket ID not found"}
+        
+    def calculate_new_departure_time(self, original_departure_time, extension_time):
+        # Convert to datetime object
+        original_departure_datetime = datetime.strptime(original_departure_time, "%Y-%m-%d %H:%M")
+
+        # Add the extension_time (in minutes) to the original_departure_time
+        updated_departure_datetime = original_departure_datetime + timedelta(minutes=extension_time)
+
+        # Convert the result back to the desired format (e.g., string)
+        updated_departure_time = updated_departure_datetime.strftime("%Y-%m-%d %H:%M")
+
+        return updated_departure_time
+    
+
+    def update_booking(self, selected_ticket_id, new_departure_time):
+        # Find the booking in the time_data list with the selected_ticket_id
+        booking = next((entry for entry in self.time_data if entry['booking_id'] == selected_ticket_id), None)
+
+        if booking:
+            # Update the departure_time in the booking
+            booking['departure_time'] = new_departure_time
+
+            # Save the updated time_data to the JSON file
+            self.save_time_data()
+
+
 
 
 
