@@ -138,8 +138,6 @@ class PageController:
         
         @app.route('/book', methods=['GET', 'POST'])
         def booking():
-            user_booking_ids = get_user_booking_ids()
-            
             if request.method == 'POST':
                 user_id = session.get('user_id')  # storeD the userID in the session
                 customer_number = UserController.get_customer_number(self.user_controller, user_id)
@@ -178,6 +176,9 @@ class PageController:
         
         @app.route('/extendbook', methods=['GET', 'POST'])
         def extendbook():
+            user_id = session['user_id']
+            user_booked_ticket_ids = UserController.retrieve_user_ticket_ids(user_id)
+
             if request.method == 'POST':
                 pass
             return render_template('extend_booking_page.html')
