@@ -179,8 +179,7 @@ class PageController:
             user_id = session['user_id']
             usercontroller = UserController()
             user_booked_ticket_ids = usercontroller.retrieve_user_ticket_ids(user_id)
-            # user_booked_ticket_ids = UserController.retrieve_user_ticket_ids(self.user_controller, user_id)
-
+            user_selected_ticket_ids = usercontroller.get_selected_ticket_details(user_id)
             if request.method == 'POST':
                 pass
             return render_template('extend_booking_page.html', user_booked_ticket_ids=user_booked_ticket_ids)

@@ -77,7 +77,6 @@
         font-size: 0.9em;
       }
 
-
       button {
         background-color: #3498db;
         color: #fff;
@@ -89,48 +88,76 @@
         transition: background-color 0.3s ease;
       }
     </style>
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script>
+      //  jQuery code (When the ticket ID is selected, fetch details and populate the form fields)
+      $(document).ready(function () {
+        $("#ticket_id").change(function () {
+          var selectedTicketId = $(this).val();
+
+          // Perform an AJAX request to your server to fetch details based on the selected ticket ID
+          $.get(
+            "/get_selected_ticket_details",
+            { ticket_id: selectedTicketId },
+            function (data) {
+              // Update form fields with the received data
+              $("#arrival_date").val(data.arrival_date);
+              $("#arrival_time").val(data.arrival_time);
+              $("#departure_date").val(data.departure_date);
+              $("#departure_time").val(data.departure_time);
+            }
+          );
+        });
+      });
+    </script>
+
   </head>
 
   <body>
     <h1>Extend Booking Duration Page</h1>
 
+
     <!-- Extend Booking form -->
-    <!-- i want a Dropdown Lists box to display the current booking_ids for the specific user then the below form to populate with the values from the time json file.-->
-
-
     <form action="/extendbook" method="get">
       <label for="booking_id">Select Your Available TIcket IDs:</label>
       <select id="ticket_id" name="ticket_id" required>
         {% for ticket_id in user_booked_ticket_ids %}
-          <option value="{{ ticket_id }}">{{ ticket_id }}</option>
+        <option value="{{ ticket_id }}">{{ ticket_id }}</option>
         {% endfor %}
       </select>
 
       <label for="arrival_date">Selected Ticket Arrival Date:</label>
-      <input type="date" id="arrival_date" name="arrival_date" required />
+      <input type="date" id="arrival_date" name="arrival_date"  />
 
       <label for="arrival_time">Selected Ticket Arrival Time:</label>
-      <input type="time" id="arrival_time" name="arrival_time" required />
+      <input type="time" id="arrival_time" name="arrival_time"  />
 
       <label for="departure_date">Selected Ticket Departure Date:</label>
-      <input type="date" id="departure_date" name="departure_date" required />
+      <input type="date" id="departure_date" name="departure_date"  />
 
       <label for="departure_time">Selected Ticket Departure Time:</label>
-      <input type="time" id="departure_time" name="departure_time" required />
+      <input type="time" id="departure_time" name="departure_time"  />
 
       <!--<button type="submit">Load Booking Details</button> -->
     </form>
-    
-
 
     <!-- Form to extend booking -->
     <form action="/extendbook" method="post">
       <div class="form-section">
         <label for="extension_time">Extend Booking Time (in minutes):</label>
-        <input type="number" id="extension_time" name="extension_time" min="1" required />
+        <input
+          type="number"
+          id="extension_time"
+          name="extension_time"
+          min="1"
+          required
+        />
       </div>
       <p>
-        Duration: {% if duration is defined %}{{ duration }}{% else %}N/A{% endif %}
+        Duration: {% if duration is defined %}{{ duration }}{% else %}N/A{%
+        endif %}
       </p>
       {% with messages = get_flashed_messages(with_categories=true) %} {% if
       messages %}
