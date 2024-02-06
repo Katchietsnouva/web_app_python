@@ -32,11 +32,11 @@
     {
         "user_id": "d4365c4c-ff32-448a-b14c-a318e3b41675",
         "customer_number": "CUST-1",
-        "booking_id": "Book_id-004",
+        "booking_id": "Book_id-004-ext",
         "arrival_date": "2024-02-29",
         "arrival_time": "02:10",
         "departure_date": "2024-03-02",
-        "departure_time": "02:10",
+        "departure_time": "02:16",
         "duration_minutes": 2880
     },
     {
