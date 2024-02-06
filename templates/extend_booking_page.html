@@ -99,26 +99,26 @@
 
 
     <form action="/extendbook" method="get">
-      <label for="booking_id">Select Booking ID:</label>
-      <select id="booking_id" name="booking_id" required>
+      <label for="booking_id">Select Your Available TIcket IDs:</label>
+      <select id="ticket_id" name="ticket_id" required>
         {% for ticket_id in user_booked_ticket_ids %}
           <option value="{{ ticket_id }}">{{ ticket_id }}</option>
         {% endfor %}
       </select>
 
-      <label for="arrival_date">Select Arrival Date:</label>
+      <label for="arrival_date">Selected Ticket Arrival Date:</label>
       <input type="date" id="arrival_date" name="arrival_date" required />
 
-      <label for="arrival_time">Select Arrival Time:</label>
+      <label for="arrival_time">Selected Ticket Arrival Time:</label>
       <input type="time" id="arrival_time" name="arrival_time" required />
 
-      <label for="departure_date">Select Departure Date:</label>
+      <label for="departure_date">Selected Ticket Departure Date:</label>
       <input type="date" id="departure_date" name="departure_date" required />
 
-      <label for="departure_time">Select Departure Time:</label>
+      <label for="departure_time">Selected Ticket Departure Time:</label>
       <input type="time" id="departure_time" name="departure_time" required />
 
-      <button type="submit">Load Booking Details</button>
+      <!--<button type="submit">Load Booking Details</button> -->
     </form>
     
 

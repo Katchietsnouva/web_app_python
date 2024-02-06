@@ -178,11 +178,14 @@ class PageController:
         def extendbook():
             user_id = session['user_id']
             usercontroller = UserController()
-            user_booked_ticket_ids = usercontroller.retrieve_user_ticket_ids(self.user_controller, user_id)
+            user_booked_ticket_ids = usercontroller.retrieve_user_ticket_ids(user_id)
+            # user_booked_ticket_ids = UserController.retrieve_user_ticket_ids(self.user_controller, user_id)
 
             if request.method == 'POST':
                 pass
             return render_template('extend_booking_page.html', user_booked_ticket_ids=user_booked_ticket_ids)
+        
+        
         # @app.route('/extend_parking')
         # def extend_parking():
         #     return self.extend_parking_page.show()
