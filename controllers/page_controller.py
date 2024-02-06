@@ -177,7 +177,8 @@ class PageController:
         @app.route('/extendbook', methods=['GET', 'POST'])
         def extendbook():
             if request.method == 'POST':
-                return render_template('booking_page.html')
+                pass
+            return render_template('extend_booking_page.html')
 
         # @app.route('/extend_parking')
         # def extend_parking():
