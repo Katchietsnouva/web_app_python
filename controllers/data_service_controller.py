@@ -177,6 +177,13 @@ class UserController:
 
         return user_booking_ids
         
+    def retrieve_user_ticket_ids(self, user_id):
+        # Assuming self.time_data is a list of dictionaries representing booking entries
+        user_bookings = [entry for entry in self.time_data if entry['user_id'] == user_id]
+
+        # Assuming a user can have multiple bookings, return a list of booking IDs
+        return [booking["booking_id"] for booking in user_bookings]
+
 
 
 # app/controllers/data_service_controller.py
