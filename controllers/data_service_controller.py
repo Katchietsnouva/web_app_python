@@ -159,29 +159,15 @@ class UserController:
         else:
             return None, []
         
+    # def retrieve_user_ticket_ids(self, user_id):
+    #     user = next((user_entry for user_entry in self.time_data if user_entry['user_id'] == user_id), None)
+
     def retrieve_user_ticket_ids(self, user_id):
-        # Retrieve user ID from the session
-        # retrieved_user_bookings = [entry for entry in self.time_data if entry['user_id'] == user_id]
-        # user_id = session.get('user_id')
-        # user_data = self.users_data
+        # self.time_data is a list of dictionaries representing booking entries
         time_data = self.time_data
-        user = next((user_entry for user_entry in time_data if user_entry['user_id'] == user_id), None)
-        if user:
-            # Find ticket_id associated with the user in time_data
-            return user["booking_id"]
-            return retrieved_ticket_id
-        else:
-            return None   
-        # Assuming you have a method to get booking IDs based on the user ID
-        user_booking_ids = UserController.get_user_booking_ids(user_id)
+        user_bookings = [entry for entry in time_data if entry['user_id'] == user_id]
 
-        return user_booking_ids
-        
-    def retrieve_user_ticket_ids(self, user_id):
-        # Assuming self.time_data is a list of dictionaries representing booking entries
-        user_bookings = [entry for entry in self.time_data if entry['user_id'] == user_id]
-
-        # Assuming a user can have multiple bookings, return a list of booking IDs
+        # user can have multiple bookings, return a list of booking IDs
         return [booking["booking_id"] for booking in user_bookings]
 
 
