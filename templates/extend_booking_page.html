@@ -113,7 +113,10 @@
               // Store the selected ticket ID in a variable
               var selectedTicketId = data.ticket_id;
               // Update the hidden input field for departure time
-              $("#departure_time_input").val(data.departure_time);  
+              $("#departure_time_input").val(data.departure_time);
+              // Update the hidden input field for selected ticket ID
+              $("#selected_ticket_id").val(selectedTicketId);
+              $("#selected_ticket_id_post").val(selectedTicketId);  
             }
           );
         });
@@ -178,6 +181,7 @@
     <form action="/extendbook" method="post">
       <!-- Hidden input field for departure time -->
       <input type="hidden" id="departure_time_input" name="departure_time" value="" />
+      <input type="hidden" id="selected_ticket_id_post" name="selected_ticket_id" value="" />
 
       <div class="form-section">
         <label for="extension_time">Extend Booking Time (in minutes) (if greater than 300 min, book a new ticket):</label>
