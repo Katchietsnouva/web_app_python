@@ -28,7 +28,11 @@ app/
 |       |-- Sharon_userdata.json
 |       |-- Paul_userdata.json
 |-- static/
+|   |-- js/
+|   |   |-- jquery-3.6.4.min.js
 |-- templates/
+|   |-- extend_booking_page.html
+|   |-- booking_page.html
 |-- __main__.py
 |-- app.py
 
