@@ -1,0 +1,59 @@
+<body>
+    <h1>Extend Booking Duration Page</h1>
+
+    <!--  form for selecting the ticket id and it will automaticaly populate the datetime fields from json file-->
+    <form action="/extendbook" method="post">
+      <label for="booking_id"
+        >Select Your Available TIcket IDs That You Wish TO Extend:</label
+      >
+      <select id="ticket_id" name="ticket_id" required>
+        {% for ticket_id in user_booked_ticket_ids %}
+        <option value="{{ ticket_id }}">{{ ticket_id }}</option>
+        {% endfor %}
+      </select>
+
+      <label for="arrival_date">Selected Ticket Arrival Date:</label>
+      <input type="date" id="arrival_date" name="arrival_date" />
+
+      <label for="arrival_time">Selected Ticket Arrival Time:</label>
+      <input type="time" id="arrival_time" name="arrival_time" />
+
+      <label for="departure_date">Selected Ticket Departure Date:</label>
+      <input type="date" id="departure_date" name="departure_date" />
+
+      <label for="departure_time">Selected Ticket Departure Time:</label>
+      <input type="time" id="departure_time" name="departure_time" />
+
+      <input type="hidden" id="selected_ticket_id_post" name="selected_ticket_id_post" value="" />
+
+      
+      <!-- Input to extend booking -->
+      <label for="extension_time"
+        >Extend Booking Time (in minutes) (if greater than 300 min, book a new
+        ticket):</label
+      >
+      <input
+        type="number"
+        id="extension_time"
+        name="extension_time"
+        min="1"
+        required
+      />
+      <p>
+        Duration: {% if duration is defined %}{{ duration }}{% else %}N/A{%
+        endif %}
+      </p>
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %}
+      <ul class="flashes">
+        {% for category, message in messages %}
+        <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %} {% endwith %}
+
+      <!-- Extend Booking button -->
+      <button type="submit" id="extend_button">Extend Booking</button>
+    </form>
+    <a href="/home">Home Page</a>
+  </body>

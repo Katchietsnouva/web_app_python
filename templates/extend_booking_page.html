@@ -93,12 +93,12 @@
     <!-- <script src="js/jquery-3.6.4.min.js"></script> -->
     <script src="{{ url_for('static', filename='js/jquery-3.6.4.min.js') }}"></script>
 
-
     <script>
       //  jQuery code (When the ticket ID is selected, fetch details and populate the form fields)
       $(document).ready(function () {
+        var selectedTicketId; //dECLARING IN OUTETR SCOPE
         $("#ticket_id").change(function () {
-          var selectedTicketId = $(this).val();
+          selectedTicketId = $(this).val();
 
           // Perform an AJAX request to  server to fetch details based on the selected ticket ID
           $.get(
@@ -111,12 +111,9 @@
               $("#departure_date").val(data.departure_date);
               $("#departure_time").val(data.departure_time);
               // Store the selected ticket ID in a variable
-              var selectedTicketId = data.ticket_id;
+              selectedTicketId = data.ticket_id;
               // Update the hidden input field for departure time
               $("#departure_time_input").val(data.departure_time);
-              // Update the hidden input field for selected ticket ID
-              $("#selected_ticket_id").val(selectedTicketId);
-              $("#selected_ticket_id_post").val(selectedTicketId);  
             }
           );
         });
@@ -124,16 +121,17 @@
         // Event handler for the "Extend Booking" button
         $("#extend_button").click(function () {
           // Get the selected ticket ID and departure time
-          var selectedTicketId = $("#ticket_id").val();
+          // var selectedTicketId = $("#ticket_id").val();
           var departureTime = $("#departure_time_input").val();
           // Perform an AJAX request to extend the booking
-      
+
           $.ajax({
             url: "/extendbook",
             method: "POST",
             data: {
               ticket_id: selectedTicketId,
-              departure_time: departureTime
+              departure_time: departureTime,
+              extension_time: $("#extension_time").val(),
             },
             success: function (response) {
               // Handle the response if needed
@@ -142,20 +140,21 @@
             error: function (error) {
               // Handle the error if needed
               console.error(error);
-            }
+            },
           });
         });
       });
     </script>
-
   </head>
-
+  <!-- Form to extend booking -->
   <body>
     <h1>Extend Booking Duration Page</h1>
 
     <!--  form for selecting the ticket id and it will automaticaly populate the datetime fields from json file-->
-    <form action="/extendbook" method="get">
-      <label for="booking_id">Select Your Available TIcket IDs That You Wish TO Extend:</label>
+    <form action="/extendbook" method="post">
+      <label for="booking_id"
+        >Select Your Available TIcket IDs That You Wish TO Extend:</label
+      >
       <select id="ticket_id" name="ticket_id" required>
         {% for ticket_id in user_booked_ticket_ids %}
         <option value="{{ ticket_id }}">{{ ticket_id }}</option>
@@ -163,36 +162,29 @@
       </select>
 
       <label for="arrival_date">Selected Ticket Arrival Date:</label>
-      <input type="date" id="arrival_date" name="arrival_date"  />
+      <input type="date" id="arrival_date" name="arrival_date" />
 
       <label for="arrival_time">Selected Ticket Arrival Time:</label>
-      <input type="time" id="arrival_time" name="arrival_time"  />
+      <input type="time" id="arrival_time" name="arrival_time" />
 
       <label for="departure_date">Selected Ticket Departure Date:</label>
-      <input type="date" id="departure_date" name="departure_date"  />
+      <input type="date" id="departure_date" name="departure_date" />
 
       <label for="departure_time">Selected Ticket Departure Time:</label>
-      <input type="time" id="departure_time" name="departure_time"  />
+      <input type="time" id="departure_time" name="departure_time" />
 
-      <!--<button type="submit">Load Booking Details</button> -->
-    </form>
-
-    <!-- Form to extend booking -->
-    <form action="/extendbook" method="post">
-      <!-- Hidden input field for departure time -->
-      <input type="hidden" id="departure_time_input" name="departure_time" value="" />
-      <input type="hidden" id="selected_ticket_id_post" name="selected_ticket_id" value="" />
-
-      <div class="form-section">
-        <label for="extension_time">Extend Booking Time (in minutes) (if greater than 300 min, book a new ticket):</label>
-        <input
-          type="number"
-          id="extension_time"
-          name="extension_time"
-          min="1"
-          required
-        />
-      </div>
+      <!-- Input to extend booking -->
+      <label for="extension_time"
+        >Extend Booking Time (in minutes) (if greater than 300 min, book a new
+        ticket):</label
+      >
+      <input
+        type="number"
+        id="extension_time"
+        name="extension_time"
+        min="1"
+        required
+      />
       <p>
         Duration: {% if duration is defined %}{{ duration }}{% else %}N/A{%
         endif %}
@@ -207,9 +199,8 @@
       {% endif %} {% endwith %}
 
       <!-- Extend Booking button -->
-      <button type="submit" id = "extend_button">Extend Booking</button>
+      <button type="submit" id="extend_button_">Extend Booking</button>
     </form>
-
     <a href="/home">Home Page</a>
   </body>
 </html>

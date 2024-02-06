@@ -183,18 +183,17 @@ class PageController:
             if request.method == 'POST':
                 # Retrieve form data
                 extension_time = int(request.form.get('extension_time'))
-                print(extension_time)
-                selected_ticket_id = request.form.get('selected_ticket_id_post')
-                print(selected_ticket_id)
+                selected_ticket_id = request.form.get('ticket_id')
                 # # Retrieve ticket details
-                # ticket_details = usercontroller.html_get_selected_ticket_details(selected_ticket_id)
+                ticket_details = usercontroller.html_get_selected_ticket_details(selected_ticket_id)
+                print(ticket_details)
 
                 # departure_time= request.form.get('departure_time')
-                
-                # new_departure_time = usercontroller.calculate_new_departure_time(ticket_details.get('departure_time'), extension_time)
-
+                departure_time = ticket_details['departure_time']
+                new_departure_time = usercontroller.calculate_new_departure_time(departure_time, extension_time)
+                print(new_departure_time)
                 # Update the booking with the new departure time
-                # usercontroller.update_booking(selected_ticket_id, new_departure_time)
+                usercontroller.update_booking(selected_ticket_id, new_departure_time)
 
                 flash('Booking Extended Successfully!', 'success')
                 return redirect(url_for('extendbook'))

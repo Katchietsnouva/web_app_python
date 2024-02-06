@@ -177,10 +177,14 @@ class UserController:
 
         if ticket_entry:
             return {
+                "user_id": ticket_entry["user_id"],
+                "customer_number": ticket_entry["customer_number"],
+                "booking_id": ticket_entry["booking_id"],
                 "arrival_date": ticket_entry["arrival_date"],
                 "arrival_time": ticket_entry["arrival_time"],
                 "departure_date": ticket_entry["departure_date"],
-                "departure_time": ticket_entry["departure_time"]
+                "departure_time": ticket_entry["departure_time"],
+                "duration_minutes": ticket_entry["duration_minutes"],
             }
         else:
             # Ticket ID not found, return an appropriate response or handle accordingly
@@ -189,13 +193,13 @@ class UserController:
         
     def calculate_new_departure_time(self, original_departure_time, extension_time):
         # Convert to datetime object
-        original_departure_datetime = datetime.strptime(original_departure_time, "%Y-%m-%d %H:%M")
+        original_departure_datetime = datetime.strptime(original_departure_time, "%H:%M")
 
         # Add the extension_time (in minutes) to the original_departure_time
         updated_departure_datetime = original_departure_datetime + timedelta(minutes=extension_time)
 
         # Convert the result back to the desired format (e.g., string)
-        updated_departure_time = updated_departure_datetime.strftime("%Y-%m-%d %H:%M")
+        updated_departure_time = updated_departure_datetime.strftime("%H:%M")
 
         return updated_departure_time
     
@@ -207,6 +211,9 @@ class UserController:
         if booking:
             # Update the departure_time in the booking
             booking['departure_time'] = new_departure_time
+
+            # Modify the booking_id to indicate it's an extended bo oking
+            booking['booking_id'] = f"{booking['booking_id']}-ext"
 
             # Save the updated time_data to the JSON file
             self.save_time_data()
