@@ -162,13 +162,28 @@ class UserController:
     # def retrieve_user_ticket_ids(self, user_id):
     #     user = next((user_entry for user_entry in self.time_data if user_entry['user_id'] == user_id), None)
 
-    def retrieve_user_ticket_ids(self, user_id):
+    def html_retrieve_user_ticket_ids(self, user_id):
         # self.time_data is a list of dictionaries representing booking entries
         time_data = self.time_data
         user_bookings = [entry for entry in time_data if entry['user_id'] == user_id]
 
         # user can have multiple bookings, return a list of booking IDs
         return [booking["booking_id"] for booking in user_bookings]
+    
+    def html_get_selected_ticket_details(self, ticket_id):
+        # Find the entry in time_data with the given ticket_id
+        ticket_entry = next((entry for entry in self.time_data if entry['booking_id'] == ticket_id), None)
+
+        if ticket_entry:
+            return {
+                "arrival_date": ticket_entry["arrival_date"],
+                "arrival_time": ticket_entry["arrival_time"],
+                "departure_date": ticket_entry["departure_date"],
+                "departure_time": ticket_entry["departure_time"]
+            }
+        else:
+            # Ticket ID not found, return an appropriate response or handle accordingly
+            return None
 
 
 

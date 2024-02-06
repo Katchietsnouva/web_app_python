@@ -179,18 +179,24 @@ class PageController:
         def extendbook():
             user_id = session['user_id']
             usercontroller = UserController()
-            user_booked_ticket_ids = usercontroller.retrieve_user_ticket_ids(user_id)
+            user_booked_ticket_ids = usercontroller.html_retrieve_user_ticket_ids(user_id)
             if request.method == 'POST':
                 pass
             return render_template('extend_booking_page.html', user_booked_ticket_ids=user_booked_ticket_ids)
+        
         @app.route('/get_selected_ticket_details', methods=['GET'])
-
         def get_selected_ticket_details():
             selected_ticket_id = request.args.get('ticket_id')
             # Implement logic to fetch details based on the selected ticket ID
             # Replace the following line with your actual logic
-            details = {"arrival_date": "2024-02-15", "arrival_time": "12:30", "departure_date": "2024-02-16", "departure_time": "14:45"}
-            return jsonify(details)
+            usercontroller = UserController()
+            details = usercontroller.html_get_selected_ticket_details(selected_ticket_id)
+            if details:
+                return jsonify(details)
+            else:
+                return jsonify({"error": "Ticket ID not found"}), 404
+            # details = {"arrival_date": "2024-02-15", "arrival_time": "12:30", "departure_date": "2024-02-16", "departure_time": "14:45"}
+            # return jsonify(details)
 
         
         
