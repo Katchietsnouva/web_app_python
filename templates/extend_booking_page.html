@@ -101,8 +101,8 @@
     <form action="/extendbook" method="get">
       <label for="booking_id">Select Booking ID:</label>
       <select id="booking_id" name="booking_id" required>
-        {% for booking_id in booking_ids %}
-          <option value="{{ booking_id }}">{{ booking_id }}</option>
+        {% for ticket_id in user_booked_ticket_ids %}
+          <option value="{{ ticket_id }}">{{ ticket_id }}</option>
         {% endfor %}
       </select>
 
