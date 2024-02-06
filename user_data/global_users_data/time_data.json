@@ -32,12 +32,22 @@
     {
         "user_id": "d4365c4c-ff32-448a-b14c-a318e3b41675",
         "customer_number": "CUST-1",
+        "booking_id": "Book_id-004",
+        "arrival_date": "2024-02-29",
+        "arrival_time": "02:10",
+        "departure_date": "2024-03-02",
+        "departure_time": "02:10",
+        "duration_minutes": 2880
+    },
+    {
+        "user_id": "d4365c4c-ff32-448a-b14c-a318e3b41675",
+        "customer_number": "CUST-1",
         "booking_id": "Book_id-004-ext",
         "arrival_date": "2024-02-29",
         "arrival_time": "02:10",
         "departure_date": "2024-03-02",
         "departure_time": "02:16",
-        "duration_minutes": 2880
+        "duration_minutes": 2
     },
     {
         "user_id": "d4365c4c-ff32-448a-b14c-a318e3b41675",
@@ -58,5 +68,45 @@
         "departure_date": "2024-02-23",
         "departure_time": "21:59",
         "duration_minutes": 5939
+    },
+    {
+        "user_id": "d4365c4c-ff32-448a-b14c-a318e3b41675",
+        "customer_number": "CUST-1",
+        "booking_id": "Book_id-005-ext",
+        "arrival_date": "2024-02-20",
+        "arrival_time": "02:10",
+        "departure_date": "2024-02-22",
+        "departure_time": "02:18",
+        "duration_minutes": 2
+    },
+    {
+        "user_id": "d4365c4c-ff32-448a-b14c-a318e3b41675",
+        "customer_number": "CUST-1",
+        "booking_id": "Book_id-005-ext-ext",
+        "arrival_date": "2024-02-20",
+        "arrival_time": "02:10",
+        "departure_date": "2024-02-22",
+        "departure_time": "02:25",
+        "duration_minutes": 2
+    },
+    {
+        "user_id": "d4365c4c-ff32-448a-b14c-a318e3b41675",
+        "customer_number": "CUST-1",
+        "booking_id": "Book_id-005-ext-ext-ext",
+        "arrival_date": "2024-02-20",
+        "arrival_time": "02:10",
+        "departure_date": "2024-02-22",
+        "departure_time": "02:28",
+        "duration_minutes": 3
+    },
+    {
+        "user_id": "526f8736-15a6-47eb-9e48-d387723dcc50",
+        "customer_number": "CUST-4",
+        "booking_id": "Book_id-006",
+        "arrival_date": "2024-02-08",
+        "arrival_time": "02:54",
+        "departure_date": "2024-02-10",
+        "departure_time": "06:51",
+        "duration_minutes": 3117
     }
 ]

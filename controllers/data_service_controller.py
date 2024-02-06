@@ -204,16 +204,28 @@ class UserController:
         return updated_departure_time
     
 
-    def update_booking(self, selected_ticket_id, new_departure_time):
+    def update_booking(self, selected_ticket_id, new_departure_time, extension_time):
         # Find the booking in the time_data list with the selected_ticket_id
         booking = next((entry for entry in self.time_data if entry['booking_id'] == selected_ticket_id), None)
 
         if booking:
             # Update the departure_time in the booking
-            booking['departure_time'] = new_departure_time
+            # booking['departure_time'] = new_departure_time
 
-            # Modify the booking_id to indicate it's an extended bo oking
-            booking['booking_id'] = f"{booking['booking_id']}-ext"
+            # Modify the booking_id to indicate it's an extended booking
+            extended_booking = {
+                "user_id": booking["user_id"],
+                "customer_number": booking["customer_number"],
+                "booking_id": f"{booking['booking_id']}-ext",
+                "arrival_date": booking["arrival_date"],
+                "arrival_time": booking["arrival_time"],
+                "departure_date": booking["departure_date"],
+                "departure_time": new_departure_time,
+                "duration_minutes": extension_time,
+            }
+
+            # Append the new extended booking entry to the time_data
+            self.time_data.append(extended_booking)
 
             # Save the updated time_data to the JSON file
             self.save_time_data()

@@ -140,49 +140,46 @@
           {% endif %}
         </div>
 
-        <!-- In the right-half (booking details) -->
         <div class="right-half">
           <h2>Booking Information</h2>
           {% if user_bookings %}
             {% for booking in user_bookings %}
-              <div class="booking-entry">
-                <p><strong>Booking ID:</strong> {{ booking['booking_id'] }}</p>
-                <p><strong>Arrival Date:</strong> {{ booking['arrival_date'] }}</p>
-                <p><strong>Arrival Time:</strong> {{ booking['arrival_time'] }}</p>
-                <p>
-                  <strong>Departure Date:</strong> {{ booking['departure_date'] }}
-                </p>
-                <p>
-                  <strong>Departure Time:</strong> {{ booking['departure_time'] }}
-                </p>
-                <p>
-                  <strong>Duration (in minutes):</strong> {{ booking['duration_minutes'] }}
-              </div>
+              {% if "-ext" not in booking['booking_id'] %}
+                <div class="booking-entry">
+                  <p><strong>Booking ID:</strong> {{ booking['booking_id'] }}</p>
+                  <p><strong>Arrival Date:</strong> {{ booking['arrival_date'] }}</p>
+                  <p><strong>Arrival Time:</strong> {{ booking['arrival_time'] }}</p>
+                  <p><strong>Departure Date:</strong> {{ booking['departure_date'] }}</p>
+                  <p><strong>Departure Time:</strong> {{ booking['departure_time'] }}</p>
+                  <p><strong>Duration (in min):</strong> {{ booking['duration_minutes'] }}</p>
+                </div>
+              {% endif %}
             {% endfor %} 
           {% else %}
-          <p>No booking information found. Book now to populate this menu!</p>
+            <p>No booking information found. Book now to populate this menu!</p>
           {% endif %}
         </div>
 
+        <!-- In the right-half-2 (extension details) -->
         <div class="right-half-2">
           <h2>Parking Extension Time Information</h2>
-          {% if user_bookings %} {% for booking in user_bookings %}
-          <div class="booking-entry">
-            <p><strong>Booking ID:</strong> {{ booking['booking_id'] }}</p>
-            <p><strong>Arrival Date:</strong> {{ booking['arrival_date'] }}</p>
-            <p><strong>Arrival Time:</strong> {{ booking['arrival_time'] }}</p>
-            <p>
-              <strong>Departure Date:</strong> {{ booking['departure_date'] }}
-            </p>
-            <p>
-              <strong>Departure Time:</strong> {{ booking['departure_time'] }}
-            </p>
-          </div>
-          {% endfor %} {% else %}
-          <p>
-            No Parking Extension Time Information found. Book now to populate
-            this menu!
-          </p>
+          {% if user_bookings %}
+            {% for booking in user_bookings %}
+              {% if "-ext" in booking['booking_id'] %}
+                <div class="booking-entry">
+                  <p><strong>Booking ID:</strong> {{ booking['booking_id'] }}</p>
+                  <p><strong>Arrival Date:</strong> {{ booking['arrival_date'] }}</p>
+                  <p><strong>Arrival Time:</strong> {{ booking['arrival_time'] }}</p>
+                  <p><strong>Departure Date:</strong> {{ booking['departure_date'] }}</p>
+                  <p><strong>Departure Time:</strong> {{ booking['departure_time'] }}</p>
+                  <p><strong>Extension (in min):</strong> {{ booking['duration_minutes'] }}</p>
+                </div>
+              {% else %}
+                <p>No Parking Extension Time Information found. Extend book duration now to populate this menu!</p>
+              {% endif %}
+            {% endfor %}
+          {% else %}
+            <p>No Parking Extension Time Information found. First book now to populate this menu!</p>
           {% endif %}
         </div>
 

@@ -31,5 +31,16 @@
         "carmanufacturer": "k",
         "carmodel": "l",
         "car_plate": "k"
+    },
+    {
+        "user_id": "526f8736-15a6-47eb-9e48-d387723dcc50",
+        "customer_number": "CUST-4",
+        "username": "q",
+        "password": "u",
+        "phone": "u",
+        "email": "philipaswa01@gmail.com",
+        "carmanufacturer": "u",
+        "carmodel": "u",
+        "car_plate": "u"
     }
 ]

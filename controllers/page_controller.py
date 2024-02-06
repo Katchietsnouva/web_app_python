@@ -183,6 +183,9 @@ class PageController:
             if request.method == 'POST':
                 # Retrieve form data
                 extension_time = int(request.form.get('extension_time'))
+                if extension_time > 300:
+                    flash('Extension time cannot be greater than 300 minutes.', 'error')
+                    return redirect(url_for('extendbook'))
                 selected_ticket_id = request.form.get('ticket_id')
                 # # Retrieve ticket details
                 ticket_details = usercontroller.html_get_selected_ticket_details(selected_ticket_id)
@@ -193,7 +196,7 @@ class PageController:
                 new_departure_time = usercontroller.calculate_new_departure_time(departure_time, extension_time)
                 print(new_departure_time)
                 # Update the booking with the new departure time
-                usercontroller.update_booking(selected_ticket_id, new_departure_time)
+                usercontroller.update_booking(selected_ticket_id, new_departure_time, extension_time)
 
                 flash('Booking Extended Successfully!', 'success')
                 return redirect(url_for('extendbook'))
