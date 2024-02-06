@@ -1,6 +1,7 @@
 # app/controllers/page_controller.py version 2
 from flask import redirect, url_for, request, render_template, flash
 from flask import session, flash
+from flask import jsonify
 import uuid
 from pages.login_page import LoginPage
 # from pages.registration_page import RegisterPage
@@ -179,10 +180,18 @@ class PageController:
             user_id = session['user_id']
             usercontroller = UserController()
             user_booked_ticket_ids = usercontroller.retrieve_user_ticket_ids(user_id)
-            user_selected_ticket_ids = usercontroller.get_selected_ticket_details(user_id)
             if request.method == 'POST':
                 pass
             return render_template('extend_booking_page.html', user_booked_ticket_ids=user_booked_ticket_ids)
+        @app.route('/get_selected_ticket_details', methods=['GET'])
+
+        def get_selected_ticket_details():
+            selected_ticket_id = request.args.get('ticket_id')
+            # Implement logic to fetch details based on the selected ticket ID
+            # Replace the following line with your actual logic
+            details = {"arrival_date": "2024-02-15", "arrival_time": "12:30", "departure_date": "2024-02-16", "departure_time": "14:45"}
+            return jsonify(details)
+
         
         
         # @app.route('/extend_parking')
