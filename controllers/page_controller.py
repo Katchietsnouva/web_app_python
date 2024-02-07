@@ -115,7 +115,7 @@ class PageController:
         #     return render_template('registration_page.html')
 
         @app.route('/home')
-        def home():
+        def home():        
             try:
                 user_id = session['user_id']
                 user_registration_data =  self.user_controller.get_user_registration_data(session['user_id'])
@@ -203,6 +203,10 @@ class PageController:
                 return redirect(url_for('extendbook'))
             return render_template('extend_booking_page.html', user_booked_ticket_ids=user_booked_ticket_ids)
         
+        @app.route('/payment')
+        def paymentpage_fx():
+            return render_template('payment_page.html')
+        
         @app.route('/get_selected_ticket_details', methods=['GET'])
         def get_selected_ticket_details():
             selected_ticket_id = request.args.get('ticket_id')
@@ -216,6 +220,8 @@ class PageController:
                 return jsonify({"error": "Ticket ID not found"}), 404
             # details = {"arrival_date": "2024-02-15", "arrival_time": "12:30", "departure_date": "2024-02-16", "departure_time": "14:45"}
             # return jsonify(details)
+
+        
 
         
         
