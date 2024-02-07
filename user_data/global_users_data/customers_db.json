@@ -42,5 +42,38 @@
         "carmanufacturer": "u",
         "carmodel": "u",
         "car_plate": "u"
+    },
+    {
+        "user_id": "b3ebc81d-ed1a-4145-ae58-11217b96f7c6",
+        "customer_number": "CUST-5",
+        "username": "ewe",
+        "password": "w",
+        "phone": "w",
+        "email": "w@S",
+        "carmanufacturer": "w",
+        "carmodel": "w",
+        "car_plate": "w"
+    },
+    {
+        "user_id": "bd2ca6ec-b6cb-41d3-be40-367b9d62211d",
+        "customer_number": "CUST-6",
+        "username": "wo",
+        "password": "o",
+        "phone": "o",
+        "email": "o@f",
+        "carmanufacturer": "o",
+        "carmodel": "[",
+        "car_plate": "o"
+    },
+    {
+        "user_id": "5c9a437a-f32f-405f-862d-07778f450b66",
+        "customer_number": "CUST-7",
+        "username": "wq",
+        "password": "u",
+        "phone": "u",
+        "email": "u@ere",
+        "carmanufacturer": "u",
+        "carmodel": "u",
+        "car_plate": "s"
     }
 ]

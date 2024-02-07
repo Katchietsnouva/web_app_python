@@ -173,7 +173,8 @@ class UserController:
     
     def html_get_selected_ticket_details(self, ticket_id):
         # Find the entry in time_data with the given ticket_id
-        ticket_entry = next((entry for entry in self.time_data if entry['booking_id'] == ticket_id), None)
+        time_data = self.time_data
+        ticket_entry = next((entry for entry in time_data if entry['booking_id'] == ticket_id), None)
 
         if ticket_entry:
             return {

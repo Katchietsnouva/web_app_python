@@ -178,8 +178,8 @@ class PageController:
         @app.route('/extendbook', methods=['GET', 'POST'])
         def extendbook():
             user_id = session['user_id']
-            usercontroller = UserController()
-            user_booked_ticket_ids = usercontroller.html_retrieve_user_ticket_ids(user_id)
+            # usercontroller = UserController()
+            user_booked_ticket_ids = UserController.html_retrieve_user_ticket_ids(self.user_controller, user_id)
             if request.method == 'POST':
                 # Retrieve form data
                 extension_time = int(request.form.get('extension_time'))
@@ -188,15 +188,15 @@ class PageController:
                     return redirect(url_for('extendbook'))
                 selected_ticket_id = request.form.get('ticket_id')
                 # # Retrieve ticket details
-                ticket_details = usercontroller.html_get_selected_ticket_details(selected_ticket_id)
+                ticket_details = UserController.html_get_selected_ticket_details(self.user_controller, selected_ticket_id)
                 print(ticket_details)
 
                 # departure_time= request.form.get('departure_time')
                 departure_time = ticket_details['departure_time']
-                new_departure_time = usercontroller.calculate_new_departure_time(departure_time, extension_time)
+                new_departure_time = UserController.calculate_new_departure_time(self.user_controller, departure_time, extension_time)
                 print(new_departure_time)
                 # Update the booking with the new departure time
-                usercontroller.update_booking(selected_ticket_id, new_departure_time, extension_time)
+                UserController.update_booking(self.user_controller, selected_ticket_id, new_departure_time, extension_time)
 
                 flash('Booking Extended Successfully!', 'success')
                 return redirect(url_for('extendbook'))
@@ -207,8 +207,8 @@ class PageController:
             selected_ticket_id = request.args.get('ticket_id')
             # Implement logic to fetch details based on the selected ticket ID
             # Replace the following line with your actual logic
-            usercontroller = UserController()
-            details = usercontroller.html_get_selected_ticket_details(selected_ticket_id)
+            # usercontroller = UserController()
+            details = UserController.html_get_selected_ticket_details(self.user_controller, selected_ticket_id)
             if details:
                 return jsonify(details)
             else:

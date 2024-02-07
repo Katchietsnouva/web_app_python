@@ -87,6 +87,14 @@
         font-size: 1em;
         transition: background-color 0.3s ease;
       }
+      #ticket_id {
+        font-size: 18px; 
+        color: #45a049;
+        background-color: #f7f7f7; 
+        border: 1px solid #ccc; 
+        padding: 8px;
+        border-radius: 5px;
+      }
     </style>
     <!-- Include jQuery -->
     <!--<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> -->
@@ -156,10 +164,17 @@
         >Select Your Available TIcket IDs That You Wish TO Extend:</label
       >
       <select id="ticket_id" name="ticket_id" required>
+        <option value="" disabled selected>Select a Ticket ID</option>
+        {% for ticket_id in user_booked_ticket_ids %}
+          <option value="{{ ticket_id }}">{{ ticket_id }}</option>
+        {% endfor %}
+      </select>
+      
+      <!--<select id="ticket_id" name="ticket_id" required>
         {% for ticket_id in user_booked_ticket_ids %}
         <option value="{{ ticket_id }}">{{ ticket_id }}</option>
         {% endfor %}
-      </select>
+      </select> -->
 
       <label for="arrival_date">Selected Ticket Arrival Date:</label>
       <input type="date" id="arrival_date" name="arrival_date" />

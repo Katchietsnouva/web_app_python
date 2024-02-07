@@ -88,6 +88,14 @@
         border: 1px solid #ccc;
         border-radius: 5px;
       }
+      #ticket_id {
+        font-size: 16px; /* Adjust the font size as needed */
+        color: #333; /* Set the text color */
+        background-color: #f7f7f7; /* Set the background color */
+        border: 1px solid #ccc; /* Add a border */
+        padding: 8px; /* Add some padding for better appearance */
+        border-radius: 5px; /* Optional: Add border radius for rounded corners */
+      }
     </style>
   </head>
   <body>
@@ -161,27 +169,32 @@
         </div>
 
         <!-- In the right-half-2 (extension details) -->
+        <!-- In the right-half-2 (extension details) -->
         <div class="right-half-2">
           <h2>Parking Extension Time Information</h2>
           {% if user_bookings %}
+            {% set has_extension_bookings = False %}
             {% for booking in user_bookings %}
               {% if "-ext" in booking['booking_id'] %}
+                {% set has_extension_bookings = True %}
                 <div class="booking-entry">
                   <p><strong>Booking ID:</strong> {{ booking['booking_id'] }}</p>
                   <p><strong>Arrival Date:</strong> {{ booking['arrival_date'] }}</p>
                   <p><strong>Arrival Time:</strong> {{ booking['arrival_time'] }}</p>
-                  <p><strong>Departure Date:</strong> {{ booking['departure_date'] }}</p>
-                  <p><strong>Departure Time:</strong> {{ booking['departure_time'] }}</p>
+                  <p><strong>New Dep. Date:</strong> {{ booking['departure_date'] }}</p>
+                  <p><strong>New Dep. Time:</strong> {{ booking['departure_time'] }}</p>
                   <p><strong>Extension (in min):</strong> {{ booking['duration_minutes'] }}</p>
                 </div>
-              {% else %}
-                <p>No Parking Extension Time Information found. Extend book duration now to populate this menu!</p>
               {% endif %}
             {% endfor %}
+            {% if not has_extension_bookings %}
+              <p>Welcome!</p>
+            {% endif %}
           {% else %}
-            <p>No Parking Extension Time Information found. First book now to populate this menu!</p>
+            <p>No Parking 3 Extension Time Information found. Book now to populate this menu!</p>
           {% endif %}
         </div>
+
 
         <div class="right-half-3">
           <h2>Payment Information</h2>
