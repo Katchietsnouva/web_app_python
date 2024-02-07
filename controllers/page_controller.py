@@ -211,7 +211,6 @@ class PageController:
         def get_selected_ticket_details():
             selected_ticket_id = request.args.get('ticket_id')
             # Implement logic to fetch details based on the selected ticket ID
-            # Replace the following line with your actual logic
             # usercontroller = UserController()
             details = UserController.html_get_selected_ticket_details(self.user_controller, selected_ticket_id)
             if details:
