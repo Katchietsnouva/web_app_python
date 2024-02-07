@@ -119,17 +119,18 @@ class PageController:
             try:
                 user_id = session['user_id']
                 user_registration_data =  self.user_controller.get_user_registration_data(session['user_id'])
-                user, user_bookings  =  self.user_controller.get_user_booking_data(session['user_id'])
+                user, user_bookings, calculate_amount  =  self.user_controller.get_user_booking_data(session['user_id'])
 
                 # Rearranginh tume model to fing the duration difference
                 # user_bookings = [TimeModel(**booking) for booking in user_bookings]
-                return render_template('home_page.html', user_registration_data=user_registration_data, user=user, user_bookings=user_bookings)
+                return render_template('home_page.html', user_registration_data=user_registration_data, user=user, user_bookings=user_bookings, calculate_amount=calculate_amount)
                 return render_template('home_page.html', user_registration_data=user_registration_data, user=user, user_bookings=user_bookings)
                 return render_template('home_page.html')
             except KeyError:
                 # If KeyError occurs (no 'user_id' in session), redirect to registration or login
                 flash('Please log in or register to access the home page.', 'error')
                 return redirect(url_for('login'))  # Use 'registration' if you have a registration route
+            
         
         # @app.route('/book', methods=['GET', 'POST'])
         # def booking():

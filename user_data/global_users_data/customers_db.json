@@ -75,5 +75,16 @@
         "carmanufacturer": "u",
         "carmodel": "u",
         "car_plate": "s"
+    },
+    {
+        "user_id": "f55d0d18-8046-48d4-befe-c0b2439b26a1",
+        "customer_number": "CUST-8",
+        "username": "ga",
+        "password": "g",
+        "phone": "g",
+        "email": "g@d",
+        "carmanufacturer": "g",
+        "carmodel": "gg",
+        "car_plate": "g"
     }
 ]
