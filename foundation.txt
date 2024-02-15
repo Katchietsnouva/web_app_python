@@ -6,20 +6,11 @@ app/
 |-- controllers/
 |   |-- __init__.py
 |   |-- page_controller.py
-|   |-- user_controller.py
+|   |-- data_service_controller.py
 |-- models/
 |   |-- __init__.py
 |   |-- user_model.py
-|-- pages/
-|   |-- __init__.py
-|   |-- base_page.py
-|   |-- login_page.py
-|   |-- registration_page.py
-|   |-- home_page.py
-|   |-- booking_page.py
-|   |-- extend_parking_page.py
-|   |-- payment_page.py
-|   |-- profit_loss_page.py 
+|   |-- time_model.py
 |-- user_data/
 |   |-- __init__.py
 |   |-- global_users_data/
@@ -33,6 +24,12 @@ app/
 |-- templates/
 |   |-- extend_booking_page.html
 |   |-- booking_page.html
+|   |-- registration_page.html
+|   |-- home_page.html
+|   |-- booking_page.html
+|   |-- extend_parking_page.html
+|   |-- payment_page.html
+|   |-- profit_loss_page.html 
 |-- __main__.py
 |-- app.py
 
