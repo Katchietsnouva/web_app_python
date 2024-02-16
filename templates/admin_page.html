@@ -4,13 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #007bff;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #dfffff;
+            border: 1px solid #dee2e6;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .user-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
 </head>
 <body>
-    <h1>Admin Page - User List</h1>
-    <ul>
-        {% for user in users %}
-            <li>{{ user.username }} - {{ user.email }}</li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <h1>Admin Page - User List</h1>
+        <a class="navigation-button" href="/login">Logout</a>
+        <ul>
+            {% for user in all_users %}
+                <li>
+                    <div class="user-info">
+                        <div>
+                            <p><strong>Name:</strong> <strong>{{ user.username }}</strong><br>
+                            <p><strong>Email:</strong> {{ user.email }}<br>
+                            <p><strong>Phone:</strong> {{ user.phone }}<br>
+                            <!--Car: {{ user.carmanufacturer }} {{ user.carmodel }} ({{ user.car_plate }})-->
+                        </div>
+                        <div>
+                            <p><strong>Role:</strong> {{ user.role }}<br>
+                            <p><strong>Customer Number:</strong> {{ user.customer_number }}<br>
+                            <p><strong>User ID:</strong> {{ user.user_id }}
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 </body>
 </html>

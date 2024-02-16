@@ -49,7 +49,7 @@ class PageController:
                     all_users = self.user_controller.get_all_users()
 
                     # Render the admin page with the list of users
-                    return render_template('admin_page.html', users=all_users)
+                    return render_template('admin_page.html', all_users=all_users)
 
             # If not an admin or not logged in, redirect to login
             flash('You do not have permission to access this page.', 'error')
