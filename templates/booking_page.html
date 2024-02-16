@@ -124,17 +124,17 @@
             // Add logic to redirect to the payment page
             window.location.href = "/payment";  // Change "/payment" to the actual URL of your payment page
         }
-      </script>
 
-      <script>
-        // Check if the booking was successful and enable the "Proceed to Payment" button
-        document.addEventListener("DOMContentLoaded", function() {
+          // Check if the booking was successful and enable the "Proceed to Payment" button
+          document.addEventListener("DOMContentLoaded", function() {
             var bookingSuccess = {% if 'success' in get_flashed_messages(with_categories=true) %}true{% else %}false{% endif %};
             if (bookingSuccess) {
                 enableProceedToPayment();
             }
-        });
-    </script>
+          });
+      </script>
+
+
     </form>
 
     <a href="/home">Home Page</a>
