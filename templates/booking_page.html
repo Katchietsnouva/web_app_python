@@ -72,7 +72,8 @@
     <h1>Booking Page</h1>
 
     <!-- Booking form -->
-    <form action="/book" method="post">
+    <!--<form action="/book" method="post">-->
+    <form action="/book" method="post" onsubmit="return validateForm();">
       <label for="arrival_date">Select Arrival Date:</label>
       <input type="date" id="arrival_date" name="arrival_date" required />
 
@@ -97,17 +98,36 @@
       </ul>
       {% endif %} {% endwith %}
 
-
-      <button type="submit">Book Parking</button>
-
-      <!--{% if duration is defined and (duration.days > 0 or (duration.days == 0
-      and duration.seconds > 0)) %}
-      <button type="submit">Book Parking</button>
-      {% else %}
-      <button type="button">Cannot Book Parking</button>
-      {% endif %}-->
+      <!--<button type="submit">Book Parking</button>-->
+      <button type="submit" id="submitBtn" onclick="enableProceedToPayment()">Book Parking</button>
+      <!--initially disabled-->
+      <button type="button" id="proceedToPaymentBtn" disabled onclick="proceedToPayment()">Proceed to Payment</button>
+      <script>
+        function validateForm() {
+            // Add your form validation logic here
+            // Return true if the form is valid, false otherwise
+            // You can use this function to control whether to enable the "Proceed to Payment" button
+            return true;
+        }
+    
+        function enableProceedToPayment() {
+            // Enable the "Proceed to Payment" button
+            document.getElementById('proceedToPaymentBtn').removeAttribute('disabled');
+        }
+    
+        function proceedToPayment() {
+            // Add logic to redirect to the payment page
+            window.location.href = "/payment";  // Change "/payment" to the actual URL of your payment page
+        }
+    </script>
     </form>
 
     <a href="/home">Home Page</a>
+
+
+  
+      
+
+
   </body>
 </html>
