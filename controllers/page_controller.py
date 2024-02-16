@@ -34,6 +34,24 @@ class PageController:
             self.home_page.show()
             page_controller = PageController(app)
             page_controller.show_home_page()
+        
+        @app.route('/admin')
+        def admin_page():
+            # if 'user_id' not in session:
+            #     return redirect(url_for('login'))
+
+            # Check if the logged-in user has the 'admin' role
+            # user = User.query.get(session['user_id'])
+            admin_user = self.user_controller.get_user_registration_data(session['user_id'])
+            # user = get_user_by_id(session['user_id'])
+            if admin_user.role != 'admin':
+                return "Permission Denied"
+
+            # Fetch all users from the database
+            # all_users = User.query.all()
+
+            # return render_template('admin_page.html', users=all_users)
+            return render_template('admin_page.html')
             
         # @app.route('/login')
         # def login():
@@ -47,13 +65,19 @@ class PageController:
                 password = request.form.get('password')
 
                 # Authenticate  user
-                user_authenticated, user_id  = self.user_controller.authenticate_user(username, password)
+                user_authenticated, user_id, user_role   = self.user_controller.authenticate_user(username, password)
 
                 if user_authenticated:
                     session['user_id'] = user_id
                     session['username'] = username 
-                    flash('Login Successful', 'success')
-                    return redirect(url_for('home'))
+
+                    # admin_user = self.user_controller.get_user_registration_data(session['user_id'])
+                    # if admin_user.role == 'admin':
+                    if user_role == 'admin':
+                        return render_template('admin_page.html')
+                    else:
+                        flash('Login Successful', 'success')
+                        return redirect(url_for('home'))
                 else:
                     flash('Invalid username or password. Please try again.', 'error')
 
@@ -71,11 +95,12 @@ class PageController:
                 carmanufacturer = request.form.get('carmanufacturer')
                 carmodel = request.form.get('carmodel')
                 car_plate = request.form.get('car_plate')
+                role = request.form.get('role')
 
                 user_id = str(uuid.uuid4())
 
                 # Create UserModel instance
-                user_model = UserModel(user_id, None, username, password, phone, email, carmanufacturer, carmodel, car_plate)
+                user_model = UserModel(user_id, None, username, password, phone, email, carmanufacturer, carmodel, car_plate, role)
                 # Register the user
                 registration_successful = UserController.register_user(self.user_controller, user_model)
                 # registration_successful = self.page_controller.user_controller.register_user(user_model)

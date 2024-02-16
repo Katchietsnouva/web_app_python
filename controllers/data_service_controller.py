@@ -72,8 +72,8 @@ class UserController:
     def authenticate_user(self, username, password):
         for user in self.users_data:
             if user["username"] == username and user["password"] == password:
-                return True, user["user_id"]
-        return False, None
+                return True, user["user_id"], user.get("role", "user")  # Default role to 'user' if not present
+        return False, None, None
     
     def get_customer_number(self, user_id):
         user = next((user for user in self.users_data if user["user_id"] == user_id), None)
@@ -225,7 +225,8 @@ class UserController:
                 "arrival_time": booking["arrival_time"],
                 "departure_date": booking["departure_date"],
                 "departure_time": new_departure_time,
-                "duration_minutes": extension_time,
+                "duration_minutes": extension_time
+                # "role": role,
             }
 
             # Append the new extended booking entry to the time_data
