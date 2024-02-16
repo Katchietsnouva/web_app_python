@@ -58,6 +58,11 @@
         background-color: #45a049;
       }
 
+      button:disabled {
+        background-color: #dddddd;
+        cursor: not-allowed;
+      }
+
       a {
         display: block;
         margin-top: 20px;
@@ -119,6 +124,16 @@
             // Add logic to redirect to the payment page
             window.location.href = "/payment";  // Change "/payment" to the actual URL of your payment page
         }
+      </script>
+
+      <script>
+        // Check if the booking was successful and enable the "Proceed to Payment" button
+        document.addEventListener("DOMContentLoaded", function() {
+            var bookingSuccess = {% if 'success' in get_flashed_messages(with_categories=true) %}true{% else %}false{% endif %};
+            if (bookingSuccess) {
+                enableProceedToPayment();
+            }
+        });
     </script>
     </form>
 
