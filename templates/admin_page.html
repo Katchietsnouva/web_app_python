@@ -40,6 +40,7 @@
     <div class="container">
         <h1>Admin Page - User List</h1>
         <a class="navigation-button" href="/login">Logout</a>
+        <!--<button type="submit">Logout</button>-->
         <ul>
             {% for user in all_users %}
                 <li>
@@ -59,6 +60,17 @@
                 </li>
             {% endfor %}
         </ul>
+
+        <!--button class="btn btn-primary logout-button" type="button" onclick="logout()">Logout</button>
+        <script>
+            function logout() {
+
+                window.location.href = "/logout";
+            }
+        </script>-->
     </div>
 </body>
 </html>
+
+
+

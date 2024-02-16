@@ -98,8 +98,8 @@
     {
         "user_id": "b6fa34d0-3cc2-4d3c-bcb2-8a40bc18014d",
         "customer_number": "CUST-9",
-        "username": "m",
-        "password": "m",
+        "username": "admin",
+        "password": "admin",
         "phone": "m",
         "email": "m@d",
         "carmanufacturer": "m",
