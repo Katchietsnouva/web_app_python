@@ -201,7 +201,7 @@ class PageController:
                 flash('Booking Successful!', 'success')
 
                 # return redirect(url_for('success', message='Booking Successful!', duration=duration, redirect_url=url_for('home')))
-                return render_template('booking_page.html', duration=duration)
+                return render_template('booking_page.html', duration=duration, booking_successful=True)
                 return render_template('booking_page.html', duration=duration, booking=time_model.to_dict())
             return render_template('booking_page.html')
         

@@ -104,37 +104,34 @@
       {% endif %} {% endwith %}
 
       <!--<button type="submit">Book Parking</button>-->
-      <button type="submit" id="submitBtn" onclick="enableProceedToPayment()">Book Parking</button>
+      <button type="submit" id="submitBtn" >Book Parking</button>
       <!--initially disabled-->
       <button type="button" id="proceedToPaymentBtn" disabled onclick="proceedToPayment()">Proceed to Payment</button>
       <script>
         function validateForm() {
-            // Add your form validation logic here
             // Return true if the form is valid, false otherwise
-            // You can use this function to control whether to enable the "Proceed to Payment" button
             return true;
         }
     
         function enableProceedToPayment() {
             // Enable the "Proceed to Payment" button
             document.getElementById('proceedToPaymentBtn').removeAttribute('disabled');
+            document.getElementById('submitBtn').setAttribute('disabled', 'disabled');
         }
     
         function proceedToPayment() {
-            // Add logic to redirect to the payment page
-            window.location.href = "/payment";  // Change "/payment" to the actual URL of your payment page
+            window.location.href = "/payment";  
         }
 
-          // Check if the booking was successful and enable the "Proceed to Payment" button
-          document.addEventListener("DOMContentLoaded", function() {
-            var bookingSuccess = {% if 'success' in get_flashed_messages(with_categories=true) %}true{% else %}false{% endif %};
-            if (bookingSuccess) {
-                enableProceedToPayment();
-            }
-          });
+        // if the booking was successful enable the "Proceed to Payment" button
+        document.addEventListener("DOMContentLoaded", function() {
+          var bookingSuccessful = {% if booking_successful %}true{% else %}false{% endif %};
+          if (bookingSuccessful) {
+              enableProceedToPayment();
+          }
+        });
+        
       </script>
-
-
     </form>
 
     <a href="/home">Home Page</a>
