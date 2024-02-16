@@ -74,6 +74,11 @@
         .error {
             color: red;
         }
+
+        .message {
+            color: green; 
+        }
+
     </style>
 </head>
 <body>
@@ -93,9 +98,16 @@
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             <ul class="flashes">
-                {% for category, message in messages %}
+                <!--{% for category, message in messages %}
                     <li class="{{ category }}">{{ message }}</li>
                 {% endfor %}
+                -->
+                {% for category, message in messages %}
+                    <li class="{% if category == 'error' %}error{% else %}message{% endif %}">
+                    {{ message }}
+                    </li>
+                {% endfor %}
+                
             </ul>
         {% endif %}
     {% endwith %}
