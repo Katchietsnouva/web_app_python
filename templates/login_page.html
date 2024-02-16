@@ -76,7 +76,11 @@
         }
 
         .message {
-            color: green; 
+            background-color: green;
+            color: #fff;
+            padding: 12px;
+            border-radius: 5px;
+            margin-top: 10px;
         }
 
     </style>
@@ -106,8 +110,7 @@
                     <li class="{% if category == 'error' %}error{% else %}message{% endif %}">
                     {{ message }}
                     </li>
-                {% endfor %}
-                
+                {% endfor %}    
             </ul>
         {% endif %}
     {% endwith %}

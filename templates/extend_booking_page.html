@@ -64,7 +64,11 @@
       }
       
       .message {
-          color: green; 
+        background-color: green;
+        color: #fff;
+        padding: 12px;
+        border-radius: 5px;
+        margin-top: 10px;
       }
 
       .form-section {
@@ -208,14 +212,22 @@
         Duration: {% if duration is defined %}{{ duration }}{% else %}N/A{%
         endif %}
       </p>
-      {% with messages = get_flashed_messages(with_categories=true) %} {% if
-      messages %}
-      <ul class="flashes">
-        {% for category, message in messages %}
-        <li class="{{ category }}">{{ message }}</li>
-        {% endfor %}
-      </ul>
-      {% endif %} {% endwith %}
+      <!-- Flash messages -->
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+          <ul class="flashes">
+              <!--{% for category, message in messages %}
+                  <li class="{{ category }}">{{ message }}</li>
+              {% endfor %}
+              -->
+              {% for category, message in messages %}
+                  <li class="{% if category == 'error' %}error{% else %}message{% endif %}">
+                  {{ message }}
+                  </li>
+              {% endfor %}    
+          </ul>
+      {% endif %}
+      {% endwith %}
 
       <!-- Extend Booking button -->
       <button type="submit" id="extend_button_">Extend Booking</button>

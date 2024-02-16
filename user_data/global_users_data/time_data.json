@@ -318,5 +318,55 @@
         "departure_date": "2024-02-24",
         "departure_time": "19:24",
         "duration_minutes": 12783
+    },
+    {
+        "user_id": "d4365c4c-ff32-448a-b14c-a318e3b41675",
+        "customer_number": "CUST-1",
+        "booking_id": "Book_id-024",
+        "arrival_date": "2024-02-17",
+        "arrival_time": "19:30",
+        "departure_date": "2024-02-22",
+        "departure_time": "19:30",
+        "duration_minutes": 7200
+    },
+    {
+        "user_id": "d4365c4c-ff32-448a-b14c-a318e3b41675",
+        "customer_number": "CUST-1",
+        "booking_id": "Book_id-025",
+        "arrival_date": "2024-03-02",
+        "arrival_time": "19:32",
+        "departure_date": "2024-03-07",
+        "departure_time": "19:33",
+        "duration_minutes": 7201
+    },
+    {
+        "user_id": "d4365c4c-ff32-448a-b14c-a318e3b41675",
+        "customer_number": "CUST-1",
+        "booking_id": "Book_id-026",
+        "arrival_date": "2024-02-16",
+        "arrival_time": "19:35",
+        "departure_date": "2024-02-23",
+        "departure_time": "19:37",
+        "duration_minutes": 10082
+    },
+    {
+        "user_id": "d4365c4c-ff32-448a-b14c-a318e3b41675",
+        "customer_number": "CUST-1",
+        "booking_id": "Book_id-026-ext",
+        "arrival_date": "2024-02-16",
+        "arrival_time": "19:35",
+        "departure_date": "2024-02-23",
+        "departure_time": "20:57",
+        "duration_minutes": 80
+    },
+    {
+        "user_id": "d4365c4c-ff32-448a-b14c-a318e3b41675",
+        "customer_number": "CUST-1",
+        "booking_id": "Book_id-026-ext-ext",
+        "arrival_date": "2024-02-16",
+        "arrival_time": "19:35",
+        "departure_date": "2024-02-23",
+        "departure_time": "21:09",
+        "duration_minutes": 12
     }
 ]
