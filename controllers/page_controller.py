@@ -41,7 +41,10 @@ class PageController:
             # Check if the user is logged in and has admin role
             if 'user_id' in session and 'username' in session:
                 user = self.user_controller.get_user_registration_data(session['user_id'])
-                if user.role == 'admin':
+                # if user.role == 'admin':
+                # if user['role'] == 'admin':
+                # if user.get('phone') == 'm':
+                if user.get('role') == 'admin':
                     # Get a list of all users (you need to implement this method)
                     all_users = self.user_controller.get_all_users()
 

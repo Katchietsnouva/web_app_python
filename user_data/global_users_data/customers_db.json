@@ -8,7 +8,8 @@
         "email": "philipaswa01@gmail.com",
         "carmanufacturer": "Ferrari",
         "carmodel": "Ferrari laferrari",
-        "car_plate": "KDH 001X"
+        "car_plate": "KDH 001X",
+        "role": "user"
     },
     {
         "user_id": "cf80c157-67ba-4673-a75b-2f9fec622f0b",
@@ -19,7 +20,8 @@
         "email": "philipaswa01@gmail.com",
         "carmanufacturer": "Ford",
         "carmodel": "Ford GT Mk IV",
-        "car_plate": "KDH 002X"
+        "car_plate": "KDH 002X",
+        "role": "user"
     },
     {
         "user_id": "dd8c0e44-de40-49e8-8e07-de86398241f6",
@@ -30,7 +32,8 @@
         "email": "k@g",
         "carmanufacturer": "k",
         "carmodel": "l",
-        "car_plate": "k"
+        "car_plate": "k",
+        "role": "user"
     },
     {
         "user_id": "526f8736-15a6-47eb-9e48-d387723dcc50",
@@ -41,7 +44,8 @@
         "email": "philipaswa01@gmail.com",
         "carmanufacturer": "u",
         "carmodel": "u",
-        "car_plate": "u"
+        "car_plate": "u",
+        "role": "user"
     },
     {
         "user_id": "b3ebc81d-ed1a-4145-ae58-11217b96f7c6",
@@ -52,7 +56,8 @@
         "email": "w@S",
         "carmanufacturer": "w",
         "carmodel": "w",
-        "car_plate": "w"
+        "car_plate": "w",
+        "role": "user"
     },
     {
         "user_id": "bd2ca6ec-b6cb-41d3-be40-367b9d62211d",
@@ -63,7 +68,8 @@
         "email": "o@f",
         "carmanufacturer": "o",
         "carmodel": "[",
-        "car_plate": "o"
+        "car_plate": "o",
+        "role": "user"
     },
     {
         "user_id": "5c9a437a-f32f-405f-862d-07778f450b66",
@@ -74,7 +80,8 @@
         "email": "u@ere",
         "carmanufacturer": "u",
         "carmodel": "u",
-        "car_plate": "s"
+        "car_plate": "s",
+        "role": "user"
     },
     {
         "user_id": "f55d0d18-8046-48d4-befe-c0b2439b26a1",
@@ -85,7 +92,8 @@
         "email": "g@d",
         "carmanufacturer": "g",
         "carmodel": "gg",
-        "car_plate": "g"
+        "car_plate": "g",
+        "role": "user"
     },
     {
         "user_id": "b6fa34d0-3cc2-4d3c-bcb2-8a40bc18014d",
