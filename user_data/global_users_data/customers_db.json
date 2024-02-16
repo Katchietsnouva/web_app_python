@@ -97,6 +97,6 @@
         "carmanufacturer": "m",
         "carmodel": "mm",
         "car_plate": "m",
-        "role": "user"
+        "role": "admin"
     }
 ]

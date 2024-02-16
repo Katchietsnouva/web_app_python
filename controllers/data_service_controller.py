@@ -27,6 +27,9 @@ class UserController:
         self.last_booking_index = {}
         # self.users_data_path = current_app.config['users_data_path']
 
+    def get_all_users(self):
+        return self.users_data  # Replace this with your actual data source
+
     def save_users_data(self):
         with open(self.users_data_path, "w") as file:
             # json.dump(self.user_model, file, indent=4)

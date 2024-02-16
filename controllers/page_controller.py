@@ -35,24 +35,23 @@ class PageController:
             page_controller = PageController(app)
             page_controller.show_home_page()
         
-        @app.route('/admin')
+
+        @app.route('/admin', methods=['GET'])
         def admin_page():
-            # if 'user_id' not in session:
-            #     return redirect(url_for('login'))
+            # Check if the user is logged in and has admin role
+            if 'user_id' in session and 'username' in session:
+                user = self.user_controller.get_user_registration_data(session['user_id'])
+                if user.role == 'admin':
+                    # Get a list of all users (you need to implement this method)
+                    all_users = self.user_controller.get_all_users()
 
-            # Check if the logged-in user has the 'admin' role
-            # user = User.query.get(session['user_id'])
-            admin_user = self.user_controller.get_user_registration_data(session['user_id'])
-            # user = get_user_by_id(session['user_id'])
-            if admin_user.role != 'admin':
-                return "Permission Denied"
+                    # Render the admin page with the list of users
+                    return render_template('admin_page.html', users=all_users)
 
-            # Fetch all users from the database
-            # all_users = User.query.all()
-
-            # return render_template('admin_page.html', users=all_users)
-            return render_template('admin_page.html')
-            
+            # If not an admin or not logged in, redirect to login
+            flash('You do not have permission to access this page.', 'error')
+            return redirect(url_for('login'))
+                    
         # @app.route('/login')
         # def login():
         #     return render_template('login_page.html')
@@ -73,8 +72,10 @@ class PageController:
 
                     # admin_user = self.user_controller.get_user_registration_data(session['user_id'])
                     # if admin_user.role == 'admin':
+                    print(user_role)
                     if user_role == 'admin':
-                        return render_template('admin_page.html')
+                        # return render_template('admin_page.html')
+                        return redirect(url_for('admin_page'))
                     else:
                         flash('Login Successful', 'success')
                         return redirect(url_for('home'))
