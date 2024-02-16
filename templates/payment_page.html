@@ -26,10 +26,23 @@
 
   </head>
   <body>
-    <h1>Still In Development</h1>
-    <!--{% if duration %}
-    <p>Duration: {{ duration }}</p>
-    {% endif %} -->
+    <!--<h1>Still In Development</h1>-->
+      <h1>Payment Page</h1>
+  
+      <!-- Display ticket details -->
+      {% if latest_ticket %}
+          <p>Ticket ID: {{ latest_ticket.id }}</p>
+          <p>Arrival Date: {{ latest_ticket.arrival_date }}</p>
+          <p>Departure Date: {{ latest_ticket.departure_date }}</p>
+          <!-- Add more details as needed -->
+      {% else %}
+          <p>No ticket details available</p>
+      {% endif %}
+  
+      <!-- Add your payment form or logic here -->
+  
+      <!-- Back to Home link -->
+      <p><a href="/home">Back to Home</a></p>
   </body>
   <a href="/home">Home Page</a>
 </html>
