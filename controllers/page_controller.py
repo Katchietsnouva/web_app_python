@@ -233,8 +233,10 @@ class PageController:
             return render_template('extend_booking_page.html', user_booked_ticket_ids=user_booked_ticket_ids)
         
         @app.route('/payment')
-        def paymentpage_fx():
-            return render_template('payment_page.html')
+        
+        def payment():
+            latest_ticket = get_latest_modified_ticket()
+            return render_template('payment_page.html', latest_ticket=latest_ticket)
         
         @app.route('/get_selected_ticket_details', methods=['GET'])
         def get_selected_ticket_details():
