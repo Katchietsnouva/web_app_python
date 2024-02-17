@@ -1,5 +1,25 @@
-# Performance Testing with Selenium:
+# 9. Automated Data Visualization:
 
-# Write Selenium scripts to simulate heavy user loads and stress-test a web application.
-# Measure and analyze the application's performance.
+from selenium import webdriver
+import matplotlib.pyplot as plt
+import pandas as pd
 
+# Set up WebDriver
+driver = webdriver.Chrome()
+driver.get("data_source_page_url")
+
+# Extract data
+# ...
+
+# Process data into a DataFrame
+# ...
+
+# Visualize data
+plt.plot(df['x'], df['y'])
+plt.title("Automated Data Visualization")
+plt.xlabel("X-axis")
+plt.ylabel("Y-axis")
+plt.show()
+
+# Close the browser
+driver.quit()

@@ -12,7 +12,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 # Set up WebDriver
 driver = webdriver.Chrome()
-driver.get("your_dynamic_page_url")
+driver.get("https://nouvaneons.netlify.app/")
 
 # Wait for dynamic content to load
 element = WebDriverWait(driver, 10).until(
