@@ -25,17 +25,29 @@
     </style>
 
   </head>
-  <body>
+    <body>
     <!--<h1>Still In Development</h1>-->
       <h1>Payment Page</h1>
-  
-        <p>Booking ID: {{ latest_mod_ticket_details.booking_id }}</p>
-        <p>Customer Number: {{ latest_mod_ticket_details.customer_number }}</p>
-  
-      <!-- Add your payment form or logic here -->
 
+        {% if latest_mod_ticket_details %}
+          <h1>Payment Page</h1>
+          <p>Booking ID: {{ latest_mod_ticket_details.booking_id }}</p>
+          <p>Customer Number: {{ latest_mod_ticket_details.customer_number }}</p>
+          <!-- Add other relevant details -->
+        {% else %}
+            <h1>All Tickets</h1>
+            {% for ticket_details in all_ticket_details %}
+                <p>Booking ID: {{ ticket_details.booking_id }}</p>
+                <p>Customer Number: {{ ticket_details.customer_number }}</p>
+                <!-- Add other relevant details -->
+                <hr>
+            {% endfor %}
+        {% endif %}
+        <!-- Add your payment form or logic here -->
+      
       <!-- Back to Home link -->
       <p><a href="/home">Back to Home</a></p>
   </body>
+
   <a href="/home">Home Page</a>
 </html>
