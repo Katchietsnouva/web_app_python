@@ -149,15 +149,15 @@ class PageController:
                 user_id = session['user_id']
                 user_registration_data =  self.user_controller.get_user_registration_data(session['user_id'])
                 user, user_bookings, calculate_amount  =  self.user_controller.get_user_booking_data(session['user_id'])
+                latest_booking_id  = None
 
                 # Rearranginh tume model to fing the duration difference
                 # user_bookings = [TimeModel(**booking) for booking in user_bookings]
-                return render_template('home_page.html', user_registration_data=user_registration_data, user=user, user_bookings=user_bookings, calculate_amount=calculate_amount)
+                return render_template('home_page.html', user_registration_data=user_registration_data, user=user, user_bookings=user_bookings, calculate_amount=calculate_amount, latest_booking_id=latest_booking_id)
             except KeyError:
                 # If KeyError occurs (no 'user_id' in session), redirect to registration or login
                 flash('Please log in or register to access the home page.', 'error')
-                return redirect(url_for('login'))  # Use 'registration' if you have a registration route
-            
+                return redirect(url_for('login')) 
         
         # @app.route('/book', methods=['GET', 'POST'])
         # def booking():
@@ -236,16 +236,17 @@ class PageController:
                     return redirect(url_for('extendbook'))
             return render_template('extend_booking_page.html', user_booked_ticket_ids=user_booked_ticket_ids)
         
-        # @app.route('/payment')
-        # @app.route('/payment/<latest_booking_id>')
-        @app.route('/payment/<latestBookingId>')
-        def payment(latestBookingId):
-            # latest_ticket = self.user_controller.get_latest_modified_ticket()
-            # return render_template('payment_page.html', latest_ticket=latest_ticket)
-            latest_mod_ticket_details = self.user_controller.html_get_selected_ticket_details(latestBookingId)
-            return render_template('payment_page.html', latest_mod_ticket_details=latest_mod_ticket_details)
+        # # @app.route('/payment')
+        # # @app.route('/payment/<latest_booking_id>')
+        # @app.route('/payment/<latestBookingId>')
+        # def payment(latestBookingId):
+        #     # latest_ticket = self.user_controller.get_latest_modified_ticket()
+        #     # return render_template('payment_page.html', latest_ticket=latest_ticket)
+        #     latest_mod_ticket_details = self.user_controller.html_get_selected_ticket_details(latestBookingId)
+        #     return render_template('payment_page.html', latest_mod_ticket_details=latest_mod_ticket_details)
         
-        @app.route('/payment/<latestBookingId>', defaults={'latestBookingId': None})
+        # @app.route('/payment/<latestBookingId>', defaults={'latestBookingId': None})
+        @app.route('/payment/<latest_booking_id>')
         def payment(latestBookingId):
             if latestBookingId:
                 # If latestBookingId is provided, fetch details for that specific ticket
