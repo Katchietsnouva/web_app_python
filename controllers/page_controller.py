@@ -13,6 +13,7 @@ from pages.login_page import LoginPage
 from controllers.data_service_controller import UserController
 from models.user_model import UserModel
 from models.time_model import TimeModel
+from models.payment_model import PaymentModel
 # import user_data
 class PageController:
     def __init__(self, app):
@@ -275,6 +276,23 @@ class PageController:
                 return jsonify({"error": "Ticket ID not found"}), 404
             # details = {"arrival_date": "2024-02-15", "arrival_time": "12:30", "departure_date": "2024-02-16", "departure_time": "14:45"}
             # return jsonify(details)
+
+        @app.route('/make_payment', methods=['POST'])
+        def make_payment():
+            # Extract form data
+            booking_id = request.form.get('booking_id')
+            customer_number = request.form.get('customer_number')
+            payment_type = request.form.get('payment_type', 'mpesa')  # Default to 'mpesa' if not provided
+
+            # Perform payment logic using the PaymentModel
+            payment = PaymentModel(payment_id=None, booking_id=booking_id, customer_number=customer_number, payment_type=payment_type)
+            # Set other payment details such as amount, payment_date, etc.
+            
+            # Save the payment details to your database or perform any other necessary actions
+
+            # Redirect to a success page or back to home
+            return redirect('/success_page')
+            # flash('Booking Successful!', 'success')
 
         
 

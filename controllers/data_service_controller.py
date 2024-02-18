@@ -1,13 +1,11 @@
 
 # app/controllers/data_service_controller.py
-import json
-import os
-from datetime import datetime, timedelta
+
 # from flask import current_app
 # from pathlib import Path
 
 # class DataService:
-class UserController:
+# class UserController:
     # @staticmethod
     # app.config['JSON_DATA_FOLDER'] = 'user_data\\global_users_data\\customers_db.json'
     # current_app.config['users_data_path'] = 'user_data\\global_users_data\\customers_db.json'
@@ -19,6 +17,12 @@ class UserController:
         # current_app.users_data = current_app.load_or_create_users_data()  
         # JSON_DATA_FOLDER = 'user_data/global_users_data'
     # def __init__(self, username, password, name, phone, car_plate, email):
+
+# app/controllers/data_service_controller.py
+import json
+import os
+from datetime import datetime, timedelta
+class UserController:
     def __init__(self):
         self.users_data_path = 'user_data\\global_users_data\\customers_db.json'
         self.time_data_path = 'user_data\\global_users_data\\time_data.json'
@@ -30,12 +34,9 @@ class UserController:
         self.tickets_data = [
             {'id': 8, 'arrival_date': '2024-02-01', 'departure_date': '2024-02-05'},
             {'id': 4, 'arrival_date': '2024-02-19', 'departure_date': '2024-02-15'},
-            # Add more ticket data as needed
         ]
 
     def get_latest_modified_ticket(self):
-        # Assuming you have a timestamp or modification date property in your ticket data
-        # Replace 'modification_date' with your actual property
         latest_ticket = max(self.tickets_data, key=lambda x: x.get('modification_date', ''))
         return latest_ticket
 
