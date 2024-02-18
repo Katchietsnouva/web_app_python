@@ -238,21 +238,24 @@ class PageController:
         
         # # @app.route('/payment')
         # # @app.route('/payment/<latest_booking_id>')
-        # @app.route('/payment/<latestBookingId>')
-        # def payment(latestBookingId):
+        # @app.route('/payment/<latest_booking_id>')
+        # def payment(latest_booking_id):
         #     # latest_ticket = self.user_controller.get_latest_modified_ticket()
         #     # return render_template('payment_page.html', latest_ticket=latest_ticket)
-        #     latest_mod_ticket_details = self.user_controller.html_get_selected_ticket_details(latestBookingId)
+        #     latest_mod_ticket_details = self.user_controller.html_get_selected_ticket_details(latest_booking_id)
         #     return render_template('payment_page.html', latest_mod_ticket_details=latest_mod_ticket_details)
         
         # @app.route('/payment/<latestBookingId>', defaults={'latestBookingId': None})
-        @app.route('/payment/<latestBookingId>')
-        def payment(latestBookingId):
-            if latestBookingId:
+        @app.route('/payment/<latest_booking_id>')
+        def payment(latest_booking_id):
+            print(latest_booking_id + " -this is the value of latest_booking_id ") 
+            if latest_booking_id is not None:
+                print(latest_booking_id + " this should be executed if latest_booking_id has a value") 
                 # If latestBookingId is provided, fetch details for that specific ticket
-                latest_mod_ticket_details = self.user_controller.html_get_selected_ticket_details(latestBookingId)
+                latest_mod_ticket_details = self.user_controller.html_get_selected_ticket_details(latest_booking_id)
                 return render_template('payment_page.html', latest_mod_ticket_details=latest_mod_ticket_details)
             else:
+                print(latest_booking_id + " this should be executed if latest_booking_id has no value") 
                 # try:
                 # If latestBookingId is not provided, fetch details for all tickets
                 user_id = session['user_id']
