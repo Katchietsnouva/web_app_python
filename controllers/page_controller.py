@@ -226,12 +226,16 @@ class PageController:
                 departure_time = ticket_details['departure_time']
                 new_departure_time = UserController.calculate_new_departure_time(self.user_controller, departure_time, extension_time)
                 print(new_departure_time)
-                # Update the booking with the new departure time
-                UserController.update_booking(self.user_controller, selected_ticket_id, new_departure_time, extension_time)
 
-                flash('Booking Extended Successfully!', 'success')
-                return render_template('extend_booking_page.html', duration=extension_time, extended_booking_successful=True, latest_booking_id=time_model.booking_id)
-            
+                # Update the booking and capture the modified booking ID
+                modified_booking_id = UserController.update_booking(self.user_controller, selected_ticket_id, new_departure_time, extension_time)
+
+                if modified_booking_id:
+                    flash('Booking Extended Successfully!', 'success')
+                    return render_template('extend_booking_page.html', duration=extension_time, extended_booking_successful=True, latest_booking_id=modified_booking_id.booking_id)
+                else:
+                    flash('Failed to extend booking.', 'error')
+                    return redirect(url_for('extendbook'))
                 return redirect(url_for('extendbook'))
             return render_template('extend_booking_page.html', user_booked_ticket_ids=user_booked_ticket_ids)
         
