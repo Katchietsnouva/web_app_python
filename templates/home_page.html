@@ -131,9 +131,9 @@
     <a class="navigation-button" href="/book">Book Parking Now</a>
     <a class="navigation-button" href="/extendbook">Extend Book Parking Time</a>
     <!--<a class="navigation-button" href="/payment">Payment Menu</a>-->
-    <!--var latestBookingId = "{{ latest_booking_id }}";  -->
-    <a class="navigation-button" href="/payment/{{ latest_booking_id }}">Payment Menu</a>
-    <!--<a class="navigation-button" href="/payment/"  + latestBookingId; >Payment Menu</a>-->
+    var latestBookingId = "{{ latest_booking_id }}"; 
+    <!--<a class="navigation-button" href="/payment/{{ latestBookingId }}">Payment Menu</a>-->
+    <a class="navigation-button" href="/payment/"  + latestBookingId; >Payment Menu</a>
 
 
     <!-- Custom Section 1 -->

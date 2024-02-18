@@ -246,7 +246,7 @@ class PageController:
         #     return render_template('payment_page.html', latest_mod_ticket_details=latest_mod_ticket_details)
         
         # @app.route('/payment/<latestBookingId>', defaults={'latestBookingId': None})
-        @app.route('/payment/<latest_booking_id>')
+        @app.route('/payment/<latestBookingId>')
         def payment(latestBookingId):
             if latestBookingId:
                 # If latestBookingId is provided, fetch details for that specific ticket
