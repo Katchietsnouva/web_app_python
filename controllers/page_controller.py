@@ -232,7 +232,7 @@ class PageController:
 
                 if modified_booking_id:
                     flash('Booking Extended Successfully!', 'success')
-                    return render_template('extend_booking_page.html', duration=extension_time, extended_booking_successful=True, latest_booking_id=modified_booking_id.booking_id)
+                    return render_template('extend_booking_page.html', duration=extension_time, extended_booking_successful=True, latest_booking_id=modified_booking_id)
                 else:
                     flash('Failed to extend booking.', 'error')
                     return redirect(url_for('extendbook'))

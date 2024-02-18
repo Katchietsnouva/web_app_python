@@ -38,6 +38,11 @@
         background-color: #45a049;
       }
 
+      button:disabled {
+        background-color: #dddddd;
+        cursor: not-allowed;
+      }
+
       a {
         display: block;
         margin-top: 20px;
@@ -46,7 +51,6 @@
         font-size: 1em;
       }
 
-      /* Additional styles for enhanced design */
       .success {
         background-color: #4caf50;
         color: #fff;
@@ -230,7 +234,7 @@
       {% endwith %}
 
       <!-- Extend Booking button -->
-      <button type="submit" id="extend_button_">Extend Booking</button>
+      <!--<button type="submit" id="extend_button_">Extend Booking</button>-->
 
       <!--<button type="submit">Book Parking</button>-->
       <button type="submit" id="submitBtn" >Extend Booking</button>
@@ -263,6 +267,7 @@
               enableProceedToPayment();
           }
         });
+      </script>
     </form>
     <a href="/home">Home Page</a>
   </body>
