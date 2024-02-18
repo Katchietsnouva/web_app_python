@@ -263,6 +263,7 @@ class PageController:
                 user, user_bookings, calculate_amount  =  self.user_controller.get_user_booking_data(session['user_id'])
                 return render_template('payment_page.html', user_registration_data=user_registration_data, user=user, user_bookings=user_bookings, calculate_amount=calculate_amount)
 
+
             
         @app.route('/get_selected_ticket_details', methods=['GET'])
         def get_selected_ticket_details():
