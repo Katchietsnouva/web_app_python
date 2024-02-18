@@ -246,11 +246,12 @@ class UserController:
 
             # Append the new extended booking entry to the time_data
             self.time_data.append(extended_booking)
-
             # Save the updated time_data to the JSON file
             self.save_time_data()
-
-
+            # Return the modified booking ID
+            return extended_booking["booking_id"]
+        # Return None if the booking is not found
+        return None
 
 
 

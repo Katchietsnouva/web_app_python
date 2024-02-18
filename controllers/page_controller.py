@@ -230,7 +230,7 @@ class PageController:
                 UserController.update_booking(self.user_controller, selected_ticket_id, new_departure_time, extension_time)
 
                 flash('Booking Extended Successfully!', 'success')
-                return render_template('booking_page.html', duration=duration, booking_successful=True, latest_booking_id=time_model.booking_id)
+                return render_template('extend_booking_page.html', duration=extension_time, extended_booking_successful=True, latest_booking_id=time_model.booking_id)
             
                 return redirect(url_for('extendbook'))
             return render_template('extend_booking_page.html', user_booked_ticket_ids=user_booked_ticket_ids)
