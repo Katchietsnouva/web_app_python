@@ -252,9 +252,12 @@ class PageController:
                 latest_mod_ticket_details = self.user_controller.html_get_selected_ticket_details(latestBookingId)
                 return render_template('payment_page.html', latest_mod_ticket_details=latest_mod_ticket_details)
             else:
+                # try:
                 # If latestBookingId is not provided, fetch details for all tickets
-                all_ticket_details = self.user_controller.get_all_ticket_details()  # Replace with the actual method
-                return render_template('payment_page.html', all_ticket_details=all_ticket_details)
+                user_id = session['user_id']
+                user_registration_data =  self.user_controller.get_user_registration_data(session['user_id'])
+                user, user_bookings, calculate_amount  =  self.user_controller.get_user_booking_data(session['user_id'])
+                return render_template('payment_page.html', user_registration_data=user_registration_data, user=user, user_bookings=user_bookings, calculate_amount=calculate_amount)
 
             
         @app.route('/get_selected_ticket_details', methods=['GET'])

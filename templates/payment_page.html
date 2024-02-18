@@ -36,6 +36,27 @@
           <!-- Add other relevant details -->
         {% else %}
             <h1>All Tickets</h1>
+            <div class="right-half-3">
+              
+              <h2>Payment Information</h2>
+              <h4>(0.8 Kshs. per min)</h4>
+              {% if user_bookings %} {% for booking in user_bookings %}
+              <div class="booking-entry">
+                <p><strong>Booking ID:</strong> {{ booking['booking_id'] }}</p>
+                <p><strong>Time (in min):</strong> {{ booking['duration_minutes'] }}</p>
+                <p><strong>Amount (in Kshs.):</strong> {{ calculate_amount(booking['duration_minutes']) }}</p>
+                <label for="payment-type"><p><strong>Select Payment Type:</strong></label>
+                <select id="payment-type" name="payment_type">
+                  <option value="mpesa">M-Pesa</option>
+                  <option value="debit_cash">Debit/Cash</option>
+                </select>
+        
+              </div>
+              {% endfor %} {% else %}
+              <p>No Payment Information found. Book now to populate this menu!</p>
+              {% endif %}
+
+
             {% for ticket_details in all_ticket_details %}
                 <p>Booking ID: {{ ticket_details.booking_id }}</p>
                 <p>Customer Number: {{ ticket_details.customer_number }}</p>
