@@ -167,7 +167,7 @@
     <h1>Extend Booking Duration Page</h1>
 
     <!--  form for selecting the ticket id and it will automaticaly populate the datetime fields from json file-->
-    <form action="/extendbook" method="post">
+    <form action="/extendbook" method="post" onsubmit="return validateForm();">
       <label for="booking_id"
         >Select Your Available TIcket IDs That You Wish TO Extend:</label
       >
@@ -231,6 +231,38 @@
 
       <!-- Extend Booking button -->
       <button type="submit" id="extend_button_">Extend Booking</button>
+
+      <!--<button type="submit">Book Parking</button>-->
+      <button type="submit" id="submitBtn" >Extend Booking</button>
+      <!--initially disabled-->
+      <button type="button" id="proceedToPaymentBtn" disabled onclick="proceedToPayment()">Proceed to Payment</button>
+      <script>
+        function validateForm() {
+            // Return true if the form is valid, false otherwise
+            return true;
+        }
+    
+        function enableProceedToPayment() {
+            // Enable the "Proceed to Payment" button
+            document.getElementById('proceedToPaymentBtn').removeAttribute('disabled');
+            document.getElementById('submitBtn').setAttribute('disabled', 'disabled');
+        }
+
+        function proceedToPayment() {
+          // Redirect to payment page with the booking ID
+          //window.location.href = "/payment";
+          window.location.href = "/payment/{{ latest_booking_id }}";
+          //var bookingId = "{{ latest_booking_id }}";  
+          //window.location.href = "/payment/" + latest_booking_id;
+       }
+
+        // if the booking was successful enable the "Proceed to Payment" button
+        document.addEventListener("DOMContentLoaded", function() {
+          var extendbookingSuccessful = {% if extended_booking_successful %}true{% else %}false{% endif %};
+          if (extendbookingSuccessful) {
+              enableProceedToPayment();
+          }
+        });
     </form>
     <a href="/home">Home Page</a>
   </body>
