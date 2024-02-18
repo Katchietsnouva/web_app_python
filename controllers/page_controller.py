@@ -232,11 +232,10 @@ class PageController:
 
                 if modified_booking_id:
                     flash('Booking Extended Successfully!', 'success')
-                    return render_template('extend_booking_page.html', duration=extension_time, extended_booking_successful=True, latest_booking_id=modified_booking_id.booking_id)
+                    return render_template('extend_booking_page.html', duration=extension_time, extended_booking_successful=True, latest_booking_id=modified_booking_id["booking_id"])
                 else:
                     flash('Failed to extend booking.', 'error')
                     return redirect(url_for('extendbook'))
-                return redirect(url_for('extendbook'))
             return render_template('extend_booking_page.html', user_booked_ticket_ids=user_booked_ticket_ids)
         
         # @app.route('/payment')
@@ -248,6 +247,18 @@ class PageController:
             latest_mod_ticket_details = self.user_controller.html_get_selected_ticket_details(latestBookingId)
             return render_template('payment_page.html', latest_mod_ticket_details=latest_mod_ticket_details)
         
+        @app.route('/payment/<latestBookingId>', defaults={'latestBookingId': None})
+        def payment(latestBookingId):
+            if latestBookingId:
+                # If latestBookingId is provided, fetch details for that specific ticket
+                latest_mod_ticket_details = self.user_controller.html_get_selected_ticket_details(latestBookingId)
+                return render_template('payment_page.html', latest_mod_ticket_details=latest_mod_ticket_details)
+            else:
+                # If latestBookingId is not provided, fetch details for all tickets
+                all_ticket_details = self.user_controller.get_all_ticket_details()  # Replace with the actual method
+                return render_template('payment_page.html', all_ticket_details=all_ticket_details)
+
+            
         @app.route('/get_selected_ticket_details', methods=['GET'])
         def get_selected_ticket_details():
             selected_ticket_id = request.args.get('ticket_id')
