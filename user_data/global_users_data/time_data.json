@@ -368,5 +368,15 @@
         "departure_date": "2024-02-23",
         "departure_time": "21:09",
         "duration_minutes": 12
+    },
+    {
+        "user_id": "d4365c4c-ff32-448a-b14c-a318e3b41675",
+        "customer_number": "CUST-1",
+        "booking_id": "Book_id-027",
+        "arrival_date": "2024-02-20",
+        "arrival_time": "12:51",
+        "departure_date": "2024-02-21",
+        "departure_time": "12:49",
+        "duration_minutes": 1438
     }
 ]

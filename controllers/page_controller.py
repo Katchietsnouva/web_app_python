@@ -235,7 +235,7 @@ class PageController:
         @app.route('/payment')
         
         def payment():
-            latest_ticket = get_latest_modified_ticket()
+            latest_ticket = self.user_controller.get_latest_modified_ticket()
             return render_template('payment_page.html', latest_ticket=latest_ticket)
         
         @app.route('/get_selected_ticket_details', methods=['GET'])

@@ -26,6 +26,18 @@ class UserController:
         self.time_data = self.load_or_create_time_data()
         self.last_booking_index = {}
         # self.users_data_path = current_app.config['users_data_path']
+        # Initialize your data, replace this with your actual data storage
+        self.tickets_data = [
+            {'id': 1, 'arrival_date': '2024-02-01', 'departure_date': '2024-02-05'},
+            {'id': 2, 'arrival_date': '2024-02-10', 'departure_date': '2024-02-15'},
+            # Add more ticket data as needed
+        ]
+
+    def get_latest_modified_ticket(self):
+        # Assuming you have a timestamp or modification date property in your ticket data
+        # Replace 'modification_date' with your actual property
+        latest_ticket = max(self.tickets_data, key=lambda x: x.get('modification_date', ''))
+        return latest_ticket
 
     def get_all_users(self):
         return self.users_data  # Replace this with your actual data source
