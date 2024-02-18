@@ -149,7 +149,7 @@ class PageController:
                 user_id = session['user_id']
                 user_registration_data =  self.user_controller.get_user_registration_data(session['user_id'])
                 user, user_bookings, calculate_amount  =  self.user_controller.get_user_booking_data(session['user_id'])
-                latest_booking_id  = None
+                latest_booking_id  = "available_tickets"
 
                 # Rearranginh tume model to fing the duration difference
                 # user_bookings = [TimeModel(**booking) for booking in user_bookings]
@@ -244,12 +244,12 @@ class PageController:
         #     # return render_template('payment_page.html', latest_ticket=latest_ticket)
         #     latest_mod_ticket_details = self.user_controller.html_get_selected_ticket_details(latest_booking_id)
         #     return render_template('payment_page.html', latest_mod_ticket_details=latest_mod_ticket_details)
-        
+
         # @app.route('/payment/<latestBookingId>', defaults={'latestBookingId': None})
         @app.route('/payment/<latest_booking_id>')
         def payment(latest_booking_id):
             print(latest_booking_id + " -this is the value of latest_booking_id ") 
-            if latest_booking_id is not None:
+            if latest_booking_id != "available_tickets":
                 print(latest_booking_id + " this should be executed if latest_booking_id has a value") 
                 # If latestBookingId is provided, fetch details for that specific ticket
                 latest_mod_ticket_details = self.user_controller.html_get_selected_ticket_details(latest_booking_id)
@@ -262,8 +262,6 @@ class PageController:
                 user_registration_data =  self.user_controller.get_user_registration_data(session['user_id'])
                 user, user_bookings, calculate_amount  =  self.user_controller.get_user_booking_data(session['user_id'])
                 return render_template('payment_page.html', user_registration_data=user_registration_data, user=user, user_bookings=user_bookings, calculate_amount=calculate_amount)
-
-
             
         @app.route('/get_selected_ticket_details', methods=['GET'])
         def get_selected_ticket_details():
