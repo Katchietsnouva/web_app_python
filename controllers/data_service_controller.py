@@ -26,11 +26,12 @@ class UserController:
     def __init__(self):
         self.users_data_path = 'user_data\\global_users_data\\customers_db.json'
         self.time_data_path = 'user_data\\global_users_data\\time_data.json'
+        self.payment_data_path = 'user_data\\global_users_data\\payment_data.json'
         self.users_data = self.load_or_create_users_data()
         self.time_data = self.load_or_create_time_data()
+        self.payment_data = self.load_or_create_payment_data()
         self.last_booking_index = {}
         # self.users_data_path = current_app.config['users_data_path']
-        # Initialize your data, replace this with your actual data storage
         self.tickets_data = [
             {'id': 8, 'arrival_date': '2024-02-01', 'departure_date': '2024-02-05'},
             {'id': 4, 'arrival_date': '2024-02-19', 'departure_date': '2024-02-15'},
@@ -41,7 +42,7 @@ class UserController:
         return latest_ticket
 
     def get_all_users(self):
-        return self.users_data  # Replace this with your actual data source
+        return self.users_data 
 
     def save_users_data(self):
         with open(self.users_data_path, "w") as file:
