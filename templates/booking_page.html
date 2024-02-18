@@ -143,9 +143,9 @@
         function proceedToPayment() {
           // Redirect to payment page with the booking ID
           //window.location.href = "/payment";
-          window.location.href = "/payment/{{ latest_booking_id }}";
-          //var bookingId = "{{ latest_booking_id }}";  
-          //window.location.href = "/payment/" + latest_booking_id;
+          //window.location.href = "/payment/{{ latest_booking_id }}";
+          var latestBookingId = "{{ latest_booking_id }}";  
+          window.location.href = "/payment/" + latestBookingId;
        }
 
         // if the booking was successful enable the "Proceed to Payment" button
@@ -160,11 +160,6 @@
     </form>
 
     <a href="/home">Home Page</a>
-
-
-  
-      
-
 
   </body>
 </html>
