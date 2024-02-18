@@ -201,7 +201,8 @@ class PageController:
                 flash('Booking Successful!', 'success')
 
                 # return redirect(url_for('success', message='Booking Successful!', duration=duration, redirect_url=url_for('home')))
-                return render_template('booking_page.html', duration=duration, booking_successful=True)
+                return render_template('booking_page.html', duration=duration, booking_successful=True, booking_id=time_model.booking_id)
+
                 return render_template('booking_page.html', duration=duration, booking=time_model.to_dict())
             return render_template('booking_page.html')
         
@@ -232,11 +233,13 @@ class PageController:
                 return redirect(url_for('extendbook'))
             return render_template('extend_booking_page.html', user_booked_ticket_ids=user_booked_ticket_ids)
         
-        @app.route('/payment')
-        
-        def payment():
-            latest_ticket = self.user_controller.get_latest_modified_ticket()
-            return render_template('payment_page.html', latest_ticket=latest_ticket)
+        # @app.route('/payment')
+        @app.route('/payment/<booking_id>')
+        def payment(booking_id):
+            # latest_ticket = self.user_controller.get_latest_modified_ticket()
+            # return render_template('payment_page.html', latest_ticket=latest_ticket)
+            ticket_details = self.user_controller.html_get_selected_ticket_details(booking_id)
+            return render_template('payment_page.html', ticket_details=ticket_details)
         
         @app.route('/get_selected_ticket_details', methods=['GET'])
         def get_selected_ticket_details():

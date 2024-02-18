@@ -28,8 +28,8 @@ class UserController:
         # self.users_data_path = current_app.config['users_data_path']
         # Initialize your data, replace this with your actual data storage
         self.tickets_data = [
-            {'id': 1, 'arrival_date': '2024-02-01', 'departure_date': '2024-02-05'},
-            {'id': 2, 'arrival_date': '2024-02-10', 'departure_date': '2024-02-15'},
+            {'id': 8, 'arrival_date': '2024-02-01', 'departure_date': '2024-02-05'},
+            {'id': 4, 'arrival_date': '2024-02-19', 'departure_date': '2024-02-15'},
             # Add more ticket data as needed
         ]
 

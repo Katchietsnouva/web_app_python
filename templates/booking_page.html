@@ -139,10 +139,14 @@
             document.getElementById('proceedToPaymentBtn').removeAttribute('disabled');
             document.getElementById('submitBtn').setAttribute('disabled', 'disabled');
         }
-    
+
         function proceedToPayment() {
-            window.location.href = "/payment";  
-        }
+          // Redirect to payment page with the booking ID
+          //window.location.href = "/payment";
+          //window.location.href = "/payment/{{ booking_id }}";
+          var bookingId = "{{ booking_id }}";  
+          window.location.href = "/payment/" + bookingId;
+       }
 
         // if the booking was successful enable the "Proceed to Payment" button
         document.addEventListener("DOMContentLoaded", function() {
