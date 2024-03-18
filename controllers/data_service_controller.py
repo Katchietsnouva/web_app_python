@@ -24,12 +24,16 @@ import os
 from datetime import datetime, timedelta
 class UserController:
     def __init__(self):
-        self.users_data_path = 'user_data\\global_users_data\\customers_db.json'
-        self.time_data_path = 'user_data\\global_users_data\\time_data.json'
-        self.payment_data_path = 'user_data\\global_users_data\\payment_data.json'
+        self.users_data_path = 'user_data/global_users_data/customers_db.json'
+        self.time_data_path = 'user_data/global_users_data/time_data.json'
+        self.payment_data_path = 'user_data/global_users_data/payment_data.json'
+        # self.users_data_path = 'user_data\\global_users_data\\customers_db.json'
+        # self.time_data_path = 'user_data\\global_users_data\\time_data.json'
+        # self.payment_data_path = 'user_data\\global_users_data\\payment_data.json'
+
         self.users_data = self.load_or_create_users_data()
         self.time_data = self.load_or_create_time_data()
-        self.payment_data = self.load_or_create_payment_data()
+        # self.payment_data = self.load_or_create_payment_data()
         self.last_booking_index = {}
         # self.users_data_path = current_app.config['users_data_path']
         self.tickets_data = [
