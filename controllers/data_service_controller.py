@@ -53,25 +53,25 @@ class UserController:
             self.payment_data = self.load_payment_data()
         return self.payment_data
 
-    # def payment_data_collec_save(self, payment_data_collec_model):
+    def payment_data_collec_save(self, payment_data_collec_model):
     #     # self.payment_data.append(vars(payment_data_collec_model))
-    #     print("perfornming operation")
-    #     self.save_payment_data(payment_data_collec_model)
-    #     return True  #  successful
+        print("perfornming operation")
+        self.save_payment_data(payment_data_collec_model)
+        return True  #  successful
 
     def save_payment_data(self, payment_data_collec_model):
-        try:
+        # try:
             print("Performing operation to save payment data")
-            print("Booking ID:", payment_data_collec_model.booking_id)
+            # print("Booking ID:", payment_data_collec_model.booking_id)
             # payment_id = self.generate_parking_id(payment_data_collec_model.booking_id)
             self.payment_data.append(vars(payment_data_collec_model))
             with open(self.payment_data_path, "w") as file:
                 json.dump(self.payment_data, file, indent=4)
             print("Payment data saved successfully")
             return True
-        except Exception as e:
-            print("Error occurred while saving payment data:", str(e))
-            return False
+        # except Exception as e:
+        #     print("Error occurred while saving payment data:", str(e))
+        #     return False
             
     def load_payment_data(self):
         with open(self.payment_data_path, "r") as file:
