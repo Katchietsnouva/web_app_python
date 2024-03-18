@@ -285,9 +285,10 @@ class PageController:
             payment_type = request.form.get('payment_type', 'mpesa')  # Default to 'mpesa' if not provided
 
             # Perform payment logic using the PaymentModel
-            payment = PaymentModel(payment_id=None, booking_id=booking_id, customer_number=customer_number, payment_type=payment_type)
+            payment_data_collec_model = PaymentModel(payment_id=None, booking_id=booking_id, customer_number=customer_number, payment_type=payment_type)
             # Set other payment details such as amount, payment_date, etc.
-            
+            payment_d_collect_successful = UserController.payment_data_collec_save(self.user_controller, payment_data_collec_model)
+                
             # Save the payment details to your database or perform any other necessary actions
 
             # Redirect to a success page or back to home

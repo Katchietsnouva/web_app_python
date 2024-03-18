@@ -33,13 +33,50 @@ class UserController:
 
         self.users_data = self.load_or_create_users_data()
         self.time_data = self.load_or_create_time_data()
-        # self.payment_data = self.load_or_create_payment_data()
+        self.payment_data = self.load_or_create_payment_data()
         self.last_booking_index = {}
         # self.users_data_path = current_app.config['users_data_path']
         self.tickets_data = [
             {'id': 8, 'arrival_date': '2024-02-01', 'departure_date': '2024-02-05'},
             {'id': 4, 'arrival_date': '2024-02-19', 'departure_date': '2024-02-15'},
         ]
+
+    def load_or_create_payment_data(self):
+        directory = os.path.dirname(self.payment_data_path)
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+
+        if not os.path.exists(self.payment_data_path):
+            self.payment_data = []
+            self.save_payment_data()
+        else:
+            self.payment_data = self.load_payment_data()
+        return self.payment_data
+
+    def payment_data_collec_save(self, payment_data_collec_model):
+        # self.payment_data.append(vars(payment_data_collec_model))
+        self.save_payment_data()
+        return True  #  successful
+    
+    def save_payment_data(self):
+        with open(self.payment_data_path, "w") as file:
+            json.dump(self.payment_data, file, indent=4)
+            
+    def load_payment_data(self):
+        with open(self.payment_data_path, "r") as file:
+            return json.load(file)
+
+    def load_or_create_time_data(self):
+        directory = os.path.dirname(self.time_data_path)
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+
+        if not os.path.exists(self.time_data_path):
+            self.time_data = []
+            self.save_time_data()
+        else:
+            self.time_data = self.load_time_data()
+        return self.time_data
 
     def get_latest_modified_ticket(self):
         latest_ticket = max(self.tickets_data, key=lambda x: x.get('modification_date', ''))
@@ -107,7 +144,6 @@ class UserController:
         with open(self.time_data_path, "w") as file:
             json.dump(self.time_data, file, indent=4)
             
-
     def load_time_data(self):
         with open(self.time_data_path, "r") as file:
             return json.load(file)
