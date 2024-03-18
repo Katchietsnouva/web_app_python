@@ -53,12 +53,15 @@ class UserController:
             self.payment_data = self.load_payment_data()
         return self.payment_data
 
-    def payment_data_collec_save(self, payment_data_collec_model):
-        # self.payment_data.append(vars(payment_data_collec_model))
-        self.save_payment_data()
-        return True  #  successful
+    # def payment_data_collec_save(self, payment_data_collec_model):
+    #     # self.payment_data.append(vars(payment_data_collec_model))
+    #     print("perfornming operation")
+    #     self.save_payment_data(payment_data_collec_model)
+    #     return True  #  successful
     
-    def save_payment_data(self):
+    def save_payment_data(self, payment_data_collec_model):
+        print("perfornming operation 2  ")
+        self.payment_data.append(vars(payment_data_collec_model))
         with open(self.payment_data_path, "w") as file:
             json.dump(self.payment_data, file, indent=4)
             

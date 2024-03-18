@@ -1,1 +1,29 @@
-[]
+[
+    {
+        "payment_id": "23",
+        "booking_id": "23",
+        "customer_number": "23",
+        "payment_date": "dfd66",
+        "amount": "23",
+        "is_paid": false,
+        "payment_type": "23"
+    },
+    {
+        "payment_id": "23",
+        "booking_id": "23",
+        "customer_number": "23",
+        "payment_date": "dfd66",
+        "amount": "23",
+        "is_paid": false,
+        "payment_type": "23"
+    },
+    {
+        "payment_id": null,
+        "booking_id": "Book_id-029",
+        "customer_number": "CUST-10",
+        "payment_date": "dfd66",
+        "amount": "23",
+        "is_paid": false,
+        "payment_type": "mpesa"
+    }
+]

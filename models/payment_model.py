@@ -2,7 +2,7 @@
 from datetime import datetime
 
 class PaymentModel:
-    def __init__(self, payment_id, booking_id, customer_number,payment_date=None, amount=0, payment_type='mpesa'):
+    def __init__(self, payment_id, booking_id, customer_number,payment_date=None, amount=0, is_paid = False, payment_type='mpesa'):
         self.payment_id = payment_id
         self.booking_id = booking_id
         self.customer_number=customer_number

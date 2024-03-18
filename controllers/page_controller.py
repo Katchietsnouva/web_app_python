@@ -277,28 +277,35 @@ class PageController:
             # details = {"arrival_date": "2024-02-15", "arrival_time": "12:30", "departure_date": "2024-02-16", "departure_time": "14:45"}
             # return jsonify(details)
 
-        @app.route('/make_payment', methods=['POST'])
+        @app.route('/make_payment', methods=['GET', 'POST'])
         def make_payment():
             # Extract form data
             booking_id = request.form.get('booking_id')
             customer_number = request.form.get('customer_number')
             payment_type = request.form.get('payment_type', 'mpesa')  # Default to 'mpesa' if not provided
+            duration_minutes = 
 
             # Perform payment logic using the PaymentModel
-            payment_data_collec_model = PaymentModel(payment_id=None, booking_id=booking_id, customer_number=customer_number, payment_type=payment_type)
+            payment_data_collec_model = PaymentModel(payment_id=None, booking_id=booking_id, customer_number=customer_number, payment_date = "dfd66", amount = "23", is_paid = True, payment_type=payment_type)
+
             # Set other payment details such as amount, payment_date, etc.
-            payment_d_collect_successful = UserController.payment_data_collec_save(self.user_controller, payment_data_collec_model)
+            payment_d_collect_successful = UserController.save_payment_data(self.user_controller, payment_data_collec_model)
+
+            if payment_d_collect_successful:
+                # Payment data collection successful, redirect to a success page
+                return redirect('/home')
+            else:
+                return render_template('booking_page.html')
+                # Handle error scenario, maybe display an error message
+                # return render_template('error.html', message='Payment data collection failed')
+            
                 
             # Save the payment details to your database or perform any other necessary actions
 
             # Redirect to a success page or back to home
-            return redirect('/success_page')
+            # return redirect('/success_page')
             # flash('Booking Successful!', 'success')
 
-        
-
-        
-        
         # @app.route('/extend_parking')
         # def extend_parking():
         #     return self.extend_parking_page.show()

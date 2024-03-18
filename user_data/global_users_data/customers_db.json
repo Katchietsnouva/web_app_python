@@ -106,5 +106,17 @@
         "carmodel": "mm",
         "car_plate": "m",
         "role": "admin"
+    },
+    {
+        "user_id": "1b10bfda-2cc8-4e4a-bb35-ae97b0e7f7d2",
+        "customer_number": "CUST-10",
+        "username": "fff",
+        "password": "fff",
+        "phone": "fff",
+        "email": "fff@gmail.com",
+        "carmanufacturer": "fff",
+        "carmodel": "fff",
+        "car_plate": "fff",
+        "role": "user"
     }
 ]
