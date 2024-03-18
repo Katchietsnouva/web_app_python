@@ -14,6 +14,7 @@ from controllers.data_service_controller import UserController
 from models.user_model import UserModel
 from models.time_model import TimeModel
 from models.payment_model import PaymentModel
+from datetime import datetime
 # import user_data
 class PageController:
     def __init__(self, app):
@@ -287,21 +288,25 @@ class PageController:
             duration_minutes =  UserController.get_duration_by_booking_id(self.user_controller, booking_id)
 
             # Perform payment logic using the PaymentModel
-            if duration_minutes is not None:                
+            if duration_minutes is not None:      
                 # amount = PaymentModel.calculate_amount(self, duration_minutes)
                 amount = 0.8 * duration_minutes
-                payment_data_collec_model = PaymentModel(payment_id=None, booking_id=booking_id, customer_number=customer_number, payment_date = "dfd66", amount = amount, is_paid = True, payment_type=payment_type)
+                payment_date = "datetime.now()"
+                # payment_date = datetime.now()
+                payment_data_collec_model = PaymentModel(payment_id=None, booking_id=booking_id, customer_number=customer_number, payment_date = payment_date, duration_minutes = duration_minutes, amount = amount, is_paid = True, payment_type=payment_type)
 
                 # Set other payment details such as amount, payment_date, etc.
                 payment_d_collect_successful = UserController.save_payment_data(self.user_controller, payment_data_collec_model)
 
-                if payment_d_collect_successful:
-                    # Payment data collection successful, redirect to a success page
-                    return redirect('/home')
-                else:
-                    return render_template('booking_page.html')
-                    # Handle error scenario, maybe display an error message
-                    # return render_template('error.html', message='Payment data collection failed')
+            if payment_d_collect_successful:
+                # Payment data collection successful, redirect to a success page
+                print("successfull")
+                return redirect('/home')
+            else:
+                print("operation failed")
+                return render_template('booking_page.html')
+                # Handle error scenario, maybe display an error message
+                # return render_template('error.html', message='Payment data collection failed')
             
                 
             # Save the payment details to your database or perform any other necessary actions
