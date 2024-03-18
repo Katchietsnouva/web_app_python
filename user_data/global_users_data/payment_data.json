@@ -207,5 +207,25 @@
         "amount": 9.600000000000001,
         "is_paid": true,
         "payment_type": "mpesa"
+    },
+    {
+        "payment_id": null,
+        "booking_id": "Book_id-046",
+        "customer_number": "CUST-10",
+        "payment_date": "datetime.now()",
+        "duration_minutes": 2,
+        "amount": 1.6,
+        "is_paid": true,
+        "payment_type": "mpesa"
+    },
+    {
+        "payment_id": null,
+        "booking_id": "Book_id-048",
+        "customer_number": "CUST-10",
+        "payment_date": "datetime.now()",
+        "duration_minutes": 1,
+        "amount": 0.8,
+        "is_paid": true,
+        "payment_type": "mpesa"
     }
 ]
