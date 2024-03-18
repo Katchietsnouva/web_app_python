@@ -27,6 +27,7 @@ class PageController:
         # self.extend_parking_page = ExtendParkingPage(self)
         # self.payment_page = PaymentPage(self)
         # self.profit_loss_page = ProfitLossPage(self)
+        # self.payment_model = PaymentModel()
 
         # Initial route
         @app.route('/')
@@ -283,21 +284,24 @@ class PageController:
             booking_id = request.form.get('booking_id')
             customer_number = request.form.get('customer_number')
             payment_type = request.form.get('payment_type', 'mpesa')  # Default to 'mpesa' if not provided
-            duration_minutes = 
+            duration_minutes =  UserController.get_duration_by_booking_id(self.user_controller, booking_id)
 
             # Perform payment logic using the PaymentModel
-            payment_data_collec_model = PaymentModel(payment_id=None, booking_id=booking_id, customer_number=customer_number, payment_date = "dfd66", amount = "23", is_paid = True, payment_type=payment_type)
+            if duration_minutes is not None:                
+                # amount = PaymentModel.calculate_amount(self, duration_minutes)
+                amount = 0.8 * duration_minutes
+                payment_data_collec_model = PaymentModel(payment_id=None, booking_id=booking_id, customer_number=customer_number, payment_date = "dfd66", amount = amount, is_paid = True, payment_type=payment_type)
 
-            # Set other payment details such as amount, payment_date, etc.
-            payment_d_collect_successful = UserController.save_payment_data(self.user_controller, payment_data_collec_model)
+                # Set other payment details such as amount, payment_date, etc.
+                payment_d_collect_successful = UserController.save_payment_data(self.user_controller, payment_data_collec_model)
 
-            if payment_d_collect_successful:
-                # Payment data collection successful, redirect to a success page
-                return redirect('/home')
-            else:
-                return render_template('booking_page.html')
-                # Handle error scenario, maybe display an error message
-                # return render_template('error.html', message='Payment data collection failed')
+                if payment_d_collect_successful:
+                    # Payment data collection successful, redirect to a success page
+                    return redirect('/home')
+                else:
+                    return render_template('booking_page.html')
+                    # Handle error scenario, maybe display an error message
+                    # return render_template('error.html', message='Payment data collection failed')
             
                 
             # Save the payment details to your database or perform any other necessary actions

@@ -25,5 +25,32 @@
         "amount": "23",
         "is_paid": false,
         "payment_type": "mpesa"
+    },
+    {
+        "payment_id": null,
+        "booking_id": "Book_id-030",
+        "customer_number": "CUST-10",
+        "payment_date": "dfd66",
+        "amount": 48.0,
+        "is_paid": false,
+        "payment_type": "mpesa"
+    },
+    {
+        "payment_id": null,
+        "booking_id": "Book_id-031",
+        "customer_number": "CUST-10",
+        "payment_date": "dfd66",
+        "amount": 11521.6,
+        "is_paid": false,
+        "payment_type": "mpesa"
+    },
+    {
+        "payment_id": null,
+        "booking_id": "Book_id-032",
+        "customer_number": "CUST-10",
+        "payment_date": "dfd66",
+        "amount": 2307.2000000000003,
+        "is_paid": false,
+        "payment_type": "mpesa"
     }
 ]

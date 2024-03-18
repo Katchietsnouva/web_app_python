@@ -68,6 +68,14 @@ class UserController:
     def load_payment_data(self):
         with open(self.payment_data_path, "r") as file:
             return json.load(file)
+        
+    def get_duration_by_booking_id(self, selected_ticket_id):
+        # Find the booking in the time_data list with the selected_ticket_id
+        booking = next((entry for entry in self.time_data if entry['booking_id'] == selected_ticket_id), None)
+        if booking:
+            return booking.get('duration_minutes', None)
+        else:
+            return None
 
     def load_or_create_time_data(self):
         directory = os.path.dirname(self.time_data_path)
