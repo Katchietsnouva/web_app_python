@@ -4,15 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profit/Loss Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
     <h1>Profit/Loss Calculation</h1>
+
+    <!-- Display profit/loss data for each month -->
+    {% for month, data in profit_loss_data.months_data.items() %}
     <div>
-        <p>Month: {{ profit_loss_data.month }}</p>
-        <p>Total Income: {{ profit_loss_data.total_income }}</p>
-        <p>Total Expenses: {{ profit_loss_data.total_expenses }}</p>
-        <p>Profit/Loss: {{ profit_loss_data.profit_loss }}</p>
+        <h2>{{ month }}</h2>
+        <p>Total Income: {{ data.total_income }}</p>
+        <p>Total Expenses: {{ data.total_expenses }}</p>
+        <p>Profit/Loss: {{ data.profit_loss }}</p>
     </div>
+    {% endfor %}
 
     <!-- Button to go back to the previous page -->
     <button onclick="goBack()">Go Back</button>
