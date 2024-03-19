@@ -57,5 +57,24 @@
             {% endif %}
         {% endfor %}
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Count the number of existing cubes
+            var existingCubes = document.querySelectorAll('.cube').length;
+
+            // Calculate the number of cubes needed to make up 12
+            var remainingCubes = 12 - existingCubes;
+
+            // Generate the remaining cubes
+            for (var i = 0; i < remainingCubes; i++) {
+                var newCube = document.createElement('div');
+                newCube.classList.add('cube');
+                newCube.classList.add('no-data');
+                newCube.innerHTML = '<h2>No data available</h2>';
+                document.querySelector('.container').appendChild(newCube);
+            }
+        });
+    </script>
 </body>
 </html>
