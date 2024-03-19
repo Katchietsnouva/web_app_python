@@ -98,6 +98,7 @@ class UserController:
 
         # Sort last 12 months in descending order
         profit_loss_data['last_12_months'] = sorted(profit_loss_data['last_12_months'], key=lambda x: datetime.strptime(x, "%B %Y"), reverse=True)
+        print(profit_loss_data)
 
         return profit_loss_data
         

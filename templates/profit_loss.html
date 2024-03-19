@@ -64,7 +64,6 @@
 
 
     
-    
     <script>
         // Function to generate month and year label
         function generateMonthLabel(month) {
@@ -85,7 +84,7 @@
             var remainingCubes = 12 - existingCubes;
     
             // Retrieve the last month with available data
-            var lastMonth = document.querySelector('.container .cube:nth-last-child(7) .month-label').innerText;
+            var lastMonth = document.querySelector('.container .cube:nth-last-child(1) .month-label').innerText;
     
             // Generate the remaining cubes
             for (var i = 0; i < remainingCubes; i++) {
@@ -99,6 +98,6 @@
             }
         });
     </script>
-    
+        
 </body>
 </html>
