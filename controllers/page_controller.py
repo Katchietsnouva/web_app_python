@@ -82,7 +82,7 @@ class PageController:
                         # return render_template('admin_page.html')
                         return redirect(url_for('admin_page'))
                     else:
-                        flash('Login Successful', 'success')
+                        # flash('Login Successful', 'success')
                         return redirect(url_for('home'))
                 else:
                     flash('Invalid username or password. Please try again.', 'error')
