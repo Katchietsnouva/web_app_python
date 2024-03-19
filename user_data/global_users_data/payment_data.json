@@ -4,8 +4,8 @@
         "booking_id": "Book_id-050",
         "customer_number": "CUST-10",
         "payment_date": "2023-09-19T12:09:27.321016",
-        "duration_minutes": 2,
-        "amount": 1.6,
+        "duration_minutes": 200000,
+        "amount": 160000,
         "is_paid": true,
         "payment_type": "mpesa"
     },
@@ -114,8 +114,8 @@
         "booking_id": "Book_id-026-ext",
         "customer_number": "CUST-1",
         "payment_date": "2024-03-19T13:20:21.661349",
-        "duration_minutes": 40,
-        "amount": 32,
+        "duration_minutes": 4000000,
+        "amount": 3200000,
         "is_paid": true,
         "payment_type": "cash"
     }

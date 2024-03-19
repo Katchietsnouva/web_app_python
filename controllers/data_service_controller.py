@@ -58,7 +58,6 @@ class UserController:
     #     }
     #     return profit_loss_data
         
-
     def calculate_profit_loss(self):
         # Get current month and year
         current_date = datetime.now()
@@ -82,21 +81,24 @@ class UserController:
 
             if current_year == payment_year and current_month >= payment_month:
                 month_year = payment_date.strftime("%B %Y")
-                profit_loss_data['last_12_months'].append(month_year)
-                if month_year not in profit_loss_data['months_data']:
+                if month_year not in profit_loss_data['last_12_months']:
+                    profit_loss_data['last_12_months'].append(month_year)
+                
+                if profit_loss_data['months_data'][month_year]['total_income'] is None:
                     profit_loss_data['months_data'][month_year] = {'total_income': 0, 'total_expenses': 0}
-
+                
                 profit_loss_data['months_data'][month_year]['total_income'] += payment_data['amount']
-                print(payment_data)
-                print(profit_loss_data)
                 # Assuming expenses are not available in the given payment data, you need to add logic to calculate expenses
 
         # Calculate profit/loss for each month
         for month, data in profit_loss_data['months_data'].items():
             data['profit_loss'] = data['total_income'] - data['total_expenses']
 
+        # Sort last 12 months in descending order
+        profit_loss_data['last_12_months'] = sorted(profit_loss_data['last_12_months'], key=lambda x: datetime.strptime(x, "%B %Y"), reverse=True)
+
         return profit_loss_data
-    
+        
     def load_or_create_payment_data(self):
         directory = os.path.dirname(self.payment_data_path)
         if not os.path.exists(directory):
