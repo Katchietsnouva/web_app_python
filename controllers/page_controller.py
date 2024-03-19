@@ -309,7 +309,6 @@ class PageController:
                 latest_mod_ticket_details = self.user_controller.html_get_selected_ticket_details(booking_id)
                 return render_template('payment_page.html', latest_mod_ticket_details=latest_mod_ticket_details)
 
-                return render_template('payment_page.html', latest_booking_id=latest_mod_ticket_details)
             else:
                 print("operation failed")
                 return render_template('booking_page.html')
