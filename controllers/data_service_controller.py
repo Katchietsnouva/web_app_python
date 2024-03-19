@@ -40,6 +40,7 @@ class UserController:
             {'id': 8, 'arrival_date': '2024-02-01', 'departure_date': '2024-02-05'},
             {'id': 4, 'arrival_date': '2024-02-19', 'departure_date': '2024-02-15'},
         ]
+    
 
     def load_or_create_payment_data(self):
         directory = os.path.dirname(self.payment_data_path)
@@ -78,7 +79,7 @@ class UserController:
             return json.load(file)
             
 
-            
+
     def generate_payment_id(self, booking_id):
         # user_bookings = [entry for entry in self.time_data if entry['user_id'] == user_id]
         user_parking_info = [entry for entry in self.payment_data]
