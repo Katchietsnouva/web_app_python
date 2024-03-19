@@ -4,26 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profit/Loss Page</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 20px;
+        }
+        h1 {
+            color: #007bff;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .month-container {
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .month-title {
+            color: #007bff;
+            margin-top: 0;
+        }
+        .data-item {
+            margin-bottom: 10px;
+        }
+        .navigation {
+            margin-top: 20px;
+        }
+        .navigation-button {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .navigation-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h1>Profit/Loss Calculation</h1>
+    <div class="container">
+        <h1>Profit/Loss Calculation</h1>
 
-    <!-- Display profit/loss data for each month -->
-    {% for month, data in profit_loss_data.months_data.items() %}
-    <div>
-        <h2>{{ month }}</h2>
-        <p>Total Income: {{ data.total_income }}</p>
-        <p>Total Expenses: {{ data.total_expenses }}</p>
-        <p>Profit/Loss: {{ data.profit_loss }}</p>
+        <!-- Display profit/loss data for each month -->
+        {% for month, data in profit_loss_data.months_data.items() %}
+        <div class="month-container">
+            <h2 class="month-title">{{ month }}</h2>
+            <div class="data-item"><strong>Total Income:</strong> {{ data.total_income }}</div>
+            <div class="data-item"><strong>Total Expenses:</strong> {{ data.total_expenses }}</div>
+            <div class="data-item"><strong>Profit/Loss:</strong> {{ data.profit_loss }}</div>
+        </div>
+        {% endfor %}
+
+        <!-- Navigation buttons -->
+        <div class="navigation">
+            <!-- Button to go back to the previous page -->
+            <button onclick="goBack()" class="navigation-button">Go Back</button>
+
+            <!-- Button for logging out -->
+            <a href="/login" class="navigation-button">Logout</a>
+        </div>
     </div>
-    {% endfor %}
-
-    <!-- Button to go back to the previous page -->
-    <button onclick="goBack()">Go Back</button>
-
-    <!-- Button for logging out -->
-    <a class="navigation-button" href="/login">Logout</a>
 
     <script>
         function goBack() {
