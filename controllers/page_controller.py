@@ -305,7 +305,7 @@ class PageController:
             if payment_d_collect_successful:
                 # Payment data collection successful, redirect to a success page
                 print("successfull")
-                return redirect('/home')
+                return redirect('/payment')
             else:
                 print("operation failed")
                 return render_template('booking_page.html')
