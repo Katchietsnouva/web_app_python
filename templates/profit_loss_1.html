@@ -3,49 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profit/Loss Page</title>
+    <title>Profit/Loss Dashboard</title>
     <style>
-        .box {
-            width: 100px;
-            height: 100px;
-            border: 1px solid black;
-            display: inline-block;
-            margin: 5px;
-            text-align: center;
-            line-height: 100px;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 20px;
         }
-        .yellow {
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 20px;
+        }
+        .cube {
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+        }
+        .profit {
+            background-color: lightgreen;
+        }
+        .loss {
+            background-color: lightcoral;
+        }
+        .no-data {
             background-color: yellow;
+        }
+        .month-label {
+            font-weight: bold;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
-    <h1>Profit/Loss Calculation</h1>
-
-    {% for month in profit_loss_data.last_12_months %}
-        <div class="box">
-            <p>{{ month }}</p>
-            {% if profit_loss_data.months_data[month].total_income is none %}
-                <p class="yellow">No Data</p>
+    <h1>Profit/Loss Dashboard</h1>
+    <div class="container">
+        <!-- Loop through the last 12 months -->
+        {% for month in profit_loss_data.last_12_months %}
+            {% if month in profit_loss_data.months_data %}
+                {% set data = profit_loss_data.months_data[month] %}
+                <div class="cube {% if data.total_income is not none %}{% if data.profit_loss >= 10000 %}profit{% elif data.profit_loss < 10000 %}loss{% endif %}{% else %}no-data{% endif %}">
+                    <div class="month-label">{{ month }}</div>
+                    {% if data.total_income is not none %}
+                        <p>Total Income: {{ data.total_income }}</p>
+                        <p>Total Expenses: {{ data.total_expenses }}</p>
+                        <p>Profit/Loss: {{ data.profit_loss }}</p>
+                    {% else %}
+                        <p>No data available</p>
+                    {% endif %}
+                </div>
             {% else %}
-                <p>Total Income: {{ profit_loss_data.months_data[month].total_income }}</p>
-                <p>Total Expenses: {{ profit_loss_data.months_data[month].total_expenses }}</p>
-                <p>Profit/Loss: {{ profit_loss_data.months_data[month].profit_loss }}</p>
+                <div class="cube no-data">
+                    <div class="month-label">{{ generateMonthLabel(month) }}</div>
+                    <p>No data available</p>    
+                </div>
             {% endif %}
-        </div>
-    {% endfor %}
-
-    <!-- Button to go back to the previous page -->
-    <button onclick="goBack()">Go Back</button>
-
-    <!-- Button for logging out -->
-    <a class="navigation-button" href="/login">Logout</a>
+        {% endfor %}
+    </div>
 
     <script>
-        function goBack() {
-            window.history.back();
+        // Function to generate month and year label
+        function generateMonthLabel(month) {
+            var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            var year = parseInt(month.split(' ')[1]);
+            var monthIndex = months.indexOf(month.split(' ')[0]);
+            var prevMonthIndex = monthIndex === 0 ? 11 : monthIndex - 1;
+            var prevYear = prevMonthIndex === 11 ? year - 1 : year;
+            var prevMonth = months[prevMonthIndex];
+            return prevMonth + ' ' + prevYear;
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Count the number of existing cubes
+            var existingCubes = document.querySelectorAll('.cube').length;
+
+            // Calculate the number of cubes needed to make up 12
+            var remainingCubes = 12 - existingCubes;
+
+            // Generate the remaining cubes
+            for (var i = 0; i < remainingCubes; i++) {
+                var newCube = document.createElement('div');
+                newCube.classList.add('cube');
+                newCube.classList.add('no-data');
+                var month = document.querySelector('.container .cube:nth-last-child(' + (i + 1) + ') .month-label').innerText;
+                var monthLabel = generateMonthLabel(month);
+                newCube.innerHTML = '<div class="month-label">' + monthLabel + '</div><p>No data available</p>';
+                document.querySelector('.container').appendChild(newCube);
+            }
+        });
     </script>
 </body>
 </html>
-

@@ -55,43 +55,50 @@
                 </div>
             {% else %}
                 <div class="cube no-data">
-                    <div class="month-label">{{ generateMonthLabel(month) }}</div>
+                    <div class="month-label">{{ month }}</div>
                     <p>No data available</p>    
                 </div>
             {% endif %}
         {% endfor %}
     </div>
-
     <script>
         // Function to generate month and year label
-        function generateMonthLabel(month) {
-            var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-            var year = parseInt(month.split(' ')[1]);
-            var monthIndex = months.indexOf(month.split(' ')[0]);
-            var prevMonthIndex = monthIndex === 0 ? 11 : monthIndex - 1;
-            var prevYear = prevMonthIndex === 11 ? year - 1 : year;
-            var prevMonth = months[prevMonthIndex];
-            return prevMonth + ' ' + prevYear;
+        function generateMonthLabel(index, months) {
+            var currentMonth = months[0].split(' ')[0];
+            var currentYear = parseInt(months[0].split(' ')[1]);
+            var monthIndex = currentMonth === 'January' ? 11 : months.indexOf(currentMonth) - 1;
+            var year = monthIndex === 11 ? currentYear - 1 : currentYear;
+            var monthLabel = months[monthIndex];
+            return monthLabel + ' ' + year;
         }
-
+    
         document.addEventListener('DOMContentLoaded', function() {
             // Count the number of existing cubes
             var existingCubes = document.querySelectorAll('.cube').length;
-
+    
             // Calculate the number of cubes needed to make up 12
             var remainingCubes = 12 - existingCubes;
-
+    
+            // Get months labels
+            var months = Array.from(document.querySelectorAll('.cube h2')).map(function(label) {
+                return label.innerText;
+            });
+    
+            console.log("Months found:", months);
+    
             // Generate the remaining cubes
             for (var i = 0; i < remainingCubes; i++) {
                 var newCube = document.createElement('div');
                 newCube.classList.add('cube');
                 newCube.classList.add('no-data');
-                var month = document.querySelector('.container .cube:nth-last-child(' + (i + 1) + ') .month-label').innerText;
-                var monthLabel = generateMonthLabel(month);
-                newCube.innerHTML = '<div class="month-label">' + monthLabel + '</div><p>No data available</p>';
+                var monthIndex = months.length - 1;
+                var monthLabel = generateMonthLabel(monthIndex, months);
+                newCube.innerHTML = '<h2 class="month-label">' + monthLabel + '</h2><p>No data available</p>';
                 document.querySelector('.container').appendChild(newCube);
+                months.push(monthLabel);
             }
         });
     </script>
+        
 </body>
 </html>
