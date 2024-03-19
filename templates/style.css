@@ -5,24 +5,32 @@ body {
 }
 
 .container {
-    display: flex; /* Use flexbox layout */
-    justify-content: space-around; /* Distribute sections evenly */
-    flex-wrap: wrap; /* Allow sections to wrap to the next line */
-}
-
-.data-section {
-    flex-basis: 30%; /* Set initial width for each section */
-    margin-bottom: 20px; /* Add some margin between sections */
+    display: grid; /* Use grid layout */
+    grid-template-columns: repeat(3, 1fr); /* Divide the screen width into 3 equal columns */
+    gap: 20px; /* Add some gap between sections */
 }
 
 .header {
+    grid-column: 1 / -1; /* Header spans all columns */
     text-align: center;
     margin-bottom: 30px;
 }
 
 .navigation-button {
-    float: right;
+    grid-column: 3; /* Logout button on the right */
+    text-align: right;
     margin-bottom: 20px;
+}
+
+.data-section {
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.data-section h2 {
+    margin-top: 0;
 }
 
 .data-list {
@@ -31,11 +39,7 @@ body {
 }
 
 .data-item {
-    background-color: #fff;
-    border: 1px solid #dee2e6;
     margin-bottom: 20px;
-    padding: 20px;
-    border-radius: 5px;
 }
 
 .data-details {
@@ -46,4 +50,16 @@ body {
 
 .data-info {
     flex: 1;
+}
+
+.user-section {
+    grid-column: 1; /* Users section on the left */
+}
+
+.time-section {
+    grid-column: 2; /* Time section in the middle */
+}
+
+.payment-section {
+    grid-column: 3; /* Payment section on the right */
 }
