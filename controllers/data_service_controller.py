@@ -77,13 +77,15 @@ class UserController:
         with open(self.payment_data_path, "r") as file:
             return json.load(file)
             
+
+            
     def generate_payment_id(self, booking_id):
         # user_bookings = [entry for entry in self.time_data if entry['user_id'] == user_id]
         user_parking_info = [entry for entry in self.payment_data]
         if not user_parking_info:
             return f'Payment_id-001'
         else:
-            latest_parking_id = user_parking_info[-1]['Payment_id']
+            latest_parking_id = user_parking_info[-1]['payment_id']
             index = int(latest_parking_id.split('-')[1]) + 1
             return f'Payment_id-{index:03d}'
         

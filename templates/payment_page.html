@@ -21,7 +21,28 @@
             color: #3498db;
             text-decoration: none;
             font-size: 1em;
-          }
+        }
+        #payment-type {
+          font-size: 18px; 
+          color: #45a049;
+          background-color: #f7f7f7; 
+          border: 1px solid #ccc; 
+          padding: 8px;
+          border-radius: 5px;
+        }
+        #make-payment-btn {
+          font-size: 16px;
+          color: #fff;
+          background-color: #007bff;
+          border: none;
+          padding: 10px 20px;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+        
+        #make-payment-btn:hover {
+          background-color: #0056b3;
+        }
     </style>
 
   </head>
@@ -39,11 +60,12 @@
             <label for="payment-type"><strong>Select Payment Type:</strong></label>
             <select id="payment-type" name="payment_type">
                 <option value="mpesa">M-Pesa</option>
-                <option value="debit_cash">Debit/Cash</option>
+                <option value="debit">Debit</option>
+                <option value="cash">Cash</option>
             </select>
             <input type="hidden" name="booking_id" value="{{ latest_mod_ticket_details.booking_id }}">
             <input type="hidden" name="customer_number" value="{{ latest_mod_ticket_details.customer_number }}">
-            <input type="submit" value="Make Payment">
+            <input type="submit"  id="make-payment-btn"  value="Make Payment">
         </form>
         
         {% else %}

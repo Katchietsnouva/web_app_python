@@ -141,7 +141,14 @@
         // Event handler for the "Extend Booking" button
         $("#extend_button").click(function () {
           // Get the selected ticket ID and departure time
-          // var selectedTicketId = $("#ticket_id").val();
+          #ticket_id {
+            font-size: 18px; 
+            color: #45a049;
+            background-color: #f7f7f7; 
+            border: 1px solid #ccc; 
+            padding: 8px;
+            border-radius: 5px;
+          }// var selectedTicketId = $("#ticket_id").val();
           var departureTime = $("#departure_time_input").val();
           // Perform an AJAX request to extend the booking
 
@@ -173,8 +180,8 @@
     <!--  form for selecting the ticket id and it will automaticaly populate the datetime fields from json file-->
     <form action="/extendbook" method="post" onsubmit="return validateForm();">
       <label for="booking_id"
-        >Select Your Available TIcket IDs That You Wish TO Extend:</label
-      >
+        >Select Your Available Ticket IDs That You Wish TO Extend:
+      </label>
       <select id="ticket_id" name="ticket_id" required>
         <option value="" disabled selected>Select a Ticket ID</option>
         {% for ticket_id in user_booked_ticket_ids %}
