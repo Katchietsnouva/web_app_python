@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profit/Loss Page</title>
+</head>
+<body>
+    <h1>Profit/Loss Calculation</h1>
+    <div>
+        <p>Month: {{ profit_loss_data.month }}</p>
+        <p>Total Income: {{ profit_loss_data.total_income }}</p>
+        <p>Total Expenses: {{ profit_loss_data.total_expenses }}</p>
+        <p>Profit/Loss: {{ profit_loss_data.profit_loss }}</p>
+    </div>
+
+    <!-- Button to go back to the previous page -->
+    <button onclick="goBack()">Go Back</button>
+
+    <!-- Button for logging out -->
+    <a class="navigation-button" href="/login">Logout</a>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

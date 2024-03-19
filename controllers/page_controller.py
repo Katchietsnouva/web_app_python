@@ -37,6 +37,11 @@ class PageController:
             self.home_page.show()
             page_controller = PageController(app)
             page_controller.show_home_page()
+
+        @app.route('/profit_loss')
+        def profit_loss():
+            profit_loss_data = UserController.calculate_profit_loss(self.user_controller)
+            return render_template('profit_loss.html', profit_loss_data=profit_loss_data)
         
 
         @app.route('/admin', methods=['GET'])

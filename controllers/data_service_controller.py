@@ -22,6 +22,7 @@
 import json
 import os
 from datetime import datetime, timedelta
+from collections import defaultdict
 class UserController:
     def __init__(self):
         self.users_data_path = 'user_data/global_users_data/customers_db.json'
@@ -47,6 +48,55 @@ class UserController:
         return self.time_data 
     def get_all_payment_data(self):
         return self.payment_data 
+    
+    # def calculate_profit_loss():
+    #     profit_loss_data = {
+    #         'month': 'January 2023 - December 2023',
+    #         'total_income': 15000,  
+    #         'total_expenses': 17000,
+    #         'profit_loss': -2000 
+    #     }
+    #     return profit_loss_data
+        
+    def calculate_profit_loss(self):
+        # Get current month and year
+        current_date = datetime.now()
+        current_month_year = current_date.strftime("%B %Y")
+
+        # Initialize profit/loss data
+        profit_loss_data = {
+            'current_month_year': current_month_year,
+            'months_data': defaultdict(dict)
+        }
+
+        # Get all payment data
+        all_payment_data = self.get_all_payment_data()
+
+        # Iterate over payment data to calculate profit/loss for each month
+        for payment_data in all_payment_data:
+            # Extract month and year from payment date
+            payment_date = datetime.fromisoformat(payment_data['payment_date'])
+            print(payment_date)
+            payment_month_year = payment_date.strftime("%B %Y")
+            print(payment_month_year)
+
+            # Calculate total income and expenses for each month
+            if payment_month_year not in profit_loss_data['months_data']:
+                profit_loss_data['months_data'][payment_month_year]['total_income'] = 0
+                profit_loss_data['months_data'][payment_month_year]['total_expenses'] = 0
+                
+            profit_loss_data['months_data'][payment_month_year]['total_income'] += payment_data['amount']
+            print(payment_data)
+            print(profit_loss_data)
+
+            # Assuming expenses are not available in the given payment data, you need to add logic to calculate expenses
+
+        # Calculate profit/loss for each month
+        for month_data in profit_loss_data['months_data'].values():
+            month_data['profit_loss'] = month_data['total_income'] - month_data['total_expenses']
+
+        return profit_loss_data
+
     
     def load_or_create_payment_data(self):
         directory = os.path.dirname(self.payment_data_path)
