@@ -61,39 +61,48 @@
             {% endif %}
         {% endfor %}
     </div>
-    
-
     <script>
         // Function to generate month and year label
         function generateMonthLabel(month) {
             var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-            var year = parseInt(month.split(' ')[1]);
-            var monthIndex = months.indexOf(month.split(' ')[0]);
+            var splitMonth = month.split(' ');
+            var year = parseInt(splitMonth[1]);
+            var monthIndex = months.indexOf(splitMonth[0]);
             var prevMonthIndex = monthIndex === 0 ? 11 : monthIndex - 1;
             var prevYear = prevMonthIndex === 11 ? year - 1 : year;
             var prevMonth = months[prevMonthIndex];
             return prevMonth + ' ' + prevYear;
         }
-
+    
         document.addEventListener('DOMContentLoaded', function() {
             // Count the number of existing cubes
             var existingCubes = document.querySelectorAll('.cube').length;
-
+    
             // Calculate the number of cubes needed to make up 12
             var remainingCubes = 12 - existingCubes;
-
+    
+            // Retrieve the previous month with no data
+            var previousMonth = '';
+            document.querySelectorAll('.cube').forEach(function(cube) {
+                if (cube.querySelector('.no-data')) {
+                    previousMonth = cube.querySelector('.month-label').innerText;
+                }
+            });
+    
             // Generate the remaining cubes
             for (var i = 0; i < remainingCubes; i++) {
                 var newCube = document.createElement('div');
                 newCube.classList.add('cube');
                 newCube.classList.add('no-data');
-                var month = document.querySelector('.container .cube:nth-last-child(' + (i + 1) + ') .month-label').innerText;
-                var monthLabel = generateMonthLabel(month);
+                var monthLabel = generateMonthLabel(previousMonth);
                 newCube.innerHTML = '<div class="month-label">' + monthLabel + '</div><p>No data available</p>';
                 document.querySelector('.container').appendChild(newCube);
+                previousMonth = monthLabel; // Update previous month label
             }
         });
     </script>
-        
+    
+    
+            
 </body>
 </html>
