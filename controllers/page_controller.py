@@ -305,7 +305,11 @@ class PageController:
             if payment_d_collect_successful:
                 # Payment data collection successful, redirect to a success page
                 print("successfull")
-                return redirect('/payment')
+                # return redirect('/payment')
+                # return render_template('payment_page.html', latest_booking_id= booking_id)
+                # return render_template('payment_page.html', latest_booking_id=time_model.booking_id)
+                latest_mod_ticket_details = self.user_controller.html_get_selected_ticket_details(booking_id)
+                return render_template('payment_page.html', latest_mod_ticket_details=latest_mod_ticket_details)
             else:
                 print("operation failed")
                 return render_template('booking_page.html')
