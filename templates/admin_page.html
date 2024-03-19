@@ -6,6 +6,74 @@
     <title>Admin Page</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 20px;
+        }
+        
+        .container {
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px; 
+        }
+        
+        .header {
+            grid-column: 1 / -1; 
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .navigation-button {
+            grid-column: 3; 
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        
+        .data-section {
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        
+        .data-section h2 {
+            margin-top: 0;
+        }
+        
+        .data-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .data-item {
+            margin-bottom: 20px;
+        }
+        
+        .data-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .data-info {
+            flex: 1;
+        }
+        
+        .user-section {
+            grid-column: 1; 
+        }
+        
+        .time-section {
+            grid-column: 2; 
+        }
+        
+        .payment-section {
+            grid-column: 3; 
+        }
+        
+    </style>
 </head>
 <body>
     <div class="container">

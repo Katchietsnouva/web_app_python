@@ -5,19 +5,19 @@ body {
 }
 
 .container {
-    display: grid; /* Use grid layout */
-    grid-template-columns: repeat(3, 1fr); /* Divide the screen width into 3 equal columns */
-    gap: 20px; /* Add some gap between sections */
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px; 
 }
 
 .header {
-    grid-column: 1 / -1; /* Header spans all columns */
+    grid-column: 1 / -1; 
     text-align: center;
     margin-bottom: 30px;
 }
 
 .navigation-button {
-    grid-column: 3; /* Logout button on the right */
+    grid-column: 3; 
     text-align: right;
     margin-bottom: 20px;
 }
@@ -53,13 +53,13 @@ body {
 }
 
 .user-section {
-    grid-column: 1; /* Users section on the left */
+    grid-column: 1; 
 }
 
 .time-section {
-    grid-column: 2; /* Time section in the middle */
+    grid-column: 2; 
 }
 
 .payment-section {
-    grid-column: 3; /* Payment section on the right */
+    grid-column: 3; 
 }
