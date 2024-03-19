@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .navigation-button {
+            float: right;
+            margin-bottom: 20px;
+        }
+
+        .user-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .user-item {
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .user-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-info {
+            flex: 1;
+        }
+
+        .user-actions {
+            flex: 1;
+            text-align: right;
+        }
+
+        .user-actions button {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="header">Admin Page - User List</h1>
+        <a class="navigation-button" href="/logout">Logout</a>
+        
+        <ul class="user-list">
+            {% for user in all_users %}
+                <li class="user-item">
+                    <div class="user-details">
+                        <div class="user-info">
+                            <p><strong>Name:</strong> {{ user.username }}</p>
+                            <p><strong>Email:</strong> {{ user.email }}</p>
+                            <p><strong>Phone:</strong> {{ user.phone }}</p>
+                            <p><strong>Role:</strong> {{ user.role }}</p>
+                            <p><strong>Customer Number:</strong> {{ user.customer_number }}</p>
+                            <p><strong>User ID:</strong> {{ user.user_id }}</p>
+                        </div>
+                        <div class="user-actions">
+                            <button class="btn btn-primary">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

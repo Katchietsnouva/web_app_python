@@ -5,7 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Page</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .navigation-button {
+            float: right;
+            margin-bottom: 20px;
+        }
+
+        .data-section {
+            margin-bottom: 40px;
+        }
+
+        .data-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .data-item {
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .data-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .data-info {
+            flex: 1;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -13,7 +61,7 @@
         <a class="navigation-button" href="/logout">Logout</a>
         
         <!-- Users Section -->
-        <div class="data-section user-section">
+        <div class="data-section">
             <h2>Users</h2>
             <ul class="data-list">
                 {% for user in all_users %}
@@ -33,7 +81,7 @@
         </div>
         
         <!-- Parking Time Data Section -->
-        <div class="data-section time-section">
+        <div class="data-section">
             <h2>Parking Time Data</h2>
             <ul class="data-list">
                 {% for time_data in all_booking_time_data %}
@@ -51,7 +99,7 @@
         </div>
         
         <!-- Payment Data Section -->
-        <div class="data-section payment-section">
+        <div class="data-section">
             <h2>Payment Data</h2>
             <ul class="data-list">
                 {% for payment_data in all_payment_data %}
