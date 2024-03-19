@@ -291,12 +291,13 @@ class PageController:
             if duration_minutes is not None:      
                 # amount = PaymentModel.calculate_amount(self, duration_minutes)
                 amount = 0.8 * duration_minutes
-                payment_date = "datetime.now()"
-                # payment_date = datetime.now()
-                payment_data_collec_model = PaymentModel(payment_id=None, booking_id=booking_id, customer_number=customer_number, payment_date = payment_date, duration_minutes = duration_minutes, amount = amount, is_paid = True, payment_type=payment_type)
+                payment_date = datetime.now().isoformat()
+                payment_id = UserController.generate_payment_id(self.user_controller, booking_id)
+                # payment_id = self.generate_parking_id(payment_data_collec_model.booking_id)
+                payment_data_collec_model = PaymentModel(payment_id=payment_id, booking_id=booking_id, customer_number=customer_number, payment_date = payment_date, duration_minutes = duration_minutes, amount = amount, is_paid = True, payment_type=payment_type)
 
                 # Set other payment details such as amount, payment_date, etc.
-                payment_d_collect_successful = UserController.save_payment_data(self.user_controller, payment_data_collec_model)
+                payment_d_collect_successful = UserController.payment_data_collec_save(self.user_controller, payment_data_collec_model)
 
             if payment_d_collect_successful:
                 # Payment data collection successful, redirect to a success page
