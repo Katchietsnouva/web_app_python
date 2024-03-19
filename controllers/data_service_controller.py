@@ -41,7 +41,13 @@ class UserController:
             {'id': 4, 'arrival_date': '2024-02-19', 'departure_date': '2024-02-15'},
         ]
     
-
+    def get_all_users(self):
+        return self.users_data 
+    def get_all_time_data(self):
+        return self.time_data 
+    def get_all_payment_data(self):
+        return self.payment_data 
+    
     def load_or_create_payment_data(self):
         directory = os.path.dirname(self.payment_data_path)
         if not os.path.exists(directory):
@@ -113,9 +119,6 @@ class UserController:
     def get_latest_modified_ticket(self):
         latest_ticket = max(self.tickets_data, key=lambda x: x.get('modification_date', ''))
         return latest_ticket
-
-    def get_all_users(self):
-        return self.users_data 
 
     def save_users_data(self):
         with open(self.users_data_path, "w") as file:

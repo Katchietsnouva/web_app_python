@@ -50,32 +50,26 @@ class PageController:
                 if user.get('role') == 'admin':
                     # Get a list of all users (you need to implement this method)
                     all_users = self.user_controller.get_all_users()
+                    all_booking_time_data = self.user_controller.get_all_time_data()
+                    all_payment_data = self.user_controller.get_all_payment_data()
 
                     # Render the admin page with the list of users
-                    return render_template('admin_page.html', all_users=all_users)
+                    return render_template('admin_page.html', all_users=all_users,all_booking_time_data =all_booking_time_data, all_payment_data =all_payment_data )
 
             # If not an admin or not logged in, redirect to login
             flash('You do not have permission to access this page.', 'error')
             return redirect(url_for('login'))
                     
-        # @app.route('/login')
-        # def login():
-        #     return render_template('login_page.html')
-        #     self.login_page.show()
-
         @app.route('/login', methods=['GET', 'POST'])
         def login():
             if request.method == 'POST':
                 username = request.form.get('username')
                 password = request.form.get('password')
-
                 # Authenticate  user
                 user_authenticated, user_id, user_role   = self.user_controller.authenticate_user(username, password)
-
                 if user_authenticated:
                     session['user_id'] = user_id
                     session['username'] = username 
-
                     # admin_user = self.user_controller.get_user_registration_data(session['user_id'])
                     # if admin_user.role == 'admin':
                     print(user_role)
@@ -87,8 +81,12 @@ class PageController:
                         return redirect(url_for('home'))
                 else:
                     flash('Invalid username or password. Please try again.', 'error')
-
             return render_template('login_page.html')
+        
+        # @app.route('/login')
+        # def login():
+        #     return render_template('login_page.html')
+        #     self.login_page.show()
 
         @app.route('/register', methods=['GET', 'POST'])
         def registration():

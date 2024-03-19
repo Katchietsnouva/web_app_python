@@ -12,62 +12,79 @@
             margin: 20px;
         }
 
-        h1 {
-            color: #007bff;
+        .container {
+            max-width: 800px;
+            margin: auto;
         }
 
-        ul {
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .navigation-button {
+            float: right;
+            margin-bottom: 20px;
+        }
+
+        .user-list {
             list-style: none;
             padding: 0;
         }
 
-        li {
-            background-color: #dfffff;
+        .user-item {
+            background-color: #fff;
             border: 1px solid #dee2e6;
-            margin: 10px 0;
-            padding: 15px;
+            margin-bottom: 20px;
+            padding: 20px;
             border-radius: 5px;
         }
 
-        .user-info {
+        .user-details {
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+
+        .user-info {
+            flex: 1;
+        }
+
+        .user-actions {
+            flex: 1;
+            text-align: right;
+        }
+
+        .user-actions button {
+            margin-left: 10px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Admin Page - User List</h1>
-        <a class="navigation-button" href="/login">Logout</a>
-        <!--<button type="submit">Logout</button>-->
-        <ul>
+        <h1 class="header">Admin Page - User List</h1>
+        <a class="navigation-button" href="/logout">Logout</a>
+        
+        <ul class="user-list">
             {% for user in all_users %}
-                <li>
-                    <div class="user-info">
-                        <div>
-                            <p><strong>Name:</strong> <strong>{{ user.username }}</strong><br>
-                            <p><strong>Email:</strong> {{ user.email }}<br>
-                            <p><strong>Phone:</strong> {{ user.phone }}<br>
-                            <!--Car: {{ user.carmanufacturer }} {{ user.carmodel }} ({{ user.car_plate }})-->
+                <li class="user-item">
+                    <div class="user-details">
+                        <div class="user-info">
+                            <p><strong>Name:</strong> {{ user.username }}</p>
+                            <p><strong>Email:</strong> {{ user.email }}</p>
+                            <p><strong>Phone:</strong> {{ user.phone }}</p>
+                            <p><strong>Role:</strong> {{ user.role }}</p>
+                            <p><strong>Customer Number:</strong> {{ user.customer_number }}</p>
+                            <p><strong>User ID:</strong> {{ user.user_id }}</p>
                         </div>
-                        <div>
-                            <p><strong>Role:</strong> {{ user.role }}<br>
-                            <p><strong>Customer Number:</strong> {{ user.customer_number }}<br>
-                            <p><strong>User ID:</strong> {{ user.user_id }}
+                        <div class="user-actions">
+                            <button class="btn btn-primary">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
                         </div>
                     </div>
                 </li>
             {% endfor %}
         </ul>
-
-        <!--button class="btn btn-primary logout-button" type="button" onclick="logout()">Logout</button>
-        <script>
-            function logout() {window.location.href = "/logout";}
-        </script>-->
     </div>
 </body>
 </html>
-
-
-
