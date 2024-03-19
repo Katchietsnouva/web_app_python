@@ -79,7 +79,9 @@ class UserController:
             payment_month = payment_date.month
             payment_year = payment_date.year
 
-            if current_year == payment_year and current_month >= payment_month:
+            # Include payments from the last 12 months, including previous years
+            if (current_year == payment_year and current_month >= payment_month) or \
+               (current_year - 1 == payment_year and current_month < payment_month):
                 month_year = payment_date.strftime("%B %Y")
                 if month_year not in profit_loss_data['last_12_months']:
                     profit_loss_data['last_12_months'].append(month_year)
