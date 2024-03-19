@@ -56,7 +56,7 @@ class UserController:
     def payment_data_collec_save(self, payment_data_collec_model):
         print("Booking ID:", payment_data_collec_model.booking_id)
         self.payment_data.append(vars(payment_data_collec_model))
-        # payment_id = self.generate_parking_id(payment_data_collec_model.booking_id)
+        # payment_id = self.generate_payment_id(payment_data_collec_model.booking_id)
         print("perfornming operation")
         self.save_payment_data()
         return True  #  successful
@@ -77,7 +77,7 @@ class UserController:
         with open(self.payment_data_path, "r") as file:
             return json.load(file)
             
-    def generate_parking_id(self, booking_id):
+    def generate_payment_id(self, booking_id):
         # user_bookings = [entry for entry in self.time_data if entry['user_id'] == user_id]
         user_parking_info = [entry for entry in self.payment_data]
         if not user_parking_info:
