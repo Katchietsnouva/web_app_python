@@ -9,7 +9,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
+            background-color: #f899fa;
             margin: 20px;
         }
         
@@ -88,12 +88,18 @@
                     <li class="data-item">
                         <div class="data-details">
                             <div class="data-info">
-                                <p><strong>Name:</strong> {{ user.username }}</p>
+                                <p><strong>Name:</strong> <strong> {{ user.username }} </strong> </p>
                                 <p><strong>Email:</strong> {{ user.email }}</p>
                                 <p><strong>Phone:</strong> {{ user.phone }}</p>
                                 <p><strong>Role:</strong> {{ user.role }}</p>
+                                <p><strong>Customer Number:</strong> {{ user.customer_number }}<br>
+                                <p><strong>User ID:</strong> {{ user.user_id }}
                                 <!-- Add other user details as needed -->
                             </div>
+                        </div>
+                        <div class="user-actions">
+                            <button class="btn btn-primary">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
                         </div>
                     </li>
                 {% endfor %}
@@ -108,8 +114,13 @@
                     <li class="data-item">
                         <div class="data-details">
                             <div class="data-info">
-                                <p><strong>Booking ID:</strong> {{ time_data.booking_id }}</p>
+                                <p><strong>Booking ID:</strong> <strong>{{ time_data.booking_id }}</strong></p>
                                 <p><strong>Customer Number:</strong> {{ time_data.customer_number }}</p>
+                                <p><strong>Arrival Date:</strong> {{ time_data.arrival_date }}</p>
+                                <p><strong>Arrival Time:</strong> {{ time_data.arrival_time }}</p>
+                                <p><strong>Departure Date:</strong> {{ time_data.departure_date }}</p>
+                                <p><strong>Departure Time:</strong> {{ time_data.departure_time }}</p>
+                                <p><strong>Duration Minutes:</strong> {{ time_data.duration_minutes }}</p>
                                 <!-- Add other time data details as needed -->
                             </div>
                         </div>
@@ -126,8 +137,14 @@
                     <li class="data-item">
                         <div class="data-details">
                             <div class="data-info">
-                                <p><strong>Payment ID:</strong> {{ payment_data.payment_id }}</p>
-                                <p><strong>Booking ID:</strong> {{ payment_data.booking_id }}</p>
+                                <p><strong>Payment ID:</strong> <strong>  {{ payment_data.payment_id }} </strong> </p>
+                                <p><strong>Customer Number:</strong> {{ payment_data.booking_id }}</p>
+                                <p><strong>Payment Date:</strong> {{ payment_data.payment_date }}</p>
+                                <p><strong>Duration Minutes:</strong> {{ payment_data.duration_minutes }}</p>
+                                <p><strong>Amount:</strong> {{ payment_data.amount }}</p>
+                                <p><strong>Paid Status:</strong> {{ payment_data.is_paid }}</p>
+                                <p><strong>Payment Type:</strong> {{ payment_data.payment_type }}</p>
+                                
                                 <!-- Add other payment data details as needed -->
                             </div>
                         </div>
