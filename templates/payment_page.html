@@ -66,6 +66,17 @@
           <input type="hidden" name="booking_id" value="{{ latest_mod_ticket_details.booking_id }}">
           <input type="hidden" name="customer_number" value="{{ latest_mod_ticket_details.customer_number }}">
           <input type="submit"  id="make-payment-btn"  value="Make Payment">
+          <div>
+            <div class="field">Payment ID: {{ latest_mod_ticket_details.payment_id }}</div>
+            <div class="field">Booking ID: {{ latest_mod_ticket_details.booking_id }}</div>
+            <div class="field">Customer Number: {{ latest_mod_ticket_details.customer_number }}</div>
+            <div class="field">Payment Date: {{ latest_mod_ticket_details.payment_date }}</div>
+            <div class="field">Duration (minutes): {{ latest_mod_ticket_details.duration_minutes }}</div>
+            <div class="field">Amount: {{ latest_mod_ticket_details.amount }}</div>
+            <div class="field">Is Paid: {{ latest_mod_ticket_details.is_paid }}</div>
+            <div class="field">Payment Type: {{ latest_mod_ticket_details.payment_type }}</div>
+          </div>
+  
       </form>
       
     {% else %}
