@@ -218,5 +218,15 @@
         "amount": 0.8,
         "is_paid": true,
         "payment_type": "mpesa"
+    },
+    {
+        "payment_id": "Payment_id-015",
+        "booking_id": "Book_id-037",
+        "customer_number": "CUST-11",
+        "payment_date": "2024-03-20T03:17:50.721943",
+        "duration_minutes": 2,
+        "amount": 1.6,
+        "is_paid": true,
+        "payment_type": "mpesa"
     }
 ]

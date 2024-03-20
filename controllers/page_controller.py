@@ -306,7 +306,7 @@ class PageController:
                 # Payment data collection successful, redirect to a payment page with fillled data
                 print("successfull")
                 # fetch details for that specific ticket
-                latest_mod_ticket_details = self.user_controller.html_get_selected_ticket_details(booking_id)
+                latest_mod_ticket_details = UserController.html_get_selected_ticket_details(self.user_controller,booking_id)
                 payment_data = UserController.get_payment_data_by_payment_id(self.user_controller, payment_id)
                 return render_template('payment_page.html', latest_mod_ticket_details=latest_mod_ticket_details, selected_payment_data=payment_data)
             else:
