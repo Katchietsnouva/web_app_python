@@ -287,7 +287,7 @@ class PageController:
             # Extract form data
             booking_id = request.form.get('booking_id')
             customer_number = request.form.get('customer_number')
-            payment_type = request.form.get('payment_type', 'mpesa')  # Default to 'mpesa' if not provided
+            payment_type = request.form.get('payment_type', 'mpesa')  # Default to mpesa if not provided
             duration_minutes =  UserController.get_duration_by_booking_id(self.user_controller, booking_id)
 
             # Perform payment logic using the PaymentModel
