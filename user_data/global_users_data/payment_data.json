@@ -155,7 +155,7 @@
         "customer_number": "CUST-10",
         "payment_date": "2024-03-20T02:33:42.424838",
         "duration_minutes": 2884,
-        "amount": 2307.2000000000003,
+        "amount": 2307.2000000000003,   
         "is_paid": true,
         "payment_type": "mpesa"
     },

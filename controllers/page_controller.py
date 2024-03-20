@@ -29,7 +29,7 @@ class PageController:
         # self.payment_page = PaymentPage(self)
         # self.profit_loss_page = ProfitLossPage(self)
         # self.payment_model = PaymentModel()
-        
+
         # Initial route
         @app.route('/')
         def default():
@@ -292,6 +292,7 @@ class PageController:
             if duration_minutes is not None:      
                 # amount = PaymentModel.calculate_amount(self, duration_minutes)
                 amount = 0.8 * duration_minutes
+                amount = round(amount, 2)
                 payment_date = datetime.now().isoformat()
                 payment_id = UserController.generate_payment_id(self.user_controller, booking_id)
                 # payment_id = self.generate_parking_id(payment_data_collec_model.booking_id)
