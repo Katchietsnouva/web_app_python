@@ -1,0 +1,41 @@
+The error you're encountering suggests that the PaymentModel class doesn't have a query attribute, which is commonly associated with database models when using ORMs like SQLAlchemy in Flask applications.
+
+To fix this issue, you need to ensure that your PaymentModel class is properly defined with a query interface that allows you to retrieve data from your database. If you're using SQLAlchemy, for example, you need to define a SQLAlchemy model class for your payments table and ensure it has the necessary attributes and methods for querying data.
+
+Here's a basic example of how you might define a PaymentModel using SQLAlchemy
+
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
+
+class PaymentModel(db.Model):
+    __tablename__ = 'payments'
+
+    id = db.Column(db.Integer, primary_key=True)
+    payment_id = db.Column(db.String(50), unique=True, nullable=False)
+    booking_id = db.Column(db.String(50), nullable=False)
+    customer_number = db.Column(db.String(50), nullable=False)
+    payment_date = db.Column(db.DateTime, nullable=False)
+    duration_minutes = db.Column(db.Integer, nullable=False)
+    amount = db.Column(db.Float, nullable=False)
+    is_paid = db.Column(db.Boolean, nullable=False)
+    payment_type = db.Column(db.String(20), nullable=False)
+
+    @classmethod
+    def get_payment_by_payment_id(cls, payment_id):
+        return cls.query.filter_by(payment_id=payment_id).first()
+
+
+Then, you need to initialize your Flask app with SQLAlchemy and set up the database connection. This typically involves configuring the database URL and initializing the SQLAlchemy extension:
+
+python
+Copy code
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///your_database.db'
+db = SQLAlchemy(app)
+Make sure to adjust the database URI ('sqlite:///your_database.db') according to your database setup.
+
+With this setup, you can now use PaymentModel.get_payment_by_payment_id(payment_id) to fetch payment data by payment ID. Ensure that your database tables are properly created and mapped to the SQLAlchemy models.
