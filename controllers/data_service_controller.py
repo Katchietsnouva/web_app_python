@@ -23,6 +23,7 @@ import json
 import os
 from datetime import datetime, timedelta
 from collections import defaultdict
+from models.payment_model import PaymentModel
 class UserController:
     def __init__(self):
         self.users_data_path = 'user_data/global_users_data/customers_db.json'
@@ -49,14 +50,11 @@ class UserController:
     def get_all_payment_data(self):
         return self.payment_data 
     
-    # def calculate_profit_loss():
-    #     profit_loss_data = {
-    #         'month': 'January 2023 - December 2023',
-    #         'total_income': 15000,  
-    #         'total_expenses': 17000,
-    #         'profit_loss': -2000 
-    #     }
-    #     return profit_loss_data
+    def get_payment_data_by_payment_id(self, payment_id):
+        # Query your database or data source to fetch payment data based on payment ID
+        # Example database query:
+        payment_data = PaymentModel.query.filter_by(payment_id=payment_id).first()
+        return payment_data
         
     def calculate_profit_loss(self):
         # Get current month and year
