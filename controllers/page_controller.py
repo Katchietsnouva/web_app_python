@@ -29,7 +29,7 @@ class PageController:
         # self.payment_page = PaymentPage(self)
         # self.profit_loss_page = ProfitLossPage(self)
         # self.payment_model = PaymentModel()
-
+        
         # Initial route
         @app.route('/')
         def default():
