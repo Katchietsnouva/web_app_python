@@ -166,5 +166,17 @@
         "carmodel": "h",
         "car_plate": "h",
         "role": "user"
+    },
+    {
+        "user_id": "96f8321c-80e7-48d7-b7af-7c6f0f2953ed",
+        "customer_number": "CUST-15",
+        "username": "paul",
+        "password": "paul",
+        "phone": "071",
+        "email": "paul@gmail.com",
+        "carmanufacturer": "paul",
+        "carmodel": "paul",
+        "car_plate": "paul",
+        "role": "user"
     }
 ]

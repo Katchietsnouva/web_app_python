@@ -1378,5 +1378,65 @@
         "departure_date": "2024-02-21",
         "departure_time": "14:30",
         "duration_minutes": 97
+    },
+    {
+        "user_id": "96f8321c-80e7-48d7-b7af-7c6f0f2953ed",
+        "customer_number": "CUST-15",
+        "booking_id": "Book_id-028",
+        "arrival_date": "2024-03-20",
+        "arrival_time": "15:27",
+        "departure_date": "2024-03-20",
+        "departure_time": "15:27",
+        "duration_minutes": 0
+    },
+    {
+        "user_id": "1b10bfda-2cc8-4e4a-bb35-ae97b0e7f7d2",
+        "customer_number": "CUST-10",
+        "booking_id": "Book_id-028-ext",
+        "arrival_date": "2024-03-18",
+        "arrival_time": "17:13",
+        "departure_date": "2024-03-21",
+        "departure_time": "17:28",
+        "duration_minutes": 12
+    },
+    {
+        "user_id": "96f8321c-80e7-48d7-b7af-7c6f0f2953ed",
+        "customer_number": "CUST-15",
+        "booking_id": "Book_id-029",
+        "arrival_date": "2024-03-20",
+        "arrival_time": "16:35",
+        "departure_date": "2024-03-20",
+        "departure_time": "16:36",
+        "duration_minutes": 1
+    },
+    {
+        "user_id": "1b10bfda-2cc8-4e4a-bb35-ae97b0e7f7d2",
+        "customer_number": "CUST-10",
+        "booking_id": "Book_id-029-ext",
+        "arrival_date": "2024-03-18",
+        "arrival_time": "17:43",
+        "departure_date": "2024-03-20",
+        "departure_time": "18:05",
+        "duration_minutes": 21
+    },
+    {
+        "user_id": "d4365c4c-ff32-448a-b14c-a318e3b41675",
+        "customer_number": "CUST-1",
+        "booking_id": "Book_id-030",
+        "arrival_date": "2024-03-20",
+        "arrival_time": "16:42",
+        "departure_date": "2024-03-20",
+        "departure_time": "16:43",
+        "duration_minutes": 1
+    },
+    {
+        "user_id": "1b10bfda-2cc8-4e4a-bb35-ae97b0e7f7d2",
+        "customer_number": "CUST-10",
+        "booking_id": "Book_id-030-ext",
+        "arrival_date": "2024-03-18",
+        "arrival_time": "21:21",
+        "departure_date": "2024-03-18",
+        "departure_time": "22:23",
+        "duration_minutes": 2
     }
 ]
