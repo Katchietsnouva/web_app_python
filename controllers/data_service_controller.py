@@ -52,10 +52,10 @@ class UserController:
     
     def get_payment_data_by_payment_id(self, payment_id):
         # payment_data = PaymentModel.query.filter_by(payment_id=payment_id).first()
-        for payment_data in payment_data:
-            if payment_data.get('payment_id') == payment_id:
-                return payment_data         
-        return payment_data
+        for specific_payment_data in self.payment_data:
+            if specific_payment_data.get('payment_id') == payment_id:
+                return specific_payment_data         
+        return specific_payment_data
         
     def calculate_profit_loss(self):
         # Get current month and year
