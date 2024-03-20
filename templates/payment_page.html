@@ -37,7 +37,23 @@
           display: block;
           margin-bottom: 8px;
           font-weight: bold;
-        }         
+        }     
+        select, input[type="submit"] {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          margin-bottom: 20px;
+          box-sizing: border-box;
+        }   
+        .payment-details .field {
+          margin-bottom: 10px;
+        }     
+        .field label {
+            font-weight: bold;
+            display: inline-block;
+            width: 150px;
+        }                
         #payment-type {
           font-size: 18px; 
           color: #45a049;
@@ -72,26 +88,50 @@
           <!-- Add other relevant details -->
     
           <form method="post" action="/make_payment">
-              <!-- You can add more form fields if needed, such as payment type -->
-              <label for="payment-type"><strong>Select Payment Type:</strong></label>
-              <select id="payment-type" name="payment_type">
-                  <option value="mpesa">M-Pesa</option>
-                  <option value="debit">Debit</option>
-                  <option value="cash">Cash</option>
-              </select>
-              <input type="hidden" name="booking_id" value="{{ latest_mod_ticket_details.booking_id }}">
-              <input type="hidden" name="customer_number" value="{{ latest_mod_ticket_details.customer_number }}">
-              <input type="submit"  id="make-payment-btn"  value="Make Payment">
-              <div>
-                <div class="field">Payment ID: {{ selected_payment_data.payment_id }}</div>
-                <div class="field">Payment Date: {{ selected_payment_data.payment_date }}</div>
-                <div class="field">Duration (minutes): {{ selected_payment_data.duration_minutes }}</div>
-                <div class="field">Amount: {{ selected_payment_data.amount }}</div>
-                <div class="field">Payment Status: {{ selected_payment_data.is_paid }}</div>
-                <div class="field">Payment Type: {{ selected_payment_data.payment_type }}</div>         
-              </div>
+            <!-- You can add more form fields if needed, such as payment type -->
+            <label for="payment-type"><strong>Select Payment Type:</strong></label>
+            <select id="payment-type" name="payment_type">
+                <option value="mpesa">M-Pesa</option>
+                <option value="debit">Debit</option>
+                <option value="cash">Cash</option>
+            </select>
+            <input type="hidden" name="booking_id" value="{{ latest_mod_ticket_details.booking_id }}">
+            <input type="hidden" name="customer_number" value="{{ latest_mod_ticket_details.customer_number }}">
+            <input type="submit"  id="make-payment-btn"  value="Make Payment">
+          </form>              
+          <div class="payment-details">
+            <h2>Payment Details</h2>
+            {% if selected_payment_data %}
+            <div class="field">
+                <label>Payment ID:</label>
+                <span>{{ selected_payment_data.payment_id }}</span>
+            </div>
+            <div class="field">
+                <label>Payment Date:</label>
+                <span>{{ selected_payment_data.payment_date }}</span>
+            </div>
+            <div class="field">
+                <label>Duration (minutes):</label>
+                <span>{{ selected_payment_data.duration_minutes }}</span>
+            </div>
+            <div class="field">
+                <label>Amount:</label>
+                <span>{{ selected_payment_data.amount }}</span>
+            </div>
+            <div class="field">
+                <label>Payment Status:</label>
+                <span>{{ selected_payment_data.is_paid }}</span>
+            </div>
+            <div class="field">
+                <label>Payment Type:</label>
+                <span>{{ selected_payment_data.payment_type }}</span>
+            </div>
+            {% else %}
+            <p>No payment data available.</p>
+            {% endif %}
+        </div>
       
-          </form>
+
           
         {% else %}
           <h1>Your Book Tickets History</h1>
