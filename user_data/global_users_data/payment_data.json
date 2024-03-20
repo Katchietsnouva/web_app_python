@@ -238,5 +238,35 @@
         "amount": 0.8,
         "is_paid": true,
         "payment_type": "mpesa"
+    },
+    {
+        "payment_id": "Payment_id-017",
+        "booking_id": "Book_id-038",
+        "customer_number": "CUST-11",
+        "payment_date": "2024-03-20T03:23:35.790278",
+        "duration_minutes": 1,
+        "amount": 0.8,
+        "is_paid": true,
+        "payment_type": "mpesa"
+    },
+    {
+        "payment_id": "Payment_id-018",
+        "booking_id": "Book_id-039",
+        "customer_number": "None",
+        "payment_date": "2024-03-20T03:25:57.419735",
+        "duration_minutes": 10081,
+        "amount": 8064.8,
+        "is_paid": true,
+        "payment_type": "mpesa"
+    },
+    {
+        "payment_id": "Payment_id-019",
+        "booking_id": "Book_id-030-ext",
+        "customer_number": "CUST-10",
+        "payment_date": "2024-03-20T03:30:05.964592",
+        "duration_minutes": 32,
+        "amount": 25.6,
+        "is_paid": true,
+        "payment_type": "mpesa"
     }
 ]
