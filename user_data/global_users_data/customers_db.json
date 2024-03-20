@@ -154,5 +154,17 @@
         "carmodel": "vz",
         "car_plate": "vz",
         "role": "user"
+    },
+    {
+        "user_id": "4cbce191-1b4c-4a23-b1cd-ab12fc22a963",
+        "customer_number": "CUST-14",
+        "username": "h",
+        "password": "h",
+        "phone": "h",
+        "email": "h@gmail.com",
+        "carmanufacturer": "h",
+        "carmodel": "h",
+        "car_plate": "h",
+        "role": "user"
     }
 ]

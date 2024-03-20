@@ -54,9 +54,9 @@ class PageController:
                 # if user.get('phone') == 'm':
                 if user.get('role') == 'admin':
                     # Get a list of all users (you need to implement this method)
-                    all_users = UserController.get_all_users(self.user_controller)
-                    all_booking_time_data = UserController.get_all_time_data(self.user_controller)
-                    all_payment_data = UserController.get_all_payment_data(self.user_controller)
+                    all_users = self.user_controller.get_all_users()
+                    all_booking_time_data = self.user_controller.get_all_time_data()
+                    all_payment_data = self.user_controller.get_all_payment_data()
 
                     # Render the admin page with the list of users
                     return render_template('admin_page.html', all_users=all_users,all_booking_time_data =all_booking_time_data, all_payment_data =all_payment_data )
@@ -153,8 +153,8 @@ class PageController:
         def home():        
             try:
                 user_id = session['user_id']
-                user_registration_data =  UserController.get_user_registration_data(self.user_controller, session['user_id'])
-                user, user_bookings, calculate_amount  =  UserController.get_user_booking_data(session[self.user_controller, 'user_id'])
+                user_registration_data =  self.user_controller.get_user_registration_data(session['user_id'])
+                user, user_bookings, calculate_amount  =  self.user_controller.get_user_booking_data(session['user_id'])
                 latest_booking_id  = "available_tickets"
 
                 # Rearranginh tume model to fing the duration difference
