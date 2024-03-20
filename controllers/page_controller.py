@@ -272,8 +272,6 @@ class PageController:
         @app.route('/get_selected_ticket_details', methods=['GET'])
         def get_selected_ticket_details():
             selected_ticket_id = request.args.get('ticket_id')
-            # Implement logic to fetch details based on the selected ticket ID
-            # usercontroller = UserController()
             details = UserController.html_get_selected_ticket_details(self.user_controller, selected_ticket_id)
             if details:
                 return jsonify(details)
