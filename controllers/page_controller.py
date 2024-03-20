@@ -48,15 +48,15 @@ class PageController:
         def admin_page():
             # Check if the user is logged in and has admin role
             if 'user_id' in session and 'username' in session:
-                user = self.user_controller.get_user_registration_data(session['user_id'])
+                user = UserController.get_user_registration_data(self.user_controller, session['user_id'])
                 # if user.role == 'admin':
                 # if user['role'] == 'admin':
                 # if user.get('phone') == 'm':
                 if user.get('role') == 'admin':
                     # Get a list of all users (you need to implement this method)
-                    all_users = self.user_controller.get_all_users()
-                    all_booking_time_data = self.user_controller.get_all_time_data()
-                    all_payment_data = self.user_controller.get_all_payment_data()
+                    all_users = UserController.get_all_users(self.user_controller)
+                    all_booking_time_data = UserController.get_all_time_data(self.user_controller)
+                    all_payment_data = UserController.get_all_payment_data(self.user_controller)
 
                     # Render the admin page with the list of users
                     return render_template('admin_page.html', all_users=all_users,all_booking_time_data =all_booking_time_data, all_payment_data =all_payment_data )
@@ -71,7 +71,7 @@ class PageController:
                 username = request.form.get('username')
                 password = request.form.get('password')
                 # Authenticate  user
-                user_authenticated, user_id, user_role   = self.user_controller.authenticate_user(username, password)
+                user_authenticated, user_id, user_role   = UserController.authenticate_user(self.user_controller, username, password)
                 if user_authenticated:
                     session['user_id'] = user_id
                     session['username'] = username 
@@ -153,8 +153,8 @@ class PageController:
         def home():        
             try:
                 user_id = session['user_id']
-                user_registration_data =  self.user_controller.get_user_registration_data(session['user_id'])
-                user, user_bookings, calculate_amount  =  self.user_controller.get_user_booking_data(session['user_id'])
+                user_registration_data =  UserController.get_user_registration_data(self.user_controller, session['user_id'])
+                user, user_bookings, calculate_amount  =  UserController.get_user_booking_data(session[self.user_controller, 'user_id'])
                 latest_booking_id  = "available_tickets"
 
                 # Rearranginh tume model to fing the duration difference
@@ -258,15 +258,15 @@ class PageController:
             if latest_booking_id != "available_tickets":
                 print(latest_booking_id + " this should be executed if latest_booking_id has a value") 
                 # If latestBookingId is provided, fetch details for that specific ticket
-                latest_mod_ticket_details = self.user_controller.html_get_selected_ticket_details(latest_booking_id)
+                latest_mod_ticket_details = UserController.html_get_selected_ticket_details(self.user_controller, latest_booking_id)
                 return render_template('payment_page.html', latest_mod_ticket_details=latest_mod_ticket_details,selected_payment_data=None)
             else:
                 print(latest_booking_id + " this should be executed if latest_booking_id has no value") 
                 # try:
                 # If latestBookingId is not provided, fetch details for all tickets
                 user_id = session['user_id']
-                user_registration_data =  self.user_controller.get_user_registration_data(session['user_id'])
-                user, user_bookings, calculate_amount  =  self.user_controller.get_user_booking_data(session['user_id'])
+                user_registration_data =  UserController.get_user_registration_data(self.user_controller, session['user_id'])
+                user, user_bookings, calculate_amount  =  UserController.get_user_booking_data(self.user_controller, session['user_id'])
                 return render_template('payment_page.html', user_registration_data=user_registration_data, user=user, user_bookings=user_bookings, calculate_amount=calculate_amount)
             
         @app.route('/get_selected_ticket_details', methods=['GET'])
