@@ -51,9 +51,10 @@ class UserController:
         return self.payment_data 
     
     def get_payment_data_by_payment_id(self, payment_id):
-        # Query your database or data source to fetch payment data based on payment ID
-        # Example database query:
-        payment_data = PaymentModel.query.filter_by(payment_id=payment_id).first()
+        # payment_data = PaymentModel.query.filter_by(payment_id=payment_id).first()
+        for payment_data in payment_data:
+            if payment_data.get('payment_id') == payment_id:
+                return payment_data         
         return payment_data
         
     def calculate_profit_loss(self):
