@@ -48,7 +48,33 @@
         }
         .navigation-button:hover {
             background-color: #0056b3;
-        }        
+        }
+
+        /* Legend styles */
+        .legend {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .legend-item {
+            display: inline-block;
+            margin-right: 20px;
+        }
+        .legend-item span {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            border-radius: 50%;
+        }
+        .legend-item .profit {
+            background-color: lightgreen;
+        }
+        .legend-item .loss {
+            background-color: lightcoral;
+        }
+        .legend-item .no-data {
+            background-color: yellow;
+        }
     </style>
 </head>
 <body>
@@ -57,6 +83,22 @@
         <button onclick="goBack()" class="navigation-button">Go Back</button>
         <a href="/login" class="navigation-button">Logout</a>
     </div>
+    <!-- Legend -->
+    <div class="legend">
+        <div class="legend-item">
+            <span class="profit"></span>
+            Profit
+        </div>
+        <div class="legend-item">
+            <span class="loss"></span>
+            Loss
+        </div>
+        <div class="legend-item">
+            <span class="no-data"></span>
+            No data
+        </div>
+    </div>
+    <!-- Container for cubes -->
     <div class="container">
         <!-- Loop of the last 12 months -->
         {% if profit_loss_data.last_12_months %}
@@ -88,11 +130,12 @@
     </div>
 
     <script>
-        // fxn 4 genering month and year label        
+        // Function for going back
         function goBack() {
             window.history.back();
         }
-        
+
+        // Function for generating month and year label
         function generateMonthLabel(month) {
             var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
             var year = parseInt(month.split(' ')[1]);
@@ -104,7 +147,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            // no of existing cubes
+            // Calculate the number of existing cubes
             var existingCubes = document.querySelectorAll('.cube').length;
             var remainingCubes = existingCubes ? 12 - existingCubes : 12;
             // Retrieve last month with available data
