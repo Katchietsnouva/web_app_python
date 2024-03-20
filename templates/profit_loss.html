@@ -58,7 +58,7 @@
         <a href="/login" class="navigation-button">Logout</a>
     </div>
     <div class="container">
-        <!-- Loop through the last 12 months -->
+        <!-- Loop of the last 12 months -->
         {% if profit_loss_data.last_12_months %}
             {% for month in profit_loss_data.last_12_months %}
                 {% if month in profit_loss_data.months_data %}
@@ -88,8 +88,7 @@
     </div>
 
     <script>
-        // fxn generate month and year label
-        
+        // fxn 4 genering month and year label        
         function goBack() {
             window.history.back();
         }
@@ -105,15 +104,11 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            // Count the number of existing cubes
+            // no of existing cubes
             var existingCubes = document.querySelectorAll('.cube').length;
-
-            // Calculate the number of cubes needed to make up 12
             var remainingCubes = existingCubes ? 12 - existingCubes : 12;
-
-            // Retrieve the last month with available data
+            // Retrieve last month with available data
             var lastMonth = existingCubes ? document.querySelector('.container .cube:nth-last-child(1) .month-label').innerText : 'March 2024';
-
             // Generate the remaining cubes
             for (var i = 0; i < remainingCubes; i++) {
                 var newCube = document.createElement('div');
