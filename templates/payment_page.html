@@ -47,7 +47,7 @@
         input[type="submit"] {
             background-color: #007bff;
             color: #fff;
-            font-size: 16px;
+            font-size: 18px;
             cursor: pointer;
         }
 
@@ -76,13 +76,15 @@
 
         .btn-back-to-home {
             display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
+            margin-top: 10px;
             background-color: #3498db;
             color: #fff;
+            font-size: 18px;
             text-decoration: none;
             border-radius: 5px;
             transition: background-color 0.3s ease;
+            width: 100%;
+            height: 50px;
         }
 
         .btn-back-to-home:hover {
@@ -107,6 +109,7 @@
             <input type="hidden" name="booking_id" value="{{ latest_mod_ticket_details.booking_id }}">
             <input type="hidden" name="customer_number" value="{{ latest_mod_ticket_details.customer_number }}">
             <input type="submit" value="Make Payment">
+            <a href="/home" class="btn-back-to-home">Next</a>
         </form>
         <div class="payment-details">
             <h2>Payment Details</h2>
@@ -140,10 +143,30 @@
             {% endif %}
         </div>
         {% else %}
-        <h2>Your Book Tickets History</h2>
-        <p>No booking information available.</p>
+      <h1>Your Book Tickets History</h1>
+      <div class="right-half-3">
+        <a href="/home" class="btn-back-to-home">Back</a>
+        
+        <h2>Payment Information</h2>
+        <h4>(0.8 Kshs. per min)</h4>
+        {% if user_bookings %} {% for booking in user_bookings %}
+        <div class="booking-entry">
+          <p><strong>Booking ID:</strong> {{ booking['booking_id'] }}</p>
+          <p><strong>Time (in min):</strong> {{ booking['duration_minutes'] }}</p>
+          <p><strong>Amount (in Kshs.):</strong> {{ calculate_amount(booking['duration_minutes']) }}</p>
+          <label for="payment-type"><p><strong>Select Payment Type:</strong></label>
+          <select id="payment-type" name="payment_type">
+            <option value="mpesa">M-Pesa</option>
+            <option value="debit_cash">Debit/Cash</option>
+          </select>
+        </div>
+        {% endfor %} {% else %}
+        <p>No Payment Information found. Book now to populate this menu!</p>
         {% endif %}
-        <a href="/home" class="btn-back-to-home">Back to Home</a>
+      </div>
+    {% endif %}
+
+        
     </div>
 </body>
 </html>
