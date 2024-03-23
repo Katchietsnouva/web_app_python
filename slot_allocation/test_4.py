@@ -15,6 +15,7 @@ def assign_parking_slot(bookings):
     for booking in bookings:
         arrival_unix = convert_to_unix(booking["arrival_date"], booking["arrival_time"])
         departure_unix = convert_to_unix(booking["departure_date"], booking["departure_time"])
+        customer_number = booking["customer_number"]
 
         assigned = False
         for slot_assignment in parking_slots_BOOK_ASSIGNMENTS:
@@ -25,12 +26,15 @@ def assign_parking_slot(bookings):
                     occupied = True
                     break
             if not occupied:
-                slot_assignment["time_occupied"].append((arrival_unix, departure_unix))
+                slot_assignment["time_occupied"].append((arrival_unix, departure_unix, customer_number))
                 assigned = True
                 break
 
         if not assigned:
-            parking_slots_BOOK_ASSIGNMENTS.append({"slot_id": f"SLOT-{str(slot_counter).zfill(3)}", "time_occupied": [(arrival_unix, departure_unix)]})
+            parking_slots_BOOK_ASSIGNMENTS.append({
+                "slot_id": f"SLOT-{str(slot_counter).zfill(3)}", 
+                "time_occupied": [(arrival_unix, departure_unix, customer_number)]
+            })
             slot_counter += 1
 
     return parking_slots_BOOK_ASSIGNMENTS
