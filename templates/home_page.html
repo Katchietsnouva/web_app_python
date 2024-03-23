@@ -134,6 +134,19 @@
       <p>Explore our amazing features and services.</p>
     </div>
 
+    <!-- Custom Section for Parking Slots -->
+<div class="custom-section">
+  <h2>Parking Slots</h2>
+  <div class="parking-grid">
+      {% for slot in parking_slots %}
+          <div class="parking-slot {% if slot.status == 'occupied' %}occupied{% else %}available{% endif %}">
+              {{ slot.slot_id }}
+          </div>
+      {% endfor %}
+  </div>
+</div>
+
+
     <!-- Data Section -->
     <div class="data-section">
       <div class="custom-section-content">
