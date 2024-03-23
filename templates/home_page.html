@@ -106,6 +106,28 @@
         padding: 8px;
         border-radius: 5px;
       }
+
+      /* Styles for Parking Slots */
+.parking-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Adjust the number of columns as needed */
+    grid-gap: 10px;
+}
+
+.parking-slot {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.available {
+    background-color: lightgreen;
+}
+
+.occupied {
+    background-color: lightcoral;
+}
+
     </style>
   </head>
   <body>
