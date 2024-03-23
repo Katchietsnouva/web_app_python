@@ -32,7 +32,7 @@ def assign_parking_slot(bookings):
 
         if not assigned:
             parking_slots_BOOK_ASSIGNMENTS.append({
-                "slot_id": f"SLOT-{str(slot_counter).zfill(3)}", 
+                "slot_id": f"SLOT-{str(slot_counter).zfill(3)}",
                 "time_occupied": [(arrival_unix, departure_unix, customer_number)]
             })
             slot_counter += 1
@@ -44,8 +44,8 @@ def parking_assignments_to_json(assignments):
     for assignment in assignments:
         json_assignment = {
             "slot_id": assignment['slot_id'],
-            "time_occupied": [
-                {"from": convert_to_datetime(time_range[0]), "to": convert_to_datetime(time_range[1])}
+            "bookings": [
+                {"from": convert_to_datetime(time_range[0]), "to": convert_to_datetime(time_range[1]), "customer_number": time_range[2]}
                 for time_range in assignment['time_occupied']
             ]
         }
@@ -60,17 +60,16 @@ with open('user_data/global_users_data/time_data.json', 'r') as file:
 parking_assignments = assign_parking_slot(bookings)
 
 # Save parking slot assignments to JSON file
-with open('slot_allocation/slots.json', 'w') as json_file:
+with open('slots.json', 'w') as json_file:
     json.dump(parking_assignments_to_json(parking_assignments), json_file, indent=4)
-    
 
 # Save parking slot assignments to text file
-with open('slot_allocation/slots.txt', 'w') as txt_file:
+with open('slots.txt', 'w') as txt_file:
     for assignment in parking_assignments:
         txt_file.write(f"Slot ID: {assignment['slot_id']}\n")
-        txt_file.write("Time Occupied:\n")
+        txt_file.write("Bookings:\n")
         for time_range in assignment['time_occupied']:
-            txt_file.write(f"  - From: {convert_to_datetime(time_range[0])}, To: {convert_to_datetime(time_range[1])}\n")
+            txt_file.write(f"  - From: {convert_to_datetime(time_range[0])}, To: {convert_to_datetime(time_range[1])}, Customer Number: {time_range[2]}\n")
         txt_file.write("\n")
 
 # Print confirmation message
