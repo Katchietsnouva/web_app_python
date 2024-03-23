@@ -60,11 +60,11 @@ with open('user_data/global_users_data/time_data.json', 'r') as file:
 parking_assignments = assign_parking_slot(bookings)
 
 # Save parking slot assignments to JSON file
-with open('slots.json', 'w') as json_file:
+with open('slot_allocation/slots.json', 'w') as json_file:
     json.dump(parking_assignments_to_json(parking_assignments), json_file, indent=4)
 
 # Save parking slot assignments to text file
-with open('slots.txt', 'w') as txt_file:
+with open('slot_allocation/slots.txt', 'w') as txt_file:
     for assignment in parking_assignments:
         txt_file.write(f"Slot ID: {assignment['slot_id']}\n")
         txt_file.write("Bookings:\n")
