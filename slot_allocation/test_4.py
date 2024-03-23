@@ -57,8 +57,7 @@ parking_assignments = assign_parking_slot(bookings)
 
 # Save parking slot assignments to JSON file
 with open('slot_allocation/slots.json', 'w') as json_file:
-    json.dump(parking_assignments_to_json(parking_assignments), json_file, indent=4
-              )
+    json.dump(parking_assignments_to_json(parking_assignments), json_file, indent=4)
 
 # Save parking slot assignments to text file
 with open('slot_allocation/slots.txt', 'w') as txt_file:
