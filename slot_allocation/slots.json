@@ -1,7 +1,7 @@
 [
     {
         "slot_id": "SLOT-001",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-07 04:00",
                 "to": "2024-02-09 03:00",
@@ -51,7 +51,7 @@
     },
     {
         "slot_id": "SLOT-002",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-08 02:10",
                 "to": "2024-02-20 06:10",
@@ -101,7 +101,7 @@
     },
     {
         "slot_id": "SLOT-003",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-20 02:10",
                 "to": "2024-02-22 02:16",
@@ -296,7 +296,7 @@
     },
     {
         "slot_id": "SLOT-004",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-19 19:00",
                 "to": "2024-02-23 21:59",
@@ -391,7 +391,7 @@
     },
     {
         "slot_id": "SLOT-005",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-20 02:10",
                 "to": "2024-02-22 02:18",
@@ -431,7 +431,7 @@
     },
     {
         "slot_id": "SLOT-006",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-20 02:10",
                 "to": "2024-02-22 02:25",
@@ -456,7 +456,7 @@
     },
     {
         "slot_id": "SLOT-007",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-20 02:10",
                 "to": "2024-02-22 02:28",
@@ -481,7 +481,7 @@
     },
     {
         "slot_id": "SLOT-008",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-09 06:44",
                 "to": "2024-02-21 07:45",
@@ -511,7 +511,7 @@
     },
     {
         "slot_id": "SLOT-009",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-09 06:44",
                 "to": "2024-02-21 09:15",
@@ -536,7 +536,7 @@
     },
     {
         "slot_id": "SLOT-010",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-09 06:44",
                 "to": "2024-02-21 10:22",
@@ -556,7 +556,7 @@
     },
     {
         "slot_id": "SLOT-011",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-17 18:21",
                 "to": "2024-02-22 18:21",
@@ -576,7 +576,7 @@
     },
     {
         "slot_id": "SLOT-012",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-17 19:06",
                 "to": "2024-02-23 19:07",
@@ -596,7 +596,7 @@
     },
     {
         "slot_id": "SLOT-013",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-20 19:21",
                 "to": "2024-03-07 19:24",
@@ -616,7 +616,7 @@
     },
     {
         "slot_id": "SLOT-014",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-15 22:21",
                 "to": "2024-02-24 19:24",
@@ -631,7 +631,7 @@
     },
     {
         "slot_id": "SLOT-015",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-17 19:30",
                 "to": "2024-02-22 19:30",
@@ -646,7 +646,7 @@
     },
     {
         "slot_id": "SLOT-016",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-16 19:35",
                 "to": "2024-02-23 19:37",
@@ -661,7 +661,7 @@
     },
     {
         "slot_id": "SLOT-017",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-16 19:35",
                 "to": "2024-02-23 20:57",
@@ -676,7 +676,7 @@
     },
     {
         "slot_id": "SLOT-018",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-16 19:35",
                 "to": "2024-02-23 21:09",
@@ -686,7 +686,7 @@
     },
     {
         "slot_id": "SLOT-019",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-20 12:51",
                 "to": "2024-02-21 12:49",
@@ -696,7 +696,7 @@
     },
     {
         "slot_id": "SLOT-020",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-19 16:46",
                 "to": "2024-02-26 13:52",
@@ -706,7 +706,7 @@
     },
     {
         "slot_id": "SLOT-021",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-20 15:26",
                 "to": "2024-02-21 15:27",
@@ -716,7 +716,7 @@
     },
     {
         "slot_id": "SLOT-022",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-19 20:07",
                 "to": "2024-02-21 16:11",
@@ -726,7 +726,7 @@
     },
     {
         "slot_id": "SLOT-023",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-19 19:10",
                 "to": "2024-02-26 16:13",
@@ -736,7 +736,7 @@
     },
     {
         "slot_id": "SLOT-024",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-19 16:15",
                 "to": "2024-02-27 20:15",
@@ -746,7 +746,7 @@
     },
     {
         "slot_id": "SLOT-025",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-19 16:15",
                 "to": "2024-02-27 20:15",
@@ -756,7 +756,7 @@
     },
     {
         "slot_id": "SLOT-026",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-19 16:15",
                 "to": "2024-02-27 20:15",
@@ -766,7 +766,7 @@
     },
     {
         "slot_id": "SLOT-027",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-19 16:15",
                 "to": "2024-02-27 20:15",
@@ -776,7 +776,7 @@
     },
     {
         "slot_id": "SLOT-028",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-17 18:21",
                 "to": "2024-02-22 19:28",
@@ -786,7 +786,7 @@
     },
     {
         "slot_id": "SLOT-029",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-17 18:21",
                 "to": "2024-02-22 19:28",
@@ -796,7 +796,7 @@
     },
     {
         "slot_id": "SLOT-030",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-20 02:10",
                 "to": "2024-02-22 02:20",
@@ -806,7 +806,7 @@
     },
     {
         "slot_id": "SLOT-031",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-20 02:10",
                 "to": "2024-02-22 02:20",
@@ -816,7 +816,7 @@
     },
     {
         "slot_id": "SLOT-032",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-20 02:10",
                 "to": "2024-02-22 02:33",
@@ -826,7 +826,7 @@
     },
     {
         "slot_id": "SLOT-033",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-09 06:44",
                 "to": "2024-02-21 07:50",
@@ -836,7 +836,7 @@
     },
     {
         "slot_id": "SLOT-034",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-09 06:44",
                 "to": "2024-02-21 07:50",
@@ -846,7 +846,7 @@
     },
     {
         "slot_id": "SLOT-035",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-09 06:44",
                 "to": "2024-02-21 07:50",
@@ -856,7 +856,7 @@
     },
     {
         "slot_id": "SLOT-036",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-09 06:44",
                 "to": "2024-02-21 07:50",
@@ -866,7 +866,7 @@
     },
     {
         "slot_id": "SLOT-037",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-17 18:21",
                 "to": "2024-02-22 19:32",
@@ -876,7 +876,7 @@
     },
     {
         "slot_id": "SLOT-038",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-17 18:21",
                 "to": "2024-02-22 19:37",
@@ -886,7 +886,7 @@
     },
     {
         "slot_id": "SLOT-039",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-20 18:29",
                 "to": "2024-02-22 18:30",
@@ -896,7 +896,7 @@
     },
     {
         "slot_id": "SLOT-040",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-20 02:10",
                 "to": "2024-02-22 02:29",
@@ -906,7 +906,7 @@
     },
     {
         "slot_id": "SLOT-041",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-20 02:10",
                 "to": "2024-02-22 02:29",
@@ -916,7 +916,7 @@
     },
     {
         "slot_id": "SLOT-042",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-20 19:37",
                 "to": "2024-02-21 19:38",
@@ -926,7 +926,7 @@
     },
     {
         "slot_id": "SLOT-043",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-16 19:35",
                 "to": "2024-02-23 19:58",
@@ -936,7 +936,7 @@
     },
     {
         "slot_id": "SLOT-044",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-20 12:51",
                 "to": "2024-02-21 12:51",
@@ -946,7 +946,7 @@
     },
     {
         "slot_id": "SLOT-045",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-20 12:51",
                 "to": "2024-02-21 12:53",
@@ -956,7 +956,7 @@
     },
     {
         "slot_id": "SLOT-046",
-        "time_occupied_data": [
+        "Time_occupied_data": [
             {
                 "from": "2024-02-20 12:51",
                 "to": "2024-02-21 14:30",
