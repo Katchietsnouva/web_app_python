@@ -44,7 +44,7 @@ def parking_assignments_to_json(assignments):
     for assignment in assignments:
         json_assignment = {
             "slot_id": assignment['slot_id'],
-            "Time_occupied_data": [
+            "time_occupied_data": [
                 {"from": convert_to_datetime(time_range[0]), "to": convert_to_datetime(time_range[1]), "customer_number": time_range[2]}
                 for time_range in assignment['time_occupied']
             ]
