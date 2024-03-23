@@ -73,4 +73,4 @@ with open('slot_allocation/slots.txt', 'w') as txt_file:
         txt_file.write("\n")
 
 # Print confirmation message
-print("Parking slot assignments saved to slots.json and slots.txt")
+print("Parking slot assignments saved to slot_allocation/slots.json and slot_allocation/slots.txt")
