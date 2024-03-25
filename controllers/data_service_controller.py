@@ -60,15 +60,15 @@ class UserController:
     
     # def f"SLOT-{str(slot_counter).zfill(3)}",
 
-    # def generate_parking_slot_id(self, booking_id):
-    #     # user_bookings = [entry for entry in self.time_data if entry['user_id'] == user_id]
-    #     user_parking_info = [entry for entry in self.payment_data]
-    #     if not user_parking_info:
-    #         return f'Payment_id-001'
-    #     else:
-    #         latest_parking_id = user_parking_info[-1]['payment_id']
-    #         index = int(latest_parking_id.split('-')[1]) + 1
-    #         return f'Payment_id-{index:03d}'
+    def generate_parking_slot_id(self):
+        # user_bookings = [entry for entry in self.time_data if entry['user_id'] == user_id]
+        user_parking_info = [entry for entry in self.parking_slots_available_data]
+        if not user_parking_info:
+            return f'SLOT-001'
+        else:
+            latest_parking_slots_available_data = user_parking_info[-1]['parking_slot_id']
+            index = int(latest_parking_slots_available_data.split('-')[1]) + 1
+            return f'parking_slot_id-{index:03d}'
     
     def load_or_create_parking_slots_available_data(self):
         directory = os.path.dirname(self.parking_slots_available_model_path)

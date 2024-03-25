@@ -18,5 +18,40 @@
         "parking_slot_id": "",
         "slot_status": "good",
         "available_for_use": "true"
+    },
+    {
+        "parking_slot_id": "",
+        "slot_status": "good",
+        "available_for_use": "true"
+    },
+    {
+        "parking_slot_id": "",
+        "slot_status": "good",
+        "available_for_use": "true"
+    },
+    {
+        "parking_slot_id": "",
+        "slot_status": "good",
+        "available_for_use": "true"
+    },
+    {
+        "parking_slot_id": "",
+        "slot_status": "good",
+        "available_for_use": "true"
+    },
+    {
+        "parking_slot_id": "",
+        "slot_status": "good",
+        "available_for_use": "true"
+    },
+    {
+        "parking_slot_id": "",
+        "slot_status": "good",
+        "available_for_use": "true"
+    },
+    {
+        "parking_slot_id": "",
+        "slot_status": "good",
+        "available_for_use": "true"
     }
 ]
