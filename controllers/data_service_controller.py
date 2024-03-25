@@ -40,7 +40,7 @@ class UserController:
         self.users_data = self.load_or_create_users_data()
         self.time_data = self.load_or_create_time_data()
         self.payment_data = self.load_or_create_payment_data()
-        self.payment_data = self.load_or_create_parking_slots_available_data()
+        self.parking_slots_available_data = self.load_or_create_parking_slots_available_data()
         self.last_booking_index = {}
         # self.users_data_path = current_app.config['users_data_path']
         self.tickets_data = [
