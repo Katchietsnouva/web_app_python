@@ -21,13 +21,14 @@
 # app/controllers/data_service_controller.py    
 import json
 import os
+# the below is for unix time
+import datetime
 from datetime import datetime, timedelta    
 from collections import defaultdict
 from models.payment_model import PaymentModel
 from models.parking_slots_available_model import ParkingSlotAvailableModel
 from models.Parking_slots_assignment_model import SlotAssignmentModel
-# the below is for unix time
-import datetime
+
 
 class UserController:
     def __init__(self):
@@ -193,7 +194,7 @@ class UserController:
             data['profit_loss'] = round(data['total_income'] - data['total_expenses'],2)
 
         # Sort last 12 months in descending order
-        profit_loss_data['last_12_months'] = sorted(profit_loss_data['last_12_months'], key=lambda x: datetime.strptime(x, "%B %Y"), reverse=True)
+        profit_loss_data['last_12_months'] = sorted(profit_loss_data['last_12_months'], key=lambda x: datetime.datetime.strptime(x, "%B %Y"), reverse=True)
         print(profit_loss_data)
 
         return profit_loss_data
@@ -439,7 +440,7 @@ class UserController:
         
     def calculate_new_departure_time(self, original_departure_time, extension_time):
         # Convert to datetime object
-        original_departure_datetime = datetime.strptime(original_departure_time, "%H:%M")
+        original_departure_datetime = datetime.datetime.strptime(original_departure_time, "%H:%M")
 
         # Add the extension_time (in minutes) to the original_departure_time
         updated_departure_datetime = original_departure_datetime + timedelta(minutes=extension_time)
