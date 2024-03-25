@@ -99,7 +99,8 @@ class UserController:
         # payment_id = self.generate_payment_id(payment_data_collec_model.booking_id)
         print("perfornming saving added slot operation")
         self.save_parking_slots_available_data()
-        return True  #  successful
+        parking_slots_available_data = self.get_all_parking_slots_available_data()
+        return parking_slots_available_data  #  successful
     
     
     def get_payment_data_by_payment_id(self, payment_id):

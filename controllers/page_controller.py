@@ -64,9 +64,17 @@ class PageController:
             # Register the slot
             add_parking_slot_successful = UserController.save_admin_added_parking_slots_available_data(self.user_controller, parking_slots_available_data_model)  
             if add_parking_slot_successful:
-                flash('Slot added successfully!', 'success')
+                slot_data = {
+                    "parking_slot_id": parking_slot_id,
+                    "slot_status": slot_status,
+                    "available_for_use": available_for_use
+                }
+                return jsonify(slot_data)  # Return the slot data as JSON response                
+                # flash('Slot added successfully!', 'success')
             else:
-                flash('Failed to add slot.', 'error')                   
+                # flash('Failed to add slot.', 'error')
+                return jsonify({"error": "Failed to add slot."}), 500  # Return error response with status code
+                   
 
 
         @app.route('/admin', methods=['GET'])
