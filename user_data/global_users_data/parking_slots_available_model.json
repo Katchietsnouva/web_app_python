@@ -43,5 +43,50 @@
         "parking_slot_id": "SLOT-009",
         "slot_status": "good",
         "available_for_use": true
+    },
+    {
+        "parking_slot_id": "SLOT-010",
+        "slot_status": "good",
+        "available_for_use": true
+    },
+    {
+        "parking_slot_id": "SLOT-011",
+        "slot_status": "good",
+        "available_for_use": true
+    },
+    {
+        "parking_slot_id": "SLOT-012",
+        "slot_status": "good",
+        "available_for_use": true
+    },
+    {
+        "parking_slot_id": "SLOT-013",
+        "slot_status": "good",
+        "available_for_use": true
+    },
+    {
+        "parking_slot_id": "SLOT-014",
+        "slot_status": "good",
+        "available_for_use": true
+    },
+    {
+        "parking_slot_id": "SLOT-015",
+        "slot_status": "good",
+        "available_for_use": true
+    },
+    {
+        "parking_slot_id": "SLOT-016",
+        "slot_status": "good",
+        "available_for_use": true
+    },
+    {
+        "parking_slot_id": "SLOT-017",
+        "slot_status": "good",
+        "available_for_use": true
+    },
+    {
+        "parking_slot_id": "SLOT-018",
+        "slot_status": "good",
+        "available_for_use": true
     }
 ]

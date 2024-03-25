@@ -129,13 +129,6 @@
             .then(data => {
                 document.getElementById('slotIdContainer').innerText = 'Generated Slot ID: ' + data.parking_slot_id;
                 // Update UI with the generated slot ID
-                console.log(data);
-                console.log("data");
-                // Post data to VS Code terminal
-                vscode.postMessage({
-                    command: 'log',
-                    text: JSON.stringify(data)
-                });
             })
             .catch(error => console.error('Error:', error));            
 
