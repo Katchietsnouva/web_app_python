@@ -15,7 +15,7 @@
         
         .container {
             display: grid; 
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 20px; 
         }
         
@@ -65,6 +65,10 @@
         
         .payment-section {
             grid-column: 3; 
+        }
+
+        .slot-section {
+            grid-column: 4; 
         }
         .navigation {
             grid-column: 1 / -1; 
@@ -175,7 +179,7 @@
 
 
         <!-- Slots Data Section -->
-        <div class="data-section payment-section">
+        <div class="data-section slot-section">
             <h2>Parking SLots Data</h2>
             <ul class="data-list">
                 {% for slot_data in all_pparking_slots_available_data %}
@@ -184,7 +188,7 @@
                             <div class="data-info">
                                 <p><strong>Parking Slot ID:</strong> <strong>  {{ slot_data.parking_slot_id }} </strong> </p>
                                 <p><strong>Slot Status:</strong> {{ slot_data.slot_status }}</p>
-                                <p><strong>Available For Use:</strong> {{ slot_data.customer_number }}</p>
+                                <p><strong>Available For Use:</strong> {{ slot_data.available_for_use }}</p>
                             </div>
                         </div>
                     </li>
