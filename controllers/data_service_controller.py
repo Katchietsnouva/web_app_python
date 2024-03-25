@@ -78,12 +78,13 @@ class UserController:
             # json.dump(self.user_model, file, indent=4)
             json.dump(self.parking_slots_available_data, file, indent=4)
     
-    def save_admin_added_parking_slots_available_data(self, payment_data_collec_model):
-        print("Booking ID:", payment_data_collec_model.booking_id)
-        self.payment_data.append(vars(payment_data_collec_model))
+    def save_admin_added_parking_slots_available_data(self, parking_slots_available_model):
+        print("Parking Slot ID:", parking_slots_available_model.parking_slot_id)
+        self.parking_slots_available_data.append(vars(parking_slots_available_model))
+        # parking_slots_data.append(parking_slot_model.__dict__)
         # payment_id = self.generate_payment_id(payment_data_collec_model.booking_id)
-        print("perfornming operation")
-        self.save_payment_data()
+        print("perfornming saving added slot operation")
+        self.save_parking_slots_available_data()
         return True  #  successful
 
 
