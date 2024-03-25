@@ -24,14 +24,18 @@ import os
 from datetime import datetime, timedelta
 from collections import defaultdict
 from models.payment_model import PaymentModel
+from models.parking_slots_available_model import ParkingSlotAvailableModel
 class UserController:
     def __init__(self):
         self.users_data_path = 'user_data/global_users_data/customers_db.json'
         self.time_data_path = 'user_data/global_users_data/time_data.json'
         self.payment_data_path = 'user_data/global_users_data/payment_data.json'
+        self.parking_slots_available_model_path = 'user_data/global_users_data/parking_slots_available_model.json'
         # self.users_data_path = 'user_data\\global_users_data\\customers_db.json'
         # self.time_data_path = 'user_data\\global_users_data\\time_data.json'
         # self.payment_data_path = 'user_data\\global_users_data\\payment_data.json'
+        # self.parking_slots_available_model_path = 'user_dat\\global_users_data\\parking_slots_available_model.json'
+
 
         self.users_data = self.load_or_create_users_data()
         self.time_data = self.load_or_create_time_data()

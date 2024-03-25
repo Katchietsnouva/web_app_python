@@ -14,6 +14,7 @@ from controllers.data_service_controller import UserController
 from models.user_model import UserModel
 from models.time_model import TimeModel
 from models.payment_model import PaymentModel
+from models.parking_slots_available_model import ParkingSlotAvailableModel
 from datetime import datetime
 # import user_data
 class PageController:
