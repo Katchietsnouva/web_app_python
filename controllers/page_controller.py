@@ -44,6 +44,10 @@ class PageController:
             profit_loss_data = UserController.calculate_profit_loss(self.user_controller)
             return render_template('profit_loss.html', profit_loss_data=profit_loss_data)
         
+        @app.route('/slot_management')
+        def slot_management():
+            return render_template()        
+        
 
         @app.route('/admin', methods=['GET'])
         def admin_page():
