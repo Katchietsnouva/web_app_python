@@ -40,6 +40,7 @@ class UserController:
         self.users_data = self.load_or_create_users_data()
         self.time_data = self.load_or_create_time_data()
         self.payment_data = self.load_or_create_payment_data()
+        self.payment_data = self.load_or_create_parking_slots_available_data()
         self.last_booking_index = {}
         # self.users_data_path = current_app.config['users_data_path']
         self.tickets_data = [
@@ -53,21 +54,39 @@ class UserController:
         return self.time_data 
     def get_all_payment_data(self):
         return self.payment_data 
+    def get_all_parking_slots_available_data(self):
+        return self.parking_slots_available_data 
     
-    def save_parking_slot(self, parking_slot_model):
-        # Load existing data or create new if file doesn't exist
-        if os.path.exists(self.parking_slots_available_model_path):
-            with open(self.parking_slots_available_model_path, 'r') as file:
-                parking_slots_data = json.load(file)
+    def load_or_create_parking_slots_available_data(self):
+        directory = os.path.dirname(self.parking_slots_available_model_path)
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+
+        if not os.path.exists(self.parking_slots_available_model_path):
+            self.parking_slots_available_data = []
+            self.save_parking_slots_available_data()
         else:
-            parking_slots_data = []
+            self.parking_slots_available_data = self.load_parking_slots_available_data()
+        return self.parking_slots_available_data
+    
+    def load_parking_slots_available_data(self):
+        with open(self.parking_slots_available_model_path, "r") as file:
+            return json.load(file)
+        
+    def save_parking_slots_available_data(self):
+        with open(self.parking_slots_available_model_path, "w") as file:
+            # json.dump(self.user_model, file, indent=4)
+            json.dump(self.parking_slots_available_data, file, indent=4)
+    
+    def save_admin_added_parking_slots_available_data(self, payment_data_collec_model):
+        print("Booking ID:", payment_data_collec_model.booking_id)
+        self.payment_data.append(vars(payment_data_collec_model))
+        # payment_id = self.generate_payment_id(payment_data_collec_model.booking_id)
+        print("perfornming operation")
+        self.save_payment_data()
+        return True  #  successful
 
-        # Append new parking slot
-        parking_slots_data.append(parking_slot_model.__dict__)
 
-        # Save data back to file
-        with open(self.parking_slots_available_model_path, 'w') as file:
-            json.dump(parking_slots_data, file, indent=4)    
     
     def get_payment_data_by_payment_id(self, payment_id):
         # payment_data = PaymentModel.query.filter_by(payment_id=payment_id).first()
