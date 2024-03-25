@@ -127,6 +127,11 @@
       .occupied {
           background-color: lightcoral;
       }
+      .no-parking-slots {
+        text-align: center;
+        grid-column: 1 / -1;
+      }
+    
 
     </style>
   </head>
@@ -167,7 +172,9 @@
                 </div>
             {% endfor %}
         {% else %}
-            <p>No parking slots available</p>
+          <div class="no-parking-slots">
+            <h2> <strong>No parking slots available. Sorry you cant book! </strong></h2>
+          </div>  
         {% endif %}
       </div>
     </div>
