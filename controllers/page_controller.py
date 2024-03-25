@@ -255,13 +255,14 @@ class PageController:
                 all_booking_time_data = self.user_controller.get_all_time_data()
                 # Generate parking slot assignments
                 parking_assignments = UserController.assign_parking_slot(self.user_controller, all_booking_time_data)
+
                 # Save parking slot assignments to JSON file
                 with open('user_data/global_users_data/slots.json', 'w') as json_file:
                     json.dump([assignment.to_dict() for assignment in parking_assignments], json_file, indent=4)
                 # Save parking slot assignments to text file
                 with open('user_data/global_users_data/slots.txt', 'w') as txt_file:
                     for assignment in parking_assignments:
-                        txt_file.write(f"Slot ID: {assignment.slot_id}\n")
+                        txt_file.write(f"Slot ID: {assignment.slot_id}\n") 
                         txt_file.write("Time_occupied_data:\n")
                         for time_range in assignment.time_occupied_data:
                             txt_file.write(f"  - From: {time_range['from']}, To: {time_range['to']}, Customer Number: {time_range['customer_number']}\n")

@@ -18,14 +18,16 @@
         # JSON_DATA_FOLDER = 'user_data/global_users_data'
     # def __init__(self, username, password, name, phone, car_plate, email):
 
-# app/controllers/data_service_controller.py
+# app/controllers/data_service_controller.py    
 import json
 import os
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta    
 from collections import defaultdict
 from models.payment_model import PaymentModel
 from models.parking_slots_available_model import ParkingSlotAvailableModel
 from models.Parking_slots_assignment_model import SlotAssignmentModel
+# the below is for unix time
+import datetime
 
 class UserController:
     def __init__(self):
