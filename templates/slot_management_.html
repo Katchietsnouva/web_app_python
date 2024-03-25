@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slot Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        .button-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        .button:hover {
+            background-color: #0056b3;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+        }
+        
+        .slot-box {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        
+        .slot-box button {
+            display: block;
+            margin-top: 10px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Slot Management</h1>
+        
+        <div class="button-container">
+            <a href="#" class="button" onclick="autogenerateSlotID()">Add Slot</a>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Slot ID</th>
+                    <th>Status</th>
+                    <th>Available for Use?</th>
+                    <!-- Add other columns as needed -->
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Slot data will be dynamically generated here -->
+            </tbody>
+        </table>
+        <!-- Slot Boxes Section -->
+        <div class="grid-container">
+            <!-- Slot boxes will be dynamically generated here -->
+            <!-- these buttons will be displayed at the bottom of the Slot boxes-->
+            <a href="#" class="button">Edit Slot</a>
+            <a href="#" class="button">Delete Slot</a>
+        </div>
+    </div>
+        <!-- JavaScript function to generate slot ID and make AJAX request -->
+    <script>
+        function autogenerateSlotID() {
+            // Make an AJAX request to the Flask route
+            //window.location.href = "/generate_slot_id/" ;
+
+            fetch('/generate_slot_id')
+            .then(response => response.json())
+            .then(data => {
+                // Update UI with the generated slot ID
+                console.log(data);
+                console.log("data");
+                // Post data to VS Code terminal
+                vscode.postMessage({
+                    command: 'log',
+                    text: JSON.stringify(data)
+                });
+            })
+            .catch(error => console.error('Error:', error));            
+
+        }
+    </script>
+    <script>
+        // i now want a script that will populate grid-container with the grid boxes representing the available slots, order of a grid sys, columns 5
+    </script>
+</body>
+</html>
