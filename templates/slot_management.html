@@ -139,36 +139,25 @@
         }
     
             document.addEventListener('DOMContentLoaded', function() {
-                // Slot data array
-                var slotData = [
-                    {"parking_slot_id": "SLOT-001", "slot_status": "good", "available_for_use": true},
-                    {"parking_slot_id": "SLOT-002", "slot_status": "good", "available_for_use": true},
-                    {"parking_slot_id": "SLOT-003", "slot_status": "good", "available_for_use": true},
-                    {"parking_slot_id": "SLOT-004", "slot_status": "good", "available_for_use": true},
-                    {"parking_slot_id": "SLOT-005", "slot_status": "good", "available_for_use": true},
-                    {"parking_slot_id": "SLOT-006", "slot_status": "good", "available_for_use": true},
-                    {"parking_slot_id": "SLOT-007", "slot_status": "good", "available_for_use": true},
-                    {"parking_slot_id": "SLOT-008", "slot_status": "good", "available_for_use": true},
-                    {"parking_slot_id": "SLOT-009", "slot_status": "good", "available_for_use": true},
-                    {"parking_slot_id": "SLOT-010", "slot_status": "good", "available_for_use": true},
-                    {"parking_slot_id": "SLOT-011", "slot_status": "good", "available_for_use": true},
-                    {"parking_slot_id": "SLOT-012", "slot_status": "good", "available_for_use": true}
-                ];
-        
-                // Loop through the slot data array
-                slotData.forEach(function(slot) {
-                    var newSlotBox = document.createElement('div');
-                    newSlotBox.classList.add('slot-box');
-                    // Add appropriate class based on slot status
-                    if (slot.available_for_use) {
-                        newSlotBox.classList.add('available');
-                    } else {
-                        newSlotBox.classList.add('not-available');
-                    }
-                    newSlotBox.innerText = slot.parking_slot_id;
-                    document.querySelector('.grid-container').appendChild(newSlotBox);
-                });
+                fetch('/slot_management')
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(function(slot) {
+                        var newSlotBox = document.createElement('div');
+                        newSlotBox.classList.add('slot-box');
+                        // Add appropriate class based on slot status
+                        if (slot.available_for_use) {
+                            newSlotBox.classList.add('available');
+                        } else {
+                            newSlotBox.classList.add('not-available');
+                        }
+                        newSlotBox.innerText = slot.parking_slot_id;
+                        document.querySelector('.grid-container').appendChild(newSlotBox);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
             });
+        
         </script>
         
 
