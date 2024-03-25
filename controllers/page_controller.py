@@ -98,9 +98,10 @@ class PageController:
                     all_users = self.user_controller.get_all_users()
                     all_booking_time_data = self.user_controller.get_all_time_data()
                     all_payment_data = self.user_controller.get_all_payment_data()
+                    all_pparking_slots_available_data = self.user_controller.parking_slots_available_data()
 
                     # Render the admin page with the list of users
-                    return render_template('admin_page.html', all_users=all_users,all_booking_time_data =all_booking_time_data, all_payment_data =all_payment_data )
+                    return render_template('admin_page.html', all_users=all_users,all_booking_time_data =all_booking_time_data, all_payment_data =all_payment_data, all_pparking_slots_available_data = all_pparking_slots_available_data )
 
             # If not an admin or not logged in, redirect to login
             flash('You do not have permission to access this page.', 'error')

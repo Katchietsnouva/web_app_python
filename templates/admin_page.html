@@ -172,6 +172,25 @@
                 {% endfor %}
             </ul>
         </div>
+
+
+        <!-- Slots Data Section -->
+        <div class="data-section payment-section">
+            <h2>Parking SLots Data</h2>
+            <ul class="data-list">
+                {% for slot_data in all_pparking_slots_available_data %}
+                    <li class="data-item">
+                        <div class="data-details">
+                            <div class="data-info">
+                                <p><strong>Parking Slot ID:</strong> <strong>  {{ slot_data.parking_slot_id }} </strong> </p>
+                                <p><strong>Slot Status:</strong> {{ slot_data.slot_status }}</p>
+                                <p><strong>Available For Use:</strong> {{ slot_data.customer_number }}</p>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 </body>
 </html>

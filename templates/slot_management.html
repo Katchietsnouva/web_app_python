@@ -140,6 +140,10 @@
 
     <!-- JavaScript function to generate slot ID and make AJAX request -->
     <script>
+        function goBack() {
+            window.history.back();
+        }
+
         function autogenerateSlotID() {
             // Make an AJAX request to the Flask route
             fetch('/generate_slot_id')
