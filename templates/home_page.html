@@ -110,7 +110,7 @@
       /* Styles for Parking Slots */
       .parking-grid {
           display: grid;
-          grid-template-columns: repeat(5, 1fr);
+          grid-template-columns: repeat(8, 1fr);
           grid-gap: 10px;
       }
 
@@ -161,8 +161,8 @@
   <h2>All Parking Slots</h2>
   <div class="parking-grid">
       {% for slot in parking_slots %}
-          <div class="parking-slot {% if slot.status == 'occupied' %}occupied{% else %}available{% endif %}">
-              {{ slot.slot_id }}
+          <div class="parking-slot {% if slot.status == 'good' %}occupied{% else %}available{% endif %}">
+              {{ slot.parking_slot_id }}
           </div>
       {% endfor %}
   </div>
