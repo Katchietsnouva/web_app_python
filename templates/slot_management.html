@@ -62,7 +62,7 @@
 
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(8, 1fr);
+            grid-template-columns: repeat(5, 1fr);
             gap: 20px;
         }
 
@@ -72,11 +72,21 @@
             border: 1px solid #ddd;
             padding: 20px;
             border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .slot-info {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            margin-bottom: 20px; /* Add margin between slot boxes */
+            margin-bottom: 10px;
+        }
+    
+        .slot-property {
+            flex: 1;
+            font-weight: bold;
+        }
+    
+        .slot-value {
+            flex: 2;
         }
         
         
@@ -89,7 +99,7 @@
         <div class="button-container">
             <a href="#" class="button" onclick="autogenerateSlotID()">Add Slot</a>
         </div>
-        
+        <div id="slotIdContainer"></div>
         <table>
             <thead>
                 <tr>
@@ -108,7 +118,7 @@
             <!-- Slot boxes will be dynamically generated here -->
         </div>
         
-        <div id="slotIdContainer"></div>
+        
     </div>
 
     <!-- JavaScript function to generate slot ID and make AJAX request -->
@@ -119,6 +129,7 @@
             .then(response => response.json())
             .then(data => {
                 document.getElementById('slotIdContainer').innerText = 'Most Recent Generated Slot ID: ' + data.parking_slot_id;
+                // Reload slot boxes
                 fetchAndGenerateSlotBoxes();
             })
             .catch(error => console.error('Error:', error));            
@@ -129,8 +140,8 @@
             .then(response => response.json())
             .then(data => {
                 // Clear existing slot boxes
-                document.querySelector('.grid-container').innerHTML = '';   
-                data.forEach(function(slot) {                 
+                document.querySelector('.grid-container').innerHTML = '';
+                data.forEach(function(slot) {
                     var newSlotBox = document.createElement('div');
                     newSlotBox.classList.add('slot-box');
                     // Add appropriate class based on slot status
@@ -139,7 +150,20 @@
                     } else {
                         newSlotBox.classList.add('not-available');
                     }
-                    newSlotBox.innerText = slot.parking_slot_id;
+                    // Set inner HTML to include all slot information
+                    newSlotBox.innerHTML = `
+                    <div class="slot-info">
+                        <div class="slot-value">${slot.parking_slot_id}</div>
+                    </div>
+                    <div class="slot-info">
+                        <div class="slot-property">Status:</div>
+                        <div class="slot-value">${slot.slot_status}</div>
+                    </div>
+                    <div class="slot-info">
+                        <div class="slot-property">Available?</div>
+                        <div class="slot-value">${slot.available_for_use ? 'Yes' : 'No'}</div>
+                    </div>
+                `;
                     document.querySelector('.grid-container').appendChild(newSlotBox);
                 });
             })
