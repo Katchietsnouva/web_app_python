@@ -66,10 +66,19 @@
         <h1>Slot Management</h1>
         
         <div class="button-container">
-            <a href="#" class="button">Add Slot</a>
+            <a href="#" class="button" onclick="showAddSlotForm()">Add Slot</a>
             <a href="#" class="button">Edit Slot</a>
             <a href="#" class="button">Delete Slot</a>
         </div>
+        
+        <!-- Add Slot Form (Initially hidden) -->
+        <form id="addSlotForm" class="hidden" action="/slot_management" method="POST">
+            <input type="text" name="parking_slot_id" placeholder="Slot ID" required><br>
+            <input type="text" name="slot_status" placeholder="Status" required><br>
+            <input type="text" name="available_for_use" placeholder="Available for Use?" required><br>
+            <button type="submit">Add</button>
+        </form>
+        
         
         <table>
             <thead>
@@ -85,5 +94,11 @@
             </tbody>
         </table>
     </div>
+    <script>
+        function showAddSlotForm() {
+            document.getElementById("addSlotForm").classList.remove("hidden");
+        }
+        
+    </script>
 </body>
 </html>

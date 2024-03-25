@@ -58,6 +58,18 @@ class UserController:
     def get_all_parking_slots_available_data(self):
         return self.parking_slots_available_data 
     
+    # def f"SLOT-{str(slot_counter).zfill(3)}",
+
+    # def generate_parking_slot_id(self, booking_id):
+    #     # user_bookings = [entry for entry in self.time_data if entry['user_id'] == user_id]
+    #     user_parking_info = [entry for entry in self.payment_data]
+    #     if not user_parking_info:
+    #         return f'Payment_id-001'
+    #     else:
+    #         latest_parking_id = user_parking_info[-1]['payment_id']
+    #         index = int(latest_parking_id.split('-')[1]) + 1
+    #         return f'Payment_id-{index:03d}'
+    
     def load_or_create_parking_slots_available_data(self):
         directory = os.path.dirname(self.parking_slots_available_model_path)
         if not os.path.exists(directory):
@@ -88,12 +100,6 @@ class UserController:
         self.save_parking_slots_available_data()
         return True  #  successful
     
-    def add_parking_slot(self, parking_slot_id, slot_status, available_for_use):
-        parking_slot = ParkingSlotAvailableModel(parking_slot_id, slot_status, available_for_use)
-        self.save_admin_added_parking_slots_available_data(parking_slot)
-        return parking_slot
-
-
     
     def get_payment_data_by_payment_id(self, payment_id):
         # payment_data = PaymentModel.query.filter_by(payment_id=payment_id).first()

@@ -46,10 +46,18 @@ class PageController:
         
         @app.route('/slot_management',methods=['GET', 'POST'])
         def slot_management():
-            if request.method == 'POST':
-                parking_slot_id = request.form.get('parking_slot_id')
+            # if request.method == 'POST':
+            #     parking_slot_id = request.form.get('parking_slot_id')
+            #     slot_status = request.form.get('slot_status')
+            #     available_for_use = request.form.get('available_for_use')      
+                
+                parking_slot_id = UserController.generate_parking_slot_id
                 slot_status = request.form.get('slot_status')
-                available_for_use = request.form.get('available_for_use')          
+                available_for_use = request.form.get('available_for_use')      
+                # Create parking_slots_available_data instance
+                parking_slots_available_data_model = ParkingSlotAvailableModel(parking_slot_id, slot_status, available_for_use)
+                # Register the slot
+                add_parking_slot_successful = UserController.save_admin_added_parking_slots_available_data(self.user_controller, parking_slots_available_data_model)                    
             return render_template('slot_management.html')        
         
 

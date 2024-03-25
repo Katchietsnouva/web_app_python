@@ -1,1 +1,12 @@
-[]
+[
+    {
+        "parking_slot_id": "sdfs",
+        "slot_status": "dfd",
+        "available_for_use": "dfd"
+    },
+    {
+        "parking_slot_id": "dfd",
+        "slot_status": "fgf",
+        "available_for_use": "fgf"
+    }
+]
