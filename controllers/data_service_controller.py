@@ -68,7 +68,7 @@ class UserController:
         else:
             latest_parking_slots_available_data = user_parking_info[-1]['parking_slot_id']
             index = int(latest_parking_slots_available_data.split('-')[1]) + 1
-            return f'parking_slot_id-{index:03d}'
+            return f'SLOT-{index:03d}'
     
     def load_or_create_parking_slots_available_data(self):
         directory = os.path.dirname(self.parking_slots_available_model_path)
