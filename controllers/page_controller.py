@@ -250,6 +250,21 @@ class PageController:
                 
                 # Create a TimeModel instance and filling details
                 time_model = TimeModel(user_id, customer_number, None, arrival_date, arrival_time, departure_date, departure_time, duration_minutes)
+
+                all_booking_time_data = self.user_controller.get_all_time_data()
+                # Generate parking slot assignments
+                parking_assignments = UserController.assign_parking_slot(all_booking_time_data)
+                # Save parking slot assignments to JSON file
+                with open('slot_allocation/slots.json', 'w') as json_file:
+                    json.dump([assignment.to_dict() for assignment in parking_assignments], json_file, indent=4)
+                # Save parking slot assignments to text file
+                with open('slot_allocation/slots.txt', 'w') as txt_file:
+                    for assignment in parking_assignments:
+                        txt_file.write(f"Slot ID: {assignment.slot_id}\n")
+                        txt_file.write("Time_occupied_data:\n")
+                        for time_range in assignment.time_occupied_data:
+                            txt_file.write(f"  - From: {time_range['from']}, To: {time_range['to']}, Customer Number: {time_range['customer_number']}\n")
+                        txt_file.write("\n")
                 
                 # Save the time entry to the data service controller
                 UserController.save_user_time_data(self.user_controller, time_model)

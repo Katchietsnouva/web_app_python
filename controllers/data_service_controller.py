@@ -108,7 +108,7 @@ class UserController:
                 slot_counter += 1
 
         return [SlotAssignmentModel(assignment["slot_id"], [
-            {"from": convert_to_datetime(time_range[0]), "to": convert_to_datetime(time_range[1]), "customer_number": time_range[2]}
+            {"from": self.convert_to_datetime(time_range[0]), "to": self.convert_to_datetime(time_range[1]), "customer_number": time_range[2]}
             for time_range in assignment["time_occupied"]
         ]) for assignment in parking_slots_BOOK_ASSIGNMENTS]        
     
