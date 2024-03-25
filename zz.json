@@ -1,0 +1,9 @@
+{'slot_id': 'SLOT-017', 
+'time_occupied_data': [
+    {
+        'from': '2024-02-16 19:35', 
+        'to': '2024-02-23 20:57', 
+        'customer_number': 'CUST-1'
+    }
+    ]
+}
