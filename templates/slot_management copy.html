@@ -729,3 +729,55 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        function autogenerateSlotID() {
+            // Make an AJAX request to the Flask route
+            fetch('/generate_slot_id')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('slotIdContainer').innerText = 'Most Recent Generated Slot ID: ' + data.parking_slot_id;
+                // Reload slot boxes
+                fetchAndGenerateSlotBoxes();
+            })
+            .catch(error => console.error('Error:', error));            
+        }
+    
+        function fetchAndGenerateSlotBoxes() {
+            fetch('/slot_management')
+            .then(response => response.json())
+            .then(data => {
+                // Clear existing slot boxes
+                document.querySelector('.grid-container').innerHTML = '';
+                data.forEach(function(slot) {
+                    var newSlotBox = document.createElement('div');
+                    newSlotBox.classList.add('slot-box');
+                    // Add appropriate class based on slot status
+                    if (slot.available_for_use) {
+                        newSlotBox.classList.add('available');
+                    } else {
+                        newSlotBox.classList.add('not-available');
+                    }
+                    newSlotBox.innerText = slot.parking_slot_id;
+                    document.querySelector('.grid-container').appendChild(newSlotBox);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    
+        document.addEventListener('DOMContentLoaded', fetchAndGenerateSlotBoxes);
+    </script>
+    

@@ -103,5 +103,30 @@
         "parking_slot_id": "SLOT-021",
         "slot_status": "good",
         "available_for_use": true
+    },
+    {
+        "parking_slot_id": "SLOT-022",
+        "slot_status": "good",
+        "available_for_use": true
+    },
+    {
+        "parking_slot_id": "SLOT-023",
+        "slot_status": "good",
+        "available_for_use": true
+    },
+    {
+        "parking_slot_id": "SLOT-024",
+        "slot_status": "good",
+        "available_for_use": true
+    },
+    {
+        "parking_slot_id": "SLOT-025",
+        "slot_status": "good",
+        "available_for_use": true
+    },
+    {
+        "parking_slot_id": "SLOT-026",
+        "slot_status": "good",
+        "available_for_use": true
     }
 ]

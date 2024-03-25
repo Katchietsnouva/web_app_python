@@ -13,7 +13,7 @@
         }
         
         .container {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
             background-color: #fff;
             padding: 20px;
@@ -62,7 +62,7 @@
 
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(8, 1fr);
             gap: 20px;
         }
 
@@ -73,8 +73,6 @@
             padding: 20px;
             border-radius: 5px;
             display: flex;
-            width: 100px;
-            height: 100px;
             align-items: center;
             justify-content: center;
             text-align: center;
@@ -121,28 +119,18 @@
             .then(response => response.json())
             .then(data => {
                 document.getElementById('slotIdContainer').innerText = 'Most Recent Generated Slot ID: ' + data.parking_slot_id;
-                generateSlotBoxes(data);
+                fetchAndGenerateSlotBoxes();
             })
             .catch(error => console.error('Error:', error));            
         }
 
-        function generateSlotBoxes(slotData) {
-            const gridContainer = document.getElementById('slotBoxes');
-            gridContainer.innerHTML = ''; // Clear previous slot boxes
-
-            slotData.forEach(slot => {
-                const slotBox = document.createElement('div');
-                slotBox.classList.add('slot-box');
-                slotBox.textContent = slot.parking_slot_id;
-                gridContainer.appendChild(slotBox);
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
+        function fetchAndGenerateSlotBoxes() {
             fetch('/slot_managementt')
             .then(response => response.json())
             .then(data => {
-                data.forEach(function(slot) {
+                // Clear existing slot boxes
+                document.querySelector('.grid-container').innerHTML = '';   
+                data.forEach(function(slot) {                 
                     var newSlotBox = document.createElement('div');
                     newSlotBox.classList.add('slot-box');
                     // Add appropriate class based on slot status
@@ -156,8 +144,11 @@
                 });
             })
             .catch(error => console.error('Error:', error));
-        });
-    
+        }
+        
+        document.addEventListener('DOMContentLoaded', fetchAndGenerateSlotBoxes);
+        //document.addEventListener('DOMContentLoaded', function() {
+        //});
     </script>
         
 
