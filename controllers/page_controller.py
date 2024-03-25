@@ -47,7 +47,7 @@ class PageController:
         @app.route('/slot_management',methods=['GET', 'POST'])
         def slot_management():
             if request.method == 'POST':
-                parking_slot_id = UserController.generate_parking_slot_id()
+                parking_slot_id = UserController.generate_parking_slot_id(elf.user_controller)
                 slot_status = 'good'
                 available_for_use = "true"     
                 
