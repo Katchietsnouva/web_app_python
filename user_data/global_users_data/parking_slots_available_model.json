@@ -8,5 +8,15 @@
         "parking_slot_id": "dfd",
         "slot_status": "fgf",
         "available_for_use": "fgf"
+    },
+    {
+        "parking_slot_id": "",
+        "slot_status": "good",
+        "available_for_use": "true"
+    },
+    {
+        "parking_slot_id": "",
+        "slot_status": "good",
+        "available_for_use": "true"
     }
 ]
