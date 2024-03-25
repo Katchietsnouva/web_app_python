@@ -3,5 +3,15 @@
         "parking_slot_id": "SLOT-001",
         "slot_status": "good",
         "available_for_use": true
+    },
+    {
+        "parking_slot_id": "SLOT-002",
+        "slot_status": "good",
+        "available_for_use": true
+    },
+    {
+        "parking_slot_id": "SLOT-003",
+        "slot_status": "good",
+        "available_for_use": true
     }
 ]

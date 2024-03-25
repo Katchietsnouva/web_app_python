@@ -113,8 +113,21 @@
     <script>
         function autogenerateSlotID() {
             // Make an AJAX request to the Flask route
-            
-            window.location.href = "/generate_slot_id/" ;
+            //window.location.href = "/generate_slot_id/" ;
+
+            fetch('/generate_slot_id')
+            .then(response => response.json())
+            .then(data => {
+                // Update UI with the generated slot ID
+                console.log(data);
+                console.log("data");
+                // Post data to VS Code terminal
+                vscode.postMessage({
+                    command: 'log',
+                    text: JSON.stringify(data)
+                });
+            })
+            .catch(error => console.error('Error:', error));            
 
         }
     </script>
