@@ -49,7 +49,7 @@ class PageController:
             if request.method == 'POST':
                 parking_slot_id = UserController.generate_parking_slot_id(self.user_controller)
                 slot_status = 'good'
-                available_for_use = "true"     
+                available_for_use = True
                 
                 # Create parking_slots_available_data instance
                 parking_slots_available_data_model = ParkingSlotAvailableModel(parking_slot_id, slot_status, available_for_use)
