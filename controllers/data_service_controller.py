@@ -49,6 +49,7 @@ class UserController:
         ]
     
     def get_all_users(self):
+
         return self.users_data 
     def get_all_time_data(self):
         return self.time_data 

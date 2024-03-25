@@ -67,8 +67,11 @@
             grid-column: 3; 
         }
         .navigation {
+            grid-column: 1 / -1; 
+            display: flex;
             margin-top: 20px;
             margin-bottom: 20px;
+            justify-content: center;
         }        
         
         .navigation-button {
@@ -94,6 +97,7 @@
             <!--<button onclick="goBack()" class="navigation-button">Go Back</button>-->
             <a href="/login" class="navigation-button">Logout</a>
             <a class="navigation-button" href="/profit_loss">Profit/Loss</a>
+            <a class="navigation-button" href="/slot_management">Slot Management</a>
             
         </div>    
         
