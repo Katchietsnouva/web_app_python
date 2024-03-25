@@ -2,6 +2,7 @@
 from flask import redirect, url_for, request, render_template, flash
 from flask import session, flash
 from flask import jsonify
+import json
 import uuid
 from pages.login_page import LoginPage
 # from pages.registration_page import RegisterPage
@@ -255,10 +256,10 @@ class PageController:
                 # Generate parking slot assignments
                 parking_assignments = UserController.assign_parking_slot(all_booking_time_data)
                 # Save parking slot assignments to JSON file
-                with open('slot_allocation/slots.json', 'w') as json_file:
+                with open('user_data/global_users_data/slots.json', 'w') as json_file:
                     json.dump([assignment.to_dict() for assignment in parking_assignments], json_file, indent=4)
                 # Save parking slot assignments to text file
-                with open('slot_allocation/slots.txt', 'w') as txt_file:
+                with open('user_data/global_users_data/slots.txt', 'w') as txt_file:
                     for assignment in parking_assignments:
                         txt_file.write(f"Slot ID: {assignment.slot_id}\n")
                         txt_file.write("Time_occupied_data:\n")
