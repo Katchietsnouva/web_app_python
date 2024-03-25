@@ -54,6 +54,21 @@ class UserController:
     def get_all_payment_data(self):
         return self.payment_data 
     
+    def save_parking_slot(self, parking_slot_model):
+        # Load existing data or create new if file doesn't exist
+        if os.path.exists(self.parking_slots_available_model_path):
+            with open(self.parking_slots_available_model_path, 'r') as file:
+                parking_slots_data = json.load(file)
+        else:
+            parking_slots_data = []
+
+        # Append new parking slot
+        parking_slots_data.append(parking_slot_model.__dict__)
+
+        # Save data back to file
+        with open(self.parking_slots_available_model_path, 'w') as file:
+            json.dump(parking_slots_data, file, indent=4)    
+    
     def get_payment_data_by_payment_id(self, payment_id):
         # payment_data = PaymentModel.query.filter_by(payment_id=payment_id).first()
         for specific_payment_data in self.payment_data:
