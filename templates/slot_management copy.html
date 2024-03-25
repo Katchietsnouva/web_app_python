@@ -313,10 +313,6 @@
 
 
 
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -384,6 +380,12 @@
             grid-template-columns: repeat(5, 1fr);
             gap: 20px;
         }
+
+        .slotIdContainer {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+        }
         
         .slot-box {
             background-color: #ffffff;
@@ -427,8 +429,11 @@
             <a href="#" class="button">Edit Slot</a>
             <a href="#" class="button">Delete Slot</a>
         </div>
+        
+        <div id="slotIdContainer"></div>
     </div>
-        <!-- JavaScript function to generate slot ID and make AJAX request -->
+
+    <!-- JavaScript function to generate slot ID and make AJAX request -->
     <script>
         function autogenerateSlotID() {
             // Make an AJAX request to the Flask route
@@ -437,6 +442,7 @@
             fetch('/generate_slot_id')
             .then(response => response.json())
             .then(data => {
+                document.getElementById('slotIdContainer').innerText = 'Generated Slot ID: ' + data.parking_slot_id;
                 // Update UI with the generated slot ID
                 console.log(data);
                 console.log("data");
