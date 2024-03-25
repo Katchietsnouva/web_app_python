@@ -81,6 +81,7 @@ class UserController:
         else:
             self.parking_slots_available_data = self.load_parking_slots_available_data()
         return self.parking_slots_available_data
+        
     
     def load_parking_slots_available_data(self):
         with open(self.parking_slots_available_model_path, "r") as file:
