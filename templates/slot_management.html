@@ -89,14 +89,6 @@
 
         </div>
         
-        <form id="addSlotForm" action="/slot_management" method="POST">
-            <input type="text" id="slotID" name="parking_slot_id" placeholder="Slot ID" required readonly><br>
-            <input type="text" name="slot_status" value="good" placeholder="Status" required><br>
-            <input type="text" name="available_for_use" value="true" placeholder="Available for Use?" required><br>
-            <button type="submit">Add</button>
-        </form>
-        
-        
         <table>
             <thead>
                 <tr>
@@ -119,15 +111,7 @@
         </div>
     </div>
     <script>
-        // JavaScript function to auto-increment slot ID
-        //function autoIncrementSlotID() {
-            // Retrieve the last slot ID
-            //let lastSlotID = document.querySelector('.slot-box:last-child').getAttribute('data-slot-id');
-            // Increment the slot ID
-            //let newSlotID = 'SLOT-' + String(Number(lastSlotID.split('-')[1]) + 1).padStart(3, '0');
-            // Set the new slot ID in the form
-            //document.getElementById('slotID').value = newSlotID;
-        //}
+        // i now want a script that will populate grid-container with the grid boxes representing the available slots, order of a grid sys, columns 5
     </script>
 </body>
 </html>
