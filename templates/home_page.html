@@ -157,16 +157,20 @@
     </div>
 
     <!-- Custom Section for Parking Slots -->
-<div class="custom-section">
-  <h2>All Parking Slots</h2>
-  <div class="parking-grid">
-      {% for slot in parking_slots %}
-          <div class="parking-slot {% if slot.status == 'good' %}occupied{% else %}available{% endif %}">
-              {{ slot.parking_slot_id }}
-          </div>
-      {% endfor %}
-  </div>
-</div>
+    <div class="custom-section">
+      <h2>All Parking Slots</h2>
+      <div class="parking-grid">
+        {% if parking_slots %}
+            {% for slot in parking_slots %}
+                <div class="parking-slot {% if slot.status == 'good' %}occupied{% else %}available{% endif %}">
+                    {{ slot.parking_slot_id }}
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No parking slots available</p>
+        {% endif %}
+      </div>
+    </div>
 
 
     <!-- Data Section -->

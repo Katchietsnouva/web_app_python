@@ -35,6 +35,7 @@ class PageController:
         @app.route('/')
         def default():
             return render_template('home_page.html')
+        
             self.home_page.show()
             page_controller = PageController(app)
             page_controller.show_home_page()
