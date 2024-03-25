@@ -59,6 +59,25 @@
         th {
             background-color: #f2f2f2;
         }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+        }
+        
+        .slot-box {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        
+        .slot-box button {
+            display: block;
+            margin-top: 10px;
+        }
+        
     </style>
 </head>
 <body>
@@ -66,16 +85,15 @@
         <h1>Slot Management</h1>
         
         <div class="button-container">
-            <a href="#" class="button" onclick="showAddSlotForm()">Add Slot</a>
+            <a href="#" class="button" onclick="autoIncrementSlotID()">Add Slot</a>
             <a href="#" class="button">Edit Slot</a>
             <a href="#" class="button">Delete Slot</a>
         </div>
         
-        <!-- Add Slot Form (Initially hidden) -->
-        <form id="addSlotForm" class="hidden" action="/slot_management" method="POST">
-            <input type="text" name="parking_slot_id" placeholder="Slot ID" required><br>
-            <input type="text" name="slot_status" placeholder="Status" required><br>
-            <input type="text" name="available_for_use" placeholder="Available for Use?" required><br>
+        <form id="addSlotForm" action="/slot_management" method="POST">
+            <input type="text" id="slotID" name="parking_slot_id" placeholder="Slot ID" required readonly><br>
+            <input type="text" name="slot_status" value="good" placeholder="Status" required><br>
+            <input type="text" name="available_for_use" value="true" placeholder="Available for Use?" required><br>
             <button type="submit">Add</button>
         </form>
         
@@ -93,12 +111,21 @@
                 <!-- Slot data will be dynamically generated here -->
             </tbody>
         </table>
+        <!-- Slot Boxes Section -->
+        <div class="grid-container">
+            <!-- Slot boxes will be dynamically generated here -->
+        </div>
     </div>
     <script>
-        function showAddSlotForm() {
-            document.getElementById("addSlotForm").classList.remove("hidden");
+        // JavaScript function to auto-increment slot ID
+        function autoIncrementSlotID() {
+            // Retrieve the last slot ID
+            let lastSlotID = document.querySelector('.slot-box:last-child').getAttribute('data-slot-id');
+            // Increment the slot ID
+            let newSlotID = 'SLOT-' + String(Number(lastSlotID.split('-')[1]) + 1).padStart(3, '0');
+            // Set the new slot ID in the form
+            document.getElementById('slotID').value = newSlotID;
         }
-        
     </script>
 </body>
 </html>
