@@ -21,9 +21,9 @@
 # app/controllers/data_service_controller.py    
 import json
 import os
+from datetime import timedelta    
 # the below is for unix time
 import datetime
-from datetime import datetime, timedelta    
 from collections import defaultdict
 from models.payment_model import PaymentModel
 from models.parking_slots_available_model import ParkingSlotAvailableModel
@@ -157,7 +157,7 @@ class UserController:
         
     def calculate_profit_loss(self):
         # Get current month and year
-        current_date = datetime.now()
+        current_date = datetime.datetime.now()
         current_month = current_date.month
         current_year = current_date.year
 
@@ -172,7 +172,7 @@ class UserController:
 
         # Iterate over payment data to calculate profit/loss for each month
         for payment_data in all_payment_data:
-            payment_date = datetime.fromisoformat(payment_data['payment_date'])
+            payment_date = datetime.datetime.fromisoformat(payment_data['payment_date'])
             payment_month = payment_date.month
             payment_year = payment_date.year
 

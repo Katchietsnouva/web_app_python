@@ -1,0 +1,14 @@
+Slot ID: SLOT-001
+Time_occupied_data:
+  - From: 2024-03-26 01:41, To: 2024-03-26 02:41, Customer Number: CUST-2
+
+Slot ID: SLOT-002
+Time_occupied_data:
+  - From: 2024-03-26 01:41, To: 2024-03-26 03:04, Customer Number: CUST-2
+
+Slot ID: SLOT-003
+Time_occupied_data:
+  - From: 2024-03-26 01:49, To: 2024-03-26 01:52, Customer Number: CUST-2
+  - From: 2024-03-26 01:54, To: 2024-03-26 01:54, Customer Number: CUST-3
+  - From: 2024-03-26 01:54, To: 2024-03-26 02:50, Customer Number: CUST-3
+
