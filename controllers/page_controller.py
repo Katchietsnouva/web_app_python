@@ -44,9 +44,13 @@ class PageController:
             profit_loss_data = UserController.calculate_profit_loss(self.user_controller)
             return render_template('profit_loss.html', profit_loss_data=profit_loss_data)
         
-        @app.route('/slot_management')
+        @app.route('/slot_management',methods=['GET', 'POST'])
         def slot_management():
-            return render_template()        
+            if request.method == 'POST':
+                parking_slot_id = request.form.get('parking_slot_id')
+                slot_status = request.form.get('slot_status')
+                available_for_use = request.form.get('available_for_use')          
+            return render_template('slot_management.html')        
         
 
         @app.route('/admin', methods=['GET'])

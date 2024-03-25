@@ -87,6 +87,11 @@ class UserController:
         print("perfornming saving added slot operation")
         self.save_parking_slots_available_data()
         return True  #  successful
+    
+    def add_parking_slot(self, parking_slot_id, slot_status, available_for_use):
+        parking_slot = ParkingSlotAvailableModel(parking_slot_id, slot_status, available_for_use)
+        self.save_admin_added_parking_slots_available_data(parking_slot)
+        return parking_slot
 
 
     
