@@ -53,7 +53,10 @@ class PageController:
                
             return render_template('slot_management.html',  all_parking_slots=all_parking_slots)  
         
-        @app.route('/generate_slot_id', methods=['GET'])
+        # @app.route('/payment/<latest_booking_id>')
+        # def payment(latest_booking_id):
+
+        @app.route('/generate_slot_id')
         def generate_slot_id():
             parking_slot_id = UserController.generate_parking_slot_id(self.user_controller)
             slot_status = 'good'

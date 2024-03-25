@@ -113,14 +113,9 @@
     <script>
         function autogenerateSlotID() {
             // Make an AJAX request to the Flask route
-            fetch('/generate_slot_id')
-                .then(response => response.text())
-                .then(data => {
-                    // Update UI with the generated slot ID
-                    //alert('Generated Slot ID: ' + data);
-                    print(data)
-                })
-                .catch(error => console.error('Error:', error));
+            
+            window.location.href = "/generate_slot_id/" ;
+
         }
     </script>
     <script>

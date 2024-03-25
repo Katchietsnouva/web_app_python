@@ -267,6 +267,14 @@
     </div>
     <script>
         // i now want a script that will populate grid-container with the grid boxes representing the available slots, order of a grid sys, columns 5
+
+        fetch('/generate_slot_id')
+        .then(response => response.text())
+        .then(data => {
+            // Update UI with the generated slot ID
+            //print(data)
+        })
+        .catch(error => console.error('Error:', error));
     </script>
 </body>
 </html>
