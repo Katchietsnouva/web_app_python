@@ -25,6 +25,8 @@ from datetime import datetime, timedelta
 from collections import defaultdict
 from models.payment_model import PaymentModel
 from models.parking_slots_available_model import ParkingSlotAvailableModel
+from models.Parking_slots_assignment_model import SlotAssignmentModel
+
 class UserController:
     def __init__(self):
         self.users_data_path = 'user_data/global_users_data/customers_db.json'
@@ -68,6 +70,48 @@ class UserController:
             latest_parking_slots_available_data = user_parking_info[-1]['parking_slot_id']
             index = int(latest_parking_slots_available_data.split('-')[1]) + 1
             return f'SLOT-{index:03d}'
+            
+    def convert_to_unix(self, date_str, time_str):
+        dt = datetime.datetime.strptime(date_str + ' ' + time_str, '%Y-%m-%d %H:%M')
+        return int(dt.timestamp())
+
+    def convert_to_datetime(self, unix_timestamp):
+        return datetime.datetime.fromtimestamp(unix_timestamp).strftime('%Y-%m-%d %H:%M')
+                
+    def assign_parking_slot(self, bookings):
+        parking_slots_BOOK_ASSIGNMENTS = []
+        slot_counter = 1
+
+        for booking in bookings:
+            arrival_unix = self.convert_to_unix(booking["arrival_date"], booking["arrival_time"])
+            departure_unix = self.convert_to_unix(booking["departure_date"], booking["departure_time"])
+            customer_number = booking["customer_number"]
+
+            assigned = False
+            for slot_assignment in parking_slots_BOOK_ASSIGNMENTS:
+                slot_id = slot_assignment["slot_id"]
+                occupied = False
+                for time_range in slot_assignment["time_occupied"]:
+                    if not (departure_unix <= time_range[0] or arrival_unix >= time_range[1]):
+                        occupied = True
+                        break
+                if not occupied:
+                    slot_assignment["time_occupied"].append((arrival_unix, departure_unix, customer_number))
+                    assigned = True
+                    break
+
+            if not assigned:
+                parking_slots_BOOK_ASSIGNMENTS.append({
+                    "slot_id": f"SLOT-{str(slot_counter).zfill(3)}",
+                    "time_occupied": [(arrival_unix, departure_unix, customer_number)]
+                })
+                slot_counter += 1
+
+        return [SlotAssignmentModel(assignment["slot_id"], [
+            {"from": convert_to_datetime(time_range[0]), "to": convert_to_datetime(time_range[1]), "customer_number": time_range[2]}
+            for time_range in assignment["time_occupied"]
+        ]) for assignment in parking_slots_BOOK_ASSIGNMENTS]        
+    
     
     def load_or_create_parking_slots_available_data(self):
         directory = os.path.dirname(self.parking_slots_available_model_path)

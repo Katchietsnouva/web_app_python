@@ -15,6 +15,7 @@ from models.user_model import UserModel
 from models.time_model import TimeModel
 from models.payment_model import PaymentModel
 from models.parking_slots_available_model import ParkingSlotAvailableModel
+from models.Parking_slots_assignment_model import SlotAssignmentModel
 from datetime import datetime
 # import user_data
 class PageController:
@@ -252,6 +253,7 @@ class PageController:
                 
                 # Save the time entry to the data service controller
                 UserController.save_user_time_data(self.user_controller, time_model)
+                
                 flash('Booking Successful!', 'success')
 
                 # return redirect(url_for('success', message='Booking Successful!', duration=duration, redirect_url=url_for('home')))
