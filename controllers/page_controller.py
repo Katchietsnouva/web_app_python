@@ -52,6 +52,12 @@ class PageController:
             all_parking_slots = UserController.get_all_parking_slots_available_data(self.user_controller)
             return render_template('slot_management.html',  all_parking_slots=all_parking_slots)  
         
+        @app.route('/slot_managementt')
+        def slot_managementt():
+            # Load existing slot data for display
+            all_parking_slots = UserController.get_all_parking_slots_available_data(self.user_controller)
+            return jsonify(all_parking_slots)
+        
         # @app.route('/payment/<latest_booking_id>')
         # def payment(latest_booking_id):
 

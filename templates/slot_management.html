@@ -137,28 +137,28 @@
                 gridContainer.appendChild(slotBox);
             });
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/slot_managementt')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(function(slot) {
+                    var newSlotBox = document.createElement('div');
+                    newSlotBox.classList.add('slot-box');
+                    // Add appropriate class based on slot status
+                    if (slot.available_for_use) {
+                        newSlotBox.classList.add('available');
+                    } else {
+                        newSlotBox.classList.add('not-available');
+                    }
+                    newSlotBox.innerText = slot.parking_slot_id;
+                    document.querySelector('.grid-container').appendChild(newSlotBox);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+        });
     
-            document.addEventListener('DOMContentLoaded', function() {
-                fetch('/slot_management')
-                .then(response => response.json())
-                .then(data => {
-                    data.forEach(function(slot) {
-                        var newSlotBox = document.createElement('div');
-                        newSlotBox.classList.add('slot-box');
-                        // Add appropriate class based on slot status
-                        if (slot.available_for_use) {
-                            newSlotBox.classList.add('available');
-                        } else {
-                            newSlotBox.classList.add('not-available');
-                        }
-                        newSlotBox.innerText = slot.parking_slot_id;
-                        document.querySelector('.grid-container').appendChild(newSlotBox);
-                    });
-                })
-                .catch(error => console.error('Error:', error));
-            });
-        
-        </script>
+    </script>
         
 
 </body>
