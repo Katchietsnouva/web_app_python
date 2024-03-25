@@ -29,6 +29,18 @@
             text-align: center;
             margin-bottom: 20px;
         }
+        .navigation {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .navigation-button {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
         
         .button {
             padding: 10px 20px;
@@ -91,6 +103,7 @@
         
         
     </style>
+
 </head>
 <body>
     <div class="container">
@@ -98,6 +111,10 @@
         
         <div class="button-container">
             <a href="#" class="button" onclick="autogenerateSlotID()">Add Slot</a>
+        </div>
+        <div class="navigation">
+            <button onclick="goBack()" class="navigation-button">Go Back</button>
+            <a href="/login" class="navigation-button">Logout</a>
         </div>
         <div id="slotIdContainer"></div>
         <table>
