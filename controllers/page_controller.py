@@ -46,25 +46,28 @@ class PageController:
         
         @app.route('/slot_management',methods=['GET', 'POST'])
         def slot_management():
-            # if request.method == 'POST':
-            def autogenerateSlotID():
-                parking_slot_id = UserController.generate_parking_slot_id(self.user_controller)
-                slot_status = 'good'
-                available_for_use = True
-                
-                # Create parking_slots_available_data instance
-                parking_slots_available_data_model = ParkingSlotAvailableModel(parking_slot_id, slot_status, available_for_use)
-                # Register the slot
-                add_parking_slot_successful = UserController.save_admin_added_parking_slots_available_data(self.user_controller, parking_slots_available_data_model)  
-                if add_parking_slot_successful:
-                    flash('Slot added successfully!', 'success')
-                else:
-                    flash('Failed to add slot.', 'error')                   
+            if request.method == 'POST':
+                pass
             # Load existing slot data for display
             all_parking_slots = UserController.get_all_parking_slots_available_data(self.user_controller)
                
             return render_template('slot_management.html',  all_parking_slots=all_parking_slots)  
         
+        @app.route('/generate_slot_id', methods=['GET'])
+        def generate_slot_id():
+            parking_slot_id = UserController.generate_parking_slot_id(self.user_controller)
+            slot_status = 'good'
+            available_for_use = True
+            
+            # Create parking_slots_available_data instance
+            parking_slots_available_data_model = ParkingSlotAvailableModel(parking_slot_id, slot_status, available_for_use)
+            # Register the slot
+            add_parking_slot_successful = UserController.save_admin_added_parking_slots_available_data(self.user_controller, parking_slots_available_data_model)  
+            if add_parking_slot_successful:
+                flash('Slot added successfully!', 'success')
+            else:
+                flash('Failed to add slot.', 'error')                   
+
 
         @app.route('/admin', methods=['GET'])
         def admin_page():

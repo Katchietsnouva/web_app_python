@@ -86,7 +86,6 @@
         
         <div class="button-container">
             <a href="#" class="button" onclick="autogenerateSlotID()">Add Slot</a>
-
         </div>
         
         <table>
@@ -110,6 +109,19 @@
             <a href="#" class="button">Delete Slot</a>
         </div>
     </div>
+        <!-- JavaScript function to generate slot ID and make AJAX request -->
+    <script>
+        function autogenerateSlotID() {
+            // Make an AJAX request to the Flask route
+            fetch('/generate_slot_id')
+                .then(response => response.text())
+                .then(data => {
+                    // Update UI with the generated slot ID
+                    alert('Generated Slot ID: ' + data);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
     <script>
         // i now want a script that will populate grid-container with the grid boxes representing the available slots, order of a grid sys, columns 5
     </script>
