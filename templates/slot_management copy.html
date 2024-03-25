@@ -663,3 +663,69 @@
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- JavaScript function to generate slot ID and make AJAX request -->
+    <script>
+        function autogenerateSlotID() {
+            // Make an AJAX request to the Flask route
+            fetch('/generate_slot_id')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('slotIdContainer').innerText = 'Most Recent Generated Slot ID: ' + data.parking_slot_id;
+                generateSlotBoxes(data);
+            })
+            .catch(error => console.error('Error:', error));            
+        }
+
+        function generateSlotBoxes(slotData) {
+            const gridContainer = document.getElementById('slotBoxes');
+            gridContainer.innerHTML = ''; // Clear previous slot boxes
+
+            slotData.forEach(slot => {
+                const slotBox = document.createElement('div');
+                slotBox.classList.add('slot-box');
+                slotBox.textContent = slot.parking_slot_id;
+                gridContainer.appendChild(slotBox);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/slot_managementt')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(function(slot) {
+                    var newSlotBox = document.createElement('div');
+                    newSlotBox.classList.add('slot-box');
+                    // Add appropriate class based on slot status
+                    if (slot.available_for_use) {
+                        newSlotBox.classList.add('available');
+                    } else {
+                        newSlotBox.classList.add('not-available');
+                    }
+                    newSlotBox.innerText = slot.parking_slot_id;
+                    document.querySelector('.grid-container').appendChild(newSlotBox);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    
+    </script>
+
+
+
