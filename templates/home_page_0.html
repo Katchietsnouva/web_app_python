@@ -26,6 +26,12 @@
         border-radius: 10px;
       }
 
+      .navigation-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
       .navigation-button {
         padding: 10px 20px;
         font-size: 16px;
@@ -33,69 +39,51 @@
         color: white;
         text-decoration: none;
         border-radius: 5px;
+        margin-right: 10px;
+      }
+
+      .navigation-button:hover {
+        background-color: #45a049;
       }
 
       .data-section {
         display: flex;
-        background-color: rgba(180, 245, 245, 0.9);
-        padding: 20px;
-        margin: 20px;
-        border-radius: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
       }
 
       .custom-section-content {
         display: flex;
         justify-content: space-between;
-        align-items: flex-start; /* Align items to the top of the container */
+        align-items: flex-start;
+        width: 100%;
+        max-width: 1200px; /* Adjust as needed */
+        margin: 0 auto;
       }
 
-      .left-half {
-        width: 45%;
-        padding: 20px;
-        background-color: #f5f5f5; /* Light gray background color */
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        margin-right: 5%; /* Adjust the margin between left and right halves */
+      .right-half,
+      .right-half-2,
+      .right-half-3 {
+        flex-basis: calc(50% - 20px);
+        margin: 0 10px;
+        margin-bottom: 20px;
       }
 
-      .right-half {
-        width: 50%;
-        padding: 20px;
-        background-color: #f5f5f5; /* Light gray background color */
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        margin-right: 5%;
+      @media screen and (max-width: 768px) {
+        .right-half,
+        .right-half-2,
+        .right-half-3 {
+          flex-basis: 100%;
+        }
       }
 
       .booking-entry {
-        border: 1px solid #ddd; /* Border color */
-        padding: 10px; /* Padding around each booking entry */
-        margin-bottom: 10px; /* Margin between booking entries */
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
       }
 
-      .right-half-2 {
-        width: 50%;
-        padding: 20px;
-        background-color: #f5f5f5; /* Light gray background color */
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        margin-right: 5%;
-      }
-      .right-half-3 {
-        width: 50%;
-        padding: 20px;
-        background-color: #f5f5f5; /* Light gray background color */
-        border: 1px solid #ccc;
-        border-radius: 5px;
-      }
-      #ticket_id {
-        font-size: 16px; /* Adjust the font size as needed */
-        color: #333; /* Set the text color */
-        background-color: #f7f7f7; /* Set the background color */
-        border: 1px solid #ccc; /* Add a border */
-        padding: 8px; /* Add some padding for better appearance */
-        border-radius: 5px; /* Optional: Add border radius for rounded corners */
-      }
       .payment-entry {
         border: 1px solid #ddd;
         padding: 15px;
@@ -103,21 +91,43 @@
         background-color: #f9f9f9;
         border-radius: 8px;
       }
-    
+
       .payment-entry p {
         margin: 5px 0;
       }
-    
+
       .no-info-message {
         color: #888;
       }
-    
+
       /* Styles for the payment type selection */
       #payment-type {
         margin-top: 10px;
         padding: 8px;
         border-radius: 5px;
       }
+
+      /* Styles for Parking Slots */
+      .parking-grid {
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          grid-gap: 10px;
+      }
+
+      .parking-slot {
+          padding: 10px;
+          border: 1px solid #ccc;
+          text-align: center;
+      }
+
+      .available {
+          background-color: lightgreen;
+      }
+
+      .occupied {
+          background-color: lightcoral;
+      }
+
     </style>
   </head>
   <body>
@@ -125,23 +135,19 @@
     <h2>Welcome to The Park Booking Web App!</h2>
     <h3>Your user id is {{ session['user_id'] }}</h3>
     <p>This website helps you easily manage and book your parking slots.</p>
-    <!-- Navigation Button to Booking Page -->
-    <a class="navigation-button" href="/login">Logout</a>
-    <a class="navigation-button" href="/register">Edit Registration</a>
-    <a class="navigation-button" href="/book">Book Parking Now</a>
-    <a class="navigation-button" href="/extendbook">Extend Book Parking Time</a>
-    <a class="navigation-button" href="/payment/{{ latest_booking_id }}">Payment Menu</a>
-    <!--<a class="navigation-button" href="/payment">Payment Menu</a>-->
-    <!--<script>
-      var latestBookingId = "{{ latest_booking_id }}";
-      // Assuming latestBookingId is not an empty string or undefined
-      var paymentLink = "/payment/" + latestBookingId;
-      document.getElementById("payment-link").href = paymentLink;
-    </script>
-    <a class="navigation-button" id="payment-link" href="#">Payment Menu</a>
-    -->
-    <!--<a class="navigation-button" href="/payment/"  + latestBookingId; >Payment Menu</a>-->
 
+    <!-- Navigation Buttons -->
+    <div class="navigation-container">
+      <a class="navigation-button" href="/login">Logout</a>
+      <a class="navigation-button" href="/register">Edit Registration</a>
+      <a class="navigation-button" href="/book">Book Parking Now</a>
+      <a class="navigation-button" href="/extendbook"
+        >Extend Book Parking Time</a
+      >
+      <a class="navigation-button" href="/payment/{{ latest_booking_id }}"
+        >Payment Menu</a
+      >
+    </div>
 
     <!-- Custom Section 1 -->
     <div class="custom-section">
@@ -150,16 +156,26 @@
       <p>Explore our amazing features and services.</p>
     </div>
 
-    <!-- Custom Section 3 - Split into Left and Right halves -->
+    <!-- Custom Section for Parking Slots -->
+<div class="custom-section">
+  <h2>All Parking Slots</h2>
+  <div class="parking-grid">
+      {% for slot in parking_slots %}
+          <div class="parking-slot {% if slot.status == 'occupied' %}occupied{% else %}available{% endif %}">
+              {{ slot.slot_id }}
+          </div>
+      {% endfor %}
+  </div>
+</div>
+
+
+    <!-- Data Section -->
     <div class="data-section">
       <div class="custom-section-content">
-        <!-- Left Half for Registration Content -->
-        <div class="left-half">
+        <!-- Left Half - Registration Information -->
+        <div class="right-half">
           <h2>Registration Information</h2>
-          <!-- Check if user_registration_data exists-->
           {% if user_registration_data %}
-          <!-- <p>User ID: {{ user_registration_data['user_id'] }}</p>-->
-          <!-- <p>Customer Number: {{ user_registration_data['customer_number'] }}</p>-->
           <p>
             <strong>User Name:</strong> {{ user_registration_data['username'] }}
           </p>
@@ -181,68 +197,82 @@
           {% endif %}
         </div>
 
+        <!-- Right Half - Booking Information -->
         <div class="right-half">
           <h2>Booking Information</h2>
-          {% if user_bookings %}
-            {% for booking in user_bookings %}
-              {% if "-ext" not in booking['booking_id'] %}
-                <div class="booking-entry">
-                  <p><strong>Booking ID:</strong> {{ booking['booking_id'] }}</p>
-                  <p><strong>Arrival Date:</strong> {{ booking['arrival_date'] }}</p>
-                  <p><strong>Arrival Time:</strong> {{ booking['arrival_time'] }}</p>
-                  <p><strong>Departure Date:</strong> {{ booking['departure_date'] }}</p>
-                  <p><strong>Departure Time:</strong> {{ booking['departure_time'] }}</p>
-                  <p><strong>Duration (in min):</strong> {{ booking['duration_minutes'] }}</p>
-                </div>
-              {% endif %}
-            {% endfor %} 
-          {% else %}
-            <p>No booking information found. Book now to populate this menu!</p>
+          {% if user_bookings %} {% for booking in user_bookings %} {% if "-ext"
+          not in booking['booking_id'] %}
+          <div class="booking-entry">
+            <p><strong>Booking ID:</strong> {{ booking['booking_id'] }}</p>
+            <p><strong>Arrival Date:</strong> {{ booking['arrival_date'] }}</p>
+            <p><strong>Arrival Time:</strong> {{ booking['arrival_time'] }}
+            </p>
+            <p>
+              <strong>Departure Date:</strong> {{ booking['departure_date'] }}
+            </p>
+            <p>
+              <strong>Departure Time:</strong> {{ booking['departure_time'] }}
+            </p>
+            <p>
+              <strong>Duration (in min):</strong> {{ booking['duration_minutes']
+              }}
+            </p>
+          </div>
+          {% endif %} {% endfor %} {% else %}
+          <p>No booking information found. Book now to populate this menu!</p>
           {% endif %}
         </div>
 
-        <!-- In the right-half-2 (extension details) -->
-        <!-- In the right-half-2 (extension details) -->
+        <!-- Right Half 2 - Parking Extension Time Information -->
         <div class="right-half-2">
           <h2>Parking Extension Time Information</h2>
-          {% if user_bookings %}
-            {% set has_extension_bookings = False %}
-            {% for booking in user_bookings %}
-              {% if "-ext" in booking['booking_id'] %}
-                {% set has_extension_bookings = True %}
-                <div class="booking-entry">
-                  <p><strong>Booking ID:</strong> {{ booking['booking_id'] }}</p>
-                  <!--<p><strong>Arrival Date:</strong> {{ booking['arrival_date'] }}</p>-->
-                  <!--<p><strong>Arrival Time:</strong> {{ booking['arrival_time'] }}</p>-->
-                  <p><strong>New Dep. Date:</strong> {{ booking['departure_date'] }}</p>
-                  <p><strong>New Dep. Time:</strong> {{ booking['departure_time'] }}</p>
-                  <p><strong>Extension (in min):</strong> {{ booking['duration_minutes'] }}</p>
-                </div>
-              {% endif %}
-            {% endfor %}
-            {% if not has_extension_bookings %}
-              <p>Welcome!</p>
-            {% endif %}
-          {% else %}
-            <p>No Parking Extension Time Information found. Book now to populate this menu!</p>
+          {% if user_bookings %} {% set has_extension_bookings = False %} {% for
+          booking in user_bookings %} {% if "-ext" in booking['booking_id'] %}
+          {% set has_extension_bookings = True %}
+          <div class="booking-entry">
+            <p><strong>Booking ID:</strong> {{ booking['booking_id'] }}</p>
+            <p>
+              <strong>New Dep. Date:</strong> {{ booking['departure_date'] }}
+            </p>
+            <p>
+              <strong>New Dep. Time:</strong> {{ booking['departure_time'] }}
+            </p>
+            <p>
+              <strong>Extension (in min):</strong> {{
+              booking['duration_minutes'] }}
+            </p>
+          </div>
+          {% endif %} {% endfor %} {% if not has_extension_bookings %}
+          <p>Welcome!</p>
+          {% endif %} {% else %}
+          <p>
+            No Parking Extension Time Information found. Book now to populate
+            this menu!
+          </p>
           {% endif %}
         </div>
 
-
+        <!-- Right Half 3 - Payment Information -->
         <div class="right-half-3">
           <h2>Payment Information</h2>
           <h4>(0.8 Kshs. per min)</h4>
           {% if user_bookings %} {% for booking in user_bookings %}
           <div class="booking-entry">
             <p><strong>Booking ID:</strong> {{ booking['booking_id'] }}</p>
-            <p><strong>Time (in min):</strong> {{ booking['duration_minutes'] }}</p>
-            <p><strong>Amount (in Kshs.):</strong> {{ calculate_amount(booking['duration_minutes']) }}</p>
-            <label for="payment-type"><p><strong>Select Payment Type:</strong></label>
+            <p>
+              <strong>Time (in min):</strong> {{ booking['duration_minutes'] }}
+            </p>
+            <p>
+              <strong>Amount (in Kshs.):</strong> {{
+              calculate_amount(booking['duration_minutes']) }}
+            </p>
+            <label for="payment-type"
+              ><strong>Select Payment Type:</strong></label
+            >
             <select id="payment-type" name="payment_type">
               <option value="mpesa">M-Pesa</option>
               <option value="debit_cash">Debit/Cash</option>
             </select>
-    
           </div>
           {% endfor %} {% else %}
           <p>No Payment Information found. Book now to populate this menu!</p>
@@ -250,7 +280,6 @@
         </div>
       </div>
     </div>
-
     <!-- Custom Section 2 -->
     <div class="custom-section">
       <h2>Latest Updates</h2>
@@ -267,8 +296,8 @@
     <script>
       // Function to calculate the amount based on rate
       function calculate_amount(duration_minutes) {
-          var rate = 0.8; // Rate in Kshs. per minute
-          return (duration_minutes * rate).toFixed(2);
+        var rate = 0.8; // Rate in Kshs. per minute
+        return (duration_minutes * rate).toFixed(2);
       }
     </script>
   </body>

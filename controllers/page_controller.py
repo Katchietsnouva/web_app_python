@@ -199,13 +199,12 @@ class PageController:
                 user, user_bookings, calculate_amount  =  self.user_controller.get_user_booking_data(session['user_id'])
                 latest_booking_id  = "available_tickets"
                 # Sample parking slots data (will be replaced by dynamic data later)
+                parking_slots = parking_slots = UserController.get_all_parking_slots_available_data(self.user_controller)
                 parking_slots = [
                     {"slot_id": "SLOT-001", "status": "available"},
                     {"slot_id": "SLOT-002", "status": "occupied"},
                     # Add more parking slots as needed
                 ]
-
-                
 
                 # Rearranginh tume model to fing the duration difference
                 # user_bookings = [TimeModel(**booking) for booking in user_bookings]
