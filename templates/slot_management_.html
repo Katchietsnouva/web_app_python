@@ -66,23 +66,21 @@
             gap: 20px;
         }
 
-        .slotIdContainer {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 20px;
-        }
-        
+
         .slot-box {
-            background-color: #ffffff;
+            background-color: #7ffff4;
             border: 1px solid #ddd;
             padding: 20px;
             border-radius: 5px;
+            display: flex;
+            width: 100px;
+            height: 100px;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 20px; /* Add margin between slot boxes */
         }
         
-        .slot-box button {
-            display: block;
-            margin-top: 10px;
-        }
         
     </style>
 </head>
@@ -108,11 +106,8 @@
             </tbody>
         </table>
         <!-- Slot Boxes Section -->
-        <div class="grid-container">
+        <div class="grid-container" id="slotBoxes">
             <!-- Slot boxes will be dynamically generated here -->
-            <!-- these buttons will be displayed at the bottom of the Slot boxes-->
-            <a href="#" class="button">Edit Slot</a>
-            <a href="#" class="button">Delete Slot</a>
         </div>
         
         <div id="slotIdContainer"></div>
@@ -122,20 +117,63 @@
     <script>
         function autogenerateSlotID() {
             // Make an AJAX request to the Flask route
-            //window.location.href = "/generate_slot_id/" ;
-
             fetch('/generate_slot_id')
             .then(response => response.json())
             .then(data => {
-                document.getElementById('slotIdContainer').innerText = 'Generated Slot ID: ' + data.parking_slot_id;
-                // Update UI with the generated slot ID
+                document.getElementById('slotIdContainer').innerText = 'Most Recent Generated Slot ID: ' + data.parking_slot_id;
+                generateSlotBoxes(data);
             })
             .catch(error => console.error('Error:', error));            
-
         }
-    </script>
-    <script>
-        // i now want a script that will populate grid-container with the grid boxes representing the available slots, order of a grid sys, columns 5
-    </script>
+
+        function generateSlotBoxes(slotData) {
+            const gridContainer = document.getElementById('slotBoxes');
+            gridContainer.innerHTML = ''; // Clear previous slot boxes
+
+            slotData.forEach(slot => {
+                const slotBox = document.createElement('div');
+                slotBox.classList.add('slot-box');
+                slotBox.textContent = slot.parking_slot_id;
+                gridContainer.appendChild(slotBox);
+            });
+        }
+    
+            document.addEventListener('DOMContentLoaded', function() {
+                // Slot data array
+                var slotData = [
+                    {"parking_slot_id": "SLOT-001", "slot_status": "good", "available_for_use": true},
+                    {"parking_slot_id": "SLOT-002", "slot_status": "good", "available_for_use": true},
+                    {"parking_slot_id": "SLOT-003", "slot_status": "good", "available_for_use": true},
+                    {"parking_slot_id": "SLOT-004", "slot_status": "good", "available_for_use": true},
+                    {"parking_slot_id": "SLOT-005", "slot_status": "good", "available_for_use": true},
+                    {"parking_slot_id": "SLOT-006", "slot_status": "good", "available_for_use": true},
+                    {"parking_slot_id": "SLOT-007", "slot_status": "good", "available_for_use": true},
+                    {"parking_slot_id": "SLOT-008", "slot_status": "good", "available_for_use": true},
+                    {"parking_slot_id": "SLOT-009", "slot_status": "good", "available_for_use": true},
+                    {"parking_slot_id": "SLOT-010", "slot_status": "good", "available_for_use": true},
+                    {"parking_slot_id": "SLOT-011", "slot_status": "good", "available_for_use": true},
+                    {"parking_slot_id": "SLOT-012", "slot_status": "good", "available_for_use": true}
+                ];
+        
+                // Loop through the slot data array
+                slotData.forEach(function(slot) {
+                    var newSlotBox = document.createElement('div');
+                    newSlotBox.classList.add('slot-box');
+                    // Add appropriate class based on slot status
+                    if (slot.available_for_use) {
+                        newSlotBox.classList.add('available');
+                    } else {
+                        newSlotBox.classList.add('not-available');
+                    }
+                    newSlotBox.innerText = slot.parking_slot_id;
+                    document.querySelector('.grid-container').appendChild(newSlotBox);
+                });
+            });
+        </script>
+        
+
 </body>
 </html>
+
+
+//window.location.href = "/generate_slot_id/" ;
