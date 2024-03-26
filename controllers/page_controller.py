@@ -252,8 +252,9 @@ class PageController:
                 # Create a TimeModel instance and filling details
                 time_model = TimeModel(user_id, customer_number, None, arrival_date, arrival_time, departure_date, departure_time, duration_minutes)
 
-                all_booking_time_data = self.user_controller.get_all_time_data()
+                
                 # Generate parking slot assignments
+                all_booking_time_data = self.user_controller.get_all_time_data()
                 parking_assignments = UserController.assign_parking_slot(self.user_controller, all_booking_time_data)
 
                 # Save parking slot assignments to JSON file

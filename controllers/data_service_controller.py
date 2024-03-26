@@ -36,16 +36,16 @@ class UserController:
         self.time_data_path = 'user_data/global_users_data/time_data.json'
         self.payment_data_path = 'user_data/global_users_data/payment_data.json'
         self.parking_slots_available_model_path = 'user_data/global_users_data/parking_slots_available_model.json'
-        # self.users_data_path = 'user_data\\global_users_data\\customers_db.json'
-        # self.time_data_path = 'user_data\\global_users_data\\time_data.json'
-        # self.payment_data_path = 'user_data\\global_users_data\\payment_data.json'
-        # self.parking_slots_available_model_path = 'user_dat\\global_users_data\\parking_slots_available_model.json'
-
+        self.already_assigned_parking_slots_json_path = 'user_data/global_users_data/slots.json'
+        self.already_assigned_parking_slots_txt_path = 'user_data/global_users_data/slots.txt'
 
         self.users_data = self.load_or_create_users_data()
         self.time_data = self.load_or_create_time_data()
         self.payment_data = self.load_or_create_payment_data()
         self.parking_slots_available_data = self.load_or_create_parking_slots_available_data()
+        self.already_assigned_parking_slots_json_data = self.load_or_create_slots_json_data()
+        # self.already_assigned_parking_slots_txt_data = self.load_or_create_slots_txt_data()
+
         self.last_booking_index = {}
         # self.users_data_path = current_app.config['users_data_path']
         self.tickets_data = [
@@ -61,8 +61,31 @@ class UserController:
         return self.payment_data 
     def get_all_parking_slots_available_data(self):
         return self.parking_slots_available_data 
+    def get_all_parking_slots_available_data(self):
+        return self.parking_slots_available_data 
     
     # def f"SLOT-{str(slot_counter).zfill(3)}",
+
+    def load_or_create_slots_json_data(self):
+        directory = os.path.dirname(self.already_assigned_parking_slots_json_path)
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+
+        if not os.path.exists(self.already_assigned_parking_slots_json_path):
+            self.parking_slots_available_data = []
+            self.save_parking_slots_available_data()
+        else:
+            self.parking_slots_available_data = self.load_parking_slots_available_data()
+        return self.parking_slots_available_data
+        
+    def load_parking_slots_available_data(self):
+        with open(self.already_assigned_parking_slots_json_path, "r") as file:
+            return json.load(file)
+        
+    def save_parking_slots_available_data(self):
+        with open(self.already_assigned_parking_slots_json_path, "w") as file:
+            # json.dump(self.user_model, file, indent=4)
+            json.dump(self.parking_slots_available_data, file, indent=4)
 
     def generate_parking_slot_id(self):
         # user_bookings = [entry for entry in self.time_data if entry['user_id'] == user_id]
