@@ -126,9 +126,13 @@ class UserController:
                         occupied = True
                         break
                 if not occupied:
-                    slot_assignment["time_occupied"].append((arrival_unix, departure_unix, customer_number))
+                    parking_slots_BOOK_ASSIGNMENTS.append({
+                        "slot_id": slot_id,
+                        "time_occupied": [(arrival_unix, departure_unix, customer_number)]
+                    })
                     assigned = True
                     break
+
 
             if not assigned:
                 parking_slots_BOOK_ASSIGNMENTS.append({
