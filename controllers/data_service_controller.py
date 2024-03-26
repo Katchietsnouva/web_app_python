@@ -133,13 +133,8 @@ class UserController:
                     assigned = True
                     break
 
-
             if not assigned:
-                parking_slots_BOOK_ASSIGNMENTS.append({
-                    "slot_id": f"SLOT-{str(slot_counter).zfill(3)}",
-                    "time_occupied": [(arrival_unix, departure_unix, customer_number)]
-                })
-                slot_counter += 1
+                return None, "No available slots for the specified time range."
 
         return [SlotAssignmentModel(assignment["slot_id"], [
             {"from": self.convert_to_datetime(time_range[0]), "to": self.convert_to_datetime(time_range[1]), "customer_number": time_range[2]}
