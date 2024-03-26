@@ -136,10 +136,11 @@ class UserController:
             if not assigned:
                 return None, "No available slots for the specified time range."
 
-        return [SlotAssignmentModel(assignment["slot_id"], [
-            {"from": self.convert_to_datetime(time_range[0]), "to": self.convert_to_datetime(time_range[1]), "customer_number": time_range[2]}
-            for time_range in assignment["time_occupied"]
-        ]) for assignment in parking_slots_BOOK_ASSIGNMENTS]        
+        # return [SlotAssignmentModel(assignment["slot_id"], [
+        #     {"from": self.convert_to_datetime(time_range[0]), "to": self.convert_to_datetime(time_range[1]), "customer_number": time_range[2]}
+        #     for time_range in assignment["time_occupied"]
+        # ]) for assignment in parking_slots_BOOK_ASSIGNMENTS]        
+        return parking_slots_BOOK_ASSIGNMENTS, None
     
     
     def load_or_create_parking_slots_available_data(self):
