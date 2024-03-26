@@ -114,23 +114,28 @@ class UserController:
             # for slot_assignment in parking_slots_BOOK_ASSIGNMENTS:
                 slot_id = slot_assignment["slot_id"]
                 occupied = False
-                for time_range in slot_assignment["time_occupied"]:
+                # for time_range in slot_assignment["time_occupied"]:
+                for time_range in slot_assignment.get("time_occupied", []):
                     if not (departure_unix <= time_range[0] or arrival_unix >= time_range[1]):
                         occupied = True
                         break
                 if not occupied:
-                    slot_assignment["time_occupied"].append((arrival_unix, departure_unix, customer_number))
+                    slot_assignment.setdefault("time_occupied", []).append((arrival_unix, departure_unix, customer_number))
+                    # slot_assignment["time_occupied"].append((arrival_unix, departure_unix, customer_number))
                     assigned = True
                     break
 
             if not assigned:
-                parking_slots_BOOK_ASSIGNMENTS.append({
-                    "slot_id": f"SLOT-{str(slot_counter).zfill(3)}",
-                    "time_occupied": [(arrival_unix, departure_unix, customer_number)]
-                })
-                slot_counter += 1
+                # parking_slots_BOOK_ASSIGNMENTS.append({
+                #     "slot_id": f"SLOT-{str(slot_counter).zfill(3)}",
+                #     "time_occupied": [(arrival_unix, departure_unix, customer_number)]
+                # })
+                # slot_counter += 1
+                return None, "No available slots for the given booking time."
 
-        return parking_slots_BOOK_ASSIGNMENTS
+        # return parking_slots_BOOK_ASSIGNMENTS
+        return available_slots
+    
 
     def generate_parking_slot_id(self):
         # user_bookings = [entry for entry in self.time_data if entry['user_id'] == user_id]
