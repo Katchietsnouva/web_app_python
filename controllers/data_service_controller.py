@@ -61,8 +61,8 @@ class UserController:
         return self.payment_data 
     def get_all_parking_slots_available_data(self):
         return self.parking_slots_available_data 
-    def get_all_parking_slots_available_data(self):
-        return self.parking_slots_available_data 
+    def get_slots_data(self):
+        return self.slots_data 
     
     # def f"SLOT-{str(slot_counter).zfill(3)}",
 
@@ -72,20 +72,20 @@ class UserController:
             os.makedirs(directory)
 
         if not os.path.exists(self.already_assigned_parking_slots_json_path):
-            self.parking_slots_available_data = []
-            self.save_parking_slots_available_data()
+            self.slots_data = []
+            self.save_slots_data()
         else:
-            self.parking_slots_available_data = self.load_parking_slots_available_data()
-        return self.parking_slots_available_data
+            self.slots_data = self.load_parking_slots_available_data()
+        return self.slots_data
         
     def load_parking_slots_available_data(self):
         with open(self.already_assigned_parking_slots_json_path, "r") as file:
             return json.load(file)
         
-    def save_parking_slots_available_data(self):
+    def save_slots_data(self):
         with open(self.already_assigned_parking_slots_json_path, "w") as file:
             # json.dump(self.user_model, file, indent=4)
-            json.dump(self.parking_slots_available_data, file, indent=4)
+            json.dump(self.slots_data, file, indent=4)
 
     def generate_parking_slot_id(self):
         # user_bookings = [entry for entry in self.time_data if entry['user_id'] == user_id]
@@ -105,8 +105,12 @@ class UserController:
         return datetime.datetime.fromtimestamp(unix_timestamp).strftime('%Y-%m-%d %H:%M')
                 
     def assign_parking_slot(self, bookings):
+        available_slots = [slot for slot in self.get_all_parking_slots_available_data() if slot['available_for_use']]
+        if not available_slots:
+            return None, "No available slots at the moment. Please try again later."
+
         parking_slots_BOOK_ASSIGNMENTS = []
-        slot_counter = 1
+        # slot_counter = 1
 
         for booking in bookings:
             arrival_unix = self.convert_to_unix(booking["arrival_date"], booking["arrival_time"])
@@ -114,10 +118,10 @@ class UserController:
             customer_number = booking["customer_number"]
 
             assigned = False
-            for slot_assignment in parking_slots_BOOK_ASSIGNMENTS:
-                slot_id = slot_assignment["slot_id"]
+            for slot in available_slots:
+                slot_id = slot["parking_slot_id"]
                 occupied = False
-                for time_range in slot_assignment["time_occupied"]:
+                for time_range in slot["time_occupied"]:
                     if not (departure_unix <= time_range[0] or arrival_unix >= time_range[1]):
                         occupied = True
                         break
