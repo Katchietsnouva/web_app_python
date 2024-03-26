@@ -1,1 +1,12 @@
-[]
+[
+    {
+        "user_id": "6265c831-de5c-41b8-87c3-e3eb697e5ac4",
+        "customer_number": "CUST-2",
+        "booking_id": "Book_id-001",
+        "arrival_date": "2024-03-26",
+        "arrival_time": "03:40",
+        "departure_date": "2024-03-26",
+        "departure_time": "03:42",
+        "duration_minutes": 2
+    }
+]
