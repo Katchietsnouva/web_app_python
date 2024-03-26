@@ -1,38 +1,38 @@
 [
     {
-        "user_id": "13528310-3908-4e82-ba92-39a260bd4590",
+        "user_id": "d4365c4c-ff32-448a-b14c-a318e3b41675",
         "customer_number": "CUST-1",
+        "username": "Mr. Enzo Ferrari",
+        "password": "enzo123",
+        "phone": "0759924037",
+        "email": "philipaswa01@gmail.com",
+        "carmanufacturer": "Ferrari",
+        "carmodel": "Ferrari laferrari",
+        "car_plate": "KDH 001X",
+        "role": "user"
+    },
+    {
+        "user_id": "cf80c157-67ba-4673-a75b-2f9fec622f0b",
+        "customer_number": "CUST-2",
+        "username": "Mr. Ford",
+        "password": "ford123",
+        "phone": "0700000000",
+        "email": "philipaswa01@gmail.com",
+        "carmanufacturer": "Ford",
+        "carmodel": "Ford GT Mk IV",
+        "car_plate": "KDH 002X",
+        "role": "user"
+    },
+    {
+        "user_id": "dd8c0e44-de40-49e8-8e07-de86398241f6",
+        "customer_number": "CUST-3",
         "username": "admin",
         "password": "admin",
-        "phone": "admin",
-        "email": "admin@gmail.com",
-        "carmanufacturer": "admin",
-        "carmodel": "admin",
-        "car_plate": "admin",
+        "phone": "k",
+        "email": "k@g",
+        "carmanufacturer": "k",
+        "carmodel": "l",
+        "car_plate": "k",
         "role": "admin"
-    },
-    {
-        "user_id": "6265c831-de5c-41b8-87c3-e3eb697e5ac4",
-        "customer_number": "CUST-2",
-        "username": "fff",
-        "password": "fff",
-        "phone": "fff",
-        "email": "fff@gmail.com",
-        "carmanufacturer": "fff",
-        "carmodel": "fff",
-        "car_plate": "fff",
-        "role": "user"
-    },
-    {
-        "user_id": "faa28ec1-d4ec-4525-8e4b-8e55563e5754",
-        "customer_number": "CUST-3",
-        "username": "ggg",
-        "password": "ggg",
-        "phone": "ggg",
-        "email": "ggg@gmail.com",
-        "carmanufacturer": "ggg",
-        "carmodel": "ggg",
-        "car_plate": "ggg",
-        "role": "user"
     }
 ]

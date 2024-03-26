@@ -258,7 +258,7 @@ class PageController:
                 parking_assignments, error_message  = UserController.assign_parking_slot(self.user_controller, all_booking_time_data)
 
                 if error_message:
-                    flash(error_message, 'error')
+                    flash("something bad happened", 'error')
                     return redirect(url_for('booking'))                
 
                 # Save parking slot assignments to JSON file

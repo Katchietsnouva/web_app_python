@@ -1,12 +1,12 @@
 [
     {
-        "user_id": "6265c831-de5c-41b8-87c3-e3eb697e5ac4",
-        "customer_number": "CUST-2",
+        "user_id": "d4365c4c-ff32-448a-b14c-a318e3b41675",
+        "customer_number": "CUST-1",
         "booking_id": "Book_id-001",
         "arrival_date": "2024-03-26",
-        "arrival_time": "03:40",
+        "arrival_time": "04:36",
         "departure_date": "2024-03-26",
-        "departure_time": "03:42",
-        "duration_minutes": 2
+        "departure_time": "04:36",
+        "duration_minutes": 0
     }
 ]
