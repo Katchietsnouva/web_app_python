@@ -259,9 +259,9 @@ class PageController:
                 parking_assignments, error_message  = UserController.assign_parking_slot(self.user_controller, all_booking_time_data)
                 # parking_assignments  = UserController.assign_parking_slot(self.user_controller, all_booking_time_data)
 
-                # if error_message:
-                #     flash(error_message, 'error')
-                #     return redirect(url_for('booking'))         
+                if error_message:
+                    flash(error_message, 'error')
+                    return redirect(url_for('booking'))         
                 def convert_to_unix(self, date_str, time_str):
                     dt = datetime.datetime.strptime(date_str + ' ' + time_str, '%Y-%m-%d %H:%M')
                     return int(dt.timestamp())
@@ -272,8 +272,9 @@ class PageController:
                 def parking_assignments_to_json(self, assignments):
                     json_assignments = []
                     for assignment in assignments:
+                        print("Assignment:", assignment)  
                         json_assignment = {
-                            "slot_id": assignment['slot_id'],
+                            "slot_id": assignment['parking_slot_id'],
                             "time_occupied_data": [
                                 {"from": convert_to_datetime(time_range[0]), "to": convert_to_datetime(time_range[1]), "customer_number": time_range[2]}
                                 for time_range in assignment['time_occupied']
@@ -284,8 +285,6 @@ class PageController:
 
                 # Save parking slot assignments to JSON file
                 with open('user_data/global_users_data/slots.json', 'w') as json_file:
-                    # json.dump([assignment.to_dict() for assignment in parking_assignments], json_file, indent=4)
-                    # json.dump([assignment for assignment in parking_assignments], json_file, indent=4)
                     json.dump(parking_assignments_to_json(self, parking_assignments), json_file, indent=4)
 
                 with open('user_data/global_users_data/slots.txt', 'w') as txt_file:
