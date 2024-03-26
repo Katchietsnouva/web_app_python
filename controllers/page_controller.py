@@ -218,6 +218,7 @@ class PageController:
         #         return redirect(url_for('success', message='Booking Successful!', redirect_url=url_for('home')))
         #     return render_template('booking_page.html')
         
+        
         @app.route('/book', methods=['GET', 'POST'])
         def booking():
             if request.method == 'POST':
@@ -240,6 +241,7 @@ class PageController:
                 duration_minutes = int(duration.total_seconds() / 60)
                 print(f"Duration in minutes: {duration_minutes} minutes")
 
+
                 if duration_minutes < 0:
                     flash('Invalid booking: Departure should be after arrival', 'error')
                     return redirect(url_for('booking'))
@@ -249,10 +251,10 @@ class PageController:
 
                 
                 # Generate parking slot assignments
-                # all_booking_time_data = self.user_controller.get_all_time_data()
+                all_booking_time_data = self.user_controller.get_all_time_data()
                 # Load data from JSON file
-                with open('user_data/global_users_data/time_data.json', 'r') as file:
-                    all_booking_time_data = json.load(file)
+                # with open('user_data/global_users_data/time_data.json', 'r') as file:
+                #     all_booking_time_data = json.load(file)
 
                 # parking_assignments, error_message  = UserController.assign_parking_slot(self.user_controller, all_booking_time_data)
                 parking_assignments  = UserController.assign_parking_slot(self.user_controller, all_booking_time_data)
@@ -288,14 +290,14 @@ class PageController:
 
 
                     
-                # # Save parking slot assignments to text file
-                # with open('user_data/global_users_data/slots.txt', 'w') as txt_file:
-                #     for assignment in parking_assignments:
-                #         txt_file.write(f"Slot ID: {assignment.slot_id}\n") 
-                #         txt_file.write("Time_occupied_data:\n")
-                #         for time_range in assignment.time_occupied_data:
-                #             txt_file.write(f"  - From: {time_range['from']}, To: {time_range['to']}, Customer Number: {time_range['customer_number']}\n")
-                #         txt_file.write("\n")
+                # Save parking slot assignments to text file
+                with open('user_data/global_users_data/slots.txt', 'w') as txt_file:
+                    for assignment in parking_assignments:
+                        txt_file.write(f"Slot ID: {assignment.slot_id}\n") 
+                        txt_file.write("Time_occupied_data:\n")
+                        for time_range in assignment.time_occupied_data:
+                            txt_file.write(f"  - From: {time_range['from']}, To: {time_range['to']}, Customer Number: {time_range['customer_number']}\n")
+                        txt_file.write("\n")
                 
                 # Save the time entry to the data service controller
                 UserController.save_user_time_data(self.user_controller, time_model)

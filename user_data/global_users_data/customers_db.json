@@ -34,5 +34,17 @@
         "carmodel": "l",
         "car_plate": "k",
         "role": "admin"
+    },
+    {
+        "user_id": "c7b4c311-efc6-482e-accc-0ae42aaae22f",
+        "customer_number": "CUST-4",
+        "username": "ee",
+        "password": "ee",
+        "phone": "ee",
+        "email": "ee@gmail.com",
+        "carmanufacturer": "ee",
+        "carmodel": "ee",
+        "car_plate": "ee",
+        "role": "user"
     }
 ]

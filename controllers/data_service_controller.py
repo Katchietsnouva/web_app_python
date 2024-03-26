@@ -87,15 +87,6 @@ class UserController:
     #         # json.dump(self.user_model, file, indent=4)
     #         json.dump(self.slots_data, file, indent=4)
 
-    def generate_parking_slot_id(self):
-        # user_bookings = [entry for entry in self.time_data if entry['user_id'] == user_id]
-        user_parking_info = [entry for entry in self.parking_slots_available_data]
-        if not user_parking_info:
-            return f'SLOT-001'
-        else:
-            latest_parking_slots_available_data = user_parking_info[-1]['parking_slot_id']
-            index = int(latest_parking_slots_available_data.split('-')[1]) + 1
-            return f'SLOT-{index:03d}'
             
     def convert_to_unix(self, date_str, time_str):
         dt = datetime.datetime.strptime(date_str + ' ' + time_str, '%Y-%m-%d %H:%M')
@@ -108,7 +99,6 @@ class UserController:
     #     if not available_slots:
     #         return None, "No available slots at the moment. Please try again later."
     
-
     def assign_parking_slot(self, bookings):
         parking_slots_BOOK_ASSIGNMENTS = []
         slot_counter = 1
@@ -139,6 +129,16 @@ class UserController:
                 slot_counter += 1
 
         return parking_slots_BOOK_ASSIGNMENTS
+
+    def generate_parking_slot_id(self):
+        # user_bookings = [entry for entry in self.time_data if entry['user_id'] == user_id]
+        user_parking_info = [entry for entry in self.parking_slots_available_data]
+        if not user_parking_info:
+            return f'SLOT-001'
+        else:
+            latest_parking_slots_available_data = user_parking_info[-1]['parking_slot_id']
+            index = int(latest_parking_slots_available_data.split('-')[1]) + 1
+            return f'SLOT-{index:03d}'
 
     def load_or_create_parking_slots_available_data(self):
         directory = os.path.dirname(self.parking_slots_available_model_path)
