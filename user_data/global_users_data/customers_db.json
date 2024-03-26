@@ -1,1 +1,38 @@
-[]
+[
+    {
+        "user_id": "13528310-3908-4e82-ba92-39a260bd4590",
+        "customer_number": "CUST-1",
+        "username": "admin",
+        "password": "admin",
+        "phone": "admin",
+        "email": "admin@gmail.com",
+        "carmanufacturer": "admin",
+        "carmodel": "admin",
+        "car_plate": "admin",
+        "role": "admin"
+    },
+    {
+        "user_id": "6265c831-de5c-41b8-87c3-e3eb697e5ac4",
+        "customer_number": "CUST-2",
+        "username": "fff",
+        "password": "fff",
+        "phone": "fff",
+        "email": "fff@gmail.com",
+        "carmanufacturer": "fff",
+        "carmodel": "fff",
+        "car_plate": "fff",
+        "role": "user"
+    },
+    {
+        "user_id": "faa28ec1-d4ec-4525-8e4b-8e55563e5754",
+        "customer_number": "CUST-3",
+        "username": "ggg",
+        "password": "ggg",
+        "phone": "ggg",
+        "email": "ggg@gmail.com",
+        "carmanufacturer": "ggg",
+        "carmodel": "ggg",
+        "car_plate": "ggg",
+        "role": "user"
+    }
+]
