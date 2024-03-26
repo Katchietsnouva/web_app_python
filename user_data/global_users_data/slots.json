@@ -3,34 +3,9 @@
         "slot_id": "SLOT-001",
         "time_occupied_data": [
             {
-                "from": "2024-03-28 18:00",
-                "to": "2024-03-28 19:10",
+                "from": "2024-03-26 18:00",
+                "to": "2024-03-26 18:02",
                 "customer_number": "CUST-1"
-            },
-            {
-                "from": "2024-03-28 20:10",
-                "to": "2024-03-28 21:10",
-                "customer_number": "CUST-4"
-            }
-        ]
-    },
-    {
-        "slot_id": "SLOT-002",
-        "time_occupied_data": [
-            {
-                "from": "2024-03-28 18:00",
-                "to": "2024-03-28 19:10",
-                "customer_number": "CUST-2"
-            }
-        ]
-    },
-    {
-        "slot_id": "SLOT-003",
-        "time_occupied_data": [
-            {
-                "from": "2024-03-28 18:00",
-                "to": "2024-03-28 19:10",
-                "customer_number": "CUST-4"
             }
         ]
     }
