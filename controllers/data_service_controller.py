@@ -95,13 +95,14 @@ class UserController:
     def convert_to_datetime(self, unix_timestamp):
         return datetime.datetime.fromtimestamp(unix_timestamp).strftime('%Y-%m-%d %H:%M')
 
-    #  available_slots = [slot for slot in self.get_all_parking_slots_available_data() if slot['available_for_use']]
-    #     if not available_slots:
-    #         return None, "No available slots at the moment. Please try again later."
     
     def assign_parking_slot(self, bookings):
         parking_slots_BOOK_ASSIGNMENTS = []
-        slot_counter = 1
+        # slot_counter = 1
+        available_slots = [slot for slot in self.get_all_parking_slots_available_data() if slot['available_for_use']]
+
+        if not available_slots:
+                return None, "No available slots at the moment. Please try again later."
 
         for booking in bookings:
             arrival_unix = self.convert_to_unix(booking["arrival_date"], booking["arrival_time"])
@@ -109,7 +110,8 @@ class UserController:
             customer_number = booking["customer_number"]
 
             assigned = False
-            for slot_assignment in parking_slots_BOOK_ASSIGNMENTS:
+            for slot_assignment in available_slots:
+            # for slot_assignment in parking_slots_BOOK_ASSIGNMENTS:
                 slot_id = slot_assignment["slot_id"]
                 occupied = False
                 for time_range in slot_assignment["time_occupied"]:

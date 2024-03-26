@@ -256,8 +256,8 @@ class PageController:
                 # with open('user_data/global_users_data/time_data.json', 'r') as file:
                 #     all_booking_time_data = json.load(file)
 
-                # parking_assignments, error_message  = UserController.assign_parking_slot(self.user_controller, all_booking_time_data)
-                parking_assignments  = UserController.assign_parking_slot(self.user_controller, all_booking_time_data)
+                parking_assignments, error_message  = UserController.assign_parking_slot(self.user_controller, all_booking_time_data)
+                # parking_assignments  = UserController.assign_parking_slot(self.user_controller, all_booking_time_data)
 
                 # if error_message:
                 #     flash(error_message, 'error')

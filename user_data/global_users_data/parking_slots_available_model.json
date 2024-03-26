@@ -7,7 +7,7 @@
     {
         "parking_slot_id": "SLOT-002",
         "slot_status": "good",
-        "available_for_use": true
+        "available_for_use": false
     },
     {
         "parking_slot_id": "SLOT-003",
