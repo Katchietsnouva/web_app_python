@@ -290,17 +290,11 @@ class PageController:
 
                 with open('user_data/global_users_data/slots.txt', 'w') as txt_file:
                     for assignment in parking_assignments:
-                        slot_id = assignment.get('slot_id', 'N/A')  # Get slot_id or default to 'N/A' if not found
-                        txt_file.write(f"Slot ID: {slot_id}\n")
-                        time_occupied_data = assignment.get('time_occupied_data', [])  # Get time_occupied_data or default to empty list if not found
-                        if time_occupied_data:
-                            txt_file.write("Time_occupied_data:\n")
-                            for time_range in time_occupied_data:
-                                txt_file.write(f"  - From: {time_range.get('from', 'N/A')}, To: {time_range.get('to', 'N/A')}, Customer Number: {time_range.get('customer_number', 'N/A')}\n")
-                            txt_file.write("\n")
-                        else:
-                            txt_file.write("No time occupied data\n\n")
-
+                        txt_file.write(f"Slot ID: {assignment['slot_id']}\n")
+                        txt_file.write("Time_occupied_data:\n")
+                        for time_range in assignment['time_occupied']:
+                            txt_file.write(f"  - From: {convert_to_datetime(time_range[0])}, To: {convert_to_datetime(time_range[1])}, Customer Number: {time_range[2]}\n")
+                        txt_file.write("\n")
                     
                 
                 # Save the time entry to the data service controller

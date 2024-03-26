@@ -1,3 +1,5 @@
 Slot ID: SLOT-001
-No time occupied data
+Time_occupied_data:
+  - From: 2024-03-26 18:07, To: 2024-03-26 19:07, Customer Number: CUST-1
+  - From: 2024-03-27 18:08, To: 2024-03-27 19:08, Customer Number: CUST-1
 
