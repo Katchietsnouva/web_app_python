@@ -251,7 +251,7 @@ class PageController:
                 # Generate parking slot assignments
                 # all_booking_time_data = self.user_controller.get_all_time_data()
                 # Load data from JSON file
-                with open('slot_allocation/time_data.json', 'r') as file:
+                with open('user_data/global_users_data/time_data.json', 'r') as file:
                     all_booking_time_data = json.load(file)
 
                 # parking_assignments, error_message  = UserController.assign_parking_slot(self.user_controller, all_booking_time_data)
@@ -302,7 +302,7 @@ class PageController:
                 
                 flash('Booking Successful!', 'success')
 
-                # return redirect(url_for('success', message='Booking Successful!', duration=duration, redirect_url=url_for('home')))
+                # return redirect(url_for('success', message='Booking SuIsiah Maxwell & ccessful!', duration=duration, redirect_url=url_for('home')))
                 return render_template('booking_page.html', duration=duration, booking_successful=True, latest_booking_id=time_model.booking_id)
             
                 return render_template('booking_page.html', duration=duration, booking=time_model.to_dict())
