@@ -17,7 +17,7 @@ from models.time_model import TimeModel
 from models.payment_model import PaymentModel
 from models.parking_slots_available_model import ParkingSlotAvailableModel
 from models.Parking_slots_assignment_model import SlotAssignmentModel
-from datetime import datetime
+import datetime
 # import user_data
 class PageController:
     def __init__(self, app):
@@ -203,11 +203,6 @@ class PageController:
                 latest_booking_id  = "available_tickets"
                 # Sample parking slots data (will be replaced by dynamic data later)
                 parking_slots = parking_slots = UserController.get_all_parking_slots_available_data(self.user_controller)
-                # parking_slots = [
-                #     {"slot_id": "SLOT-001", "status": "available"},
-                #     {"slot_id": "SLOT-002", "status": "occupied"},
-                #     # Add more parking slots as needed
-                # ]
 
                 # Rearranginh tume model to fing the duration difference
                 # user_bookings = [TimeModel(**booking) for booking in user_bookings]
@@ -254,25 +249,53 @@ class PageController:
 
                 
                 # Generate parking slot assignments
-                all_booking_time_data = self.user_controller.get_all_time_data()
-                parking_assignments, error_message  = UserController.assign_parking_slot(self.user_controller, all_booking_time_data)
+                # all_booking_time_data = self.user_controller.get_all_time_data()
+                # Load data from JSON file
+                with open('slot_allocation/time_data.json', 'r') as file:
+                    all_booking_time_data = json.load(file)
 
-                if error_message:
-                    flash("something bad happened", 'error')
-                    return redirect(url_for('booking'))                
+                # parking_assignments, error_message  = UserController.assign_parking_slot(self.user_controller, all_booking_time_data)
+                parking_assignments  = UserController.assign_parking_slot(self.user_controller, all_booking_time_data)
+
+                # if error_message:
+                #     flash(error_message, 'error')
+                #     return redirect(url_for('booking'))         
+                def convert_to_unix(self, date_str, time_str):
+                    dt = datetime.datetime.strptime(date_str + ' ' + time_str, '%Y-%m-%d %H:%M')
+                    return int(dt.timestamp())
+
+                def convert_to_datetime( unix_timestamp):
+                    return datetime.datetime.fromtimestamp(unix_timestamp).strftime('%Y-%m-%d %H:%M')
+
+                def parking_assignments_to_json(self, assignments):
+                    json_assignments = []
+                    for assignment in assignments:
+                        json_assignment = {
+                            "slot_id": assignment['slot_id'],
+                            "time_occupied_data": [
+                                {"from": convert_to_datetime(time_range[0]), "to": convert_to_datetime(time_range[1]), "customer_number": time_range[2]}
+                                for time_range in assignment['time_occupied']
+                            ]
+                        }
+                        json_assignments.append(json_assignment)
+                    return json_assignments                       
 
                 # Save parking slot assignments to JSON file
                 with open('user_data/global_users_data/slots.json', 'w') as json_file:
                     # json.dump([assignment.to_dict() for assignment in parking_assignments], json_file, indent=4)
-                    json.dump([assignment for assignment in parking_assignments], json_file, indent=4)
-                # Save parking slot assignments to text file
-                with open('user_data/global_users_data/slots.txt', 'w') as txt_file:
-                    for assignment in parking_assignments:
-                        txt_file.write(f"Slot ID: {assignment.slot_id}\n") 
-                        txt_file.write("Time_occupied_data:\n")
-                        for time_range in assignment.time_occupied_data:
-                            txt_file.write(f"  - From: {time_range['from']}, To: {time_range['to']}, Customer Number: {time_range['customer_number']}\n")
-                        txt_file.write("\n")
+                    # json.dump([assignment for assignment in parking_assignments], json_file, indent=4)
+                    json.dump(parking_assignments_to_json(self, parking_assignments), json_file, indent=4)
+
+
+                    
+                # # Save parking slot assignments to text file
+                # with open('user_data/global_users_data/slots.txt', 'w') as txt_file:
+                #     for assignment in parking_assignments:
+                #         txt_file.write(f"Slot ID: {assignment.slot_id}\n") 
+                #         txt_file.write("Time_occupied_data:\n")
+                #         for time_range in assignment.time_occupied_data:
+                #             txt_file.write(f"  - From: {time_range['from']}, To: {time_range['to']}, Customer Number: {time_range['customer_number']}\n")
+                #         txt_file.write("\n")
                 
                 # Save the time entry to the data service controller
                 UserController.save_user_time_data(self.user_controller, time_model)
@@ -368,7 +391,7 @@ class PageController:
                 # amount = PaymentModel.calculate_amount(self, duration_minutes)
                 amount = 0.8 * duration_minutes
                 amount = round(amount, 2)
-                payment_date = datetime.now().isoformat()
+                payment_date = datetime.datetime.now().isoformat()
                 payment_id = UserController.generate_payment_id(self.user_controller, booking_id)
                 # payment_id = self.generate_parking_id(payment_data_collec_model.booking_id)
                 payment_data_collec_model = PaymentModel(payment_id=payment_id, booking_id=booking_id, customer_number=customer_number, payment_date = payment_date, duration_minutes = duration_minutes, amount = amount, is_paid = True, payment_type=payment_type)
