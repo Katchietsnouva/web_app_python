@@ -118,25 +118,55 @@ class UserController:
             return None, "No available slots at the moment. Please try again later."
 
         # for booking in bookings:
+        print("initiallisasation of debug")
+        print("lets print already existing data in parking_slots_BOOK_ASSIGNMENTS below ")
+        print(parking_slots_BOOK_ASSIGNMENTS)
+        print("data of new record to be asigned a unique slot below")
         print(bookings)
+        print("to test if new data has data lets print its arrival_date below")
         print(bookings["arrival_date"])
+
+        
 
         # Process booking and obtain arrival_unix, departure_unix, customer_number
         arrival_unix = self.convert_to_unix(bookings["arrival_date"], bookings["arrival_time"])
         departure_unix = self.convert_to_unix(bookings["departure_date"], bookings["departure_time"])
         customer_number = bookings["customer_number"]
 
-        assigned = False
+        print("arrival_unix below of new data to be assigned a unique slot")
+        print(arrival_unix)
+        print("departure_unix below of new data to be assigned a unique slot")
+        print(departure_unix)
+
+        assigned = False        
         for slot_assignment in parking_slots_BOOK_ASSIGNMENTS:
             # pass
+            print("yyyyy now")
+            print(parking_slots_BOOK_ASSIGNMENTS)
+            print("yyyyy now middle")
+            print(slot_assignment)
+            print("yyyyy now end")
             parking_slot_id = slot_assignment["parking_slot_id"]
+            print(parking_slot_id)
+            print("yyyyy now end 2")
             occupied = False
-            for time_range in slot_assignment["time_occupied"]:
-                if not (departure_unix <= time_range[0] or arrival_unix >= time_range[1]):
+            for time_range in slot_assignment["time_occupied_data"]:
+                print("timerange below")
+                print(time_range)
+                print("slot_assignment")
+                print(slot_assignment)
+                print("time_occupied_data insode slot_assignment below")
+                print(slot_assignment["time_occupied_data"])
+                print("yyyyy now end 3")
+                print("lets print time_range['from'] below")
+                print(time_range['from'])
+                print("lets print time_range['to'] below")
+                print(time_range['to'])
+                if not (departure_unix <= time_range['from'] or arrival_unix >= time_range['to']):
                     occupied = True
                     break
             if not occupied:
-                slot_assignment["time_occupied"].append((arrival_unix, departure_unix, customer_number))
+                slot_assignment["time_occupied_data"].append((arrival_unix, departure_unix, customer_number))
                 assigned = True
                 break
 
@@ -147,7 +177,7 @@ class UserController:
             # Append assignment with initial time_occupied_data
             parking_slots_BOOK_ASSIGNMENTS.append({
                 "parking_slot_id": parking_slot_id,
-                "time_occupied": [(arrival_unix, departure_unix, customer_number)]
+                "time_occupied_data": [(arrival_unix, departure_unix, customer_number)]
             })
             slot_counter += 1
 

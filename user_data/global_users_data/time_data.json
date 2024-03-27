@@ -1,18 +1,8 @@
 [
     {
-        "user_id": "c7b4c311-efc6-482e-accc-0ae42aaae22f",
-        "customer_number": "CUST-4",
+        "user_id": "d4365c4c-ff32-448a-b14c-a318e3b41675",
+        "customer_number": "CUST-1",
         "booking_id": "Book_id-001",
-        "arrival_date": "2024-03-27",
-        "arrival_time": "10:47",
-        "departure_date": "2024-03-27",
-        "departure_time": "11:47",
-        "duration_minutes": 60
-    },
-    {
-        "user_id": "c7b4c311-efc6-482e-accc-0ae42aaae22f",
-        "customer_number": "CUST-4",
-        "booking_id": "Book_id-002",
         "arrival_date": "2024-03-28",
         "arrival_time": "10:50",
         "departure_date": "2024-03-28",

@@ -286,7 +286,7 @@ class PageController:
                             "parking_slot_id": assignment['parking_slot_id'],
                             "time_occupied_data": [
                                 {"from": convert_to_datetime(time_range[0]), "to": convert_to_datetime(time_range[1]), "customer_number": time_range[2]}
-                                for time_range in assignment['time_occupied']
+                                for time_range in assignment['time_occupied_data']
                             ]
                         }
                         json_assignments.append(json_assignment)
@@ -300,7 +300,7 @@ class PageController:
                     for assignment in parking_assignments:
                         txt_file.write(f"Parking Slot ID: {assignment['parking_slot_id']}\n")
                         txt_file.write("Time_occupied_data:\n")
-                        for time_range in assignment['time_occupied']:
+                        for time_range in assignment['time_occupied_data']:
                             txt_file.write(f"  - From: {convert_to_datetime(time_range[0])}, To: {convert_to_datetime(time_range[1])}, Customer Number: {time_range[2]}\n")
                         txt_file.write("\n")
                     
