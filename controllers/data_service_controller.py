@@ -133,11 +133,6 @@ class UserController:
         departure_unix = self.convert_to_unix(bookings["departure_date"], bookings["departure_time"])
         customer_number = bookings["customer_number"]
 
-        print("arrival_unix below of new data to be assigned a unique slot")
-        print(arrival_unix)
-        print("departure_unix below of new data to be assigned a unique slot")
-        print(departure_unix)
-
         assigned = False        
         for slot_assignment in parking_slots_BOOK_ASSIGNMENTS:
             # pass
@@ -158,10 +153,15 @@ class UserController:
                 print("time_occupied_data insode slot_assignment below")
                 print(slot_assignment["time_occupied_data"])
                 print("yyyyy now end 3")
+                print("arrival_unix below of new data to be assigned a unique slot")
+                print(arrival_unix)
+                print("departure_unix below of new data to be assigned a unique slot")
+                print(departure_unix)
                 print("lets print time_range['from'] below")
                 print(time_range['from'])
                 print("lets print time_range['to'] below")
                 print(time_range['to'])
+                
                 if not (departure_unix <= time_range['from'] or arrival_unix >= time_range['to']):
                     occupied = True
                     break
