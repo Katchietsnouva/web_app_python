@@ -263,6 +263,12 @@ class PageController:
 
                 # parking_assignments, error_message  = UserController.assign_parking_slot(self.user_controller, all_booking_time_data)
 
+                def convert_to_unix(self, date_str, time_str):
+                    dt = datetime.datetime.strptime(date_str + ' ' + time_str, '%Y-%m-%d %H:%M')
+                    return int(dt.timestamp())
+
+                def convert_to_datetime( unix_timestamp):
+                    return datetime.datetime.fromtimestamp(unix_timestamp).strftime('%Y-%m-%d %H:%M')
                 latest_mod_ticket_details = UserController.get_selected_ticket_details(self.user_controller, specific_bookin_id)
                 
                 parking_assignments  = UserController.assign_parking_slot(self.user_controller, latest_mod_ticket_details)
@@ -270,12 +276,6 @@ class PageController:
                 # if error_message:
                 #     flash(error_message, 'error')
                 #     return redirect(url_for('booking'))         
-                def convert_to_unix(self, date_str, time_str):
-                    dt = datetime.datetime.strptime(date_str + ' ' + time_str, '%Y-%m-%d %H:%M')
-                    return int(dt.timestamp())
-
-                def convert_to_datetime( unix_timestamp):
-                    return datetime.datetime.fromtimestamp(unix_timestamp).strftime('%Y-%m-%d %H:%M')
 
                 def parking_assignments_to_json(self, assignments):
                     json_assignments = []
@@ -293,19 +293,41 @@ class PageController:
                         }
                         json_assignments.append(json_assignment)
                     return json_assignments                       
-
-                # Save parking slot assignments to JSON file
-                with open('user_data/global_users_data/slots.json', 'w') as json_file:
-                    json.dump(parking_assignments_to_json(self, parking_assignments), json_file, indent=4)
                 
+                def append_parking_assignments_to_json(self, new_assignments):
+                    # Load existing data from the JSON file
+                    with open('user_data/global_users_data/slots.json', 'r') as json_file:
+                        existing_assignments = json.load(json_file)
 
-                with open('user_data/global_users_data/slots.txt', 'w') as txt_file:
-                    for assignment in parking_assignments:
-                        txt_file.write(f"Parking Slot ID: {assignment['parking_slot_id']}\n")
-                        txt_file.write("Time_occupied_data:\n")
-                        for time_range in assignment['time_occupied_data']:
-                            txt_file.write(f"  - From: {convert_to_datetime(time_range[0])}, To: {convert_to_datetime(time_range[1])}, Customer Number: {time_range[2]}\n")
-                        txt_file.write("\n")
+                    # Update existing data with new assignments
+                    for new_assignment in new_assignments:
+                        # Check if the parking slot exists in the existing data
+                        slot_exists = False
+                        for existing_assignment in existing_assignments:
+                            if existing_assignment['slot_id'] == new_assignment['slot_id']:
+                                # Append new time occupied data to the existing assignment
+                                existing_assignment['time_occupied_data'].extend(new_assignment['time_occupied_data'])
+                                slot_exists = True
+                                break
+                        if not slot_exists:
+                            # If the parking slot doesn't exist, add it to the existing data
+                            existing_assignments.append(new_assignment)
+
+                    # Write the updated data back to the JSON file
+                    with open('user_data/global_users_data/slots.json', 'w') as json_file:
+                        json.dump(existing_assignments, json_file, indent=4)
+                        
+                # Save parking slot assignments to JSON file
+                append_parking_assignments_to_json(self, parking_assignments_to_json (self, parking_assignments))
+
+
+                # with open('user_data/global_users_data/slots.txt', 'w') as txt_file:
+                #     for assignment in parking_assignments:
+                #         txt_file.write(f"Parking Slot ID: {assignment['parking_slot_id']}\n")
+                #         txt_file.write("Time_occupied_data:\n")
+                #         for time_range in assignment['time_occupied_data']:
+                #             txt_file.write(f"  - From: {convert_to_datetime(time_range[0])}, To: {convert_to_datetime(time_range[1])}, Customer Number: {time_range[2]}\n")
+                #         txt_file.write("\n")
                     
                 
 
@@ -315,6 +337,7 @@ class PageController:
                 return render_template('booking_page.html', duration=duration, booking=time_model.to_dict())
             return render_template('booking_page.html')
         
+
         @app.route('/extendbook', methods=['GET', 'POST'])
         def extendbook():
             user_id = session['user_id']
