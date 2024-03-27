@@ -108,8 +108,8 @@
             </select>
             <input type="hidden" name="booking_id" value="{{ latest_mod_ticket_details.booking_id }}">
             <input type="hidden" name="customer_number" value="{{ latest_mod_ticket_details.customer_number }}">
-            <input type="submit" value="Make Payment">
-            <a href="/home" class="btn-back-to-home">Next</a>
+            <button type="submit" id="submitBtn" >Make Payment</button>
+            <button type="button" id="homBtn" disabled onclick="goToHomePage()">Proceed to Payment</button>
         </form>
         <div class="payment-details">
             <h2>Payment Details</h2>
@@ -165,8 +165,29 @@
         {% endif %}
       </div>
     {% endif %}
-
-        
     </div>
+
+    <script>
+
+        function goToHomePage() {
+            window.location.href = "/home";
+          }
+
+        function enableProceedToPayment() {
+            // Enable the "Proceed to Payment" button
+            document.getElementById('homBtn').removeAttribute('disabled');
+            document.getElementById('submitBtn').setAttribute('disabled', 'disabled');
+        }
+        // if the booking was successful enable the "Proceed to Payment" button
+        function enableProceedToPaymentButton() {
+        var paymentSuccessful = {% if payment_successful %}true{% else %}false{% endif %};
+            if (paymentSuccessful) {
+                enableProceedToPayment();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', enableProceedToPaymentButton);
+        
+    </script>
 </body>
 </html>

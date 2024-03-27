@@ -137,12 +137,6 @@
             // Return true if the form is valid, false otherwise
             return true;
         }
-    
-        function enableProceedToPayment() {
-            // Enable the "Proceed to Payment" button
-            document.getElementById('proceedToPaymentBtn').removeAttribute('disabled');
-            document.getElementById('submitBtn').setAttribute('disabled', 'disabled');
-        }
 
         function proceedToPayment() {
           // Redirect to payment page with the booking ID
@@ -150,15 +144,24 @@
           //window.location.href = "/payment/{{ latest_booking_id }}";
           var latest_booking_id = "{{ latest_booking_id }}";  
           window.location.href = "/payment/" + latest_booking_id;
-       }
+        }
+    
+        function enableProceedToPayment() {
+            // Enable the "Proceed to Payment" button
+            document.getElementById('proceedToPaymentBtn').removeAttribute('disabled');
+            document.getElementById('submitBtn').setAttribute('disabled', 'disabled');
+        }
 
-        // if the booking was successful enable the "Proceed to Payment" button
-        document.addEventListener("DOMContentLoaded", function() {
-          var bookingSuccessful = {% if booking_successful %}true{% else %}false{% endif %};
+       // if the booking was successful enable the "Proceed to Payment" button
+       //document.addEventListener("DOMContentLoaded", function() {
+       function enableProceedToPaymentButton() {
+        var bookingSuccessful = {% if booking_successful %}true{% else %}false{% endif %};
           if (bookingSuccessful) {
               enableProceedToPayment();
           }
-        });
+        }
+
+        document.addEventListener('DOMContentLoaded', enableProceedToPaymentButton);
         
       </script>
     </form>

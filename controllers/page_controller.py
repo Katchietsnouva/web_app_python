@@ -436,7 +436,7 @@ class PageController:
                 # fetch details for that specific ticket
                 latest_mod_ticket_details = UserController.html_get_selected_ticket_details(self.user_controller,booking_id)
                 payment_data = UserController.get_payment_data_by_payment_id(self.user_controller, payment_id)
-                return render_template('payment_page.html', latest_mod_ticket_details=latest_mod_ticket_details, selected_payment_data=payment_data)
+                return render_template('payment_page.html', latest_mod_ticket_details=latest_mod_ticket_details, selected_payment_data=payment_data, payment_successful=True)
             else:
                 print("operation failed")
                 return render_template('booking_page.html')

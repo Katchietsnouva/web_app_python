@@ -161,7 +161,7 @@ class UserController:
                 break
 
         if not assigned:
-            error_message = "All available slots are occupied."
+            error_message = "Sorry, for the selected time range, all available slots are already booked. Kindly select another time range"
             print(error_message)
             return None, None, error_message
 
