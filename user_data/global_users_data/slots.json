@@ -1,1 +1,17 @@
-[]
+[
+    {
+        "parking_slot_id": "SLOT-001",
+        "time_occupied_data": [
+            {
+                "from": "2024-03-27 23:50",
+                "to": "2024-03-27 23:55",
+                "customer_number": "CUST-5"
+            },
+            {
+                "from": "2024-04-03 23:23",
+                "to": "2024-04-04 23:23",
+                "customer_number": "CUST-5"
+            }
+        ]
+    }
+]

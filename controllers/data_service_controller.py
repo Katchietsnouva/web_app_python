@@ -109,9 +109,6 @@ class UserController:
         return selected_ticket
     
 
-
-
-
     def assign_parking_slot(self, bookings):
         TO_BE_APPENDED_TO_parking_slots_BOOK_ASSIGNMENTS = []
         with open('user_data/global_users_data/slots.json', 'r') as file:
@@ -133,43 +130,32 @@ class UserController:
 
         assigned = False
 
-        if parking_slots_BOOK_ASSIGNMENTS:  # Check if parking_slots_BOOK_ASSIGNMENTS is not empty
-            for slot in available_slots:
-                parking_slot_id = slot["parking_slot_id"]
-                print("Parking slot id:", parking_slot_id)
-                occupied = False
+        for slot in available_slots:
+            parking_slot_id = slot["parking_slot_id"]
+            print("Parking slot id:", parking_slot_id)
 
-                for slot_assignment in parking_slots_BOOK_ASSIGNMENTS:
+            # Check if the slot is already occupied
+            slot_occupied = False
+            for slot_assignment in parking_slots_BOOK_ASSIGNMENTS:
+                if slot_assignment["parking_slot_id"] == parking_slot_id:
                     for time_range in slot_assignment["time_occupied_data"]:
                         from_unix = self.convert_to_unix_eq2(time_range['from'])
                         to_unix = self.convert_to_unix_eq2(time_range['to'])
-
                         if not (arrival_unix >= to_unix or departure_unix <= from_unix):
                             print("Booking overlaps with existing time range.")
-                            occupied = True
+                            slot_occupied = True
                             break
-
-                    if not occupied:
-                        print("Booking does not overlap with existing time ranges.")
-                        TO_BE_APPENDED_TO_parking_slots_BOOK_ASSIGNMENTS.append({
-                            "parking_slot_id": parking_slot_id,
-                            "time_occupied_data": [(arrival_unix, departure_unix, customer_number)]
-                        })
-                        assigned = True
+                    if slot_occupied:
                         break
 
-                if assigned:
-                    break
-
-        else:
-            # If parking_slots_BOOK_ASSIGNMENTS is empty, assign the first available slot
-            parking_slot_id = available_slots[0]["parking_slot_id"]
-            print("Parking slot id:", parking_slot_id)
-            TO_BE_APPENDED_TO_parking_slots_BOOK_ASSIGNMENTS.append({
-                "parking_slot_id": parking_slot_id,
-                "time_occupied_data": [(arrival_unix, departure_unix, customer_number)]
-            })
-            assigned = True
+            if not slot_occupied:
+                # If the slot is not occupied, assign it to the booking
+                TO_BE_APPENDED_TO_parking_slots_BOOK_ASSIGNMENTS.append({
+                    "parking_slot_id": parking_slot_id,
+                    "time_occupied_data": [(arrival_unix, departure_unix, customer_number)]
+                })
+                assigned = True
+                break
 
         if not assigned:
             print("All available slots are occupied.")
@@ -178,8 +164,6 @@ class UserController:
         print("Almost exiting the equation")
         print(TO_BE_APPENDED_TO_parking_slots_BOOK_ASSIGNMENTS)
         return TO_BE_APPENDED_TO_parking_slots_BOOK_ASSIGNMENTS
-
-
             
     # def assign_parking_slot(self, bookings):
     #     TO_BE_APPENDED_TO_parking_slots_BOOK_ASSIGNMENTS = []

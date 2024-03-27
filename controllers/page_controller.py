@@ -261,8 +261,6 @@ class PageController:
                 #     all_booking_time_data = json.load(file)
                 # parking_assignments  = UserController.assign_parking_slot(self.user_controller, all_booking_time_data)
 
-                # parking_assignments, error_message  = UserController.assign_parking_slot(self.user_controller, all_booking_time_data)
-
                 def convert_to_unix(self, date_str, time_str):
                     dt = datetime.datetime.strptime(date_str + ' ' + time_str, '%Y-%m-%d %H:%M')
                     return int(dt.timestamp())
@@ -272,7 +270,11 @@ class PageController:
                 latest_mod_ticket_details = UserController.get_selected_ticket_details(self.user_controller, specific_bookin_id)
                 
                 parking_assignments  = UserController.assign_parking_slot(self.user_controller, latest_mod_ticket_details)
+                # parking_assignments, error_message  = UserController.assign_parking_slot(self.user_controller, all_booking_time_data)
 
+                # if parking_assignments == None:
+                #     error_message =  "All available slots are occupied"
+            
                 # if error_message:
                 #     flash(error_message, 'error')
                 #     return redirect(url_for('booking'))         
