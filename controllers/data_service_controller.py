@@ -155,15 +155,17 @@ class UserController:
                     "time_occupied_data": [(arrival_unix, departure_unix, customer_number)]
                 })
                 assigned = True
+                message = "you have been assigned parking_slot_id {parking_slot_id}"
                 break
 
         if not assigned:
-            print("All available slots are occupied.")
-            return None, "All available slots are occupied."
+            message = "All available slots are occupied."
+            print(message)
+            return None, message
 
         print("Almost exiting the equation")
         print(TO_BE_APPENDED_TO_parking_slots_BOOK_ASSIGNMENTS)
-        return TO_BE_APPENDED_TO_parking_slots_BOOK_ASSIGNMENTS
+        return TO_BE_APPENDED_TO_parking_slots_BOOK_ASSIGNMENTS, message
             
     # def assign_parking_slot(self, bookings):
     #     TO_BE_APPENDED_TO_parking_slots_BOOK_ASSIGNMENTS = []

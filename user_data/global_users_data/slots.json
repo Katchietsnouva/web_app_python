@@ -13,5 +13,15 @@
                 "customer_number": "CUST-5"
             }
         ]
+    },
+    {
+        "parking_slot_id": "SLOT-003",
+        "time_occupied_data": [
+            {
+                "from": "2024-03-27 23:50",
+                "to": "2024-03-27 23:55",
+                "customer_number": "CUST-1"
+            }
+        ]
     }
 ]
