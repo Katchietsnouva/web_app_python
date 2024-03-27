@@ -106,6 +106,10 @@
       <p>
         Duration: {% if duration is defined %}{{ duration }}{% else %}N/A{% endif %}
       </p>
+      <p>
+        Assigned Booking Slot: {% if booking_message is defined %}{{ booking_message }}{% else %}N/A{% endif %}
+      </p>
+      
 
       <!-- Flash messages -->
       {% with messages = get_flashed_messages(with_categories=true) %}

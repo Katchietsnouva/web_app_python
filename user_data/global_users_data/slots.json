@@ -1,31 +1,26 @@
 [
     {
-        "parking_slot_id": "SLOT-002",
+        "parking_slot_id": "SLOT-001",
         "time_occupied_data": [
             {
-                "from": "2024-03-27 23:50",
-                "to": "2024-03-27 23:55",
+                "from": "2024-03-28 00:28",
+                "to": "2024-03-28 01:27",
+                "customer_number": "CUST-1"
+            },
+            {
+                "from": "2024-03-29 00:30",
+                "to": "2024-03-29 01:30",
                 "customer_number": "CUST-2"
             }
         ]
     },
     {
-        "parking_slot_id": "SLOT-004",
+        "parking_slot_id": "SLOT-003",
         "time_occupied_data": [
             {
-                "from": "2024-03-27 23:50",
-                "to": "2024-03-27 23:55",
-                "customer_number": "CUST-4"
-            }
-        ]
-    },
-    {
-        "parking_slot_id": "SLOT-005",
-        "time_occupied_data": [
-            {
-                "from": "2024-03-27 23:50",
-                "to": "2024-03-27 23:55",
-                "customer_number": "CUST-2"
+                "from": "2024-03-29 00:30",
+                "to": "2024-03-29 01:30",
+                "customer_number": "CUST-1"
             }
         ]
     }

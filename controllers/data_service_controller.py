@@ -142,7 +142,7 @@ class UserController:
                 if slot_assignment["parking_slot_id"] == parking_slot_id:
                     for time_range in slot_assignment["time_occupied_data"]:
                         from_unix = self.convert_to_unix_eq2(time_range['from'])
-                        to_unix = self.convert_to_unix_eq2(time_rangassigned = Falsee['to'])
+                        to_unix = self.convert_to_unix_eq2(time_range['to'])
                         if not (arrival_unix >= to_unix or departure_unix <= from_unix):
                             print("Booking overlaps with existing time range.")
                             slot_occupied = True
