@@ -270,7 +270,7 @@ class PageController:
                 latest_mod_ticket_details = UserController.get_selected_ticket_details(self.user_controller, specific_bookin_id)
                 
                 # parking_assignments  = UserController.assign_parking_slot(self.user_controller, latest_mod_ticket_details)
-                parking_assignments, error_message  = UserController.assign_parking_slot(self.user_controller, all_booking_time_data)
+                parking_assignments, booking_message, error_message  = UserController.assign_parking_slot(self.user_controller, latest_mod_ticket_details)
 
                 if parking_assignments == None:
                     error_message =  "All available slots are occupied."
@@ -331,10 +331,9 @@ class PageController:
                 #             txt_file.write(f"  - From: {convert_to_datetime(time_range[0])}, To: {convert_to_datetime(time_range[1])}, Customer Number: {time_range[2]}\n")
                 #         txt_file.write("\n")
                     
-                
-
+            
                 # return redirect(url_for('success', message='Booking SuIsiah Maxwell & ccessful!', duration=duration, redirect_url=url_for('home')))
-                return render_template('booking_page.html', duration=duration, booking_successful=True, latest_booking_id=time_model.booking_id)
+                return render_template('booking_page.html', duration=duration, booking_successful=True, latest_booking_id=time_model.booking_id, booking_message= booking_message )
             
                 return render_template('booking_page.html', duration=duration, booking=time_model.to_dict())
             return render_template('booking_page.html')

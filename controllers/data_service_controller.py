@@ -127,7 +127,9 @@ class UserController:
         departure_unix = self.convert_to_unix(bookings["departure_date"], bookings["departure_time"])
         customer_number = bookings["customer_number"]
         print(f"The customer number that we want to assign a slot is {customer_number}")
-
+        
+        error_message = None
+        booking_message = None
         assigned = False
 
         for slot in available_slots:
@@ -140,7 +142,7 @@ class UserController:
                 if slot_assignment["parking_slot_id"] == parking_slot_id:
                     for time_range in slot_assignment["time_occupied_data"]:
                         from_unix = self.convert_to_unix_eq2(time_range['from'])
-                        to_unix = self.convert_to_unix_eq2(time_range['to'])
+                        to_unix = self.convert_to_unix_eq2(time_rangassigned = Falsee['to'])
                         if not (arrival_unix >= to_unix or departure_unix <= from_unix):
                             print("Booking overlaps with existing time range.")
                             slot_occupied = True
@@ -155,17 +157,17 @@ class UserController:
                     "time_occupied_data": [(arrival_unix, departure_unix, customer_number)]
                 })
                 assigned = True
-                message = "you have been assigned parking_slot_id {parking_slot_id}"
+                booking_message = f"you have been assigned parking_slot_id {parking_slot_id}"
                 break
 
         if not assigned:
-            message = "All available slots are occupied."
-            print(message)
-            return None, message
+            error_message = "All available slots are occupied."
+            print(error_message)
+            return None, None, error_message
 
         print("Almost exiting the equation")
         print(TO_BE_APPENDED_TO_parking_slots_BOOK_ASSIGNMENTS)
-        return TO_BE_APPENDED_TO_parking_slots_BOOK_ASSIGNMENTS, message
+        return TO_BE_APPENDED_TO_parking_slots_BOOK_ASSIGNMENTS, booking_message, error_message
             
     # def assign_parking_slot(self, bookings):
     #     TO_BE_APPENDED_TO_parking_slots_BOOK_ASSIGNMENTS = []
