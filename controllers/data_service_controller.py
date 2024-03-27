@@ -98,6 +98,8 @@ class UserController:
     
     def assign_parking_slot(self, bookings):
         parking_slots_BOOK_ASSIGNMENTS = []
+        with open('user_data/global_users_data/slots.json', 'r') as file:
+                    parking_slots_BOOK_ASSIGNMENTS = json.load(file)
         # slot_counter = 1
         available_slots = self.get_all_parking_slots_available_data()
         if not available_slots:
@@ -422,11 +424,13 @@ class UserController:
         # generating unique booking id
         booking_id = self.generate_booking_id(time_model.user_id)
         time_model.booking_id = booking_id
+        specific_bookin_id = booking_id
         # Calculate duration
         # duration = time_model.calculate_duration()
         # time_model.duration = duration
         self.time_data.append(vars(time_model))
         self.save_time_data()
+        return specific_bookin_id
 
 
     def get_user_time_data(self, user_id):

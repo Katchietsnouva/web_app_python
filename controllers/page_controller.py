@@ -241,7 +241,6 @@ class PageController:
                 duration_minutes = int(duration.total_seconds() / 60)
                 print(f"Duration in minutes: {duration_minutes} minutes")
 
-
                 if duration_minutes < 0:
                     flash('Invalid booking: Departure should be after arrival', 'error')
                     return redirect(url_for('booking'))
@@ -251,7 +250,7 @@ class PageController:
 
 
                 # Save the time entry to the data service controller
-                UserController.save_user_time_data(self.user_controller, time_model)
+                specific_bookin_id = UserController.save_user_time_data(self.user_controller, time_model)
                 
                 flash('Booking Successful!', 'success')
 
@@ -261,9 +260,13 @@ class PageController:
                 # Load data from JSON file
                 # with open('user_data/global_users_data/time_data.json', 'r') as file:
                 #     all_booking_time_data = json.load(file)
+                # parking_assignments  = UserController.assign_parking_slot(self.user_controller, all_booking_time_data)
 
                 # parking_assignments, error_message  = UserController.assign_parking_slot(self.user_controller, all_booking_time_data)
-                parking_assignments  = UserController.assign_parking_slot(self.user_controller, all_booking_time_data)
+
+                latest_mod_ticket_details = UserController.html_get_selected_ticket_details(self.user_controller, specific_bookin_id)
+                
+                parking_assignments  = UserController.assign_parking_slot(self.user_controller, latest_mod_ticket_details)
 
                 # if error_message:
                 #     flash(error_message, 'error')
