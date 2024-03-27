@@ -113,8 +113,7 @@ class UserController:
         return selected_ticket
             
     def assign_parking_slot(self, bookings):
-        parking_slots_BOOK_ASSIGNMENTS = []
-        NEW_parking_slots_BOOK_ASSIGNMENTS = []
+        TO_BE_APPENDED_TO_parking_slots_BOOK_ASSIGNMENTS = []
         with open('user_data/global_users_data/slots.json', 'r') as file:
             parking_slots_BOOK_ASSIGNMENTS = json.load(file)
         slot_counter = 1
@@ -165,22 +164,10 @@ class UserController:
                 print(time_range['to'])
                 from_unix = self.convert_to_unix_eq2(time_range['from'])
                 to_unix = self.convert_to_unix_eq2(time_range['to'])
-                print("arrival_unix below of new data to be assigned a unique slot")
-                print(arrival_unix)
-                print("departure_unix below of new data to be assigned a unique slot")
-                print(departure_unix)
-                print("LETS PRINT from_unix BELOW")
-                print(from_unix)
-                print("LETS PRINT to_unix BELOW ")
-                print(to_unix)
-                
+
                 # if not (departure_unix <= time_range['from'] or arrival_unix >= time_range['to']):
                 # if not (departure_unix < from_unix or arrival_unix > to_unix):
                 if  (arrival_unix >= from_unix and departure_unix <= to_unix ):
-                    # occupied = True is executed when the current slot cannot be taken. 
-                    # and is executed when the if not block has no true in both conditions
-                    # so if dep time of new slot is not less than from 
-                    # and arival time is not greater than to it will be executedd
                     print("printing the data that managed to reach here")
                     print(customer_number)
                     occupied = True
@@ -188,32 +175,23 @@ class UserController:
 
                 if not occupied:
                     print("printing the data that managed to reach here PART 2")
-                    print(slot_assignment)
-                    print(arrival_unix)
-                    print(departure_unix)
                     print(customer_number)
-                    slot_assignment["time_occupied_data"].append((arrival_unix, departure_unix, customer_number))
-                    # slot_assignment["time_occupied_data"].append({
-                    #     'from': self.convert_to_datetime(arrival_unix),
-                    #     'to': self.convert_to_datetime(departure_unix),
-                    #     'customer_number': customer_number
-                    # })
+                    TO_BE_APPENDED_TO_parking_slots_BOOK_ASSIGNMENTS = slot_assignment["time_occupied_data"].append((arrival_unix, departure_unix, customer_number))
                     assigned = True
                     break
 
         if not assigned:
-            # pass
             # Generate parking_slot_id
             print("printing the data that managed to reach here PART 3")
             parking_slot_id = f"SLOT-{str(slot_counter).zfill(3)}"
             # Append assignment with initial time_occupied_data
-            NEW_parking_slots_BOOK_ASSIGNMENTS.append({
+            TO_BE_APPENDED_TO_parking_slots_BOOK_ASSIGNMENTS.append({
                 "parking_slot_id": parking_slot_id,
                 "time_occupied_data": [(arrival_unix, departure_unix, customer_number)]
             })
             slot_counter += 1
 
-        return NEW_parking_slots_BOOK_ASSIGNMENTS
+        return TO_BE_APPENDED_TO_parking_slots_BOOK_ASSIGNMENTS
 
 
     
