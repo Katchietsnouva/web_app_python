@@ -285,7 +285,9 @@ class PageController:
                             # "parking_slot_id": assignment['parking_slot_id'],
                             "parking_slot_id": assignment['parking_slot_id'],
                             "time_occupied_data": [
-                                {"from": convert_to_datetime(time_range[0]), "to": convert_to_datetime(time_range[1]), "customer_number": time_range[2]}
+                                {"from": convert_to_datetime(time_range[0]), 
+                                 "to": convert_to_datetime(time_range[1]), 
+                                 "customer_number": time_range[2]}
                                 for time_range in assignment['time_occupied_data']
                             ]
                         }

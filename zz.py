@@ -69,3 +69,36 @@ def assign_parking_slot(self, bookings):
         {"from": self.convert_to_datetime(time_range[0]), "to": self.convert_to_datetime(time_range[1]), "customer_number": time_range[2]}
         for time_range in assignment["time_occupied"]
     ]) for assignment in parking_slots_BOOK_ASSIGNMENTS]
+
+
+
+
+
+
+
+
+
+
+
+
+import time
+from datetime import datetime
+
+def convert_to_unix(timestamp_str):
+    # Convert timestamp string to datetime object
+    timestamp_dt = datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M")
+    # Convert datetime object to Unix timestamp
+    timestamp_unix = int(time.mktime(timestamp_dt.timetuple()))
+    return timestamp_unix
+
+# Modify the loop to use converted Unix timestamps for comparison
+for time_range in slot_assignment["time_occupied_data"]:
+    from_unix = convert_to_unix(time_range['from'])
+    to_unix = convert_to_unix(time_range['to'])
+    if not (departure_unix <= from_unix or arrival_unix >= to_unix):
+        occupied = True
+        break
+
+def convert_to_unix(self, timestamp_str):
+    dt = datetime.datetime.strptime(timestamp_str, '%Y-%m-%d %H:%M')
+    return int(dt.timestamp())
