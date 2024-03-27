@@ -253,7 +253,6 @@ class PageController:
                 specific_bookin_id = UserController.save_user_time_data(self.user_controller, time_model)
                 
                 flash('Booking Successful!', 'success')
-
                 
                 # Generate parking slot assignments
                 all_booking_time_data = self.user_controller.get_all_time_data()
@@ -264,7 +263,7 @@ class PageController:
 
                 # parking_assignments, error_message  = UserController.assign_parking_slot(self.user_controller, all_booking_time_data)
 
-                latest_mod_ticket_details = UserController.html_get_selected_ticket_details(self.user_controller, specific_bookin_id)
+                latest_mod_ticket_details = UserController.get_selected_ticket_details(self.user_controller, specific_bookin_id)
                 
                 parking_assignments  = UserController.assign_parking_slot(self.user_controller, latest_mod_ticket_details)
 

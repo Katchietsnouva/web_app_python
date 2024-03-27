@@ -95,44 +95,61 @@ class UserController:
     def convert_to_datetime(self, unix_timestamp):
         return datetime.datetime.fromtimestamp(unix_timestamp).strftime('%Y-%m-%d %H:%M')
     
-    
+    def get_selected_ticket_details(self, ticket_id):
+        # Search for the ticket with the provided ticket_id
+        selected_ticket = None
+        for ticket in self.time_data:
+            if ticket.get("booking_id") == ticket_id:
+                selected_ticket = ticket
+                print("hello drink")
+                print(selected_ticket)
+                print("hello food")
+                break
+        
+        return selected_ticket
+            
     def assign_parking_slot(self, bookings):
         parking_slots_BOOK_ASSIGNMENTS = []
         with open('user_data/global_users_data/slots.json', 'r') as file:
                     parking_slots_BOOK_ASSIGNMENTS = json.load(file)
-        # slot_counter = 1
+        slot_counter = 1
         available_slots = self.get_all_parking_slots_available_data()
         if not available_slots:
             return None, "No available slots at the moment. Please try again later."
 
-        for booking in bookings:
-            # Process booking and obtain arrival_unix, departure_unix, customer_number
-            arrival_unix = self.convert_to_unix(booking["arrival_date"], booking["arrival_time"])
-            departure_unix = self.convert_to_unix(booking["departure_date"], booking["departure_time"])
-            customer_number = booking["customer_number"]
+        # for booking in bookings:
+        print(bookings)
+        print(bookings["arrival_date"])
 
-            assigned = False
-            for slot_assignment in parking_slots_BOOK_ASSIGNMENTS:
-                parking_slot_id = slot_assignment["parking_slot_id"]
-                occupied = False
-                for time_range in slot_assignment["time_occupied"]:
-                    if not (departure_unix <= time_range[0] or arrival_unix >= time_range[1]):
-                        occupied = True
-                        break
-                if not occupied:
-                    slot_assignment["time_occupied"].append((arrival_unix, departure_unix, customer_number))
-                    assigned = True
+        # Process booking and obtain arrival_unix, departure_unix, customer_number
+        arrival_unix = self.convert_to_unix(bookings["arrival_date"], bookings["arrival_time"])
+        departure_unix = self.convert_to_unix(bookings["departure_date"], bookings["departure_time"])
+        customer_number = bookings["customer_number"]
+
+        assigned = False
+        for slot_assignment in parking_slots_BOOK_ASSIGNMENTS:
+            # pass
+            parking_slot_id = slot_assignment["parking_slot_id"]
+            occupied = False
+            for time_range in slot_assignment["time_occupied"]:
+                if not (departure_unix <= time_range[0] or arrival_unix >= time_range[1]):
+                    occupied = True
                     break
+            if not occupied:
+                slot_assignment["time_occupied"].append((arrival_unix, departure_unix, customer_number))
+                assigned = True
+                break
 
-            if not assigned:
-                # Generate parking_slot_id
-                parking_slot_id = f"SLOT-{str(slot_counter).zfill(3)}"
-                # Append assignment with initial time_occupied_data
-                parking_slots_BOOK_ASSIGNMENTS.append({
-                    "parking_slot_id": parking_slot_id,
-                    "time_occupied": [(arrival_unix, departure_unix, customer_number)]
-                })
-                slot_counter += 1
+        if not assigned:
+            # pass
+            # Generate parking_slot_id
+            parking_slot_id = f"SLOT-{str(slot_counter).zfill(3)}"
+            # Append assignment with initial time_occupied_data
+            parking_slots_BOOK_ASSIGNMENTS.append({
+                "parking_slot_id": parking_slot_id,
+                "time_occupied": [(arrival_unix, departure_unix, customer_number)]
+            })
+            slot_counter += 1
 
         return parking_slots_BOOK_ASSIGNMENTS
 
