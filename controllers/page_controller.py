@@ -297,6 +297,7 @@ class PageController:
                 # Save parking slot assignments to JSON file
                 with open('user_data/global_users_data/slots.json', 'w') as json_file:
                     json.dump(parking_assignments_to_json(self, parking_assignments), json_file, indent=4)
+                
 
                 with open('user_data/global_users_data/slots.txt', 'w') as txt_file:
                     for assignment in parking_assignments:

@@ -1,4 +1,4 @@
 Parking Slot ID: SLOT-001
 Time_occupied_data:
-  - From: 2024-03-28 18:25, To: 2024-03-28 18:25, Customer Number: CUST-4
+  - From: 2024-03-27 18:45, To: 2024-03-27 19:45, Customer Number: CUST-4
 

@@ -105,11 +105,7 @@ class UserController:
         for ticket in self.time_data:
             if ticket.get("booking_id") == ticket_id:
                 selected_ticket = ticket
-                print("hello drink")
-                print(selected_ticket)
-                print("hello food")
                 break
-        
         return selected_ticket
             
     def assign_parking_slot(self, bookings):
@@ -162,7 +158,10 @@ class UserController:
                 if not occupied:
                     print("printing the data that managed to reach here PART 2")
                     print(customer_number)
-                    TO_BE_APPENDED_TO_parking_slots_BOOK_ASSIGNMENTS = slot_assignment["time_occupied_data"].append((arrival_unix, departure_unix, customer_number))
+                    TO_BE_APPENDED_TO_parking_slots_BOOK_ASSIGNMENTS.append({
+                        "parking_slot_id": parking_slot_id,
+                        "time_occupied_data": [(arrival_unix, departure_unix, customer_number)]
+                        })
                     assigned = True
                     break
 
