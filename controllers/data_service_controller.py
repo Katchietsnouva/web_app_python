@@ -137,6 +137,7 @@ class UserController:
         print(f" the cutomer number that we want to assing a slot is {customer_number}")
 
         assigned = False        
+        
         for slot_assignment in parking_slots_BOOK_ASSIGNMENTS:
         # for slot_assignment in parking_slots_BOOK_ASSIGNMENTS:
             # pass
