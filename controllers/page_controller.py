@@ -304,7 +304,7 @@ class PageController:
                         # Check if the parking slot exists in the existing data
                         slot_exists = False
                         for existing_assignment in existing_assignments:
-                            if existing_assignment['slot_id'] == new_assignment['slot_id']:
+                            if existing_assignment['parking_slot_id'] == new_assignment['parking_slot_id']:
                                 # Append new time occupied data to the existing assignment
                                 existing_assignment['time_occupied_data'].extend(new_assignment['time_occupied_data'])
                                 slot_exists = True

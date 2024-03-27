@@ -112,8 +112,10 @@ class UserController:
         TO_BE_APPENDED_TO_parking_slots_BOOK_ASSIGNMENTS = []
         with open('user_data/global_users_data/slots.json', 'r') as file:
             parking_slots_BOOK_ASSIGNMENTS = json.load(file)
-        slot_counter = 1
-        available_slots = self.get_all_parking_slots_available_data()
+        # slot_counter = 1
+        
+        available_slots = [slot for slot in self.get_all_parking_slots_available_data() if slot['available_for_use']]
+        print(available_slots)
         if not available_slots:
             return None, "No available slots at the moment. Please try again later."
 
@@ -136,20 +138,19 @@ class UserController:
 
         assigned = False        
         for slot_assignment in parking_slots_BOOK_ASSIGNMENTS:
+        # for slot_assignment in parking_slots_BOOK_ASSIGNMENTS:
             # pass
-            print("yyyyy now")
-            print(parking_slots_BOOK_ASSIGNMENTS)
-            print("yyyyy now middle")
-            print(slot_assignment)
-            print("yyyyy now end")
+            print(f"parking_slots_BOOK_ASSIGNMENTS {parking_slots_BOOK_ASSIGNMENTS}")
+            print(f"slot_assignment {slot_assignment}")
             parking_slot_id = slot_assignment["parking_slot_id"]
-            print(parking_slot_id)
-            print("yyyyy now end 2")
+            print(f"parking_slot_id {parking_slot_id}")
             occupied = False
             for time_range in slot_assignment["time_occupied_data"]:
                 from_unix = self.convert_to_unix_eq2(time_range['from'])
                 to_unix = self.convert_to_unix_eq2(time_range['to'])
-                if  (arrival_unix >= from_unix and departure_unix <= to_unix ):
+                # if not (departure_unix <= time_range[0] or arrival_unix >= time_range[1]):
+                if not (arrival_unix >= to_unix or departure_unix <= from_unix):
+                # if  (arrival_unix >= from_unix and departure_unix <= to_unix ):
                     print("printing the data that managed to reach here")
                     print(customer_number)
                     occupied = True
@@ -175,6 +176,7 @@ class UserController:
                 "time_occupied_data": [(arrival_unix, departure_unix, customer_number)]
             })
             slot_counter += 1
+            print(f"current slot cunter is {slot_counter}")
 
         print("almos exiting the equation")
         print(TO_BE_APPENDED_TO_parking_slots_BOOK_ASSIGNMENTS)
