@@ -8,5 +8,15 @@
         "amount": 48.0,
         "is_paid": true,
         "payment_type": "mpesa"
+    },
+    {
+        "payment_id": "Payment_id-002",
+        "booking_id": "Book_id-005",
+        "customer_number": "CUST-4",
+        "payment_date": "2024-03-28T00:36:46.359964",
+        "duration_minutes": 60,
+        "amount": 48.0,
+        "is_paid": true,
+        "payment_type": "mpesa"
     }
 ]
