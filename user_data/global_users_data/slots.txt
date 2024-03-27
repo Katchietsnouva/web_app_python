@@ -1,0 +1,11 @@
+Parking Slot ID: SLOT-001
+Time_occupied_data:
+  - From: 2024-03-27 08:27, To: 2024-03-27 08:27, Customer Number: CUST-1
+  - From: 2024-03-27 08:27, To: 2024-03-27 08:28, Customer Number: CUST-1
+  - From: 2024-03-28 09:30, To: 2024-03-28 10:30, Customer Number: CUST-1
+  - From: 2024-03-28 10:30, To: 2024-03-28 10:30, Customer Number: CUST-2
+
+Parking Slot ID: SLOT-002
+Time_occupied_data:
+  - From: 2024-03-28 09:30, To: 2024-03-28 10:30, Customer Number: CUST-4
+

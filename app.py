@@ -27,5 +27,4 @@ if __name__ == '__main__':
         page_controller = PageController(app)
         app.run(debug=True, port=8000)
         
-        
-        
+    

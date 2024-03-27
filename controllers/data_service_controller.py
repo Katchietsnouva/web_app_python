@@ -98,7 +98,10 @@ class UserController:
     
     def assign_parking_slot(self, bookings):
         parking_slots_BOOK_ASSIGNMENTS = []
-        slot_counter = 1
+        # slot_counter = 1
+        available_slots = self.get_all_parking_slots_available_data()
+        if not available_slots:
+            return None, "No available slots at the moment. Please try again later."
 
         for booking in bookings:
             # Process booking and obtain arrival_unix, departure_unix, customer_number
@@ -108,7 +111,7 @@ class UserController:
 
             assigned = False
             for slot_assignment in parking_slots_BOOK_ASSIGNMENTS:
-                slot_id = slot_assignment["slot_id"]
+                parking_slot_id = slot_assignment["parking_slot_id"]
                 occupied = False
                 for time_range in slot_assignment["time_occupied"]:
                     if not (departure_unix <= time_range[0] or arrival_unix >= time_range[1]):
@@ -120,16 +123,17 @@ class UserController:
                     break
 
             if not assigned:
-                # Generate slot_id
-                slot_id = f"SLOT-{str(slot_counter).zfill(3)}"
+                # Generate parking_slot_id
+                parking_slot_id = f"SLOT-{str(slot_counter).zfill(3)}"
                 # Append assignment with initial time_occupied_data
                 parking_slots_BOOK_ASSIGNMENTS.append({
-                    "slot_id": slot_id,
+                    "parking_slot_id": parking_slot_id,
                     "time_occupied": [(arrival_unix, departure_unix, customer_number)]
                 })
                 slot_counter += 1
 
         return parking_slots_BOOK_ASSIGNMENTS
+
 
     
     # def assign_parking_slot(self, bookings):
@@ -148,7 +152,7 @@ class UserController:
     #         assigned = False
     #         for slot_assignment in available_slots:
     #         # for slot_assignment in parking_slots_BOOK_ASSIGNMENTS:
-    #             slot_id = slot_assignment["parking_slot_id"]
+    #             parking_slot_id = slot_assignment["parking_slot_id"]
     #             occupied = False
     #             # for time_range in slot_assignment["time_occupied"]:
     #             for time_range in slot_assignment.get("time_occupied", []):
@@ -163,7 +167,7 @@ class UserController:
 
     #         if not assigned:
     #             # parking_slots_BOOK_ASSIGNMENTS.append({
-    #             #     "slot_id": f"SLOT-{str(slot_counter).zfill(3)}",
+    #             #     "parking_slot_id": f"SLOT-{str(slot_counter).zfill(3)}",
     #             #     "time_occupied": [(arrival_unix, departure_unix, customer_number)]
     #             # })
     #             # slot_counter += 1

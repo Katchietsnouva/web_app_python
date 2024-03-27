@@ -249,6 +249,12 @@ class PageController:
                 # Create a TimeModel instance and filling details
                 time_model = TimeModel(user_id, customer_number, None, arrival_date, arrival_time, departure_date, departure_time, duration_minutes)
 
+
+                # Save the time entry to the data service controller
+                UserController.save_user_time_data(self.user_controller, time_model)
+                
+                flash('Booking Successful!', 'success')
+
                 
                 # Generate parking slot assignments
                 all_booking_time_data = self.user_controller.get_all_time_data()
@@ -274,7 +280,8 @@ class PageController:
                     for assignment in assignments:
                         print("Assignment:", assignment)  
                         json_assignment = {
-                            "slot_id": assignment['parking_slot_id'],
+                            # "parking_slot_id": assignment['parking_slot_id'],
+                            "parking_slot_id": assignment['parking_slot_id'],
                             "time_occupied_data": [
                                 {"from": convert_to_datetime(time_range[0]), "to": convert_to_datetime(time_range[1]), "customer_number": time_range[2]}
                                 for time_range in assignment['time_occupied']
@@ -289,17 +296,13 @@ class PageController:
 
                 with open('user_data/global_users_data/slots.txt', 'w') as txt_file:
                     for assignment in parking_assignments:
-                        txt_file.write(f"Slot ID: {assignment['slot_id']}\n")
+                        txt_file.write(f"Parking Slot ID: {assignment['parking_slot_id']}\n")
                         txt_file.write("Time_occupied_data:\n")
                         for time_range in assignment['time_occupied']:
                             txt_file.write(f"  - From: {convert_to_datetime(time_range[0])}, To: {convert_to_datetime(time_range[1])}, Customer Number: {time_range[2]}\n")
                         txt_file.write("\n")
                     
                 
-                # Save the time entry to the data service controller
-                UserController.save_user_time_data(self.user_controller, time_model)
-                
-                flash('Booking Successful!', 'success')
 
                 # return redirect(url_for('success', message='Booking SuIsiah Maxwell & ccessful!', duration=duration, redirect_url=url_for('home')))
                 return render_template('booking_page.html', duration=duration, booking_successful=True, latest_booking_id=time_model.booking_id)
