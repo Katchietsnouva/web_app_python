@@ -161,7 +161,7 @@ class UserController:
                 break
 
         if not assigned:
-            error_message = "Sorry, for the selected time range, all available slots are already booked. Kindly select another time range"
+            error_message = "Sorry, the service is not available at the current moment. Retry later."
             print(error_message)
             return None, None, error_message
 

@@ -273,7 +273,7 @@ class PageController:
                 parking_assignments, booking_message, error_message  = UserController.assign_parking_slot(self.user_controller, latest_mod_ticket_details)
 
                 if parking_assignments == None:
-                    error_message =  "All available slots are occupied."
+                    error_message =  "Sorry, for the selected time range, all available slots are already booked. Kindly select another time range"
             
                 if error_message:
                     flash(error_message, 'error')

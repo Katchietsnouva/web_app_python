@@ -90,6 +90,26 @@
         .btn-back-to-home:hover {
             background-color: #2980b9;
         }
+
+        button:disabled {
+            background-color: #dddddd;
+            cursor: not-allowed;
+        }
+
+        button {
+            background-color: #12CD11;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+          }
+    
+          button:hover {
+            background-color: #45a049;
+          }
+    
     </style>
 </head>
 <body>
@@ -110,6 +130,30 @@
             <input type="hidden" name="customer_number" value="{{ latest_mod_ticket_details.customer_number }}">
             <button type="submit" id="submitBtn" >Make Payment</button>
             <button type="button" id="homBtn" disabled onclick="goToHomePage()">Proceed to Payment</button>
+
+            <script>
+
+                function goToHomePage() {
+                    window.location.href = "/home";
+                }
+
+                function enableProceedToPayment() {
+                    // Enable the "Proceed to Payment" button
+                    document.getElementById('homBtn').removeAttribute('disabled');
+                    document.getElementById('submitBtn').setAttribute('disabled', 'disabled');
+                }
+                // if the booking was successful enable the "Proceed to Payment" button
+                function enableProceedToPaymentButton() {
+                var paymentSuccessful = {% if payment_successful %}true{% else %}false{% endif %};
+                    if (paymentSuccessful) {
+                        enableProceedToPayment();
+                    }
+                }
+
+                document.addEventListener('DOMContentLoaded', enableProceedToPaymentButton);
+                
+            </script>
+
         </form>
         <div class="payment-details">
             <h2>Payment Details</h2>
@@ -151,43 +195,22 @@
         <h4>(0.8 Kshs. per min)</h4>
         {% if user_bookings %} {% for booking in user_bookings %}
         <div class="booking-entry">
-          <p><strong>Booking ID:</strong> {{ booking['booking_id'] }}</p>
-          <p><strong>Time (in min):</strong> {{ booking['duration_minutes'] }}</p>
-          <p><strong>Amount (in Kshs.):</strong> {{ calculate_amount(booking['duration_minutes']) }}</p>
-          <label for="payment-type"><p><strong>Select Payment Type:</strong></label>
-          <select id="payment-type" name="payment_type">
-            <option value="mpesa">M-Pesa</option>
-            <option value="debit_cash">Debit/Cash</option>
-          </select>
+
+            <p><strong>Booking ID:</strong> {{ booking['booking_id'] }}</p>
+            <p><strong>Time (in min):</strong> {{ booking['duration_minutes'] }}</p>
+            <p><strong>Amount (in Kshs.):</strong> {{ calculate_amount(booking['duration_minutes']) }}</p>
+            <label for="payment-type"><p><strong>Select Payment Type:</strong></label>
+            <select id="payment-type" name="payment_type">
+                <option value="mpesa">M-Pesa</option>
+                <option value="debit_cash">Debit/Cash</option>
+            </select>
         </div>
         {% endfor %} {% else %}
         <p>No Payment Information found. Book now to populate this menu!</p>
         {% endif %}
-      </div>
-    {% endif %}
-    </div>
+        </div>
+        {% endif %}
+        </div>
 
-    <script>
-
-        function goToHomePage() {
-            window.location.href = "/home";
-          }
-
-        function enableProceedToPayment() {
-            // Enable the "Proceed to Payment" button
-            document.getElementById('homBtn').removeAttribute('disabled');
-            document.getElementById('submitBtn').setAttribute('disabled', 'disabled');
-        }
-        // if the booking was successful enable the "Proceed to Payment" button
-        function enableProceedToPaymentButton() {
-        var paymentSuccessful = {% if payment_successful %}true{% else %}false{% endif %};
-            if (paymentSuccessful) {
-                enableProceedToPayment();
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', enableProceedToPaymentButton);
-        
-    </script>
 </body>
 </html>
