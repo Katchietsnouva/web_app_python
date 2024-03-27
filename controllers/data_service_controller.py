@@ -151,22 +151,8 @@ class UserController:
             print("yyyyy now end 2")
             occupied = False
             for time_range in slot_assignment["time_occupied_data"]:
-                print("timerange below")
-                print(time_range)
-                print("slot_assignment")
-                print(slot_assignment)
-                print("time_occupied_data insode slot_assignment below")
-                print(slot_assignment["time_occupied_data"])
-                print("yyyyy now end 3")                
-                print("lets print time_range['from'] below")
-                print(time_range['from'])
-                print("lets print time_range['to'] below")
-                print(time_range['to'])
                 from_unix = self.convert_to_unix_eq2(time_range['from'])
                 to_unix = self.convert_to_unix_eq2(time_range['to'])
-
-                # if not (departure_unix <= time_range['from'] or arrival_unix >= time_range['to']):
-                # if not (departure_unix < from_unix or arrival_unix > to_unix):
                 if  (arrival_unix >= from_unix and departure_unix <= to_unix ):
                     print("printing the data that managed to reach here")
                     print(customer_number)
@@ -191,8 +177,9 @@ class UserController:
             })
             slot_counter += 1
 
+        print("almos exiting the equation")
+        print(TO_BE_APPENDED_TO_parking_slots_BOOK_ASSIGNMENTS)
         return TO_BE_APPENDED_TO_parking_slots_BOOK_ASSIGNMENTS
-
 
     
     # def assign_parking_slot(self, bookings):
