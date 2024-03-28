@@ -87,19 +87,12 @@
         }
 
         .slot-info {
-            display: flex;
+            padding: 0;
+            margin:
             margin-bottom: 10px;
+            
         }
     
-        .slot-property {
-            flex: 1;
-            font-weight: bold;
-        }
-    
-        .slot-value {
-            flex: 2;
-        }
-        
         
     </style>
 
@@ -160,16 +153,15 @@
                     }
                     // Set inner HTML to include all slot information
                     newSlotBox.innerHTML = `
+                    
                     <div class="slot-info">
-                        <div class="slot-value"> <strong>${slot.parking_slot_id}</strong></div>
+                        <strong> ${slot.parking_slot_id}</strong>
+                        <p>Status: ${slot.slot_status}</p>
+                        <p>Available for Use: ${slot.available_for_use ? 'Yes' : 'No'}</p>
                     </div>
-                    <div class="slot-info">
-                        <div class="slot-property">Status:</div>
-                        <div class="slot-value">${slot.slot_status}</div>
-                    </div>
-                    <div class="slot-info">
-                        <div class="slot-property">Available?</div>
-                        <div class="slot-value">${slot.available_for_use ? 'Yes' : 'No'}</div>
+                    <div class="button-container">
+                        <button class="button edit-button" onclick="editSlot('${slot.parking_slot_id}')">Edit</button>
+                        <button class="button delete-button" onclick="deleteSlot('${slot.parking_slot_id}')">Delete</button>
                     </div>
                 `;
                     document.querySelector('.grid-container').appendChild(newSlotBox);
