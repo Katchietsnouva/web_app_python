@@ -71,17 +71,21 @@ class UserController:
         return retrieved_slot
     
     def update_slot_data(self, slot_id, updated_status, updated_available):
-        with open('user_data/global_users_data/slots.json', 'r') as file:
-            slots_data = json.load(file)
-            print(f"attempting to save the updataed data for {slot_id} which has updated_status: {updated_status} and updated_available: {updated_available}")
+        slots_data =  self.parking_slots_available_data
+        # with open('user_data/global_users_data/parking_slots_available_model.json', 'r') as file:
+        #     slots_data = json.load(file)
+        print("Original slots data:", slots_data)
+        print(f"attempting to save the updataed data for {slot_id} which has updated_status: {updated_status} and updated_available: {updated_available}")
 
         for slot in slots_data:
             if slot['parking_slot_id'] == slot_id:
                 print(f"parking_slot_id gotten {slot_id}")
                 slot['slot_status'] = updated_status
                 slot['available_for_use'] = updated_available
-                with open('user_data/global_users_data/slots.json', 'w') as file:
-                    json.dump(slots_data, file, indent=4)
+                print("Updated slots data:", slots_data) 
+                self.save_parking_slots_available_data
+                # with open('user_data/global_users_data/parking_slots_available_model.json', 'w') as file:
+                #     json.dump(slots_data, file, indent=4)
                 break
         else:
             raise Exception("Slot with ID {} not found.".format(slot_id))
