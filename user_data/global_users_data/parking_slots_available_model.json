@@ -1,1 +1,7 @@
-[]
+[
+    {
+        "parking_slot_id": "SLOT-003",
+        "slot_status": "Good",
+        "available_for_use": true
+    }
+]
