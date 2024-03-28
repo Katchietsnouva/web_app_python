@@ -120,15 +120,17 @@ class PageController:
             if request.method == 'POST':
                 confirmed = request.form.get('confirmed') 
                 if confirmed:
-                    UserController.delete_slot_data(self.user_controller, slot_id)
-                    flash('Slot deleted successfully', 'success')
-                    return redirect(url_for('slot_management'))  
+                    if UserController.delete_slot_data(self.user_controller, slot_id):
+                        flash('Slot deleted successfully', 'success')
+                        return redirect(url_for('slot_management'))  
+                    else:
+                        flash('Slot not found', 'error')
                 else:
                     flash('Deletion canceled', 'info')
                     return redirect(url_for('slot_management'))  
             else:
                 return render_template('slot_delete.html')
-            return render_template('slot_delete.html')
+            
 
 
         
