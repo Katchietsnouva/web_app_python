@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            background: radial-gradient(circle at 20% 50%, #E2F17AFA 0%, #92DFF1 100%);
             margin: 0;
             padding: 0;
         }
@@ -75,11 +75,33 @@
         button:hover {
             background-color: #0056b3;
         }
+
+        .button-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .navigation {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .navigation-button {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Slot Details</h1>
+        <div class="navigation">
+            <a onclick="goBack()" class="navigation-button">Go Back</a>
+            <a href="/login" class="navigation-button">Logout</a>
+            <a href="/admin" class="navigation-button">TO Admin Page</a>            
+        </div>
         <div class="slot-info">
             <strong>{{ slot_data.parking_slot_id }}</strong>
         </div>
@@ -99,5 +121,10 @@
             <button type="submit">Update</button>
         </form>
     </div>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 </body>
 </html>
