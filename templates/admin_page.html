@@ -130,8 +130,8 @@
                             </div>
                         </div>
                         <div class="user-actions">
-                            <button class="btn btn-primary">Edit</button>
-                            <button class="btn btn-danger">Delete</button>
+                            <button class="btn btn-primary" onclick="editUserAccount('${user.user_id}')" >Edit</button>
+                            <button class="btn btn-danger" onclick="deleteUserAccount('${user.user_id}')" >Delete</button>
                         </div>
                     </li>
                 {% endfor %}
