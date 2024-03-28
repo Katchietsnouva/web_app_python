@@ -53,12 +53,14 @@ class PageController:
                 pass
             # Load existing slot data for display
             all_parking_slots = UserController.get_all_parking_slots_available_data(self.user_controller)
+            print(all_parking_slots)
             return render_template('slot_management.html',  all_parking_slots=all_parking_slots)  
         
         @app.route('/slot_managementt')
         def slot_managementt():
             # Load existing slot data for display
             all_parking_slots = UserController.get_all_parking_slots_available_data(self.user_controller)
+            print(all_parking_slots)
             return jsonify(all_parking_slots)
         
         # @app.route('/payment/<latest_booking_id>')
@@ -274,8 +276,8 @@ class PageController:
 
                 if parking_assignments == None:
                     error_message =  "Sorry, for the selected time range, all available slots are already booked. Kindly select another time range"
- 
-            
+
+
                 if error_message:
                     flash(error_message, 'error')
                     return redirect(url_for('booking'))         
