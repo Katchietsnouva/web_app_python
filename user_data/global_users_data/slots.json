@@ -23,8 +23,8 @@
                 "customer_number": "CUST-1"
             }
         ],
-        "slot_status": "poor",
-        "available_for_use": true
+        "slot_status": "moderate",
+        "available_for_use": false
     },
     {
         "parking_slot_id": "SLOT-003",

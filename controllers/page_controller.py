@@ -92,9 +92,7 @@ class PageController:
         @app.route('/slot_management_editing/<slot_id>', methods=['GET','POST'])
         def slot_management_editing(slot_id):
             selected_slot_data = UserController.get_selected_slot_data(self.user_controller, slot_id)
-            print(slot_id)
-            print("hey there")
-            print(selected_slot_data)
+            print(f"Hey here is the selected_slot_data for the selected slot id {slot_id}. Its data: {selected_slot_data}")
             if selected_slot_data:
                 return render_template('slot_details.html', slot_data=selected_slot_data)
             else:
@@ -104,7 +102,9 @@ class PageController:
         @app.route('/update_slot/<slot_id>', methods=['POST'])
         def update_slot(slot_id):
             updated_status = request.form['slot_status']
+            print(f"here is the updated_status: {updated_status}")
             updated_available = True if 'available_for_use' in request.form else False
+            print(f"here is the updated_available: {updated_available}")
 
             UserController.update_slot_data(self.user_controller, slot_id, updated_status, updated_available)
 

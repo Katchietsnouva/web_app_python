@@ -73,9 +73,11 @@ class UserController:
     def update_slot_data(self, slot_id, updated_status, updated_available):
         with open('user_data/global_users_data/slots.json', 'r') as file:
             slots_data = json.load(file)
+            print(f"attempting to save the updataed data for {slot_id} which has updated_status: {updated_status} and updated_available: {updated_available}")
 
         for slot in slots_data:
             if slot['parking_slot_id'] == slot_id:
+                print(f"parking_slot_id gotten {slot_id}")
                 slot['slot_status'] = updated_status
                 slot['available_for_use'] = updated_available
                 with open('user_data/global_users_data/slots.json', 'w') as file:
