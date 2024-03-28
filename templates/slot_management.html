@@ -225,6 +225,21 @@
         document.addEventListener('DOMContentLoaded', fetchAndGenerateSlotBoxes);
         //document.addEventListener('DOMContentLoaded', function() {
         //});
+
+        function editSlot(slotId) {
+            // Redirect to the edit slot page with the slot ID
+            window.location.href = `/slot_management/${slotId}`;
+        }
+        
+        function deleteSlot(slotId) {
+            // Prompt the user for confirmation
+            const confirmed = confirm("Are you sure you want to delete this slot?");
+            if (confirmed) {
+                // Redirect to the delete slot page with the slot ID and delete action parameter
+                window.location.href = `/slot_management/${slotId}/delete`;
+            }
+        }
+        
     </script>
         
 
