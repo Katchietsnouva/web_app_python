@@ -4,27 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Slot Details</title>
-    <!-- Add any additional CSS or JavaScript files here -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .slot-info {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        select, input[type="checkbox"], button {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h1>Slot Details</h1>
-    <div>
-        <p><strong>Parking Slot ID:</strong> {{ slot_data.parking_slot_id }}</p>
-        <p><strong>Status:</strong> {{ slot_data.slot_status }}</p>
-        <p><strong>Available for Use:</strong> {{ "Yes" if slot_data.available_for_use else "No" }}</p>
-        <!-- Add more details as needed -->
-    </div>
-    <div>
-        <!-- Form for editing slot details -->
-        <form method="post" action="/update_slot/{{ slot_data.parking_slot_id }}">
-            <!-- Add input fields to edit slot details -->
-            <!-- Example: -->
-            <label for="slot_status">Status:</label>
-            <input type="text" id="slot_status" name="slot_status" value="{{ slot_data.slot_status }}" required>
-            <br>
-            <label for="available_for_use">Available for Use:</label>
-            <input type="checkbox" id="available_for_use" name="available_for_use" {% if slot_data.available_for_use %}checked{% endif %}>
-            <br>
+    <div class="container">
+        <h1>Slot Details</h1>
+        <div class="slot-info">
+            <strong>{{ slot_data.parking_slot_id }}</strong>
+        </div>
+        <form method="POST" action="/update_slot/{{ slot_data.parking_slot_id }}">
+            <div class="slot-info">
+                <label for="slot-status">Status:</label>
+                <select id="slot-status" name="slot_status">
+                    <option value="good" {% if slot_data.slot_status == 'good' %} selected {% endif %}>Good</option>
+                    <option value="moderate" {% if slot_data.slot_status == 'moderate' %} selected {% endif %}>Moderate</option>
+                    <option value="poor" {% if slot_data.slot_status == 'poor' %} selected {% endif %}>Poor</option>
+                </select>
+            </div>
+            <div class="slot-info">
+                <label for="availability">Available for Use:</label>
+                <input type="checkbox" id="availability" name="available_for_use" {% if slot_data.available_for_use %} checked {% endif %}>
+            </div>
             <button type="submit">Update</button>
         </form>
     </div>
