@@ -70,6 +70,22 @@ class UserController:
                 break
         return retrieved_slot
     
+    import json
+
+    def update_slot_data(self, slot_id, updated_status, updated_available):    
+        slots_data =  self.parking_slots_available_data
+
+        for slot in slots_data:
+            if slot['parking_slot_id'] == slot_id:
+                slot_model = ParkingSlotAvailableModel(slot_id, updated_status, updated_available)
+                slot['slot_status'] = slot_model.slot_status
+                slot['available_for_use'] = slot_model.available_for_use
+                self.save_parking_slots_available_data
+                break
+        else:
+            raise Exception("Slot with ID {} not found.".format(slot_id))
+
+    
     # def get_slots_data(self):
     #     return self.slots_data 
     

@@ -453,20 +453,26 @@ class PageController:
             # return redirect('/success_page')
             # flash('Booking Successful!', 'success')
 
-        @app.route('/slot_management_editing/<slot_id>', methods=['GET'])
+        @app.route('/slot_management_editing/<slot_id>', methods=['GET','POST'])
         def slot_management_editing(slot_id):
-            # Assuming you have a function to retrieve slot data based on the slot ID
             selected_slot_data = UserController.get_selected_slot_data(self.user_controller, slot_id)
             print(slot_id)
             print("hey there")
             print(selected_slot_data)
             if selected_slot_data:
-                # Render a template for displaying slot details
                 return render_template('slot_details.html', slot_data=selected_slot_data)
             else:
-                # Handle the case where the slot data is not found
                 # return render_template('error.html', message='Slot not found'), 404
                 return redirect(url_for('success', message='Slot Not Found!', redirect_url=url_for('slot_management')))
+        
+        @app.route('/update_slot/<slot_id>', methods=['POST'])
+        def update_slot(slot_id):
+            updated_status = request.form['slot_status']
+            updated_available = True if 'available_for_use' in request.form else False
+
+            UserController.update_slot_data(self.user_controller, slot_id, updated_status, updated_available)
+
+            return redirect(url_for('slot_management'))
 
         # @app.route('/extend_parking')
         # def extend_parking():
