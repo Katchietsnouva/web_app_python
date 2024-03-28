@@ -110,6 +110,12 @@ class PageController:
             UserController.update_slot_data(self.user_controller, slot_id, updated_status, updated_available)
 
             return redirect(url_for('slot_management'))
+        
+
+        @app.route('/slot_management/<slotId>/delete', methods=['POST'])
+        def delete_slot(slot_id):
+            
+        
 
 
         @app.route('/admin', methods=['GET'])
