@@ -86,6 +86,16 @@ class UserController:
         else:
             raise Exception("Slot with ID {} not found.".format(slot_id))
         
+    def delete_slot_data(self, slot_id):
+        slots_data =  self.parking_slots_available_data
+
+        for slot in slots_data:
+            if slot['parking_slot_id'] == slot_id:
+                slots_data.remove(slot)
+                self.save_parking_slots_available_data()
+                return True  # Deletion successful
+        return False     
+        
         
 
     # def update_slot_data(self, slot_id, updated_status, updated_available):    

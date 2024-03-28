@@ -36,7 +36,8 @@ class PageController:
         # Initial route
         @app.route('/')
         def default():
-            return render_template('home_page.html')
+            # return render_template('home_page.html')
+            return render_template('login_page.html')
         
             self.home_page.show()
             page_controller = PageController(app)
@@ -111,10 +112,25 @@ class PageController:
 
             return redirect(url_for('slot_management'))
         
+        # @app.route('/slot_management/<slot_id>/delete', methods=['POST'])
+        @app.route('/slot_management_delete/<slot_id>', methods=['GET','POST'])
+        def slot_management_delete(slot_id):
+            selected_slot_data = UserController.get_selected_slot_data(self.user_controller, slot_id)
+            print(f"Hey here is the selected_slot_data for the selected slot id {slot_id}. Its data: {selected_slot_data}")
+            if request.method == 'POST':
+                confirmed = request.form.get('confirmed') 
+                if confirmed:
+                    UserController.delete_slot_data(self.user_controller, slot_id)
+                    flash('Slot deleted successfully', 'success')
+                    return redirect(url_for('slot_management'))  
+                else:
+                    flash('Deletion canceled', 'info')
+                    return redirect(url_for('slot_management'))  
+            else:
+                return render_template('slot_delete.html')
+            return render_template('slot_delete.html')
 
-        @app.route('/slot_management/<slotId>/delete', methods=['POST'])
-        def delete_slot(slot_id):
-            
+
         
 
 

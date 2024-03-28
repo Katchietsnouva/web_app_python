@@ -1,7 +1,7 @@
 [
     {
         "parking_slot_id": "SLOT-001",
-        "slot_status": "Moderate",
-        "available_for_use": false
+        "slot_status": "Good",
+        "available_for_use": true
     }
 ]
