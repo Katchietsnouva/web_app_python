@@ -453,13 +453,16 @@ class PageController:
             # return redirect('/success_page')
             # flash('Booking Successful!', 'success')
 
-        @app.route('/slot_management/<slot_id>', methods=['GET'])
-        def slot_management(slot_id):
+        @app.route('/slot_management_editing/<slot_id>', methods=['GET'])
+        def slot_management_editing(slot_id):
             # Assuming you have a function to retrieve slot data based on the slot ID
-            slot_data = UserController.get_slot_data(self.user_controller, slot_id)
-            if slot_data:
+            selected_slot_data = UserController.get_selected_slot_data(self.user_controller, slot_id)
+            print(slot_id)
+            print("hey there")
+            print(selected_slot_data)
+            if selected_slot_data:
                 # Render a template for displaying slot details
-                return render_template('slot_details.html', slot_data=slot_data)
+                return render_template('slot_details.html', slot_data=selected_slot_data)
             else:
                 # Handle the case where the slot data is not found
                 # return render_template('error.html', message='Slot not found'), 404

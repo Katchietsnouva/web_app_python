@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slot Details</title>
+    <!-- Add any additional CSS or JavaScript files here -->
+</head>
+<body>
+    <h1>Slot Details</h1>
+    <div>
+        <p><strong>Parking Slot ID:</strong> {{ slot_data.parking_slot_id }}</p>
+        <p><strong>Status:</strong> {{ slot_data.slot_status }}</p>
+        <p><strong>Available for Use:</strong> {{ "Yes" if slot_data.available_for_use else "No" }}</p>
+        <!-- Add more details as needed -->
+    </div>
+    <div>
+        <!-- Form for editing slot details -->
+        <form method="post" action="/update_slot/{{ slot_data.parking_slot_id }}">
+            <!-- Add input fields to edit slot details -->
+            <!-- Example: -->
+            <label for="slot_status">Status:</label>
+            <input type="text" id="slot_status" name="slot_status" value="{{ slot_data.slot_status }}" required>
+            <br>
+            <label for="available_for_use">Available for Use:</label>
+            <input type="checkbox" id="available_for_use" name="available_for_use" {% if slot_data.available_for_use %}checked{% endif %}>
+            <br>
+            <button type="submit">Update</button>
+        </form>
+    </div>
+</body>
+</html>
