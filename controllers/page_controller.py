@@ -274,6 +274,7 @@ class PageController:
 
                 if parking_assignments == None:
                     error_message =  "Sorry, for the selected time range, all available slots are already booked. Kindly select another time range"
+ 
             
                 if error_message:
                     flash(error_message, 'error')

@@ -73,7 +73,7 @@
 
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(8, 1fr);
+            grid-template-columns: repeat(6, 1fr);
             gap: 20px;
         }
 
@@ -91,6 +91,30 @@
             margin:
             margin-bottom: 10px;
             
+        }
+    
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px; 
+        }
+    
+        .button-container .button {
+            flex: 1; /* Equal width for both buttons */
+            margin: 0 5px;
+        }
+    
+        .button-container .edit-button {
+            background-color: #4CAF50; /* Green */
+        }
+    
+        .button-container .delete-button {
+            background-color: #f44336; /* Red */
+        }
+    
+        .button-container .button:hover {
+            opacity: 0.8;
         }
     
         
