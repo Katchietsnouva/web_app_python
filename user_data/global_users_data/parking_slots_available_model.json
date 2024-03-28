@@ -1,12 +1,7 @@
 [
     {
         "parking_slot_id": "SLOT-001",
-        "slot_status": "moderate",
-        "available_for_use": false
-    },
-    {
-        "parking_slot_id": "SLOT-002",
-        "slot_status": "poor",
+        "slot_status": "Moderate",
         "available_for_use": false
     }
 ]

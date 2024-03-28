@@ -63,14 +63,14 @@ class PageController:
             print(f"Hello there! Here is the current all_parking_slots data in the database: {all_parking_slots}")
             return jsonify(all_parking_slots)
         
-        
+
         # @app.route('/payment/<latest_booking_id>')
         # def payment(latest_booking_id):
 
         @app.route('/generate_slot_id')
         def generate_slot_id():
             parking_slot_id = UserController.generate_parking_slot_id(self.user_controller)
-            slot_status = 'good'
+            slot_status = 'Good'
             available_for_use = True
             
             # Create parking_slots_available_data instance
