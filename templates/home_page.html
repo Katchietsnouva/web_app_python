@@ -247,15 +247,15 @@
           <div class="button-container_2">
             <button
               class="button edit-button"
-              onclick="currentUserSlotHistory('${slot.parking_slot_id}')"
+              onclick="currentUserSlotHistory('{{slot.parking_slot_id}}')"
             >
-              Your Slot Book History
+              Preview your History for slot
             </button>
             <button
               class="button delete-button"
-              onclick="otherUsersSlotHistory('${slot.parking_slot_id}')"
+              onclick="allUsereSlotHistory('{{slot.parking_slot_id}}')"
             >
-              Other Users Books History
+              Preview slot's all History
             </button>
           </div>
         </div>
@@ -407,11 +407,13 @@
       }
 
       function currentUserSlotHistory(parking_slot_id){
-        window.location.href = "/parking_slot_id/" + parking_slot_id;
+        var current_user_session_id = "{{ user_registration_data.user_id }}";  
+        window.location.href = "/parking_slot_id/" + parking_slot_id + "/" + current_user_session_id;
       }
 
-      function otherUsersSlotHistory(parking_slot_id){
-        window.location.href = "/parking_slot_id/" + parking_slot_id;
+      function allUsereSlotHistory(parking_slot_id){
+        var current_user_session_id = "all";
+        window.location.href = "/parking_slot_id/" + parking_slot_id + "/" + current_user_session_id;
       }
     </script>
   </body>
