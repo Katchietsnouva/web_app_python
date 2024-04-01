@@ -189,8 +189,13 @@ class PageController:
         #     return render_template('login_page.html')
         #     self.login_page.show()
 
-        @app.route('/register', methods=['GET', 'POST'])
-        def registration():
+
+        # @app.route('/register/<session_id>', methods=['GET', 'POST'])
+        # def registration(session_id):
+
+        @app.route('/register/<session_id>')
+        def registration(session_id):
+            
             if request.method == 'POST':
             # if self.app.request.method == 'POST':
                 # Get form data
