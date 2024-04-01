@@ -58,5 +58,17 @@
         "carmodel": "aa",
         "car_plate": "aa",
         "role": "user"
+    },
+    {
+        "user_id": "ba63bb56-656b-408f-bdfd-21c5baa18f19",
+        "customer_number": "CUST-6",
+        "username": "suj",
+        "password": "suj",
+        "phone": "s",
+        "email": "ss@gmail.com",
+        "carmanufacturer": "s",
+        "carmodel": "s",
+        "car_plate": "s",
+        "role": "user"
     }
 ]
