@@ -104,10 +104,10 @@
       <input type="time" id="departure_time" name="departure_time" required />
 
       <p>
-        Duration: {% if duration is defined %}{{ duration }}{% else %}N/A{% endif %}
+        <strong> Duration: </strong> {% if duration is defined %}{{ duration }}{% else %}N/A{% endif %}
       </p>
       <p>
-        Assigned Booking Slot: {% if booking_message is defined %}{{ booking_message }}{% else %}N/A{% endif %}
+        <strong>Assigned Booking Slot:</strong> {% if booking_message is defined %}{{ booking_message }}{% else %}N/A{% endif %}
       </p>
       
 

@@ -105,17 +105,15 @@
         color: #888;
       }
 
-      /* Styles for the payment type selection */
       #payment-type {
         margin-top: 10px;
         padding: 8px;
         border-radius: 5px;
       }
 
-      /* Styles for Parking Slots */
       .parking-grid {
           display: grid;
-          grid-template-columns: repeat(8, 1fr);
+          grid-template-columns: repeat(6, 1fr);
           grid-gap: 10px;
       }
 
@@ -136,8 +134,36 @@
         text-align: center;
         grid-column: 1 / -1;
       }
+
+      .slot-property {
+        flex: 1;
+        font-weight: bold;
+    }
     
 
+    .button-container_2 {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px; 
+        }
+    
+        .button-container_2 .button {
+            flex: 1; /* Equal width for both buttons */
+            margin: 0 5px;
+        }
+    
+        .button-container_2 .edit-button {
+            background-color: #4CAF50; /* Green */
+        }
+    
+        .button-container_2 .delete-button {
+            background-color: #f44336; /* Red */
+        }
+    
+        .button-container_2 .button:hover {
+            opacity: 0.8;
+        }
+    
     </style>
   </head>
   <body>
@@ -151,12 +177,8 @@
       <a class="navigation-button" href="/login">Logout</a>
       <a class="navigation-button" href="/register">Edit Registration</a>
       <a class="navigation-button" href="/book">Book Parking Now</a>
-      <a class="navigation-button" href="/extendbook"
-        >Extend Book Parking Time</a
-      >
-      <a class="navigation-button" href="/payment/{{ latest_booking_id }}"
-        >Payment Menu</a
-      >
+      <a class="navigation-button" href="/extendbook">Extend Book Parking Time</a>
+      <a class="navigation-button" href="/payment/{{ latest_booking_id }}">Payment Menu</a>
     </div>
 
     <!-- Custom Section 1 -->
@@ -174,11 +196,17 @@
             {% for slot in parking_slots %}
                 <div class="parking-slot {% if slot.status == 'good' %}occupied{% else %}available{% endif %}">
                     {{ slot.parking_slot_id }}
+                    <div class="slot-property">Status:</div> {{ slot.slot_status }}
+                    <div class="slot-property">Publicly Available?</div>{{ slot.available_for_use }}
+                    <div class="button-container_2">
+                      <button class="button edit-button" onclick="editSlot('${slot.parking_slot_id}')">Your Slot Book History</button>
+                      <button class="button delete-button" onclick="deleteSlot('${slot.parking_slot_id}')">Other Users Books History</button>
+                  </div>
                 </div>
             {% endfor %}
         {% else %}
           <div class="no-parking-slots">
-            <h2> <strong>No parking slots available. Sorry you cant book! </strong></h2>
+            <h2> <strong>No parking slots have been created. Sorry you cant book! </strong></h2>
           </div>  
         {% endif %}
       </div>
@@ -314,6 +342,14 @@
       function calculate_amount(duration_minutes) {
         var rate = 0.8; // Rate in Kshs. per minute
         return (duration_minutes * rate).toFixed(2);
+      }
+
+      function registrationEditing() {
+        // Redirect to payment page with the booking ID
+        //window.location.href = "/payment";
+        //window.location.href = "/payment/{{ latest_booking_id }}";
+        var current_user_session_id = "{{ session['user_id'] }}";  
+        window.location.href = "/register/" + current_user_session_id;
       }
     </script>
   </body>

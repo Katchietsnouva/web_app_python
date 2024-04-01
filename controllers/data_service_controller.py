@@ -209,7 +209,7 @@ class UserController:
                     "time_occupied_data": [(arrival_unix, departure_unix, customer_number)]
                 })
                 assigned = True
-                booking_message = f"you have been assigned parking_slot_id {parking_slot_id}"
+                booking_message = f"you have been assigned {parking_slot_id}"
                 break
 
         if not assigned:
