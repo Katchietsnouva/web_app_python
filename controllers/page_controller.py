@@ -198,8 +198,6 @@ class PageController:
         def registration(session_id):
             
             if request.method == 'POST':
-            # if self.app.request.method == 'POST':
-                # Get form data
                 username = request.form.get('username')
                 password = request.form.get('password')
                 phone = request.form.get('phone')
@@ -208,9 +206,7 @@ class PageController:
                 carmodel = request.form.get('carmodel')
                 car_plate = request.form.get('car_plate')
                 role = request.form.get('role')
-
                 user_id = str(uuid.uuid4())
-
                 # Create UserModel instance
                 user_model = UserModel(user_id, None, username, password, phone, email, carmanufacturer, carmodel, car_plate, role)
                 # Register the user
@@ -221,15 +217,13 @@ class PageController:
                     # Setingt the user_id in the session for future reference
                     session['user_id'] = user_id
                     session['username'] = username
-
-                    # popup
                     flash('Registration Successful! You can now log in.', 'success')
                     return redirect(url_for('success', message='Registration Successful!', redirect_url=url_for('login')))
 
                     return redirect(url_for('home'))
-                    # return redirect(url_for('registration_success'))
-
-            return render_template('registration_page.html')
+                    return redirect(url_for('registration_success'))
+            if request.method == 'GET':
+                return render_template('registration_page.html')
         
         @app.route('/success')
         def success():
