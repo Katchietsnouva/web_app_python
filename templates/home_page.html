@@ -202,7 +202,7 @@
     <div class="navigation-container">
       <a class="navigation-button" href="/login">Logout</a>
       <!--<button class="navigation-button" onclick = "registrationEditing('${session['user_id]}')">Edit Registration</button>-->
-      <button class="navigation-button" onclick = "registrationEditing('${user_registration_data['user_id]}')">Edit Registration</button>
+      <button class="navigation-button" onclick = "registrationEditing('${ user_registration_data.user_id }')">Edit Registration</button>
       <a class="navigation-button" href="/book">Book Parking Now</a>
       <a class="navigation-button" href="/extendbook"
         >Extend Book Parking Time</a
@@ -399,13 +399,15 @@
         var rate = 0.8; // Rate in Kshs. per minute
         return (duration_minutes * rate).toFixed(2);
       }
+    
 
-      function registrationEditing() {
+      function registrationEditing(current_user_session_id) {
         // Redirect to payment page with the booking ID
         //window.location.href = "/payment";
         //window.location.href = "/payment/{{ latest_booking_id }}";
-        var current_user_session_id = "{{ session['user_id'] }}";
+        //var current_user_session_id = "{{ session['user_id'] }}";
         window.location.href = "/register/" + current_user_session_id;
+        //window.location.href = `/register/${current_user_session_id}`;
       }
 
       function currentUserSlotHistory(parking_slot_id){
