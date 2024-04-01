@@ -194,8 +194,8 @@ class PageController:
         # def registration(session_id):
 
         # @app.route('/register/<session_id>')
-        @app.route('/register/<session_id>', methods=['GET', 'POST'])
-        def registration(session_id):
+        @app.route('/register/<place_holder_user_id>', methods=['GET', 'POST'])
+        def registration(place_holder_user_id):
             
             if request.method == 'POST':
                 username = request.form.get('username')
@@ -223,7 +223,13 @@ class PageController:
                     return redirect(url_for('home'))
                     return redirect(url_for('registration_success'))
             if request.method == 'GET':
-                return render_template('registration_page.html')
+                if place_holder_user_id == "new_user":
+                    print(f'A newbie here about to create an account')
+                    return render_template('registration_page.html')
+                else:
+                    user_registration_data =  self.user_controller.get_user_registration_data(place_holder_user_id)
+                    print(f'This is the data that the user is to edit for him/herself {user_registration_data}')
+                    return render_template('registration_page.html', user_registration_data = user_registration_data)
         
         @app.route('/success')
         def success():
