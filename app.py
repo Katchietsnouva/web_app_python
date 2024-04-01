@@ -5,6 +5,8 @@
 # pip install pymysql
 # sudo apt-get install python3-tk
 # pip install customtkinter
+# cd /bin
+# sudo ln -s /usr/bin/python3 python
 
 from flask import Flask, render_template
 # from flask_sqlalchemy import SQLAlchemy
