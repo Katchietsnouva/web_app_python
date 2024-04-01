@@ -435,14 +435,14 @@ class PageController:
         # @app.route('/payment/<latestBookingId>', defaults={'latestBookingId': None})
         @app.route('/payment/<latest_booking_id>')
         def payment(latest_booking_id):
-            print(latest_booking_id + " -this is the value of latest_booking_id ") 
+            print(latest_booking_id + " -this is the value of latest_booking_id") 
             if latest_booking_id != "available_tickets":
-                print(latest_booking_id + " this should be executed if latest_booking_id has a value") 
+                print(latest_booking_id + " this should be executed if latest_booking_id has a value  -->(@app.route('/payment/<latest_booking_id>'))") 
                 # If latestBookingId is provided, fetch details for that specific ticket
                 latest_mod_ticket_details = UserController.html_get_selected_ticket_details(self.user_controller, latest_booking_id)
                 return render_template('payment_page.html', latest_mod_ticket_details=latest_mod_ticket_details,selected_payment_data=None)
             else:
-                print(latest_booking_id + " this should be executed if latest_booking_id has no value") 
+                print(latest_booking_id + " this should be executed if latest_booking_id has no value -->(@app.route('/payment/<latest_booking_id>'))") 
                 # try:
                 # If latestBookingId is not provided, fetch details for all tickets
                 user_id = session['user_id']
