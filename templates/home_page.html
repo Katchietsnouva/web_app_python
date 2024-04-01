@@ -202,7 +202,8 @@
     <div class="navigation-container">
       <a class="navigation-button" href="/login">Logout</a>
       <!--<button class="navigation-button" onclick = "registrationEditing('${session['user_id]}')">Edit Registration</button>-->
-      <button class="navigation-button" onclick = "registrationEditing('${ user_registration_data.user_id }')">Edit Registration</button>
+      <button class="navigation-button" onclick = "registrationEditing('{{ user_registration_data.user_id }}')">Edit Registration</button>
+      
       <a class="navigation-button" href="/book">Book Parking Now</a>
       <a class="navigation-button" href="/extendbook"
         >Extend Book Parking Time</a

@@ -193,7 +193,8 @@ class PageController:
         # @app.route('/register/<session_id>', methods=['GET', 'POST'])
         # def registration(session_id):
 
-        @app.route('/register/<session_id>')
+        # @app.route('/register/<session_id>')
+        @app.route('/register/<session_id>', methods=['GET', 'POST'])
         def registration(session_id):
             
             if request.method == 'POST':
@@ -259,6 +260,7 @@ class PageController:
                 latest_booking_id  = "available_tickets"
                 # Sample parking slots data (will be replaced by dynamic data later)
                 parking_slots = parking_slots = UserController.get_all_parking_slots_available_data(self.user_controller)
+                print(f'These is user_registration_data accessed when home is loaded  {user_registration_data}')
 
                 # Rearranginh tume model to fing the duration difference
                 # user_bookings = [TimeModel(**booking) for booking in user_bookings]
