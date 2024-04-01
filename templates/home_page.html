@@ -403,12 +403,7 @@
     
 
       function registrationEditing(current_user_session_id) {
-        // Redirect to payment page with the booking ID
-        //window.location.href = "/payment";
-        //window.location.href = "/payment/{{ latest_booking_id }}";
-        //var current_user_session_id = "{{ session['user_id'] }}";
         window.location.href = "/register/" + current_user_session_id;
-        //window.location.href = `/register/${current_user_session_id}`;
       }
 
       function currentUserSlotHistory(parking_slot_id){
