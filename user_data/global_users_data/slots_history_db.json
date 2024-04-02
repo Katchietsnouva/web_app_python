@@ -5,7 +5,8 @@
             {
                 "from": "2024-03-28 00:28",
                 "to": "2024-03-28 01:27",
-                "customer_number": "CUST-1"
+                "customer_number": "CUST-1",
+                "user_id": "d4365c4c-ff32-448a-b14c-a318e3b41675"
             },
             {
                 "from": "2024-03-29 00:30",
@@ -20,7 +21,8 @@
             {
                 "from": "2024-04-18 01:32",
                 "to": "2024-04-25 01:32",
-                "customer_number": "CUST-1"
+                "customer_number": "CUST-1",
+                "user_id": "d4365c4c-ff32-448a-b14c-a318e3b41675"
             }
         ]
     },
@@ -30,7 +32,8 @@
             {
                 "from": "2024-03-29 00:30",
                 "to": "2024-03-29 01:30",
-                "customer_number": "CUST-1"
+                "customer_number": "CUST-1",
+                "user_id": "d4365c4c-ff32-448a-b14c-a318e3b41675"
             },
             {
                 "from": "2024-03-28 00:43",
@@ -45,12 +48,14 @@
             {
                 "from": "2024-03-31 01:00",
                 "to": "2024-04-04 01:00",
-                "customer_number": "CUST-1"
+                "customer_number": "CUST-1",
+                "user_id": "d4365c4c-ff32-448a-b14c-a318e3b41675"
             },
             {
                 "from": "2024-04-18 15:29",
                 "to": "2024-04-19 15:29",
-                "customer_number": "CUST-1"
+                "customer_number": "CUST-1",
+                "user_id": "d4365c4c-ff32-448a-b14c-a318e3b41675"
             }
         ]
     },
@@ -70,12 +75,14 @@
             {
                 "from": "2024-04-05 01:22",
                 "to": "2024-04-11 01:22",
-                "customer_number": "CUST-1"
+                "customer_number": "CUST-1",
+                "user_id": "d4365c4c-ff32-448a-b14c-a318e3b41675"
             },
             {
                 "from": "2024-04-18 19:23",
                 "to": "2024-04-25 20:23",
-                "customer_number": "CUST-1"
+                "customer_number": "CUST-1",
+                "user_id": "d4365c4c-ff32-448a-b14c-a318e3b41675"
             },
             {
                 "from": "2024-04-02 05:54",
@@ -91,17 +98,20 @@
             {
                 "from": "2024-04-05 05:10",
                 "to": "2024-04-11 05:11",
-                "customer_number": "CUST-1"
+                "customer_number": "CUST-1",
+                "user_id": "d4365c4c-ff32-448a-b14c-a318e3b41675"
             },
             {
                 "from": "2024-03-28 19:19",
                 "to": "2024-03-29 19:19",
-                "customer_number": "CUST-1"
+                "customer_number": "CUST-1",
+                "user_id": "d4365c4c-ff32-448a-b14c-a318e3b41675"
             },
             {
                 "from": "2024-04-18 19:23",
                 "to": "2024-04-25 20:23",
-                "customer_number": "CUST-1"
+                "customer_number": "CUST-1",
+                "user_id": "d4365c4c-ff32-448a-b14c-a318e3b41675"
             }
         ]
     },
@@ -111,7 +121,8 @@
             {
                 "from": "2024-03-28 19:19",
                 "to": "2024-03-29 19:19",
-                "customer_number": "CUST-1"
+                "customer_number": "CUST-1",
+                "user_id": "d4365c4c-ff32-448a-b14c-a318e3b41675"
             }
         ]
     }
