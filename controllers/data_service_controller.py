@@ -108,7 +108,7 @@ class UserController:
                 for entry in slot.get("time_occupied_data", []):
                     if entry.get("user_id") == current_user_session_id:
                         current_user_slot_data.append(entry)
-                        print(f'This is a chat try {current_user_slot_data}')
+        print(f'This is a chat try {current_user_slot_data}')
         return current_user_slot_data
 
     def update_slot_data(self, slot_id, updated_status, updated_available):
@@ -150,7 +150,7 @@ class UserController:
     
     def get_selected_ticket_details(self, ticket_id):
         # Search for the ticket with the provided ticket_id
-        selected_ticket = None
+        selected_ticket = []
         for ticket in self.time_data:
             if ticket.get("booking_id") == ticket_id:
                 selected_ticket = ticket
