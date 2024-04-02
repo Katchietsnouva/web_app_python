@@ -76,7 +76,6 @@ class UserController:
             self.parking_slots_useage_history_json_data = self.load_parking_slots_useage_history_json_data()
         return self.parking_slots_useage_history_json_data
         
-    
     def load_parking_slots_useage_history_json_data(self):
         with open(self.slots_history_json_path, "r") as file:
             return json.load(file)
@@ -85,8 +84,6 @@ class UserController:
         with open(self.slots_history_json_path, "w") as file:
             # json.dump(self.user_model, file, indent=4)
             json.dump(self.parking_slots_useage_history_json_data, file, indent=4)
-
-
 
     def get_selected_slot_data(self, selected_slot_data ):
         retrieved_slot = None
