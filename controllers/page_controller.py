@@ -78,20 +78,7 @@ class PageController:
                 current_user_slot_data = UserController.get_current_user_slot_history_data(self.user_controller, parking_slot_id, current_user_session_id)
                 # if current_user_slot_data:
                 return render_template('current_user_slot_history.html', selected_id_data=parking_slot_id, current_user_session_id=current_user_session_id, time_occupied_data=current_user_slot_data)
-                    
-                # else:
-                    # return render_template('current_user_slot_history.html', selected_id_data=parking_slot_id, current_user_session_id=current_user_session_id, time_occupied_data=[])
                 
-
-                current_user_slot_data = UserController.get_current_user_slot_history_data(self.user_controller, parking_slot_id, current_user_session_id)
-                return render_template('current_user_slot_history.html', selected_id_data=current_user_slot_data['parking_slot_id'], current_user_session_id=current_user_session_id, time_occupied_data=current_user_slot_data['time_occupied_data'])
-                return render_template('current_user_slot_history.html', parking_slot_id=parking_slot_id, current_user_session_id=current_user_session_id)
-
-        
-
-        # @app.route('/payment/<latest_booking_id>')
-        # def payment(latest_booking_id):
-
         @app.route('/generate_slot_id')
         def generate_slot_id():
             parking_slot_id = UserController.generate_parking_slot_id(self.user_controller)
@@ -157,11 +144,6 @@ class PageController:
                     return redirect(url_for('slot_management'))  
             else:
                 return render_template('slot_delete.html')
-            
-
-
-        
-
 
         @app.route('/admin', methods=['GET'])
         def admin_page():
@@ -329,7 +311,6 @@ class PageController:
                 
                 # Create a TimeModel instance and filling details
                 time_model = TimeModel(user_id, customer_number, None, arrival_date, arrival_time, departure_date, departure_time, duration_minutes)
-
 
                 # Save the time entry to the data service controller
                 specific_bookin_id = UserController.save_user_time_data(self.user_controller, time_model)
