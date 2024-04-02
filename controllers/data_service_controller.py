@@ -165,6 +165,7 @@ class UserController:
         arrival_unix = self.convert_to_unix(bookings["arrival_date"], bookings["arrival_time"])
         departure_unix = self.convert_to_unix(bookings["departure_date"], bookings["departure_time"])
         customer_number = bookings["customer_number"]
+        user_id = bookings["user_id"]
         print(f"The customer number that we want to assign a slot is {customer_number}")
         
         error_message = None
@@ -193,7 +194,7 @@ class UserController:
                 # If the slot is not occupied, assign it to the booking
                 TO_BE_APPENDED_TO_parking_slots_BOOK_ASSIGNMENTS.append({
                     "parking_slot_id": parking_slot_id,
-                    "time_occupied_data": [(arrival_unix, departure_unix, customer_number)]
+                    "time_occupied_data": [(arrival_unix, departure_unix, customer_number, user_id)]
                 })
                 assigned = True
                 booking_message = f"you have been assigned {parking_slot_id}"
