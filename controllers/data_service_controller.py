@@ -43,8 +43,8 @@ class UserController:
         self.time_data = self.load_or_create_time_data()
         self.payment_data = self.load_or_create_payment_data()
         self.parking_slots_available_data = self.load_or_create_parking_slots_available_data()
-        self.slots_history_json_data = self.load_or_create_slots_json_data()
-        # self.slots_history_txt_data = self.load_or_create_slots_txt_data()
+        self.parking_slots_useage_history_json_data = self.load_or_create_parking_slots_useage_history_json_data()
+        # self.parking_slots_history_txt_data = self.load_or_create_slots_txt_data()
 
         self.last_booking_index = {}
         # self.users_data_path = current_app.config['users_data_path']
@@ -61,6 +61,8 @@ class UserController:
         return self.payment_data 
     def get_all_parking_slots_available_data(self):
         return self.parking_slots_available_data 
+    def get_all_parking_slots_useage_history_data(self):
+        return self.parking_slots_useage_history_json_data 
     
     def get_selected_slot_data(self, selected_slot_data ):
         retrieved_slot = None
@@ -77,7 +79,7 @@ class UserController:
                 retrieved_slot = slot
                 return retrieved_slot_history
     
-    def update_slot_data(self, slot_id, updated_status,     updated_available):
+    def update_slot_data(self, slot_id, updated_status, updated_available):
         slots_data =  self.parking_slots_available_data
         print("Original slots data:", slots_data)
         print(f"attempting to save the updataed data for {slot_id} which has updated_status: {updated_status} and updated_available: {updated_available}")
@@ -103,49 +105,6 @@ class UserController:
                 return True  # Deletion successful
         return False     
         
-        
-
-    # def update_slot_data(self, slot_id, updated_status, updated_available):    
-    #     slots_data =  self.parking_slots_available_data
-
-    #     for slot in slots_data:
-    #         if slot['parking_slot_id'] == slot_id:
-    #             slot_model = ParkingSlotAvailableModel(slot_id, updated_status, updated_available)
-    #             slot['slot_status'] = slot_model.slot_status
-    #             slot['available_for_use'] = slot_model.available_for_use
-    #             self.save_parking_slots_available_data
-    #             break
-    #     else:
-    #         raise Exception("Slot with ID {} not found.".format(slot_id))
-
-
-    
-    # def get_slots_data(self):
-    #     return self.slots_data 
-    
-    # # def f"SLOT-{str(slot_counter).zfill(3)}",
-
-    # def load_or_create_slots_json_data(self):
-    #     directory = os.path.dirname(self.slots_history_json_path)
-    #     if not os.path.exists(directory):
-    #         os.makedirs(directory)
-
-    #     if not os.path.exists(self.slots_history_json_path):
-    #         self.slots_data = []
-    #         self.save_slots_data()
-    #     else:
-    #         self.slots_data = self.load_parking_slots_available_data()
-    #     return self.slots_data
-        
-    # def load_parking_slots_available_data(self):
-    #     with open(self.slots_history_json_path, "r") as file:
-    #         return json.load(file)
-        
-    # def save_slots_data(self):
-    #     with open(self.slots_history_json_path, "w") as file:
-    #         # json.dump(self.user_model, file, indent=4)
-    #         json.dump(self.slots_data, file, indent=4)
-
             
     def convert_to_unix(self, date_str, time_str):
         dt = datetime.datetime.strptime(date_str + ' ' + time_str, '%Y-%m-%d %H:%M')
