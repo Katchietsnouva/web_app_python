@@ -52,7 +52,7 @@
             background-color: #f9f9f9;
         }
 
-        a {
+        button {
             display: block;
             margin-top: 20px;
             text-align: center;
@@ -60,8 +60,27 @@
             text-decoration: none;
         }
 
-        a:hover {
+        button:hover {
             text-decoration: underline;
+        }
+        
+        .navigation-button {
+            background-color: #007bff;
+            color: #fff; 
+            padding: 10px 20px;
+            border: none; 
+            border-radius: 5px;
+            cursor: pointer; 
+            transition: background-color 0.3s; 
+          }
+          
+          .navigation-button:hover {
+            background-color: #0056b3; 
+          }
+        .no-data {
+            text-align: center;
+            font-style: italic;
+            color: #888;
         }
     </style>
 </head>
@@ -91,10 +110,10 @@
             </tbody>
         </table>
         {% else %}
-        <p>You have never been assigned to this slot.</p>
+        <p class="no-data">You have never been assigned to this slot.</p>
         {% endif %}
     
-        <a onclick="goBack()" class="navigation-button">Go Back</a>
+        <button onclick="goBack()" class="navigation-button">Go Back</button>
     </div>
     <script>
         function goBack() {
