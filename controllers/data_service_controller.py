@@ -95,6 +95,9 @@ class UserController:
     
     def get_selected_slot_history_data(self, selected_slot_data ):
         retrieved_slot_history = None
+        final = self.parking_slots_useage_history_json_data
+        print(f'The follwoing is all the slot history data in the database: {final}')
+
         for slot in self.parking_slots_useage_history_json_data:
             if slot.get("parking_slot_id") == selected_slot_data:
                 retrieved_slot_history = slot
