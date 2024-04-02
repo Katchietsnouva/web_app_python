@@ -64,6 +64,30 @@ class UserController:
     def get_all_parking_slots_useage_history_data(self):
         return self.parking_slots_useage_history_json_data 
     
+    def load_or_create_parking_slots_useage_history_json_data(self):
+        directory = os.path.dirname(self.slots_history_json_path)
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+
+        if not os.path.exists(self.slots_history_json_path):
+            self.parking_slots_useage_history_json_data = []
+            self.save_parking_slots_useage_history_json_data()
+        else:
+            self.parking_slots_useage_history_json_data = self.load_parking_slots_useage_history_json_data()
+        return self.parking_slots_useage_history_json_data
+        
+    
+    def load_parking_slots_useage_history_json_data(self):
+        with open(self.slots_history_json_path, "r") as file:
+            return json.load(file)
+        
+    def save_parking_slots_useage_history_json_data(self):
+        with open(self.slots_history_json_path, "w") as file:
+            # json.dump(self.user_model, file, indent=4)
+            json.dump(self.parking_slots_useage_history_json_data, file, indent=4)
+
+
+
     def get_selected_slot_data(self, selected_slot_data ):
         retrieved_slot = None
         for slot in self.parking_slots_available_data:
@@ -74,9 +98,10 @@ class UserController:
     
     def get_selected_slot_history_data(self, selected_slot_data ):
         retrieved_slot_history = None
-        for slot in self.parking_slots_available_data:
+        for slot in self.parking_slots_useage_history_json_data:
             if slot.get("parking_slot_id") == selected_slot_data:
-                retrieved_slot = slot
+                retrieved_slot_history = slot
+                print(f'Another light day! This is the selected slot history data {retrieved_slot_history}')
                 return retrieved_slot_history
     
     def update_slot_data(self, slot_id, updated_status, updated_available):
@@ -104,7 +129,6 @@ class UserController:
                 self.save_parking_slots_available_data()
                 return True  # Deletion successful
         return False     
-        
             
     def convert_to_unix(self, date_str, time_str):
         dt = datetime.datetime.strptime(date_str + ' ' + time_str, '%Y-%m-%d %H:%M')
@@ -126,11 +150,11 @@ class UserController:
                 break
         return selected_ticket
     
-
     def assign_parking_slot(self, bookings):
         TO_BE_APPENDED_TO_parking_slots_BOOK_ASSIGNMENTS = []
-        with open('user_data/global_users_data/slots.json', 'r') as file:
-            parking_slots_BOOK_ASSIGNMENTS = json.load(file)
+        # with open('user_data/global_users_data/slots.json', 'r') as file:
+        #     parking_slots_BOOK_ASSIGNMENTS = json.load(file)
+        parking_slots_BOOK_ASSIGNMENTS = self.parking_slots_useage_history_json_data
 
         available_slots = [slot for slot in self.get_all_parking_slots_available_data() if slot['available_for_use']]
         print("Available slots:", available_slots)
@@ -187,12 +211,6 @@ class UserController:
         print(TO_BE_APPENDED_TO_parking_slots_BOOK_ASSIGNMENTS)
         return TO_BE_APPENDED_TO_parking_slots_BOOK_ASSIGNMENTS, booking_message, error_message
             
-
-
-
-
-
-
     def generate_parking_slot_id(self):
         # user_bookings = [entry for entry in self.time_data if entry['user_id'] == user_id]
         user_parking_info = [entry for entry in self.parking_slots_available_data]
