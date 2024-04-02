@@ -94,13 +94,23 @@ class UserController:
         return retrieved_slot
     
     def get_selected_slot_history_data(self, selected_slot_data ):
-        retrieved_slot_history = None
+        retrieved_slot_history = []
         for slot in self.parking_slots_useage_history_json_data:
             if slot.get("parking_slot_id") == selected_slot_data:
                 retrieved_slot_history = slot
                 print(f'Another light day! This is the selected slot history data {retrieved_slot_history}')
                 return retrieved_slot_history
-    
+            
+    def get_current_user_slot_history_data(self, parking_slot_id, current_user_session_id):
+        current_user_slot_data = []
+        for slot in self.parking_slots_useage_history_json_data:
+            if slot.get("parking_slot_id") == parking_slot_id:
+                for entry in slot.get("time_occupied_data", []):
+                    if entry.get("user_id") == current_user_session_id:
+                        current_user_slot_data.append(entry)
+                        print(f'This is a chat try {current_user_slot_data}')
+        return current_user_slot_data
+
     def update_slot_data(self, slot_id, updated_status, updated_available):
         slots_data =  self.parking_slots_available_data
         print("Original slots data:", slots_data)
