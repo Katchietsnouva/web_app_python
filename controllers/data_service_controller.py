@@ -36,7 +36,7 @@ class UserController:
         self.time_data_path = 'user_data/global_users_data/time_data.json'
         self.payment_data_path = 'user_data/global_users_data/payment_data.json'
         self.parking_slots_available_model_path = 'user_data/global_users_data/parking_slots_available_model.json'
-        self.slots_history_json_path = 'user_data/global_users_data/slots.json'
+        self.slots_history_json_path = 'user_data/global_users_data/slots_history_db.json'
         self.slots_history_txt_path = 'user_data/global_users_data/slots.txt'
 
         self.users_data = self.load_or_create_users_data()
@@ -152,7 +152,7 @@ class UserController:
     
     def assign_parking_slot(self, bookings):
         TO_BE_APPENDED_TO_parking_slots_BOOK_ASSIGNMENTS = []
-        # with open('user_data/global_users_data/slots.json', 'r') as file:
+        # with open('user_data/global_users_data/slots_history_db.json', 'r') as file:
         #     parking_slots_BOOK_ASSIGNMENTS = json.load(file)
         parking_slots_BOOK_ASSIGNMENTS = self.parking_slots_useage_history_json_data
 

@@ -372,7 +372,7 @@ class PageController:
                 
                 def append_parking_assignments_to_json(self, new_assignments):
                     # Load existing data from the JSON file
-                    with open('user_data/global_users_data/slots.json', 'r') as json_file:
+                    with open('user_data/global_users_data/slots_history_db.json', 'r') as json_file:
                         existing_assignments = json.load(json_file)
 
                     # Update existing data with new assignments
@@ -390,8 +390,10 @@ class PageController:
                             existing_assignments.append(new_assignment)
 
                     # Write the updated data back to the JSON file
-                    with open('user_data/global_users_data/slots.json', 'w') as json_file:
+                    with open('user_data/global_users_data/slots_history_db.json', 'w') as json_file:
                         json.dump(existing_assignments, json_file, indent=4)
+                    # UserController.save_parking_slots_useage_history_json_data(self)
+                    
                         
                 # Save parking slot assignments to JSON file
                 append_parking_assignments_to_json(self, parking_assignments_to_json (self, parking_assignments))
