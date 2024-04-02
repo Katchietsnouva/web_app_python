@@ -239,7 +239,7 @@
         <div
           class="parking-slot {% if slot.available_for_use == True %}available{% else %}occupied{% endif %}"
         >
-          {{ slot.parking_slot_id }}
+          <strong>{{ slot.parking_slot_id }}</strong><br>
           <div class="slot-property">Status:</div>
           {{ slot.slot_status }}
           <div class="slot-property">Available For Use?</div>

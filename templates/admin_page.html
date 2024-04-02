@@ -130,7 +130,7 @@
                             </div>
                         </div>
                         <div class="user-actions">
-                            <button class="btn btn-primary" onclick="editUserAccount('${user.user_id}')" >Edit</button>
+                            <button class="btn btn-primary" onclick="editUserAccount('{{user.user_id}}')" >Edit</button>
                             <button class="btn btn-danger" onclick="deleteUserAccount('${user.user_id}')" >Delete</button>
                         </div>
                     </li>
@@ -204,7 +204,7 @@
     </div>
     <script>
         function editUserAccount(user_id){
-            window.location.href = `/user_account_editing/${user_id}`;
+            window.location.href = `/register/${user_id}`;
         }
 
         function deleteSlot(user_id) {
