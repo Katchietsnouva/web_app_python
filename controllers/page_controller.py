@@ -70,14 +70,11 @@ class PageController:
                 parking_slot_id_key = parking_slot_id
                 print(f'Target parking_slot_id_key ID is as follows: {parking_slot_id_key}') 
                 selected_slot_data = UserController.get_selected_slot_history_data(self.user_controller, parking_slot_id_key)
-                # Fetch all users' slot history for the given parking slot ID
-                # Logic to fetch all users' slot history goes here
-                # return render_template('all_slot_history.html', time_occupied_data=selected_slot_data)
                 return render_template('all_slot_history.html', selected_id_data = selected_slot_data['parking_slot_id'], time_occupied_data=selected_slot_data['time_occupied_data'])
 
             else:
-                # Fetch current user's slot history for the given parking slot ID
-                # Logic to fetch current user's slot history goes here
+                current_user_slot_data = UserController.get_current_user_slot_history_data(self.user_controller, parking_slot_id, current_user_session_id)
+                return render_template('current_user_slot_history.html', selected_id_data=selected_slot_data['parking_slot_id'], current_user_session_id=current_user_session_id, time_occupied_data=current_user_slot_data['time_occupied_data'])
                 return render_template('current_user_slot_history.html', parking_slot_id=parking_slot_id, current_user_session_id=current_user_session_id)
 
         
